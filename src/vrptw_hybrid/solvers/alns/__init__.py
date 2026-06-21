@@ -1,5 +1,12 @@
 """Adaptive Large Neighborhood Search components."""
 
+from vrptw_hybrid.solvers.alns.acceptance import (
+    AlwaysBetterAcceptance,
+    MaxIterationsStop,
+    NoImprovementStop,
+    SimulatedAnnealingAcceptance,
+    TimeLimitStop,
+)
 from vrptw_hybrid.solvers.alns.destroy import (
     DESTROY_OPERATORS,
     DestroyOperator,
@@ -30,9 +37,14 @@ __all__ = [
     "DESTROY_OPERATORS",
     "REPAIR_OPERATORS",
     "ALNSState",
+    "AlwaysBetterAcceptance",
     "DestroyOperator",
     "InsertionResult",
+    "MaxIterationsStop",
+    "NoImprovementStop",
     "RepairOperator",
+    "SimulatedAnnealingAcceptance",
+    "TimeLimitStop",
     "evaluate_route",
     "greedy_cheapest_insertion",
     "insertion_delta_cost",

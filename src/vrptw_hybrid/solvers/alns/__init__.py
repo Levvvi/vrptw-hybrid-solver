@@ -31,11 +31,13 @@ from vrptw_hybrid.solvers.alns.route_eval import (
     insertion_delta_cost,
     is_feasible_insertion,
 )
+from vrptw_hybrid.solvers.alns.solver import ALNSSolver, solve_alns
 from vrptw_hybrid.solvers.alns.state import ALNSState
 
 __all__ = [
     "DESTROY_OPERATORS",
     "REPAIR_OPERATORS",
+    "ALNSSolver",
     "ALNSState",
     "AlwaysBetterAcceptance",
     "DestroyOperator",
@@ -55,6 +57,7 @@ __all__ = [
     "regret_3_insertion",
     "route_removal",
     "shaw_related_removal",
+    "solve_alns",
     "time_window_priority_insertion",
     "time_window_tight_removal",
     "worst_distance_removal",

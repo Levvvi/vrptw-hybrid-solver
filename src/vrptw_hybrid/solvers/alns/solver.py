@@ -1,0 +1,178 @@
+"""Basic ALNS solver with uniform random operator selection."""
+
+from __future__ import annotations
+
+import random
+from collections.abc import Mapping
+from time import perf_counter
+from typing import Any
+
+from vrptw_hybrid.core.models import Solution, VRPTWInstance
+from vrptw_hybrid.solvers.alns.acceptance import AlwaysBetterAcceptance
+from vrptw_hybrid.solvers.alns.destroy import DESTROY_OPERATORS, DestroyOperator
+from vrptw_hybrid.solvers.alns.repair import REPAIR_OPERATORS, RepairOperator
+from vrptw_hybrid.solvers.alns.state import ALNSState
+from vrptw_hybrid.solvers.base import BaseSolver
+from vrptw_hybrid.solvers.greedy import solve_greedy
+
+
+class ALNSSolver(BaseSolver):
+    """Initial ALNS implementation using uniform random operator selection."""
+
+    def __init__(
+        self,
+        *,
+        max_iterations: int = 1000,
+        time_limit_sec: float | None = None,
+        destroy_fraction: float = 0.2,
+        vehicle_weight: float = 100000.0,
+        seed: int | None = None,
+        destroy_operators: tuple[DestroyOperator, ...] = DESTROY_OPERATORS,
+        repair_operators: tuple[RepairOperator, ...] = REPAIR_OPERATORS,
+    ) -> None:
+        if max_iterations < 0:
+            raise ValueError("max_iterations must be non-negative")
+        if time_limit_sec is not None and time_limit_sec <= 0:
+            raise ValueError("time_limit_sec must be positive when provided")
+        if not 0 < destroy_fraction <= 1:
+            raise ValueError("destroy_fraction must be in (0, 1]")
+        if not destroy_operators:
+            raise ValueError("at least one destroy operator is required")
+        if not repair_operators:
+            raise ValueError("at least one repair operator is required")
+
+        self.max_iterations = max_iterations
+        self.time_limit_sec = time_limit_sec
+        self.destroy_fraction = destroy_fraction
+        self.vehicle_weight = vehicle_weight
+        self.seed = seed
+        self.destroy_operators = destroy_operators
+        self.repair_operators = repair_operators
+        self.acceptance = AlwaysBetterAcceptance()
+
+    def solve(
+        self,
+        instance: VRPTWInstance,
+        config: Mapping[str, Any] | None = None,
+        seed: int | None = None,
+    ) -> Solution:
+        """Run a basic ALNS search and return the best Solution found."""
+
+        effective_seed = self.seed if seed is None else seed
+        rng = random.Random(effective_seed)
+        start_time = perf_counter()
+        initial_solution = solve_greedy(
+            instance,
+            vehicle_weight=self.vehicle_weight,
+            deterministic=True,
+            seed=effective_seed,
+        )
+        current = ALNSState.from_solution(initial_solution)
+        best = current
+        best_iteration = 0
+        history: list[dict[str, Any]] = []
+        no_improvement_iterations = 0
+        q = (
+            max(1, round(len(instance.customers) * self.destroy_fraction))
+            if instance.customers
+            else 0
+        )
+
+        for iteration in range(1, self.max_iterations + 1):
+            elapsed = perf_counter() - start_time
+            if self.time_limit_sec is not None and elapsed >= self.time_limit_sec:
+                break
+            if q == 0:
+                break
+
+            destroy_operator = rng.choice(self.destroy_operators)
+            repair_operator = rng.choice(self.repair_operators)
+            destroyed = destroy_operator(current, instance, rng, q)
+            candidate = repair_operator(destroyed, instance, rng)
+            candidate_solution = candidate.to_solution(
+                instance,
+                solver_name="alns_candidate",
+                vehicle_weight=self.vehicle_weight,
+                runtime_sec=elapsed,
+            )
+            candidate_cost = (
+                candidate_solution.objective if candidate_solution.feasible else float("inf")
+            )
+            accepted = (
+                candidate_solution.feasible
+                and self.acceptance.accept(current.cost, candidate_cost, rng)
+            )
+            new_best = candidate_solution.feasible and candidate_cost < best.cost
+
+            if accepted:
+                current = candidate.copy_with(cost=candidate_cost, feasible=True)
+            if new_best:
+                best = candidate.copy_with(cost=candidate_cost, feasible=True)
+                best_iteration = iteration
+                no_improvement_iterations = 0
+            else:
+                no_improvement_iterations += 1
+
+            history.append(
+                {
+                    "iteration": iteration,
+                    "destroy": destroy_operator.name,
+                    "repair": repair_operator.name,
+                    "candidate_cost": candidate_cost,
+                    "current_cost": current.cost,
+                    "best_cost": best.cost,
+                    "accepted": accepted,
+                    "new_best": new_best,
+                    "feasible": candidate_solution.feasible,
+                    "no_improvement_iterations": no_improvement_iterations,
+                }
+            )
+
+        runtime_sec = perf_counter() - start_time
+        best_solution = best.to_solution(
+            instance,
+            solver_name="alns",
+            vehicle_weight=self.vehicle_weight,
+            runtime_sec=runtime_sec,
+        )
+        return Solution(
+            instance_name=best_solution.instance_name,
+            solver_name=best_solution.solver_name,
+            routes=best_solution.routes,
+            objective=best_solution.objective,
+            vehicles_used=best_solution.vehicles_used,
+            total_distance=best_solution.total_distance,
+            total_duration=best_solution.total_duration,
+            feasible=best_solution.feasible,
+            runtime_sec=best_solution.runtime_sec,
+            metadata={
+                **best_solution.metadata,
+                "seed": effective_seed,
+                "iterations": len(history),
+                "max_iterations": self.max_iterations,
+                "best_iteration": best_iteration,
+                "history": history,
+                "selector": "uniform_random",
+                "destroy_fraction": self.destroy_fraction,
+            },
+        )
+
+
+def solve_alns(
+    instance: VRPTWInstance,
+    *,
+    max_iterations: int = 1000,
+    time_limit_sec: float | None = None,
+    destroy_fraction: float = 0.2,
+    vehicle_weight: float = 100000.0,
+    seed: int | None = None,
+) -> Solution:
+    """Convenience wrapper around :class:`ALNSSolver`."""
+
+    return ALNSSolver(
+        max_iterations=max_iterations,
+        time_limit_sec=time_limit_sec,
+        destroy_fraction=destroy_fraction,
+        vehicle_weight=vehicle_weight,
+        seed=seed,
+    ).solve(instance)

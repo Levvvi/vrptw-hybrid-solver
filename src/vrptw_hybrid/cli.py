@@ -3,11 +3,21 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Annotated
+from typing import Annotated, Any
 
 import typer
 
 from vrptw_hybrid import __version__
+from vrptw_hybrid.core.models import Solution, VRPTWInstance
+from vrptw_hybrid.core.solution_io import save_solution_json
+from vrptw_hybrid.data.solomon import parse_solomon
+from vrptw_hybrid.solvers import (
+    ALNSSolver,
+    CPSATRuntimeError,
+    CPSATVRPTWSolver,
+    GreedySolver,
+    ORToolsRoutingSolver,
+)
 from vrptw_hybrid.utils.config import load_config
 from vrptw_hybrid.utils.logging import setup_logging
 
@@ -92,19 +102,26 @@ def solve(
     ] = None,
     output: OutputOption = None,
 ) -> None:
-    """Solve an instance once solver implementations are available."""
+    """Solve a Solomon-format instance with an implemented solver."""
 
-    _echo_todo(
-        "solve",
-        instance=instance,
-        solver=solver,
-        config=config,
+    loaded_config = load_config(config)
+    instance_obj = parse_solomon(instance)
+    solution = _run_solver(
+        solver_name=solver,
+        instance=instance_obj,
+        config=loaded_config,
         seed=seed,
         time_limit=time_limit,
         max_iterations=max_iterations,
-        output=output,
-        detail="will run a solver and write a unified Solution object",
     )
+    typer.echo(
+        f"solver={solution.solver_name} feasible={solution.feasible} "
+        f"vehicles={solution.vehicles_used} distance={solution.total_distance:.3f} "
+        f"runtime_sec={solution.runtime_sec:.3f}"
+    )
+    if output is not None:
+        save_solution_json(solution, output)
+        typer.echo(f"solution_json: {output}")
 
 
 @app.command()
@@ -145,6 +162,55 @@ def _echo_todo(command: str, **fields: object) -> None:
     typer.echo(f"TODO {command}: {detail}.")
     for key, value in fields.items():
         typer.echo(f"{key}: {value}")
+
+
+def _run_solver(
+    *,
+    solver_name: str,
+    instance: VRPTWInstance,
+    config: dict[str, Any],
+    seed: int | None,
+    time_limit: float | None,
+    max_iterations: int | None,
+) -> Solution:
+    solver_key = solver_name.lower()
+    solver_config = config.get("solver", {})
+    objective_config = config.get("objective", {})
+    if not isinstance(solver_config, dict):
+        solver_config = {}
+    if not isinstance(objective_config, dict):
+        objective_config = {}
+
+    vehicle_weight = float(objective_config.get("vehicle_weight", 100000.0))
+    default_time_limit = float(solver_config.get("time_limit_sec", 60.0))
+    effective_time_limit = default_time_limit if time_limit is None else time_limit
+    effective_max_iterations = int(solver_config.get("max_iterations", 1000))
+    if max_iterations is not None:
+        effective_max_iterations = max_iterations
+
+    if solver_key == "greedy":
+        return GreedySolver(vehicle_weight=vehicle_weight, seed=seed).solve(instance, seed=seed)
+    if solver_key in {"alns", "alns_uniform"}:
+        return ALNSSolver(
+            max_iterations=effective_max_iterations,
+            time_limit_sec=effective_time_limit,
+            vehicle_weight=vehicle_weight,
+            seed=seed,
+        ).solve(instance, seed=seed)
+    if solver_key in {"ortools", "ortools_routing"}:
+        return ORToolsRoutingSolver(
+            time_limit_sec=effective_time_limit,
+            vehicle_weight=vehicle_weight,
+        ).solve(instance, seed=seed)
+    if solver_key in {"cp_sat", "exact_cp_sat"}:
+        try:
+            return CPSATVRPTWSolver(
+                time_limit_sec=effective_time_limit,
+                vehicle_weight=vehicle_weight,
+            ).solve(instance, seed=seed)
+        except CPSATRuntimeError as exc:
+            raise typer.BadParameter(str(exc), param_hint="--solver") from exc
+    raise typer.BadParameter(f"Unknown solver: {solver_name}", param_hint="--solver")
 
 
 if __name__ == "__main__":

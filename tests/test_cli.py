@@ -24,7 +24,7 @@ def test_solve_help_exposes_reserved_parameters() -> None:
     assert "--max-iterations" in result.output
 
 
-def test_todo_command_echoes_parameter_values() -> None:
+def test_solve_command_runs_greedy_solver() -> None:
     result = runner.invoke(
         app,
         [
@@ -39,6 +39,26 @@ def test_todo_command_echoes_parameter_values() -> None:
     )
 
     assert result.exit_code == 0
-    assert "TODO solve" in result.output
-    assert "solver: greedy" in result.output
-    assert "seed: 123" in result.output
+    assert "solver=greedy" in result.output
+    assert "feasible=True" in result.output
+
+
+def test_solve_command_runs_alns_solver() -> None:
+    result = runner.invoke(
+        app,
+        [
+            "solve",
+            "--instance",
+            "tests/fixtures/mini_solomon.txt",
+            "--solver",
+            "alns",
+            "--seed",
+            "42",
+            "--max-iterations",
+            "5",
+        ],
+    )
+
+    assert result.exit_code == 0
+    assert "solver=alns" in result.output
+    assert "feasible=True" in result.output

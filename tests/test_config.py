@@ -46,6 +46,15 @@ def test_load_ablation_config_lists_recommended_groups() -> None:
     assert "alns_mosade_no_regret_repair" in names
 
 
+def test_load_solomon_small_batch_config() -> None:
+    config = load_config(ROOT / "configs" / "solomon_small.yaml")
+
+    solver_names = {solver["name"] for solver in config["experiment"]["solvers"]}
+
+    assert solver_names == {"greedy", "alns_uniform", "alns_mosade"}
+    assert config["experiment"]["instances"][0]["limit_customers"] == 8
+
+
 def test_apply_overrides_does_not_mutate_base_config() -> None:
     base = {"solver": {"time_limit_sec": 60}}
 

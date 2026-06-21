@@ -117,3 +117,39 @@ alns:
     assert "shaw_related_removal" not in selected_destroy
     assert "regret_2_insertion" not in metadata["repair_operators"]
     assert "regret_3_insertion" not in selected_repair
+
+
+def test_batch_command_runs_configured_experiment(tmp_path: Path) -> None:
+    config_path = tmp_path / "batch.yaml"
+    output_dir = tmp_path / "results"
+    config_path.write_text(
+        f"""
+seed: 42
+objective:
+  vehicle_weight: 100000.0
+solver:
+  time_limit_sec: 3
+  max_iterations: 3
+experiment:
+  output_dir: {output_dir.as_posix()}
+  instances:
+    - name: mini_c101_8
+      path: tests/fixtures/mini_solomon.txt
+      limit_customers: 8
+  solvers:
+    - name: greedy
+      solver: greedy
+      ablation: greedy
+  seeds: [42]
+  time_limit_sec: 3
+  max_iterations: 3
+""",
+        encoding="utf-8",
+    )
+
+    result = runner.invoke(app, ["batch", "--config", str(config_path)])
+
+    assert result.exit_code == 0
+    assert "runs_csv:" in result.output
+    assert "runs: 1" in result.output
+    assert len(list(output_dir.glob("runs_*.csv"))) == 1

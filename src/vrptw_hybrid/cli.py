@@ -187,6 +187,13 @@ def _run_solver(
     effective_max_iterations = int(solver_config.get("max_iterations", 1000))
     if max_iterations is not None:
         effective_max_iterations = max_iterations
+    alns_config = config.get("alns", {})
+    if not isinstance(alns_config, dict):
+        alns_config = {}
+    selector_name = str(alns_config.get("selector", "uniform"))
+    segment_length = int(alns_config.get("segment_length", 100))
+    reaction_factor = float(alns_config.get("reaction_factor", 0.2))
+    exploration_floor = float(alns_config.get("exploration_floor", 0.05))
 
     if solver_key == "greedy":
         return GreedySolver(vehicle_weight=vehicle_weight, seed=seed).solve(instance, seed=seed)
@@ -196,6 +203,10 @@ def _run_solver(
             time_limit_sec=effective_time_limit,
             vehicle_weight=vehicle_weight,
             seed=seed,
+            selector_name=selector_name,
+            segment_length=segment_length,
+            reaction_factor=reaction_factor,
+            exploration_floor=exploration_floor,
         ).solve(instance, seed=seed)
     if solver_key in {"ortools", "ortools_routing"}:
         return ORToolsRoutingSolver(

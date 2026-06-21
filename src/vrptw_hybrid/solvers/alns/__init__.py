@@ -34,6 +34,7 @@ from vrptw_hybrid.solvers.alns.route_eval import (
 from vrptw_hybrid.solvers.alns.selectors import (
     OperatorEvent,
     OperatorSelector,
+    RouletteWheelSelector,
     UniformSelector,
 )
 from vrptw_hybrid.solvers.alns.solver import ALNSSolver, solve_alns
@@ -52,6 +53,7 @@ __all__ = [
     "OperatorEvent",
     "OperatorSelector",
     "RepairOperator",
+    "RouletteWheelSelector",
     "SimulatedAnnealingAcceptance",
     "TimeLimitStop",
     "UniformSelector",

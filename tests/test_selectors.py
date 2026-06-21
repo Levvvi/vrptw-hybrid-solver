@@ -4,7 +4,11 @@ import pytest
 
 from vrptw_hybrid.solvers.alns.destroy import DESTROY_OPERATORS
 from vrptw_hybrid.solvers.alns.repair import REPAIR_OPERATORS
-from vrptw_hybrid.solvers.alns.selectors import OperatorEvent, UniformSelector
+from vrptw_hybrid.solvers.alns.selectors import (
+    OperatorEvent,
+    RouletteWheelSelector,
+    UniformSelector,
+)
 
 
 def make_event() -> OperatorEvent:
@@ -48,3 +52,36 @@ def test_uniform_selector_rejects_empty_operator_pools() -> None:
         UniformSelector(destroy_operators=())
     with pytest.raises(ValueError, match="at least one repair operator"):
         UniformSelector(repair_operators=())
+
+
+def test_roulette_reward_event_updates_operator_weights() -> None:
+    selector = RouletteWheelSelector(
+        segment_length=1,
+        reaction_factor=1.0,
+        exploration_floor=0.01,
+    )
+    event = OperatorEvent(
+        destroy_name=DESTROY_OPERATORS[0].name,
+        repair_name=REPAIR_OPERATORS[0].name,
+        accepted=True,
+        new_best=True,
+        delta_cost=-10.0,
+        feasible=True,
+    )
+
+    selector.update(event)
+    snapshot = selector.snapshot()
+
+    assert snapshot["destroy_weights"][DESTROY_OPERATORS[0].name] == pytest.approx(5.0)
+    assert snapshot["repair_weights"][REPAIR_OPERATORS[0].name] == pytest.approx(5.0)
+    assert sum(snapshot["destroy_probabilities"].values()) == pytest.approx(1.0)
+    assert sum(snapshot["repair_probabilities"].values()) == pytest.approx(1.0)
+    assert all(probability >= 0.01 for probability in snapshot["destroy_probabilities"].values())
+
+
+def test_roulette_selector_selects_valid_operator() -> None:
+    selector = RouletteWheelSelector(segment_length=2, reaction_factor=0.5)
+    rng = random.Random(5)
+
+    assert selector.select_destroy(rng) in DESTROY_OPERATORS
+    assert selector.select_repair(rng) in REPAIR_OPERATORS

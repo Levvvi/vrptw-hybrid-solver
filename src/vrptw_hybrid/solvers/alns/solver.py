@@ -11,7 +11,12 @@ from vrptw_hybrid.core.models import Solution, VRPTWInstance
 from vrptw_hybrid.solvers.alns.acceptance import AlwaysBetterAcceptance
 from vrptw_hybrid.solvers.alns.destroy import DESTROY_OPERATORS, DestroyOperator
 from vrptw_hybrid.solvers.alns.repair import REPAIR_OPERATORS, RepairOperator
-from vrptw_hybrid.solvers.alns.selectors import OperatorEvent, OperatorSelector, UniformSelector
+from vrptw_hybrid.solvers.alns.selectors import (
+    OperatorEvent,
+    OperatorSelector,
+    RouletteWheelSelector,
+    UniformSelector,
+)
 from vrptw_hybrid.solvers.alns.state import ALNSState
 from vrptw_hybrid.solvers.base import BaseSolver
 from vrptw_hybrid.solvers.greedy import solve_greedy
@@ -31,6 +36,10 @@ class ALNSSolver(BaseSolver):
         destroy_operators: tuple[DestroyOperator, ...] = DESTROY_OPERATORS,
         repair_operators: tuple[RepairOperator, ...] = REPAIR_OPERATORS,
         selector: OperatorSelector | None = None,
+        selector_name: str = "uniform",
+        segment_length: int = 100,
+        reaction_factor: float = 0.2,
+        exploration_floor: float = 0.05,
     ) -> None:
         if max_iterations < 0:
             raise ValueError("max_iterations must be non-negative")
@@ -50,7 +59,14 @@ class ALNSSolver(BaseSolver):
         self.seed = seed
         self.destroy_operators = destroy_operators
         self.repair_operators = repair_operators
-        self.selector = selector or UniformSelector(destroy_operators, repair_operators)
+        self.selector = selector or _make_selector(
+            selector_name=selector_name,
+            destroy_operators=destroy_operators,
+            repair_operators=repair_operators,
+            segment_length=segment_length,
+            reaction_factor=reaction_factor,
+            exploration_floor=exploration_floor,
+        )
         self.acceptance = AlwaysBetterAcceptance()
 
     def solve(
@@ -183,6 +199,7 @@ def solve_alns(
     destroy_fraction: float = 0.2,
     vehicle_weight: float = 100000.0,
     seed: int | None = None,
+    selector_name: str = "uniform",
 ) -> Solution:
     """Convenience wrapper around :class:`ALNSSolver`."""
 
@@ -192,4 +209,28 @@ def solve_alns(
         destroy_fraction=destroy_fraction,
         vehicle_weight=vehicle_weight,
         seed=seed,
+        selector_name=selector_name,
     ).solve(instance)
+
+
+def _make_selector(
+    *,
+    selector_name: str,
+    destroy_operators: tuple[DestroyOperator, ...],
+    repair_operators: tuple[RepairOperator, ...],
+    segment_length: int,
+    reaction_factor: float,
+    exploration_floor: float,
+) -> OperatorSelector:
+    selector_key = selector_name.lower()
+    if selector_key in {"uniform", "uniform_random"}:
+        return UniformSelector(destroy_operators, repair_operators)
+    if selector_key in {"roulette", "roulette_wheel"}:
+        return RouletteWheelSelector(
+            destroy_operators,
+            repair_operators,
+            segment_length=segment_length,
+            reaction_factor=reaction_factor,
+            exploration_floor=exploration_floor,
+        )
+    raise ValueError(f"Unknown ALNS selector: {selector_name}")

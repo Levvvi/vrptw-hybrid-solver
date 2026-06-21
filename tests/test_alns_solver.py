@@ -42,6 +42,22 @@ def test_alns_seed_reproducibility_for_solution_routes() -> None:
     assert first.objective == second.objective
 
 
+def test_alns_can_use_roulette_selector() -> None:
+    instance = parse_solomon(FIXTURE, limit_customers=8)
+
+    solution = ALNSSolver(
+        max_iterations=5,
+        seed=11,
+        selector_name="roulette",
+        segment_length=1,
+        reaction_factor=1.0,
+    ).solve(instance)
+
+    assert solution.feasible
+    assert solution.metadata["selector"]["name"] == "roulette"
+    assert solution.metadata["history"][0]["selector_snapshot"]["name"] == "roulette"
+
+
 def test_alns_rejects_invalid_parameters() -> None:
     try:
         ALNSSolver(max_iterations=-1)

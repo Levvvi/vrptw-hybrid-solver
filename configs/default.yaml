@@ -6,6 +6,7 @@ solver:
   max_iterations: 5000
   neighborhood_size: 25
 alns:
+  selector: uniform
   destroy_fraction_min: 0.05
   destroy_fraction_max: 0.25
   segment_length: 100

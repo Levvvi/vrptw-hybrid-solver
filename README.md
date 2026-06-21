@@ -95,3 +95,10 @@ Report figures are generated from result CSV files and solution JSON metadata:
 - `data/results/figures/gap_boxplot.svg`
 - `data/results/figures/operator_probabilities.svg`
 - `data/results/figures/pair_heatmap.svg`
+
+## Scaling Claims
+
+Scaling experiments are launched with `scripts/run_scaling.py` and write
+`data/results/scaling_*.csv`. Resume or README claims about 500/1000-customer
+runtime, gap, or improvement percentages must only be filled in after a real
+scaling CSV exists. Until then, those values stay as TODO placeholders.

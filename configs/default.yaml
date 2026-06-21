@@ -1,0 +1,16 @@
+seed: 42
+objective:
+  vehicle_weight: 100000.0
+solver:
+  time_limit_sec: 60
+  max_iterations: 5000
+  neighborhood_size: 25
+alns:
+  destroy_fraction_min: 0.05
+  destroy_fraction_max: 0.25
+  segment_length: 100
+  reaction_factor: 0.2
+  exploration_floor: 0.05
+experiment:
+  seeds: [1, 2, 3, 4, 5]
+  output_dir: data/results

@@ -31,6 +31,11 @@ from vrptw_hybrid.solvers.alns.route_eval import (
     insertion_delta_cost,
     is_feasible_insertion,
 )
+from vrptw_hybrid.solvers.alns.selectors import (
+    OperatorEvent,
+    OperatorSelector,
+    UniformSelector,
+)
 from vrptw_hybrid.solvers.alns.solver import ALNSSolver, solve_alns
 from vrptw_hybrid.solvers.alns.state import ALNSState
 
@@ -44,9 +49,12 @@ __all__ = [
     "InsertionResult",
     "MaxIterationsStop",
     "NoImprovementStop",
+    "OperatorEvent",
+    "OperatorSelector",
     "RepairOperator",
     "SimulatedAnnealingAcceptance",
     "TimeLimitStop",
+    "UniformSelector",
     "evaluate_route",
     "greedy_cheapest_insertion",
     "insertion_delta_cost",

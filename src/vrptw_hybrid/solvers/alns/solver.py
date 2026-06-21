@@ -11,6 +11,7 @@ from vrptw_hybrid.core.models import Solution, VRPTWInstance
 from vrptw_hybrid.solvers.alns.acceptance import AlwaysBetterAcceptance
 from vrptw_hybrid.solvers.alns.destroy import DESTROY_OPERATORS, DestroyOperator
 from vrptw_hybrid.solvers.alns.repair import REPAIR_OPERATORS, RepairOperator
+from vrptw_hybrid.solvers.alns.selectors import OperatorEvent, OperatorSelector, UniformSelector
 from vrptw_hybrid.solvers.alns.state import ALNSState
 from vrptw_hybrid.solvers.base import BaseSolver
 from vrptw_hybrid.solvers.greedy import solve_greedy
@@ -29,6 +30,7 @@ class ALNSSolver(BaseSolver):
         seed: int | None = None,
         destroy_operators: tuple[DestroyOperator, ...] = DESTROY_OPERATORS,
         repair_operators: tuple[RepairOperator, ...] = REPAIR_OPERATORS,
+        selector: OperatorSelector | None = None,
     ) -> None:
         if max_iterations < 0:
             raise ValueError("max_iterations must be non-negative")
@@ -48,6 +50,7 @@ class ALNSSolver(BaseSolver):
         self.seed = seed
         self.destroy_operators = destroy_operators
         self.repair_operators = repair_operators
+        self.selector = selector or UniformSelector(destroy_operators, repair_operators)
         self.acceptance = AlwaysBetterAcceptance()
 
     def solve(
@@ -85,8 +88,8 @@ class ALNSSolver(BaseSolver):
             if q == 0:
                 break
 
-            destroy_operator = rng.choice(self.destroy_operators)
-            repair_operator = rng.choice(self.repair_operators)
+            destroy_operator = self.selector.select_destroy(rng)
+            repair_operator = self.selector.select_repair(rng)
             destroyed = destroy_operator(current, instance, rng, q)
             candidate = repair_operator(destroyed, instance, rng)
             candidate_solution = candidate.to_solution(
@@ -103,6 +106,18 @@ class ALNSSolver(BaseSolver):
                 and self.acceptance.accept(current.cost, candidate_cost, rng)
             )
             new_best = candidate_solution.feasible and candidate_cost < best.cost
+            delta_cost = (
+                candidate_cost - current.cost if candidate_solution.feasible else float("inf")
+            )
+            event = OperatorEvent(
+                destroy_name=destroy_operator.name,
+                repair_name=repair_operator.name,
+                accepted=accepted,
+                new_best=new_best,
+                delta_cost=delta_cost,
+                feasible=candidate_solution.feasible,
+            )
+            self.selector.update(event)
 
             if accepted:
                 current = candidate.copy_with(cost=candidate_cost, feasible=True)
@@ -121,10 +136,12 @@ class ALNSSolver(BaseSolver):
                     "candidate_cost": candidate_cost,
                     "current_cost": current.cost,
                     "best_cost": best.cost,
+                    "delta_cost": delta_cost,
                     "accepted": accepted,
                     "new_best": new_best,
                     "feasible": candidate_solution.feasible,
                     "no_improvement_iterations": no_improvement_iterations,
+                    "selector_snapshot": self.selector.snapshot(),
                 }
             )
 
@@ -152,7 +169,7 @@ class ALNSSolver(BaseSolver):
                 "max_iterations": self.max_iterations,
                 "best_iteration": best_iteration,
                 "history": history,
-                "selector": "uniform_random",
+                "selector": self.selector.snapshot(),
                 "destroy_fraction": self.destroy_fraction,
             },
         )

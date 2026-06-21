@@ -26,7 +26,10 @@ def test_alns_solves_mini_instance_and_keeps_history() -> None:
     assert solution.objective <= greedy.objective
     assert solution.metadata["iterations"] == len(solution.metadata["history"])
     assert solution.metadata["iterations"] <= 20
-    assert solution.metadata["selector"] == "uniform_random"
+    assert solution.metadata["selector"]["name"] == "uniform"
+    assert solution.metadata["selector"]["events_seen"] == solution.metadata["iterations"]
+    assert "selector_snapshot" in solution.metadata["history"][0]
+    assert "delta_cost" in solution.metadata["history"][0]
 
 
 def test_alns_seed_reproducibility_for_solution_routes() -> None:

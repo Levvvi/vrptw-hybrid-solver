@@ -9,6 +9,15 @@ from vrptw_hybrid.solvers.alns.destroy import (
     time_window_tight_removal,
     worst_distance_removal,
 )
+from vrptw_hybrid.solvers.alns.repair import (
+    REPAIR_OPERATORS,
+    RepairOperator,
+    greedy_cheapest_insertion,
+    noise_insertion,
+    regret_2_insertion,
+    regret_3_insertion,
+    time_window_priority_insertion,
+)
 from vrptw_hybrid.solvers.alns.route_eval import (
     InsertionResult,
     evaluate_route,
@@ -19,15 +28,22 @@ from vrptw_hybrid.solvers.alns.state import ALNSState
 
 __all__ = [
     "DESTROY_OPERATORS",
+    "REPAIR_OPERATORS",
     "ALNSState",
     "DestroyOperator",
     "InsertionResult",
+    "RepairOperator",
     "evaluate_route",
+    "greedy_cheapest_insertion",
     "insertion_delta_cost",
     "is_feasible_insertion",
+    "noise_insertion",
     "random_removal",
+    "regret_2_insertion",
+    "regret_3_insertion",
     "route_removal",
     "shaw_related_removal",
+    "time_window_priority_insertion",
     "time_window_tight_removal",
     "worst_distance_removal",
 ]

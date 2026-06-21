@@ -68,3 +68,11 @@ python -m pip install -e ".[dev,vis]"
 No benchmark or performance numbers are reported yet. Any future README table
 must be backed by files under `data/results/`; otherwise the value should remain
 as a TODO placeholder.
+
+## ALNS Performance Notes
+
+The first ALNS optimization pass adds nearest-neighbor candidate filtering,
+route-evaluation caching, and profiler counters. These changes do not alter the
+VRPTW objective function or feasibility rules; they only reduce which insertion
+candidates are evaluated first. If restricted candidate evaluation finds no
+feasible insertion, repair falls back to the full candidate set.

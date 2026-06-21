@@ -17,6 +17,7 @@ alns:
   temperature: 1.0
   decay: 0.8
   memory_size: 50
+  candidate_neighbor_size: 25
   use_pair_memory: true
   use_diversity_bonus: true
   enabled_destroy_operators:

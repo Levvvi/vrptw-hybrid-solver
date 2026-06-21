@@ -7,10 +7,11 @@ from collections.abc import Callable
 from dataclasses import dataclass
 
 from vrptw_hybrid.core.models import VRPTWInstance
-from vrptw_hybrid.solvers.alns.route_eval import evaluate_route, insertion_delta_cost
+from vrptw_hybrid.solvers.alns.context import ALNSContext
+from vrptw_hybrid.solvers.alns.route_eval import InsertionResult, evaluate_route
 from vrptw_hybrid.solvers.alns.state import ALNSState
 
-RepairFunction = Callable[[ALNSState, VRPTWInstance, random.Random], ALNSState]
+RepairFunction = Callable[[ALNSState, VRPTWInstance, random.Random, ALNSContext | None], ALNSState]
 
 
 @dataclass(frozen=True, slots=True)
@@ -23,8 +24,9 @@ class RepairOperator:
         state: ALNSState,
         instance: VRPTWInstance,
         rng: random.Random,
+        context: ALNSContext | None = None,
     ) -> ALNSState:
-        return self.function(state, instance, rng)
+        return self.function(state, instance, rng, context)
 
 
 @dataclass(frozen=True, slots=True)
@@ -41,16 +43,25 @@ def greedy_cheapest_insertion(
     state: ALNSState,
     instance: VRPTWInstance,
     rng: random.Random,
+    context: ALNSContext | None = None,
 ) -> ALNSState:
     """Insert each unassigned customer at the cheapest feasible position."""
 
-    return _repair_loop(state, instance, rng, _select_cheapest, "greedy_cheapest_insertion")
+    return _repair_loop(
+        state,
+        instance,
+        rng,
+        _select_cheapest,
+        "greedy_cheapest_insertion",
+        context,
+    )
 
 
 def regret_2_insertion(
     state: ALNSState,
     instance: VRPTWInstance,
     rng: random.Random,
+    context: ALNSContext | None = None,
 ) -> ALNSState:
     """Regret-2 insertion repair."""
 
@@ -60,6 +71,7 @@ def regret_2_insertion(
         rng,
         lambda candidates: _select_regret(candidates, regret_k=2),
         "regret_2_insertion",
+        context,
     )
 
 
@@ -67,6 +79,7 @@ def regret_3_insertion(
     state: ALNSState,
     instance: VRPTWInstance,
     rng: random.Random,
+    context: ALNSContext | None = None,
 ) -> ALNSState:
     """Regret-3 insertion repair."""
 
@@ -76,6 +89,7 @@ def regret_3_insertion(
         rng,
         lambda candidates: _select_regret(candidates, regret_k=3),
         "regret_3_insertion",
+        context,
     )
 
 
@@ -83,6 +97,7 @@ def time_window_priority_insertion(
     state: ALNSState,
     instance: VRPTWInstance,
     rng: random.Random,
+    context: ALNSContext | None = None,
 ) -> ALNSState:
     """Insert tight-window customers first, using cheapest feasible positions."""
 
@@ -92,6 +107,7 @@ def time_window_priority_insertion(
         rng,
         lambda candidates: _select_time_window_priority(candidates, instance),
         "time_window_priority_insertion",
+        context,
     )
 
 
@@ -99,6 +115,7 @@ def noise_insertion(
     state: ALNSState,
     instance: VRPTWInstance,
     rng: random.Random,
+    context: ALNSContext | None = None,
 ) -> ALNSState:
     """Cheapest insertion with small random noise added to candidate scores."""
 
@@ -108,6 +125,7 @@ def noise_insertion(
         rng,
         lambda candidates: _select_noise(candidates, rng),
         "noise_insertion",
+        context,
     )
 
 
@@ -126,6 +144,7 @@ def _repair_loop(
     rng: random.Random,
     selector: Callable[[list[_InsertionCandidate]], _InsertionCandidate | None],
     operator_name: str,
+    context: ALNSContext | None,
 ) -> ALNSState:
     repaired = state.copy_with(
         feasible=False,
@@ -133,7 +152,10 @@ def _repair_loop(
     )
 
     while repaired.unassigned:
-        candidates = _generate_candidates(repaired, instance)
+        candidates = _generate_candidates(repaired, instance, context=context)
+        if not candidates and context is not None and context.candidate_neighbor_size is not None:
+            context.profiler.count("repair_unrestricted_fallbacks")
+            candidates = _generate_candidates(repaired, instance, context=None)
         selected = selector(candidates)
         if selected is None:
             return _finalize_repair(repaired, instance, operator_name)
@@ -142,14 +164,35 @@ def _repair_loop(
     return _finalize_repair(repaired, instance, operator_name)
 
 
-def _generate_candidates(state: ALNSState, instance: VRPTWInstance) -> list[_InsertionCandidate]:
+def _generate_candidates(
+    state: ALNSState,
+    instance: VRPTWInstance,
+    *,
+    context: ALNSContext | None,
+) -> list[_InsertionCandidate]:
     candidates: list[_InsertionCandidate] = []
     for customer_id in sorted(state.unassigned):
-        for route_index, route_ids in enumerate(state.routes):
+        route_indexes = _candidate_route_indexes(customer_id, state, context)
+        if context is not None:
+            context.profiler.count("repair_customers_considered")
+            context.profiler.count("repair_candidate_routes_considered", len(route_indexes))
+        for route_index in route_indexes:
+            route_ids = state.routes[route_index]
             for position in range(len(route_ids) + 1):
-                delta = insertion_delta_cost(route_ids, customer_id, position, instance)
+                if context is not None:
+                    context.profiler.count("repair_candidate_positions_evaluated")
+                delta = _insertion_delta_cost(
+                    route_ids,
+                    customer_id,
+                    position,
+                    instance,
+                    route_index=route_index,
+                    context=context,
+                )
                 if delta is None:
                     continue
+                if context is not None:
+                    context.profiler.count("repair_candidates_feasible")
                 candidate_ids = (
                     *route_ids[:position],
                     customer_id,
@@ -167,8 +210,15 @@ def _generate_candidates(state: ALNSState, instance: VRPTWInstance) -> list[_Ins
                 )
 
         if len(state.routes) < instance.vehicle.count:
-            result = evaluate_route((customer_id,), instance, vehicle_id=len(state.routes))
+            result = _evaluate_route(
+                (customer_id,),
+                instance,
+                vehicle_id=len(state.routes),
+                context=context,
+            )
             if result.feasible:
+                if context is not None:
+                    context.profiler.count("repair_new_route_candidates_feasible")
                 candidates.append(
                     _InsertionCandidate(
                         customer_id=customer_id,
@@ -180,6 +230,78 @@ def _generate_candidates(state: ALNSState, instance: VRPTWInstance) -> list[_Ins
                     )
                 )
     return candidates
+
+
+def _candidate_route_indexes(
+    customer_id: int,
+    state: ALNSState,
+    context: ALNSContext | None,
+) -> tuple[int, ...]:
+    if context is None or context.candidate_neighbor_size is None:
+        return tuple(range(len(state.routes)))
+
+    neighbor_ids = set(
+        context.nearest_neighbors.nearest(customer_id, context.candidate_neighbor_size)
+    )
+    route_indexes = tuple(
+        route_index
+        for route_index, route_ids in enumerate(state.routes)
+        if any(route_customer_id in neighbor_ids for route_customer_id in route_ids)
+    )
+    if route_indexes:
+        context.profiler.count("repair_restricted_route_sets")
+        return route_indexes
+    return tuple(range(len(state.routes)))
+
+
+def _insertion_delta_cost(
+    route_customer_ids: tuple[int, ...],
+    customer_id: int,
+    position: int,
+    instance: VRPTWInstance,
+    *,
+    route_index: int,
+    context: ALNSContext | None,
+) -> float | None:
+    if position < 0 or position > len(route_customer_ids):
+        raise ValueError("position must be within the route insertion range")
+    inserted_ids = (
+        *route_customer_ids[:position],
+        customer_id,
+        *route_customer_ids[position:],
+    )
+    base = _evaluate_route(
+        route_customer_ids,
+        instance,
+        vehicle_id=route_index,
+        context=context,
+    )
+    inserted = _evaluate_route(
+        inserted_ids,
+        instance,
+        vehicle_id=route_index,
+        context=context,
+    )
+    if not inserted.feasible:
+        return None
+    return inserted.distance - base.distance
+
+
+def _evaluate_route(
+    route_customer_ids: tuple[int, ...],
+    instance: VRPTWInstance,
+    *,
+    vehicle_id: int,
+    context: ALNSContext | None,
+) -> InsertionResult:
+    if context is None:
+        return evaluate_route(route_customer_ids, instance, vehicle_id=vehicle_id)
+    return context.route_cache.evaluate(
+        route_customer_ids,
+        instance,
+        vehicle_id=vehicle_id,
+        profiler=context.profiler,
+    )
 
 
 def _select_cheapest(candidates: list[_InsertionCandidate]) -> _InsertionCandidate | None:

@@ -7,9 +7,13 @@ from collections.abc import Callable
 from dataclasses import dataclass
 
 from vrptw_hybrid.core.models import VRPTWInstance
+from vrptw_hybrid.solvers.alns.context import ALNSContext
 from vrptw_hybrid.solvers.alns.state import ALNSState
 
-DestroyFunction = Callable[[ALNSState, VRPTWInstance, random.Random, int], ALNSState]
+DestroyFunction = Callable[
+    [ALNSState, VRPTWInstance, random.Random, int, ALNSContext | None],
+    ALNSState,
+]
 
 
 @dataclass(frozen=True, slots=True)
@@ -23,8 +27,9 @@ class DestroyOperator:
         instance: VRPTWInstance,
         rng: random.Random,
         q: int,
+        context: ALNSContext | None = None,
     ) -> ALNSState:
-        return self.function(state, instance, rng, q)
+        return self.function(state, instance, rng, q, context)
 
 
 def random_removal(
@@ -32,6 +37,7 @@ def random_removal(
     instance: VRPTWInstance,
     rng: random.Random,
     q: int,
+    context: ALNSContext | None = None,
 ) -> ALNSState:
     """Remove q assigned customers uniformly at random."""
 
@@ -45,6 +51,7 @@ def worst_distance_removal(
     instance: VRPTWInstance,
     rng: random.Random,
     q: int,
+    context: ALNSContext | None = None,
 ) -> ALNSState:
     """Remove customers with the largest marginal distance contribution."""
 
@@ -72,6 +79,7 @@ def shaw_related_removal(
     instance: VRPTWInstance,
     rng: random.Random,
     q: int,
+    context: ALNSContext | None = None,
 ) -> ALNSState:
     """Remove one random seed customer and its most related neighbors."""
 
@@ -80,10 +88,17 @@ def shaw_related_removal(
         return _remove_customers(state, set(), "shaw_related_removal")
 
     seed_customer_id = rng.choice(assigned)
+    candidate_ids = _shaw_candidate_ids(
+        assigned,
+        seed_customer_id,
+        context=context,
+    )
     related = sorted(
-        (customer_id for customer_id in assigned if customer_id != seed_customer_id),
+        candidate_ids,
         key=lambda customer_id: _relatedness(instance, seed_customer_id, customer_id),
     )
+    if context is not None:
+        context.profiler.count("shaw_related_candidates_considered", len(candidate_ids))
     removed = {seed_customer_id, *related[: max(0, min(q, len(assigned)) - 1)]}
     return _remove_customers(state, removed, "shaw_related_removal")
 
@@ -93,6 +108,7 @@ def route_removal(
     instance: VRPTWInstance,
     rng: random.Random,
     q: int,
+    context: ALNSContext | None = None,
 ) -> ALNSState:
     """Remove a whole short route, using randomness for ties."""
 
@@ -111,6 +127,7 @@ def time_window_tight_removal(
     instance: VRPTWInstance,
     rng: random.Random,
     q: int,
+    context: ALNSContext | None = None,
 ) -> ALNSState:
     """Remove customers with the tightest time windows."""
 
@@ -163,6 +180,29 @@ def _remove_customers(state: ALNSState, removed: set[int], operator_name: str) -
             "removed_customers": sorted(removed),
         },
     )
+
+
+def _shaw_candidate_ids(
+    assigned: list[int],
+    seed_customer_id: int,
+    *,
+    context: ALNSContext | None,
+) -> list[int]:
+    if context is None or context.candidate_neighbor_size is None:
+        return [customer_id for customer_id in assigned if customer_id != seed_customer_id]
+
+    assigned_set = set(assigned)
+    candidate_ids = [
+        customer_id
+        for customer_id in context.nearest_neighbors.nearest(
+            seed_customer_id,
+            context.candidate_neighbor_size,
+        )
+        if customer_id in assigned_set and customer_id != seed_customer_id
+    ]
+    if candidate_ids:
+        return candidate_ids
+    return [customer_id for customer_id in assigned if customer_id != seed_customer_id]
 
 
 def _relatedness(instance: VRPTWInstance, first_customer_id: int, second_customer_id: int) -> float:

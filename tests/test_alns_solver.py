@@ -76,6 +76,21 @@ def test_alns_can_use_mosade_inspired_selector() -> None:
     assert "pair_heatmap" in solution.metadata["history"][0]["selector_snapshot"]
 
 
+def test_alns_records_candidate_context_profiler() -> None:
+    instance = parse_solomon(FIXTURE, limit_customers=8)
+
+    solution = ALNSSolver(
+        max_iterations=5,
+        seed=12,
+        candidate_neighbor_size=2,
+    ).solve(instance)
+
+    assert solution.feasible
+    assert solution.metadata["candidate_neighbor_size"] == 2
+    assert solution.metadata["profiler"]["route_cache"]["entries"] > 0
+    assert "repair_candidate_positions_evaluated" in solution.metadata["profiler"]["counters"]
+
+
 def test_alns_rejects_invalid_parameters() -> None:
     try:
         ALNSSolver(max_iterations=-1)

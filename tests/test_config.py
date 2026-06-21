@@ -15,6 +15,7 @@ def test_load_default_config() -> None:
     assert config["solver"]["time_limit_sec"] == 60
     assert config["ablation"]["name"] == "default"
     assert config["alns"]["disabled_destroy_operators"] == []
+    assert config["alns"]["candidate_neighbor_size"] == 25
     assert config["experiment"]["seeds"] == [1, 2, 3, 4, 5]
 
 

@@ -7,6 +7,12 @@ from vrptw_hybrid.solvers.alns.acceptance import (
     SimulatedAnnealingAcceptance,
     TimeLimitStop,
 )
+from vrptw_hybrid.solvers.alns.context import (
+    ALNSContext,
+    ALNSProfiler,
+    NearestNeighborCache,
+    RouteEvaluationCache,
+)
 from vrptw_hybrid.solvers.alns.destroy import (
     DESTROY_OPERATORS,
     DestroyOperator,
@@ -48,6 +54,8 @@ from vrptw_hybrid.solvers.alns.state import ALNSState
 __all__ = [
     "DESTROY_OPERATORS",
     "REPAIR_OPERATORS",
+    "ALNSContext",
+    "ALNSProfiler",
     "ALNSSolver",
     "ALNSState",
     "AlwaysBetterAcceptance",
@@ -55,11 +63,13 @@ __all__ = [
     "InsertionResult",
     "MOSADEInspiredSelector",
     "MaxIterationsStop",
+    "NearestNeighborCache",
     "NoImprovementStop",
     "OperatorEvent",
     "OperatorSelector",
     "RepairOperator",
     "RouletteWheelSelector",
+    "RouteEvaluationCache",
     "SimulatedAnnealingAcceptance",
     "TimeLimitStop",
     "UniformSelector",

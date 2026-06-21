@@ -205,6 +205,7 @@ def _run_solver(
     temperature = float(alns_config.get("temperature", 1.0))
     decay = float(alns_config.get("decay", 0.8))
     memory_size = int(alns_config.get("memory_size", 50))
+    candidate_neighbor_size = int(alns_config.get("candidate_neighbor_size", 0) or 0)
     use_pair_memory = _bool_config(
         alns_config.get("use_pair_memory", True),
         "alns.use_pair_memory",
@@ -269,6 +270,7 @@ def _run_solver(
                 use_pair_memory=use_pair_memory,
                 use_diversity_bonus=use_diversity_bonus,
                 ablation_name=ablation_name,
+                candidate_neighbor_size=candidate_neighbor_size,
             ).solve(instance, seed=seed),
             ablation_name,
         )

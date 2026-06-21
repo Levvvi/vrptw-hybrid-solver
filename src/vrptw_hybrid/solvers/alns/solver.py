@@ -9,6 +9,7 @@ from typing import Any
 
 from vrptw_hybrid.core.models import Solution, VRPTWInstance
 from vrptw_hybrid.solvers.alns.acceptance import AlwaysBetterAcceptance
+from vrptw_hybrid.solvers.alns.context import ALNSContext
 from vrptw_hybrid.solvers.alns.destroy import DESTROY_OPERATORS, DestroyOperator
 from vrptw_hybrid.solvers.alns.repair import REPAIR_OPERATORS, RepairOperator
 from vrptw_hybrid.solvers.alns.selectors import (
@@ -47,6 +48,7 @@ class ALNSSolver(BaseSolver):
         use_pair_memory: bool = True,
         use_diversity_bonus: bool = True,
         ablation_name: str = "default",
+        candidate_neighbor_size: int | None = None,
     ) -> None:
         if max_iterations < 0:
             raise ValueError("max_iterations must be non-negative")
@@ -67,6 +69,7 @@ class ALNSSolver(BaseSolver):
         self.destroy_operators = destroy_operators
         self.repair_operators = repair_operators
         self.ablation_name = ablation_name
+        self.candidate_neighbor_size = _normalize_candidate_neighbor_size(candidate_neighbor_size)
         self.selector = selector or _make_selector(
             selector_name=selector_name,
             destroy_operators=destroy_operators,
@@ -92,6 +95,10 @@ class ALNSSolver(BaseSolver):
 
         effective_seed = self.seed if seed is None else seed
         rng = random.Random(effective_seed)
+        context = ALNSContext.from_instance(
+            instance,
+            candidate_neighbor_size=self.candidate_neighbor_size,
+        )
         start_time = perf_counter()
         initial_solution = solve_greedy(
             instance,
@@ -119,8 +126,10 @@ class ALNSSolver(BaseSolver):
 
             destroy_operator = self.selector.select_destroy(rng)
             repair_operator = self.selector.select_repair(rng)
-            destroyed = destroy_operator(current, instance, rng, q)
-            candidate = repair_operator(destroyed, instance, rng)
+            with context.time_block("destroy_sec"):
+                destroyed = destroy_operator(current, instance, rng, q, context=context)
+            with context.time_block("repair_sec"):
+                candidate = repair_operator(destroyed, instance, rng, context=context)
             candidate_solution = candidate.to_solution(
                 instance,
                 solver_name="alns_candidate",
@@ -203,6 +212,8 @@ class ALNSSolver(BaseSolver):
                 "ablation": self.ablation_name,
                 "destroy_operators": [operator.name for operator in self.destroy_operators],
                 "repair_operators": [operator.name for operator in self.repair_operators],
+                "candidate_neighbor_size": self.candidate_neighbor_size,
+                "profiler": context.snapshot(),
             },
         )
 
@@ -222,6 +233,7 @@ def solve_alns(
     use_pair_memory: bool = True,
     use_diversity_bonus: bool = True,
     ablation_name: str = "default",
+    candidate_neighbor_size: int | None = None,
 ) -> Solution:
     """Convenience wrapper around :class:`ALNSSolver`."""
 
@@ -238,6 +250,7 @@ def solve_alns(
         use_pair_memory=use_pair_memory,
         use_diversity_bonus=use_diversity_bonus,
         ablation_name=ablation_name,
+        candidate_neighbor_size=candidate_neighbor_size,
     ).solve(instance)
 
 
@@ -278,3 +291,9 @@ def _make_selector(
             use_diversity_bonus=use_diversity_bonus,
         )
     raise ValueError(f"Unknown ALNS selector: {selector_name}")
+
+
+def _normalize_candidate_neighbor_size(value: int | None) -> int | None:
+    if value is None or value <= 0:
+        return None
+    return value

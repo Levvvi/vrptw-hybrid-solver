@@ -4,9 +4,11 @@ from __future__ import annotations
 
 import subprocess
 import sys
+from collections.abc import Mapping
 from dataclasses import dataclass
 from functools import lru_cache
 from time import perf_counter
+from typing import Any
 
 from ortools.sat.python import cp_model
 
@@ -14,6 +16,7 @@ from vrptw_hybrid.core.checker import check_solution
 from vrptw_hybrid.core.models import Route, RouteStop, Solution, VRPTWInstance
 from vrptw_hybrid.core.objective import composite_objective
 from vrptw_hybrid.data.distance_matrix import scale_to_int
+from vrptw_hybrid.solvers.base import BaseSolver
 
 
 class CPSATRuntimeError(RuntimeError):
@@ -30,7 +33,7 @@ class _ModelData:
     time_matrix: list[list[int]]
 
 
-class CPSATVRPTWSolver:
+class CPSATVRPTWSolver(BaseSolver):
     """Exact CP-SAT model intended for small VRPTW instances."""
 
     def __init__(
@@ -55,7 +58,12 @@ class CPSATVRPTWSolver:
         self.vehicle_weight = vehicle_weight
         self.num_workers = num_workers
 
-    def solve(self, instance: VRPTWInstance) -> Solution:
+    def solve(
+        self,
+        instance: VRPTWInstance,
+        config: Mapping[str, Any] | None = None,
+        seed: int | None = None,
+    ) -> Solution:
         """Build and solve a CP-SAT arc-flow model for a small instance."""
 
         if not is_cp_sat_runtime_available():

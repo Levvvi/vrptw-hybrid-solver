@@ -3,12 +3,15 @@
 from __future__ import annotations
 
 import random
+from collections.abc import Mapping
 from dataclasses import dataclass
 from time import perf_counter
+from typing import Any
 
 from vrptw_hybrid.core.checker import check_solution
 from vrptw_hybrid.core.models import Route, RouteStop, Solution, VRPTWInstance
 from vrptw_hybrid.core.objective import composite_objective
+from vrptw_hybrid.solvers.base import BaseSolver
 
 
 class GreedyConstructionError(RuntimeError):
@@ -25,7 +28,7 @@ class _InsertionCandidate:
     score: float
 
 
-class GreedySolver:
+class GreedySolver(BaseSolver):
     """Minimum-delta insertion heuristic for VRPTW initial solutions."""
 
     def __init__(
@@ -40,8 +43,20 @@ class GreedySolver:
         self.seed = seed
         self._rng = random.Random(seed)
 
-    def solve(self, instance: VRPTWInstance) -> Solution:
+    def solve(
+        self,
+        instance: VRPTWInstance,
+        config: Mapping[str, Any] | None = None,
+        seed: int | None = None,
+    ) -> Solution:
         """Construct a feasible solution by repeatedly inserting one customer."""
+
+        if seed is not None and seed != self.seed:
+            return GreedySolver(
+                vehicle_weight=self.vehicle_weight,
+                deterministic=self.deterministic,
+                seed=seed,
+            ).solve(instance, config=config)
 
         start_time = perf_counter()
         route_ids: list[tuple[int, ...]] = []

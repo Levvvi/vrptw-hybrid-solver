@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from time import perf_counter
 from typing import Any
 
@@ -11,9 +12,10 @@ from vrptw_hybrid.core.checker import check_solution
 from vrptw_hybrid.core.models import Route, RouteStop, Solution, VRPTWInstance
 from vrptw_hybrid.core.objective import composite_objective
 from vrptw_hybrid.data.distance_matrix import scale_to_int
+from vrptw_hybrid.solvers.base import BaseSolver
 
 
-class ORToolsRoutingSolver:
+class ORToolsRoutingSolver(BaseSolver):
     """Industrial OR-Tools routing baseline for VRPTW comparison."""
 
     def __init__(
@@ -38,7 +40,12 @@ class ORToolsRoutingSolver:
         self.first_solution_strategy = first_solution_strategy
         self.local_search_metaheuristic = local_search_metaheuristic
 
-    def solve(self, instance: VRPTWInstance) -> Solution:
+    def solve(
+        self,
+        instance: VRPTWInstance,
+        config: Mapping[str, Any] | None = None,
+        seed: int | None = None,
+    ) -> Solution:
         """Solve a VRPTW instance using OR-Tools RoutingModel."""
 
         start_time = perf_counter()

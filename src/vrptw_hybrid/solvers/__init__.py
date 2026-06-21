@@ -1,5 +1,7 @@
 """Solver implementations."""
 
+from vrptw_hybrid.solvers.alns import ALNSState
+from vrptw_hybrid.solvers.base import BaseSolver
 from vrptw_hybrid.solvers.exact_cp_sat import (
     CPSATRuntimeError,
     CPSATVRPTWSolver,
@@ -10,6 +12,8 @@ from vrptw_hybrid.solvers.greedy import GreedyConstructionError, GreedySolver, s
 from vrptw_hybrid.solvers.ortools_routing import ORToolsRoutingSolver, solve_ortools_routing
 
 __all__ = [
+    "ALNSState",
+    "BaseSolver",
     "CPSATRuntimeError",
     "CPSATVRPTWSolver",
     "GreedyConstructionError",

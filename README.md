@@ -1,5 +1,8 @@
 # Hybrid VRPTW Solver for Urban Delivery
 
+<!-- Replace OWNER in the CI badge after configuring the GitHub remote. -->
+[![CI](https://github.com/OWNER/VRPTW/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/VRPTW/actions/workflows/ci.yml)
+
 A portfolio-grade Vehicle Routing Problem with Time Windows (VRPTW) project that
 connects exact validation, adaptive ALNS, OR-Tools baselines, statistical
 analysis, and Streamlit/Folium map visualization into one interview-ready
@@ -124,6 +127,7 @@ Create an editable development install and run the test suite:
 
 ```bash
 python -m pip install -e ".[dev]"
+pre-commit run --all-files
 pytest -q
 ```
 

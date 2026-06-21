@@ -210,6 +210,8 @@ docs/
   algorithm_alns.md             ALNS search loop and operators
   adaptive_selector.md          Adaptive selector notes
   experiment_protocol.md        Reproducible benchmark protocol
+  interview_notes.md            Interview talk track
+  resume_bullets.md             Resume wording templates
   statistical_tests.md          Statistical testing notes
 scripts/
   make_report_figures.py        SVG figure generation from result CSV/JSON
@@ -238,6 +240,9 @@ tests/
   lightweight.
 
 ## Interview Talk Track
+
+Detailed notes are in [docs/interview_notes.md](docs/interview_notes.md), and
+resume wording templates are in [docs/resume_bullets.md](docs/resume_bullets.md).
 
 1. Start from the business constraint: delivery routes must balance vehicle
    count, distance, capacity, and time-window feasibility.

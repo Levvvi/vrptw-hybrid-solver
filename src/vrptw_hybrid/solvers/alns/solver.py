@@ -44,6 +44,9 @@ class ALNSSolver(BaseSolver):
         temperature: float = 1.0,
         decay: float = 0.8,
         memory_size: int = 50,
+        use_pair_memory: bool = True,
+        use_diversity_bonus: bool = True,
+        ablation_name: str = "default",
     ) -> None:
         if max_iterations < 0:
             raise ValueError("max_iterations must be non-negative")
@@ -63,6 +66,7 @@ class ALNSSolver(BaseSolver):
         self.seed = seed
         self.destroy_operators = destroy_operators
         self.repair_operators = repair_operators
+        self.ablation_name = ablation_name
         self.selector = selector or _make_selector(
             selector_name=selector_name,
             destroy_operators=destroy_operators,
@@ -73,6 +77,8 @@ class ALNSSolver(BaseSolver):
             temperature=temperature,
             decay=decay,
             memory_size=memory_size,
+            use_pair_memory=use_pair_memory,
+            use_diversity_bonus=use_diversity_bonus,
         )
         self.acceptance = AlwaysBetterAcceptance()
 
@@ -194,6 +200,9 @@ class ALNSSolver(BaseSolver):
                 "history": history,
                 "selector": self.selector.snapshot(),
                 "destroy_fraction": self.destroy_fraction,
+                "ablation": self.ablation_name,
+                "destroy_operators": [operator.name for operator in self.destroy_operators],
+                "repair_operators": [operator.name for operator in self.repair_operators],
             },
         )
 
@@ -210,6 +219,9 @@ def solve_alns(
     temperature: float = 1.0,
     decay: float = 0.8,
     memory_size: int = 50,
+    use_pair_memory: bool = True,
+    use_diversity_bonus: bool = True,
+    ablation_name: str = "default",
 ) -> Solution:
     """Convenience wrapper around :class:`ALNSSolver`."""
 
@@ -223,6 +235,9 @@ def solve_alns(
         temperature=temperature,
         decay=decay,
         memory_size=memory_size,
+        use_pair_memory=use_pair_memory,
+        use_diversity_bonus=use_diversity_bonus,
+        ablation_name=ablation_name,
     ).solve(instance)
 
 
@@ -237,6 +252,8 @@ def _make_selector(
     temperature: float,
     decay: float,
     memory_size: int,
+    use_pair_memory: bool,
+    use_diversity_bonus: bool,
 ) -> OperatorSelector:
     selector_key = selector_name.lower()
     if selector_key in {"uniform", "uniform_random"}:
@@ -257,5 +274,7 @@ def _make_selector(
             decay=decay,
             memory_size=memory_size,
             exploration_floor=exploration_floor,
+            use_pair_memory=use_pair_memory,
+            use_diversity_bonus=use_diversity_bonus,
         )
     raise ValueError(f"Unknown ALNS selector: {selector_name}")

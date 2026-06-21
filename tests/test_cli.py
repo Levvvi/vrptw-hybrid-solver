@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 from typer.testing import CliRunner
 
 from vrptw_hybrid.cli import app
@@ -62,3 +65,55 @@ def test_solve_command_runs_alns_solver() -> None:
     assert result.exit_code == 0
     assert "solver=alns" in result.output
     assert "feasible=True" in result.output
+
+
+def test_solve_command_records_ablation_and_filters_alns_operators(tmp_path: Path) -> None:
+    config_path = tmp_path / "ablation.yaml"
+    output_path = tmp_path / "solution.json"
+    config_path.write_text(
+        """
+seed: 42
+ablation:
+  name: alns_mosade_no_shaw_destroy
+objective:
+  vehicle_weight: 100000.0
+solver:
+  time_limit_sec: 3
+  max_iterations: 8
+alns:
+  selector: mosade
+  disabled_destroy_operators: [shaw_related_removal]
+  disabled_repair_operators: [regret_2_insertion, regret_3_insertion]
+""",
+        encoding="utf-8",
+    )
+
+    result = runner.invoke(
+        app,
+        [
+            "solve",
+            "--instance",
+            "tests/fixtures/mini_solomon.txt",
+            "--solver",
+            "alns_mosade",
+            "--config",
+            str(config_path),
+            "--seed",
+            "42",
+            "--output",
+            str(output_path),
+        ],
+    )
+
+    assert result.exit_code == 0
+    data = json.loads(output_path.read_text(encoding="utf-8"))
+    metadata = data["metadata"]
+    selected_destroy = {entry["destroy"] for entry in metadata["history"]}
+    selected_repair = {entry["repair"] for entry in metadata["history"]}
+
+    assert metadata["ablation"] == "alns_mosade_no_shaw_destroy"
+    assert metadata["selector"]["name"] == "mosade_inspired"
+    assert "shaw_related_removal" not in metadata["destroy_operators"]
+    assert "shaw_related_removal" not in selected_destroy
+    assert "regret_2_insertion" not in metadata["repair_operators"]
+    assert "regret_3_insertion" not in selected_repair

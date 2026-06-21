@@ -1,0 +1,61 @@
+seed: 42
+ablation:
+  name: alns_mosade_adaptive
+objective:
+  vehicle_weight: 100000.0
+solver:
+  time_limit_sec: 60
+  max_iterations: 5000
+  neighborhood_size: 25
+alns:
+  selector: mosade
+  destroy_fraction_min: 0.05
+  destroy_fraction_max: 0.25
+  segment_length: 100
+  reaction_factor: 0.2
+  exploration_floor: 0.05
+  temperature: 1.0
+  decay: 0.8
+  memory_size: 50
+  use_pair_memory: true
+  use_diversity_bonus: true
+  enabled_destroy_operators:
+  disabled_destroy_operators: []
+  enabled_repair_operators:
+  disabled_repair_operators: []
+experiment:
+  seeds: [1, 2, 3, 4, 5]
+  output_dir: data/results/ablation
+  ablations:
+    - name: greedy
+      solver: greedy
+    - name: ortools_routing
+      solver: ortools_routing
+    - name: alns_uniform
+      solver: alns_uniform
+    - name: alns_roulette
+      solver: alns_roulette
+    - name: alns_mosade_adaptive
+      solver: alns_mosade
+      alns:
+        selector: mosade
+    - name: alns_mosade_no_pair_memory
+      solver: alns_mosade
+      alns:
+        selector: mosade
+        use_pair_memory: false
+    - name: alns_mosade_no_diversity_bonus
+      solver: alns_mosade
+      alns:
+        selector: mosade
+        use_diversity_bonus: false
+    - name: alns_mosade_no_shaw_destroy
+      solver: alns_mosade
+      alns:
+        selector: mosade
+        disabled_destroy_operators: [shaw_related_removal]
+    - name: alns_mosade_no_regret_repair
+      solver: alns_mosade
+      alns:
+        selector: mosade
+        disabled_repair_operators: [regret_2_insertion, regret_3_insertion]

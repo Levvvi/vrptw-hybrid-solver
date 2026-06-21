@@ -9,6 +9,7 @@ from vrptw_hybrid.core.solution_io import (
     save_solution_json,
     solution_from_dict,
     solution_to_dict,
+    solution_to_metrics_row,
 )
 
 
@@ -82,3 +83,35 @@ def test_save_metrics_csv_writes_header_and_rows(tmp_path: Path) -> None:
         {"instance": "mini", "solver": "greedy", "vehicles_used": "1", "total_distance": "10.0"},
         {"instance": "mini", "solver": "alns", "vehicles_used": "1", "total_distance": "9.5"},
     ]
+
+
+def test_solution_to_metrics_row_includes_ablation_for_csv(tmp_path: Path) -> None:
+    solution = make_solution()
+    solution = Solution(
+        instance_name=solution.instance_name,
+        solver_name="alns",
+        routes=solution.routes,
+        objective=solution.objective,
+        vehicles_used=solution.vehicles_used,
+        total_distance=solution.total_distance,
+        total_duration=solution.total_duration,
+        feasible=solution.feasible,
+        runtime_sec=solution.runtime_sec,
+        metadata={
+            **solution.metadata,
+            "ablation": "alns_mosade_no_shaw_destroy",
+            "iterations": 7,
+            "best_iteration": 3,
+        },
+    )
+    output_path = tmp_path / "metrics.csv"
+
+    row = solution_to_metrics_row(solution)
+    save_metrics_csv([row], output_path)
+
+    with output_path.open("r", encoding="utf-8", newline="") as file:
+        loaded_row = next(csv.DictReader(file))
+
+    assert row["ablation"] == "alns_mosade_no_shaw_destroy"
+    assert loaded_row["ablation"] == "alns_mosade_no_shaw_destroy"
+    assert loaded_row["iterations"] == "7"

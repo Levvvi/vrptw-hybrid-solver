@@ -177,3 +177,28 @@ def test_mosade_seed_reproducibility_for_adaptive_pair_sequence() -> None:
         )
         first.update(event)
         second.update(event)
+
+
+def test_mosade_can_disable_pair_memory_and_diversity_bonus() -> None:
+    selector = MOSADEInspiredSelector(
+        destroy_operators=DESTROY_OPERATORS[:1],
+        repair_operators=REPAIR_OPERATORS[:1],
+        decay=0.0,
+        use_pair_memory=False,
+        use_diversity_bonus=False,
+    )
+    event = OperatorEvent(
+        destroy_name=DESTROY_OPERATORS[0].name,
+        repair_name=REPAIR_OPERATORS[0].name,
+        accepted=False,
+        new_best=False,
+        delta_cost=float("inf"),
+        feasible=False,
+    )
+
+    selector.update(event)
+    snapshot = selector.snapshot()
+
+    assert snapshot["use_pair_memory"] is False
+    assert snapshot["use_diversity_bonus"] is False
+    assert snapshot["pair_credit"][f"{DESTROY_OPERATORS[0].name}|{REPAIR_OPERATORS[0].name}"] == 0.0

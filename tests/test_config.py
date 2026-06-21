@@ -13,6 +13,8 @@ def test_load_default_config() -> None:
     assert config["seed"] == 42
     assert config["objective"]["vehicle_weight"] == 100000.0
     assert config["solver"]["time_limit_sec"] == 60
+    assert config["ablation"]["name"] == "default"
+    assert config["alns"]["disabled_destroy_operators"] == []
     assert config["experiment"]["seeds"] == [1, 2, 3, 4, 5]
 
 
@@ -31,6 +33,16 @@ def test_load_config_applies_cli_style_overrides() -> None:
     assert config["solver"]["time_limit_sec"] == 30
     assert config["experiment"]["seeds"] == [10, 11]
     assert config["alns"]["exploration_floor"] == 0.1
+
+
+def test_load_ablation_config_lists_recommended_groups() -> None:
+    config = load_config(ROOT / "configs" / "ablation.yaml")
+
+    names = {ablation["name"] for ablation in config["experiment"]["ablations"]}
+
+    assert config["ablation"]["name"] == "alns_mosade_adaptive"
+    assert "alns_mosade_no_shaw_destroy" in names
+    assert "alns_mosade_no_regret_repair" in names
 
 
 def test_apply_overrides_does_not_mutate_base_config() -> None:

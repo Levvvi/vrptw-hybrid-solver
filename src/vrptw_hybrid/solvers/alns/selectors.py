@@ -254,6 +254,8 @@ class MOSADEInspiredSelector:
         decay: float = 0.8,
         memory_size: int = 50,
         exploration_floor: float = 0.05,
+        use_pair_memory: bool = True,
+        use_diversity_bonus: bool = True,
     ) -> None:
         if not destroy_operators:
             raise ValueError("at least one destroy operator is required")
@@ -274,6 +276,8 @@ class MOSADEInspiredSelector:
         self.decay = decay
         self.memory_size = memory_size
         self.exploration_floor = exploration_floor
+        self.use_pair_memory = use_pair_memory
+        self.use_diversity_bonus = use_diversity_bonus
         self.events_seen = 0
         self._pairs = tuple(
             (destroy_operator, repair_operator)
@@ -312,14 +316,19 @@ class MOSADEInspiredSelector:
 
         reward = self._reward(event, pair_key)
         self.events_seen += 1
-        self._recent_rewards.append((pair_key, reward))
         stats = self._pair_stats[pair_key]
         stats["selected"] += 1
         stats["accepted"] += int(event.accepted)
         stats["new_best"] += int(event.new_best)
         stats["reward_sum"] += reward
         stats["improvement_sum"] += max(0.0, -event.delta_cost) if event.feasible else 0.0
-        self._update_credit_from_memory()
+        if self.use_pair_memory:
+            self._recent_rewards.append((pair_key, reward))
+            self._update_credit_from_memory()
+        else:
+            self._pair_credit[pair_key] = (
+                self.decay * self._pair_credit[pair_key] + (1.0 - self.decay) * reward
+            )
 
     def snapshot(self) -> dict[str, Any]:
         probabilities = self._pair_probabilities()
@@ -330,6 +339,8 @@ class MOSADEInspiredSelector:
             "decay": self.decay,
             "memory_size": self.memory_size,
             "exploration_floor": self.exploration_floor,
+            "use_pair_memory": self.use_pair_memory,
+            "use_diversity_bonus": self.use_diversity_bonus,
             "pair_credit": dict(self._pair_credit),
             "pair_probabilities": probabilities,
             "pair_heatmap": [
@@ -345,7 +356,9 @@ class MOSADEInspiredSelector:
         }
 
     def _reward(self, event: OperatorEvent, pair_key: str) -> float:
-        diversity_bonus = 0.1 / sqrt(1.0 + self._pair_stats[pair_key]["selected"])
+        diversity_bonus = 0.0
+        if self.use_diversity_bonus:
+            diversity_bonus = 0.1 / sqrt(1.0 + self._pair_stats[pair_key]["selected"])
         normalized_improvement = 0.0
         if event.feasible and event.delta_cost < 0:
             normalized_improvement = min(1.0, -event.delta_cost / (1.0 + abs(event.delta_cost)))

@@ -1,4 +1,6 @@
 seed: 42
+ablation:
+  name: default
 objective:
   vehicle_weight: 100000.0
 solver:
@@ -15,6 +17,12 @@ alns:
   temperature: 1.0
   decay: 0.8
   memory_size: 50
+  use_pair_memory: true
+  use_diversity_bonus: true
+  enabled_destroy_operators:
+  disabled_destroy_operators: []
+  enabled_repair_operators:
+  disabled_repair_operators: []
 experiment:
   seeds: [1, 2, 3, 4, 5]
   output_dir: data/results

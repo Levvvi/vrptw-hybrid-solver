@@ -16,6 +16,10 @@ from vrptw_hybrid.solvers.alns.destroy import (
     time_window_tight_removal,
     worst_distance_removal,
 )
+from vrptw_hybrid.solvers.alns.operator_filters import (
+    filter_destroy_operators,
+    filter_repair_operators,
+)
 from vrptw_hybrid.solvers.alns.repair import (
     REPAIR_OPERATORS,
     RepairOperator,
@@ -60,6 +64,8 @@ __all__ = [
     "TimeLimitStop",
     "UniformSelector",
     "evaluate_route",
+    "filter_destroy_operators",
+    "filter_repair_operators",
     "greedy_cheapest_insertion",
     "insertion_delta_cost",
     "is_feasible_insertion",

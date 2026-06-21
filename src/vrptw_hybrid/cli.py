@@ -18,6 +18,10 @@ from vrptw_hybrid.solvers import (
     GreedySolver,
     ORToolsRoutingSolver,
 )
+from vrptw_hybrid.solvers.alns.operator_filters import (
+    filter_destroy_operators,
+    filter_repair_operators,
+)
 from vrptw_hybrid.utils.config import load_config
 from vrptw_hybrid.utils.logging import setup_logging
 
@@ -190,6 +194,10 @@ def _run_solver(
     alns_config = config.get("alns", {})
     if not isinstance(alns_config, dict):
         alns_config = {}
+    ablation_config = config.get("ablation", {})
+    if not isinstance(ablation_config, dict):
+        ablation_config = {}
+    ablation_name = str(ablation_config.get("name", "default"))
     selector_name = str(alns_config.get("selector", "uniform"))
     segment_length = int(alns_config.get("segment_length", 100))
     reaction_factor = float(alns_config.get("reaction_factor", 0.2))
@@ -197,37 +205,143 @@ def _run_solver(
     temperature = float(alns_config.get("temperature", 1.0))
     decay = float(alns_config.get("decay", 0.8))
     memory_size = int(alns_config.get("memory_size", 50))
+    use_pair_memory = _bool_config(
+        alns_config.get("use_pair_memory", True),
+        "alns.use_pair_memory",
+    )
+    use_diversity_bonus = _bool_config(
+        alns_config.get("use_diversity_bonus", True),
+        "alns.use_diversity_bonus",
+    )
 
     if solver_key == "greedy":
-        return GreedySolver(vehicle_weight=vehicle_weight, seed=seed).solve(instance, seed=seed)
-    if solver_key in {"alns", "alns_uniform"}:
-        return ALNSSolver(
-            max_iterations=effective_max_iterations,
-            time_limit_sec=effective_time_limit,
-            vehicle_weight=vehicle_weight,
-            seed=seed,
-            selector_name=selector_name,
-            segment_length=segment_length,
-            reaction_factor=reaction_factor,
-            exploration_floor=exploration_floor,
-            temperature=temperature,
-            decay=decay,
-            memory_size=memory_size,
-        ).solve(instance, seed=seed)
-    if solver_key in {"ortools", "ortools_routing"}:
-        return ORToolsRoutingSolver(
-            time_limit_sec=effective_time_limit,
-            vehicle_weight=vehicle_weight,
-        ).solve(instance, seed=seed)
-    if solver_key in {"cp_sat", "exact_cp_sat"}:
+        return _with_ablation(
+            GreedySolver(vehicle_weight=vehicle_weight, seed=seed).solve(instance, seed=seed),
+            ablation_name,
+        )
+    if solver_key in {
+        "alns",
+        "alns_uniform",
+        "alns_roulette",
+        "alns_mosade",
+        "alns_mosade_adaptive",
+    }:
         try:
-            return CPSATVRPTWSolver(
+            destroy_operators = filter_destroy_operators(
+                enabled_names=_optional_name_list(
+                    alns_config.get("enabled_destroy_operators"),
+                    "alns.enabled_destroy_operators",
+                ),
+                disabled_names=_optional_name_list(
+                    alns_config.get("disabled_destroy_operators"),
+                    "alns.disabled_destroy_operators",
+                ),
+            )
+            repair_operators = filter_repair_operators(
+                enabled_names=_optional_name_list(
+                    alns_config.get("enabled_repair_operators"),
+                    "alns.enabled_repair_operators",
+                ),
+                disabled_names=_optional_name_list(
+                    alns_config.get("disabled_repair_operators"),
+                    "alns.disabled_repair_operators",
+                ),
+            )
+        except ValueError as exc:
+            raise typer.BadParameter(str(exc), param_hint="--config") from exc
+
+        effective_selector_name = _selector_name_from_solver_alias(solver_key, selector_name)
+        return _with_ablation(
+            ALNSSolver(
+                max_iterations=effective_max_iterations,
                 time_limit_sec=effective_time_limit,
                 vehicle_weight=vehicle_weight,
-            ).solve(instance, seed=seed)
+                seed=seed,
+                destroy_operators=destroy_operators,
+                repair_operators=repair_operators,
+                selector_name=effective_selector_name,
+                segment_length=segment_length,
+                reaction_factor=reaction_factor,
+                exploration_floor=exploration_floor,
+                temperature=temperature,
+                decay=decay,
+                memory_size=memory_size,
+                use_pair_memory=use_pair_memory,
+                use_diversity_bonus=use_diversity_bonus,
+                ablation_name=ablation_name,
+            ).solve(instance, seed=seed),
+            ablation_name,
+        )
+    if solver_key in {"ortools", "ortools_routing"}:
+        return _with_ablation(
+            ORToolsRoutingSolver(
+                time_limit_sec=effective_time_limit,
+                vehicle_weight=vehicle_weight,
+            ).solve(instance, seed=seed),
+            ablation_name,
+        )
+    if solver_key in {"cp_sat", "exact_cp_sat"}:
+        try:
+            return _with_ablation(
+                CPSATVRPTWSolver(
+                    time_limit_sec=effective_time_limit,
+                    vehicle_weight=vehicle_weight,
+                ).solve(instance, seed=seed),
+                ablation_name,
+            )
         except CPSATRuntimeError as exc:
             raise typer.BadParameter(str(exc), param_hint="--solver") from exc
     raise typer.BadParameter(f"Unknown solver: {solver_name}", param_hint="--solver")
+
+
+def _optional_name_list(value: object, field_name: str) -> tuple[str, ...] | None:
+    if value is None:
+        return None
+    if isinstance(value, str):
+        return (value,)
+    if isinstance(value, list | tuple):
+        return tuple(str(item) for item in value)
+    raise typer.BadParameter(
+        f"{field_name} must be a string or list of strings",
+        param_hint="--config",
+    )
+
+
+def _bool_config(value: object, field_name: str) -> bool:
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        normalized = value.strip().lower()
+        if normalized in {"1", "true", "yes", "on"}:
+            return True
+        if normalized in {"0", "false", "no", "off"}:
+            return False
+    raise typer.BadParameter(f"{field_name} must be a boolean", param_hint="--config")
+
+
+def _selector_name_from_solver_alias(solver_key: str, configured_selector: str) -> str:
+    if solver_key == "alns_uniform":
+        return "uniform"
+    if solver_key == "alns_roulette":
+        return "roulette"
+    if solver_key in {"alns_mosade", "alns_mosade_adaptive"}:
+        return "mosade"
+    return configured_selector
+
+
+def _with_ablation(solution: Solution, ablation_name: str) -> Solution:
+    return Solution(
+        instance_name=solution.instance_name,
+        solver_name=solution.solver_name,
+        routes=solution.routes,
+        objective=solution.objective,
+        vehicles_used=solution.vehicles_used,
+        total_distance=solution.total_distance,
+        total_duration=solution.total_duration,
+        feasible=solution.feasible,
+        runtime_sec=solution.runtime_sec,
+        metadata={**solution.metadata, "ablation": ablation_name},
+    )
 
 
 if __name__ == "__main__":

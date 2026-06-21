@@ -64,6 +64,25 @@ def solution_from_dict(data: Mapping[str, Any]) -> Solution:
     )
 
 
+def solution_to_metrics_row(solution: Solution) -> dict[str, Any]:
+    """Flatten a Solution into one experiment metrics row."""
+
+    return {
+        "instance": solution.instance_name,
+        "solver": solution.solver_name,
+        "ablation": solution.metadata.get("ablation", "default"),
+        "seed": solution.metadata.get("seed"),
+        "feasible": solution.feasible,
+        "objective": solution.objective,
+        "vehicles_used": solution.vehicles_used,
+        "total_distance": solution.total_distance,
+        "total_duration": solution.total_duration,
+        "runtime_sec": solution.runtime_sec,
+        "iterations": solution.metadata.get("iterations"),
+        "best_iteration": solution.metadata.get("best_iteration"),
+    }
+
+
 def save_solution_json(solution: Solution, path: str | Path, *, indent: int = 2) -> Path:
     """Save a Solution as human-readable JSON and return the output path."""
 

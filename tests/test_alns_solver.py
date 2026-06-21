@@ -66,9 +66,11 @@ def test_alns_can_use_mosade_inspired_selector() -> None:
         seed=11,
         selector_name="mosade",
         memory_size=10,
+        ablation_name="unit_mosade",
     ).solve(instance)
 
     assert solution.feasible
+    assert solution.metadata["ablation"] == "unit_mosade"
     assert solution.metadata["selector"]["name"] == "mosade_inspired"
     assert "pair_heatmap" in solution.metadata["selector"]
     assert "pair_heatmap" in solution.metadata["history"][0]["selector_snapshot"]

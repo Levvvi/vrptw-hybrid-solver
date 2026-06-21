@@ -4,12 +4,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import cast
-
-import numpy as np
-from numpy.typing import NDArray
 
 from vrptw_hybrid.core.models import Customer, VehicleSpec, VRPTWInstance
+from vrptw_hybrid.data.distance_matrix import euclidean_distance_matrix
 
 
 class SolomonParseError(ValueError):
@@ -58,8 +55,8 @@ def parse_solomon(path: str | Path, limit_customers: int | None = None) -> VRPTW
         customer_records = customer_records[:limit_customers]
     customers = tuple(record.to_customer() for record in customer_records)
 
-    nodes = (depot, *customers)
-    matrix = _euclidean_matrix(nodes)
+    points = [(node.x, node.y) for node in (depot, *customers)]
+    matrix = euclidean_distance_matrix(points)
     return VRPTWInstance(
         name=name,
         depot=depot,
@@ -143,13 +140,6 @@ def _parse_customer_record(parts: list[str], line: str) -> _CustomerRecord:
         )
     except ValueError as exc:
         raise SolomonParseError(f"Invalid customer record line: {line}") from exc
-
-
-def _euclidean_matrix(nodes: tuple[Customer, ...]) -> NDArray[np.float64]:
-    coordinates = np.array([(node.x, node.y) for node in nodes], dtype=float)
-    deltas = coordinates[:, np.newaxis, :] - coordinates[np.newaxis, :, :]
-    return cast("NDArray[np.float64]", np.linalg.norm(deltas, axis=2))
-
 
 def _starts_with_number(line: str) -> bool:
     first = line.split(maxsplit=1)[0]

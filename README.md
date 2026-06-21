@@ -177,7 +177,10 @@ apps/
 configs/
   solomon_small.yaml            Small reproducible experiment config
 docs/
+  modeling.md                   VRPTW formulation and business meaning
+  algorithm_alns.md             ALNS search loop and operators
   adaptive_selector.md          Adaptive selector notes
+  experiment_protocol.md        Reproducible benchmark protocol
   statistical_tests.md          Statistical testing notes
 scripts/
   make_report_figures.py        SVG figure generation from result CSV/JSON

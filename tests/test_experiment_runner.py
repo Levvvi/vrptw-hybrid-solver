@@ -76,6 +76,8 @@ def test_run_batch_writes_csv_and_solution_jsons(tmp_path: Path) -> None:
         rows[0]
     )
     assert {"cost", "runtime_sec", "feasible", "status", "error"}.issubset(rows[0])
+    assert {"bks_vehicles", "vehicle_gap", "distance_gap_pct"}.issubset(rows[0])
+    assert rows[0]["bks_vehicles"] == ""
 
 
 def test_run_batch_records_solver_errors_without_stopping(tmp_path: Path) -> None:
@@ -97,3 +99,44 @@ def test_run_batch_records_solver_errors_without_stopping(tmp_path: Path) -> Non
     assert rows_by_solver["bad_solver"]["status"] == "error"
     assert "Unknown solver" in rows_by_solver["bad_solver"]["error"]
     assert rows_by_solver["greedy"]["status"] == "ok"
+
+
+def test_run_batch_populates_bks_fields_when_reference_exists(tmp_path: Path) -> None:
+    source_fixture = Path("tests/fixtures/mini_solomon.txt")
+    c101_fixture = tmp_path / "c101_smoke.txt"
+    c101_fixture.write_text(
+        source_fixture.read_text(encoding="utf-8").replace("MINI_C101", "C101", 1),
+        encoding="utf-8",
+    )
+    config_path = tmp_path / "bks_batch.yaml"
+    output_dir = (tmp_path / "results").as_posix()
+    config_path.write_text(
+        f"""
+seed: 42
+objective:
+  vehicle_weight: 100000.0
+solver:
+  time_limit_sec: 3
+  max_iterations: 1
+experiment:
+  output_dir: {output_dir}
+  instances:
+    - name: c101_smoke
+      path: {c101_fixture.as_posix()}
+  solvers:
+    - name: greedy
+      solver: greedy
+      ablation: greedy
+  seeds: [42]
+""",
+        encoding="utf-8",
+    )
+
+    result = run_batch(config_path, timestamp="bks")
+    row = result.rows[0]
+
+    assert row["status"] == "ok"
+    assert row["bks_vehicles"] == 10
+    assert row["bks_distance"] == 828.94
+    assert row["vehicle_gap"] == row["vehicles"] - 10
+    assert row["distance_gap"] is None

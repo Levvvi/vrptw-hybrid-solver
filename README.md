@@ -76,3 +76,12 @@ route-evaluation caching, and profiler counters. These changes do not alter the
 VRPTW objective function or feasibility rules; they only reduce which insertion
 candidates are evaluated first. If restricted candidate evaluation finds no
 feasible insertion, repair falls back to the full candidate set.
+
+## Solomon BKS References
+
+Solomon benchmark gap fields use a small verified reference table seeded from
+SINTEF's VRPTW 100-customer best-known-solution table:
+https://www.sintef.no/projectweb/top/vrptw/100-customers/. SINTEF reports a
+hierarchical objective: first minimize vehicle count, then total distance using
+double precision distances. This project only stores entries that have been
+explicitly checked; missing BKS values are left blank in result CSV files.

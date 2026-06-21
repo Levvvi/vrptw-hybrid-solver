@@ -14,6 +14,7 @@ from vrptw_hybrid.core.solution_io import (
     solution_to_metrics_row,
 )
 from vrptw_hybrid.data.solomon import parse_solomon
+from vrptw_hybrid.data.solomon_bks import bks_gap_fields
 from vrptw_hybrid.solvers.dispatch import run_solver_from_config
 from vrptw_hybrid.utils.config import load_config
 
@@ -118,6 +119,11 @@ def _run_one(
         row = {
             **solution_to_metrics_row(solution),
             **row_base,
+            **bks_gap_fields(
+                solution.instance_name,
+                vehicles_used=solution.vehicles_used,
+                total_distance=solution.total_distance,
+            ),
             "selector": _selector_name(solution.metadata),
             "vehicles": solution.vehicles_used,
             "distance": solution.total_distance,
@@ -135,6 +141,7 @@ def _run_one(
             "cost": "",
             "runtime_sec": "",
             "feasible": False,
+            **bks_gap_fields("", vehicles_used=0, total_distance=0.0),
             "status": "error",
             "error": str(exc),
             "solution_json": "",

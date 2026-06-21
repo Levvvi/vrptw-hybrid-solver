@@ -12,6 +12,9 @@ alns:
   segment_length: 100
   reaction_factor: 0.2
   exploration_floor: 0.05
+  temperature: 1.0
+  decay: 0.8
+  memory_size: 50
 experiment:
   seeds: [1, 2, 3, 4, 5]
   output_dir: data/results

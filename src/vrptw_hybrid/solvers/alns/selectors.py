@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import random
+from collections import deque
 from dataclasses import dataclass
+from math import exp, sqrt
 from typing import Any, Protocol, TypeVar
 
 from vrptw_hybrid.solvers.alns.destroy import DESTROY_OPERATORS, DestroyOperator
@@ -238,3 +240,173 @@ def _normalize(probabilities: dict[str, float]) -> dict[str, float]:
     if total <= 0:
         return {name: 1.0 / len(probabilities) for name in probabilities}
     return {name: value / total for name, value in probabilities.items()}
+
+
+class MOSADEInspiredSelector:
+    """Pair-level adaptive selector inspired by MOSADE strategy selection."""
+
+    def __init__(
+        self,
+        destroy_operators: tuple[DestroyOperator, ...] = DESTROY_OPERATORS,
+        repair_operators: tuple[RepairOperator, ...] = REPAIR_OPERATORS,
+        *,
+        temperature: float = 1.0,
+        decay: float = 0.8,
+        memory_size: int = 50,
+        exploration_floor: float = 0.05,
+    ) -> None:
+        if not destroy_operators:
+            raise ValueError("at least one destroy operator is required")
+        if not repair_operators:
+            raise ValueError("at least one repair operator is required")
+        if temperature <= 0:
+            raise ValueError("temperature must be positive")
+        if not 0 <= decay < 1:
+            raise ValueError("decay must be in [0, 1)")
+        if memory_size <= 0:
+            raise ValueError("memory_size must be positive")
+        if not 0 <= exploration_floor <= 1:
+            raise ValueError("exploration_floor must be in [0, 1]")
+
+        self.destroy_operators = destroy_operators
+        self.repair_operators = repair_operators
+        self.temperature = temperature
+        self.decay = decay
+        self.memory_size = memory_size
+        self.exploration_floor = exploration_floor
+        self.events_seen = 0
+        self._pairs = tuple(
+            (destroy_operator, repair_operator)
+            for destroy_operator in destroy_operators
+            for repair_operator in repair_operators
+        )
+        self._pair_credit = {_pair_key(*pair): 0.0 for pair in self._pairs}
+        self._recent_rewards: deque[tuple[str, float]] = deque(maxlen=memory_size)
+        self._pair_stats = {
+            _pair_key(*pair): {
+                "selected": 0,
+                "accepted": 0,
+                "new_best": 0,
+                "reward_sum": 0.0,
+                "improvement_sum": 0.0,
+            }
+            for pair in self._pairs
+        }
+        self._pending_pair: tuple[DestroyOperator, RepairOperator] | None = None
+
+    def select_destroy(self, rng: random.Random) -> DestroyOperator:
+        self._pending_pair = _weighted_pair_choice(self._pairs, self._pair_probabilities(), rng)
+        return self._pending_pair[0]
+
+    def select_repair(self, rng: random.Random) -> RepairOperator:
+        if self._pending_pair is None:
+            self._pending_pair = _weighted_pair_choice(self._pairs, self._pair_probabilities(), rng)
+        repair_operator = self._pending_pair[1]
+        self._pending_pair = None
+        return repair_operator
+
+    def update(self, event: OperatorEvent) -> None:
+        pair_key = _pair_key_from_names(event.destroy_name, event.repair_name)
+        if pair_key not in self._pair_credit:
+            return
+
+        reward = self._reward(event, pair_key)
+        self.events_seen += 1
+        self._recent_rewards.append((pair_key, reward))
+        stats = self._pair_stats[pair_key]
+        stats["selected"] += 1
+        stats["accepted"] += int(event.accepted)
+        stats["new_best"] += int(event.new_best)
+        stats["reward_sum"] += reward
+        stats["improvement_sum"] += max(0.0, -event.delta_cost) if event.feasible else 0.0
+        self._update_credit_from_memory()
+
+    def snapshot(self) -> dict[str, Any]:
+        probabilities = self._pair_probabilities()
+        return {
+            "name": "mosade_inspired",
+            "events_seen": self.events_seen,
+            "temperature": self.temperature,
+            "decay": self.decay,
+            "memory_size": self.memory_size,
+            "exploration_floor": self.exploration_floor,
+            "pair_credit": dict(self._pair_credit),
+            "pair_probabilities": probabilities,
+            "pair_heatmap": [
+                {
+                    "destroy": destroy_operator.name,
+                    "repair": repair_operator.name,
+                    "credit": self._pair_credit[_pair_key(destroy_operator, repair_operator)],
+                    "probability": probabilities[_pair_key(destroy_operator, repair_operator)],
+                }
+                for destroy_operator, repair_operator in self._pairs
+            ],
+            "pair_stats": {key: dict(value) for key, value in self._pair_stats.items()},
+        }
+
+    def _reward(self, event: OperatorEvent, pair_key: str) -> float:
+        diversity_bonus = 0.1 / sqrt(1.0 + self._pair_stats[pair_key]["selected"])
+        normalized_improvement = 0.0
+        if event.feasible and event.delta_cost < 0:
+            normalized_improvement = min(1.0, -event.delta_cost / (1.0 + abs(event.delta_cost)))
+        return (
+            5.0 * int(event.new_best)
+            + 3.0 * int(event.accepted and event.delta_cost < 0)
+            + 1.0 * int(event.accepted)
+            + 0.2 * int(event.feasible)
+            + diversity_bonus
+            + normalized_improvement
+        )
+
+    def _update_credit_from_memory(self) -> None:
+        rewards_by_pair: dict[str, list[float]] = {key: [] for key in self._pair_credit}
+        for pair_key, reward in self._recent_rewards:
+            rewards_by_pair[pair_key].append(reward)
+        for pair_key, old_credit in list(self._pair_credit.items()):
+            recent_rewards = rewards_by_pair[pair_key]
+            recent_reward = sum(recent_rewards) / len(recent_rewards) if recent_rewards else 0.0
+            self._pair_credit[pair_key] = (
+                self.decay * old_credit + (1.0 - self.decay) * recent_reward
+            )
+
+    def _pair_probabilities(self) -> dict[str, float]:
+        logits = {
+            pair_key: credit / self.temperature for pair_key, credit in self._pair_credit.items()
+        }
+        softmax_probabilities = _softmax(logits)
+        pair_count = len(softmax_probabilities)
+        return {
+            pair_key: (1.0 - self.exploration_floor) * probability
+            + self.exploration_floor / pair_count
+            for pair_key, probability in softmax_probabilities.items()
+        }
+
+
+def _softmax(logits: dict[str, float]) -> dict[str, float]:
+    if not logits:
+        return {}
+    max_logit = max(logits.values())
+    exp_values = {key: exp(value - max_logit) for key, value in logits.items()}
+    return _normalize(exp_values)
+
+
+def _weighted_pair_choice(
+    pairs: tuple[tuple[DestroyOperator, RepairOperator], ...],
+    probabilities: dict[str, float],
+    rng: random.Random,
+) -> tuple[DestroyOperator, RepairOperator]:
+    threshold = rng.random()
+    cumulative = 0.0
+    for pair in pairs:
+        cumulative += probabilities[_pair_key(*pair)]
+        if threshold <= cumulative:
+            return pair
+    return pairs[-1]
+
+
+def _pair_key(destroy_operator: DestroyOperator, repair_operator: RepairOperator) -> str:
+    return _pair_key_from_names(destroy_operator.name, repair_operator.name)
+
+
+def _pair_key_from_names(destroy_name: str, repair_name: str) -> str:
+    return f"{destroy_name}|{repair_name}"

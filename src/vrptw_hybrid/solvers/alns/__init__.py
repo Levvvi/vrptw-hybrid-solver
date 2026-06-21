@@ -32,6 +32,7 @@ from vrptw_hybrid.solvers.alns.route_eval import (
     is_feasible_insertion,
 )
 from vrptw_hybrid.solvers.alns.selectors import (
+    MOSADEInspiredSelector,
     OperatorEvent,
     OperatorSelector,
     RouletteWheelSelector,
@@ -48,6 +49,7 @@ __all__ = [
     "AlwaysBetterAcceptance",
     "DestroyOperator",
     "InsertionResult",
+    "MOSADEInspiredSelector",
     "MaxIterationsStop",
     "NoImprovementStop",
     "OperatorEvent",

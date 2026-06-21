@@ -194,6 +194,9 @@ def _run_solver(
     segment_length = int(alns_config.get("segment_length", 100))
     reaction_factor = float(alns_config.get("reaction_factor", 0.2))
     exploration_floor = float(alns_config.get("exploration_floor", 0.05))
+    temperature = float(alns_config.get("temperature", 1.0))
+    decay = float(alns_config.get("decay", 0.8))
+    memory_size = int(alns_config.get("memory_size", 50))
 
     if solver_key == "greedy":
         return GreedySolver(vehicle_weight=vehicle_weight, seed=seed).solve(instance, seed=seed)
@@ -207,6 +210,9 @@ def _run_solver(
             segment_length=segment_length,
             reaction_factor=reaction_factor,
             exploration_floor=exploration_floor,
+            temperature=temperature,
+            decay=decay,
+            memory_size=memory_size,
         ).solve(instance, seed=seed)
     if solver_key in {"ortools", "ortools_routing"}:
         return ORToolsRoutingSolver(

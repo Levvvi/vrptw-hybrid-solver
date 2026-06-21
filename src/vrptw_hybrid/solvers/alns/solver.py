@@ -12,6 +12,7 @@ from vrptw_hybrid.solvers.alns.acceptance import AlwaysBetterAcceptance
 from vrptw_hybrid.solvers.alns.destroy import DESTROY_OPERATORS, DestroyOperator
 from vrptw_hybrid.solvers.alns.repair import REPAIR_OPERATORS, RepairOperator
 from vrptw_hybrid.solvers.alns.selectors import (
+    MOSADEInspiredSelector,
     OperatorEvent,
     OperatorSelector,
     RouletteWheelSelector,
@@ -40,6 +41,9 @@ class ALNSSolver(BaseSolver):
         segment_length: int = 100,
         reaction_factor: float = 0.2,
         exploration_floor: float = 0.05,
+        temperature: float = 1.0,
+        decay: float = 0.8,
+        memory_size: int = 50,
     ) -> None:
         if max_iterations < 0:
             raise ValueError("max_iterations must be non-negative")
@@ -66,6 +70,9 @@ class ALNSSolver(BaseSolver):
             segment_length=segment_length,
             reaction_factor=reaction_factor,
             exploration_floor=exploration_floor,
+            temperature=temperature,
+            decay=decay,
+            memory_size=memory_size,
         )
         self.acceptance = AlwaysBetterAcceptance()
 
@@ -200,6 +207,9 @@ def solve_alns(
     vehicle_weight: float = 100000.0,
     seed: int | None = None,
     selector_name: str = "uniform",
+    temperature: float = 1.0,
+    decay: float = 0.8,
+    memory_size: int = 50,
 ) -> Solution:
     """Convenience wrapper around :class:`ALNSSolver`."""
 
@@ -210,6 +220,9 @@ def solve_alns(
         vehicle_weight=vehicle_weight,
         seed=seed,
         selector_name=selector_name,
+        temperature=temperature,
+        decay=decay,
+        memory_size=memory_size,
     ).solve(instance)
 
 
@@ -221,6 +234,9 @@ def _make_selector(
     segment_length: int,
     reaction_factor: float,
     exploration_floor: float,
+    temperature: float,
+    decay: float,
+    memory_size: int,
 ) -> OperatorSelector:
     selector_key = selector_name.lower()
     if selector_key in {"uniform", "uniform_random"}:
@@ -231,6 +247,15 @@ def _make_selector(
             repair_operators,
             segment_length=segment_length,
             reaction_factor=reaction_factor,
+            exploration_floor=exploration_floor,
+        )
+    if selector_key in {"mosade", "mosade_inspired", "adaptive"}:
+        return MOSADEInspiredSelector(
+            destroy_operators,
+            repair_operators,
+            temperature=temperature,
+            decay=decay,
+            memory_size=memory_size,
             exploration_floor=exploration_floor,
         )
     raise ValueError(f"Unknown ALNS selector: {selector_name}")

@@ -173,6 +173,31 @@ The demo supports:
 Demo screenshot/GIF: TODO after capturing the Streamlit page with a generated
 solution.
 
+## Docker
+
+Build and run the slim Streamlit demo image:
+
+```bash
+docker build -t vrptw-hybrid .
+docker run -p 8501:8501 vrptw-hybrid
+```
+
+Or use Compose:
+
+```bash
+docker compose up --build
+```
+
+The Docker image intentionally uses a slim demo dependency set:
+
+- included: project package, Streamlit, Folium, `streamlit-folium`, mini Solomon
+  fixture, and configs;
+- excluded: `data/raw`, `data/processed`, `data/results`, OSMnx/geopandas, and
+  local caches.
+
+This keeps the interview demo reproducible without copying large road-network
+files into the image.
+
 ## Project Structure
 
 ```text

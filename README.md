@@ -85,3 +85,13 @@ https://www.sintef.no/projectweb/top/vrptw/100-customers/. SINTEF reports a
 hierarchical objective: first minimize vehicle count, then total distance using
 double precision distances. This project only stores entries that have been
 explicitly checked; missing BKS values are left blank in result CSV files.
+
+## Report Figures
+
+Report figures are generated from result CSV files and solution JSON metadata:
+
+- `data/results/figures/convergence.svg`
+- `data/results/figures/cost_runtime.svg`
+- `data/results/figures/gap_boxplot.svg`
+- `data/results/figures/operator_probabilities.svg`
+- `data/results/figures/pair_heatmap.svg`

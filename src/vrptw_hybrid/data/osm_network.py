@@ -3,8 +3,12 @@
 from __future__ import annotations
 
 import re
+from heapq import heappop, heappush
 from pathlib import Path
 from typing import Any
+
+import numpy as np
+from numpy.typing import NDArray
 
 DEFAULT_OSM_CACHE_DIR = Path("data/raw/osm")
 DEFAULT_SPEED_KPH_BY_HIGHWAY = {
@@ -21,6 +25,70 @@ DEFAULT_SPEED_KPH_BY_HIGHWAY = {
 
 class OSMNetworkError(RuntimeError):
     """Raised when OSM network retrieval or caching fails."""
+
+
+def nearest_graph_nodes(
+    graph: Any,
+    lat_lon_points: list[tuple[float, float]] | tuple[tuple[float, float], ...],
+) -> tuple[Any, ...]:
+    """Return nearest graph node ids for ``(lat, lon)`` points."""
+
+    nodes = [
+        (node_id, float(data["y"]), float(data["x"]))
+        for node_id, data in graph.nodes(data=True)
+        if "x" in data and "y" in data
+    ]
+    if not nodes:
+        raise OSMNetworkError("graph contains no nodes with x/y coordinates")
+
+    nearest: list[Any] = []
+    for lat, lon in lat_lon_points:
+        node_id, _node_lat, _node_lon = min(
+            nodes,
+            key=lambda item: (item[1] - lat) ** 2 + (item[2] - lon) ** 2,
+        )
+        nearest.append(node_id)
+    return tuple(nearest)
+
+
+def network_distance_time_matrix(
+    graph: Any,
+    node_ids: tuple[Any, ...] | list[Any],
+    *,
+    distance_weight: str = "length",
+    time_weight: str = "travel_time",
+    unreachable: str = "raise",
+    large_m: float = 1e9,
+    cache_path: str | Path | None = None,
+) -> tuple[NDArray[np.float64], NDArray[np.float64]]:
+    """Return shortest-path distance and time matrices for graph node ids."""
+
+    if cache_path is not None:
+        path = Path(cache_path)
+        if path.exists():
+            loaded = np.load(path)
+            return loaded["distance_matrix"], loaded["time_matrix"]
+
+    node_tuple = tuple(node_ids)
+    distance_matrix = _shortest_path_matrix(
+        graph,
+        node_tuple,
+        weight=distance_weight,
+        unreachable=unreachable,
+        large_m=large_m,
+    )
+    time_matrix = _shortest_path_matrix(
+        graph,
+        node_tuple,
+        weight=time_weight,
+        unreachable=unreachable,
+        large_m=large_m,
+    )
+    if cache_path is not None:
+        path = Path(cache_path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        np.savez(path, distance_matrix=distance_matrix, time_matrix=time_matrix)
+    return distance_matrix, time_matrix
 
 
 def load_drive_network(
@@ -117,6 +185,76 @@ def _edge_speed_kph(data: dict[str, Any], speeds: dict[str, float]) -> float:
         if speed is not None:
             return speed
     return speeds["residential"]
+
+
+def _shortest_path_matrix(
+    graph: Any,
+    node_ids: tuple[Any, ...],
+    *,
+    weight: str,
+    unreachable: str,
+    large_m: float,
+) -> NDArray[np.float64]:
+    if unreachable not in {"raise", "large_m"}:
+        raise ValueError("unreachable must be 'raise' or 'large_m'")
+    adjacency = _weighted_adjacency(graph, weight)
+    matrix = np.zeros((len(node_ids), len(node_ids)), dtype=float)
+    for row_index, source in enumerate(node_ids):
+        distances = _dijkstra(adjacency, source)
+        for col_index, target in enumerate(node_ids):
+            if source == target:
+                matrix[row_index, col_index] = 0.0
+            elif target in distances:
+                matrix[row_index, col_index] = distances[target]
+            elif unreachable == "large_m":
+                matrix[row_index, col_index] = large_m
+            else:
+                raise OSMNetworkError(
+                    f"no path between graph nodes {source!r} and {target!r}"
+                )
+    return matrix
+
+
+def _weighted_adjacency(graph: Any, weight: str) -> dict[Any, list[tuple[Any, float]]]:
+    adjacency: dict[Any, list[tuple[Any, float]]] = {}
+    for edge in graph.edges(data=True):
+        source, target, data = _normalize_edge(edge)
+        value = data.get(weight)
+        if value is None:
+            raise OSMNetworkError(f"edge {source!r}->{target!r} missing weight {weight!r}")
+        adjacency.setdefault(source, []).append((target, float(value)))
+        adjacency.setdefault(target, adjacency.get(target, []))
+    return adjacency
+
+
+def _normalize_edge(edge: tuple[Any, ...]) -> tuple[Any, Any, dict[str, Any]]:
+    if len(edge) == 3:
+        source, target, data = edge
+        return source, target, dict(data)
+    if len(edge) == 4:
+        source, target, _key, data = edge
+        return source, target, dict(data)
+    raise OSMNetworkError(f"unsupported edge tuple shape: {edge!r}")
+
+
+def _dijkstra(
+    adjacency: dict[Any, list[tuple[Any, float]]],
+    source: Any,
+) -> dict[Any, float]:
+    distances: dict[Any, float] = {source: 0.0}
+    counter = 0
+    heap: list[tuple[float, int, Any]] = [(0.0, counter, source)]
+    while heap:
+        current_distance, _order, node = heappop(heap)
+        if current_distance > distances[node]:
+            continue
+        for neighbor, edge_weight in adjacency.get(node, []):
+            candidate = current_distance + edge_weight
+            if candidate < distances.get(neighbor, float("inf")):
+                distances[neighbor] = candidate
+                counter += 1
+                heappush(heap, (candidate, counter, neighbor))
+    return distances
 
 
 def _speed_value(value: object) -> float | None:

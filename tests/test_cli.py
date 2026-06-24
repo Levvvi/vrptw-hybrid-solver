@@ -1,9 +1,10 @@
 import json
 from pathlib import Path
+from typing import Any, get_args, get_type_hints
 
 from typer.testing import CliRunner
 
-from vrptw_hybrid.cli import app
+from vrptw_hybrid.cli import app, solve
 
 runner = CliRunner()
 
@@ -21,11 +22,32 @@ def test_solve_help_exposes_reserved_parameters() -> None:
     result = runner.invoke(app, ["solve", "--help"])
 
     assert result.exit_code == 0
-    assert "--instance" in result.output
-    assert "--solver" in result.output
-    assert "--time-limit" in result.output
-    assert "--max-iterations" in result.output
-    assert "--output-json" in result.output
+    option_names = _typer_option_names(solve)
+    assert {
+        "--instance",
+        "--solver",
+        "--time-limit",
+        "--max-iterations",
+        "--output-json",
+    }.issubset(option_names)
+
+
+def _typer_option_names(function: Any) -> set[str]:
+    option_names: set[str] = set()
+    for hint in get_type_hints(function, include_extras=True).values():
+        args = get_args(hint)
+        if len(args) < 2:
+            continue
+        option_info = args[1]
+        default = getattr(option_info, "default", None)
+        if isinstance(default, str) and default.startswith("--"):
+            option_names.add(default)
+        option_names.update(
+            declaration
+            for declaration in getattr(option_info, "param_decls", ())
+            if isinstance(declaration, str) and declaration.startswith("--")
+        )
+    return option_names
 
 
 def test_solve_command_runs_greedy_solver() -> None:

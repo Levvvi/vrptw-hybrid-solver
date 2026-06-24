@@ -17,6 +17,7 @@ from vrptw_hybrid.core.models import Route, RouteStop, Solution, VRPTWInstance
 from vrptw_hybrid.core.objective import composite_objective
 from vrptw_hybrid.data.distance_matrix import scale_to_int
 from vrptw_hybrid.solvers.base import BaseSolver
+from vrptw_hybrid.solvers.greedy import GreedySolver
 
 
 class CPSATRuntimeError(RuntimeError):
@@ -74,6 +75,7 @@ class CPSATVRPTWSolver(BaseSolver):
 
         start_time = perf_counter()
         model_data = self._build_model(instance)
+        self._add_greedy_hint(model_data, instance)
         solver = cp_model.CpSolver()
         solver.parameters.max_time_in_seconds = self.time_limit_sec
         solver.parameters.num_search_workers = self.num_workers
@@ -189,6 +191,47 @@ class CPSATVRPTWSolver(BaseSolver):
             distance_matrix=distance_matrix,
             time_matrix=time_matrix,
         )
+
+    def _add_greedy_hint(self, model_data: _ModelData, instance: VRPTWInstance) -> None:
+        try:
+            hint_solution = GreedySolver(
+                vehicle_weight=self.vehicle_weight,
+                seed=0,
+            ).solve(instance, seed=0)
+        except (RuntimeError, ValueError):
+            return
+        if not hint_solution.feasible:
+            return
+
+        index_by_customer_id = {
+            customer.id: index for index, customer in enumerate(instance.nodes)
+        }
+        used_vehicle_ids: set[int] = set()
+        active_arcs: set[tuple[int, int, int]] = set()
+        start_hints: dict[tuple[int, int], int] = {}
+        for route in hint_solution.routes:
+            vehicle_id = route.vehicle_id
+            if vehicle_id not in model_data.used:
+                continue
+            used_vehicle_ids.add(vehicle_id)
+            previous_index = 0
+            for stop in route.stops:
+                customer_index = index_by_customer_id[stop.customer_id]
+                active_arcs.add((previous_index, customer_index, vehicle_id))
+                start_hints[(customer_index, vehicle_id)] = round(
+                    stop.start_service_time * self.scale_factor
+                )
+                previous_index = customer_index
+            active_arcs.add((previous_index, 0, vehicle_id))
+
+        for vehicle_id, variable in model_data.used.items():
+            model_data.model.add_hint(variable, 1 if vehicle_id in used_vehicle_ids else 0)
+        for arc_key, variable in model_data.x.items():
+            model_data.model.add_hint(variable, 1 if arc_key in active_arcs else 0)
+        for start_key, variable in model_data.start.items():
+            customer_index, _vehicle_id = start_key
+            default_start = round(instance.nodes[customer_index].ready_time * self.scale_factor)
+            model_data.model.add_hint(variable, start_hints.get(start_key, default_start))
 
     def _add_visit_constraints(
         self,

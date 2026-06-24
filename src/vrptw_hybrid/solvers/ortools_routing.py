@@ -227,7 +227,13 @@ class ORToolsRoutingSolver(BaseSolver):
             next_index = assignment.Value(routing.NextVar(index))
             if routing.IsEnd(next_index):
                 distance += float(instance.distance_matrix[previous_node, 0])
-                end_time = assignment.Value(time_dimension.CumulVar(next_index)) / self.scale_factor
+                scaled_end_time = (
+                    assignment.Value(time_dimension.CumulVar(next_index)) / self.scale_factor
+                )
+                physical_end_time = previous_departure + float(
+                    instance.time_matrix[previous_node, 0]
+                )
+                end_time = max(scaled_end_time, physical_end_time)
                 return Route(
                     vehicle_id=vehicle_id,
                     stops=tuple(stops),
@@ -241,8 +247,13 @@ class ORToolsRoutingSolver(BaseSolver):
             arrival_time = previous_departure + float(
                 instance.time_matrix[previous_node, node_index]
             )
-            start_service_time = (
+            scaled_start_service_time = (
                 assignment.Value(time_dimension.CumulVar(next_index)) / self.scale_factor
+            )
+            start_service_time = max(
+                scaled_start_service_time,
+                arrival_time,
+                customer.ready_time,
             )
             departure_time = start_service_time + customer.service_time
             load += customer.demand

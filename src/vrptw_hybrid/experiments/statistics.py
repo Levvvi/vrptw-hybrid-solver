@@ -67,6 +67,21 @@ def summarize_runs(rows: list[dict[str, Any]], *, metric: str = "cost") -> list[
             for row in solver_rows
             if _float_or_none(row.get("runtime_sec")) is not None
         ]
+        distance_values = [
+            _float(row["distance"])
+            for row in valid_rows
+            if _float_or_none(row.get("distance")) is not None
+        ]
+        objective_values = [
+            _float(row["cost"])
+            for row in valid_rows
+            if _float_or_none(row.get("cost")) is not None
+        ]
+        vehicle_values = [
+            _float(row["vehicles"])
+            for row in valid_rows
+            if _float_or_none(row.get("vehicles")) is not None
+        ]
         feasible_count = sum(1 for row in solver_rows if _bool(row.get("feasible")))
         summary_rows.append(
             {
@@ -74,13 +89,19 @@ def summarize_runs(rows: list[dict[str, Any]], *, metric: str = "cost") -> list[
                 "metric": metric,
                 "runs": len(solver_rows),
                 "valid_runs": len(valid_rows),
-                "failed_runs": sum(1 for row in solver_rows if row.get("status") == "error"),
+                "failed_runs": sum(1 for row in solver_rows if _pipeline_status(row) == "error"),
                 "feasible_rate": feasible_count / len(solver_rows) if solver_rows else None,
                 "metric_mean": fmean(values) if values else None,
                 "metric_std": stdev(values) if len(values) > 1 else 0.0 if values else None,
                 "metric_median": median(values) if values else None,
                 "metric_best": min(values) if values else None,
+                "distance_mean": fmean(distance_values) if distance_values else None,
+                "distance_median": median(distance_values) if distance_values else None,
+                "objective_mean": fmean(objective_values) if objective_values else None,
+                "objective_median": median(objective_values) if objective_values else None,
+                "vehicles_mean": fmean(vehicle_values) if vehicle_values else None,
                 "runtime_mean": fmean(runtime_values) if runtime_values else None,
+                "runtime_median": median(runtime_values) if runtime_values else None,
             }
         )
     return summary_rows
@@ -120,6 +141,7 @@ def pairwise_comparisons(
                 "mean_a": mean_a,
                 "mean_b": mean_b,
                 "mean_diff_a_minus_b": fmean(diffs) if diffs else None,
+                "relative_mean_diff_pct": _relative_mean_diff_pct(mean_a, mean_b),
                 "median_diff_a_minus_b": median(diffs) if diffs else None,
                 "p_value": p_value,
                 "p_value_holm": None,
@@ -138,11 +160,19 @@ def _read_csv(path: Path) -> list[dict[str, Any]]:
 
 
 def _is_valid_metric_row(row: dict[str, Any], metric: str) -> bool:
-    if row.get("status", "ok") != "ok":
+    if _pipeline_status(row) != "ok":
         return False
     if not _bool(row.get("feasible")):
         return False
     return _float_or_none(row.get(metric)) is not None
+
+
+def _pipeline_status(row: dict[str, Any]) -> str:
+    status = row.get("pipeline_status")
+    if status is not None and status != "":
+        return str(status)
+    legacy_status = row.get("status", "ok")
+    return str(legacy_status) if legacy_status in {"ok", "error"} else "ok"
 
 
 def _wilcoxon_p_value(diffs: list[float]) -> float | None:
@@ -231,6 +261,12 @@ def _better_solver(
     if mean_a == mean_b:
         return "tie"
     return solver_a if mean_a < mean_b else solver_b
+
+
+def _relative_mean_diff_pct(mean_a: float | None, mean_b: float | None) -> float | None:
+    if mean_a is None or mean_b is None or mean_b == 0:
+        return None
+    return (mean_a - mean_b) / abs(mean_b) * 100.0
 
 
 def _float(value: Any) -> float:

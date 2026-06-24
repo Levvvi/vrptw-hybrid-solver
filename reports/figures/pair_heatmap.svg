@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560">
+<rect width="100%" height="100%" fill="white" />
+<text x="450.00" y="30.00" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" fill="#0f172a">MOSADE Pair Probability Heatmap</text>
+<line x1="90.00" y1="480.00" x2="870.00" y2="480.00" stroke="#475569" />
+<line x1="90.00" y1="60.00" x2="90.00" y2="480.00" stroke="#475569" />
+<text x="480.00" y="545.00" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#0f172a">Repair</text>
+<text x="25.00" y="270.00" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#0f172a" transform="rotate(-90 25.00 270.00)">Destroy</text>
+<rect x="90.00" y="60.00" width="156.00" height="84.00" fill="#5a5aff" />
+<rect x="402.00" y="60.00" width="156.00" height="84.00" fill="#6060ff" />
+<rect x="558.00" y="60.00" width="156.00" height="84.00" fill="#afafff" />
+<rect x="714.00" y="60.00" width="156.00" height="84.00" fill="#c1c1ff" />
+<rect x="246.00" y="60.00" width="156.00" height="84.00" fill="#c1c1ff" />
+<rect x="90.00" y="396.00" width="156.00" height="84.00" fill="#c1c1ff" />
+<rect x="402.00" y="396.00" width="156.00" height="84.00" fill="#c1c1ff" />
+<rect x="558.00" y="396.00" width="156.00" height="84.00" fill="#b1b1ff" />
+<rect x="714.00" y="396.00" width="156.00" height="84.00" fill="#c0c0ff" />
+<rect x="246.00" y="396.00" width="156.00" height="84.00" fill="#b1b1ff" />
+<rect x="90.00" y="228.00" width="156.00" height="84.00" fill="#4b4bff" />
+<rect x="402.00" y="228.00" width="156.00" height="84.00" fill="#8282ff" />
+<rect x="558.00" y="228.00" width="156.00" height="84.00" fill="#4e4eff" />
+<rect x="714.00" y="228.00" width="156.00" height="84.00" fill="#b5b5ff" />
+<rect x="246.00" y="228.00" width="156.00" height="84.00" fill="#4b4bff" />
+<rect x="90.00" y="144.00" width="156.00" height="84.00" fill="#c1c1ff" />
+<rect x="402.00" y="144.00" width="156.00" height="84.00" fill="#c0c0ff" />
+<rect x="558.00" y="144.00" width="156.00" height="84.00" fill="#c1c1ff" />
+<rect x="714.00" y="144.00" width="156.00" height="84.00" fill="#c1c1ff" />
+<rect x="246.00" y="144.00" width="156.00" height="84.00" fill="#c0c0ff" />
+<rect x="90.00" y="312.00" width="156.00" height="84.00" fill="#c1c1ff" />
+<rect x="402.00" y="312.00" width="156.00" height="84.00" fill="#5050ff" />
+<rect x="558.00" y="312.00" width="156.00" height="84.00" fill="#4b4bff" />
+<rect x="714.00" y="312.00" width="156.00" height="84.00" fill="#c1c1ff" />
+<rect x="246.00" y="312.00" width="156.00" height="84.00" fill="#4c4cff" />
+<text x="168.00" y="520.00" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#0f172a" transform="rotate(-25 168.00 520.00)">greedy_cheapest_insertion</text>
+<text x="324.00" y="520.00" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#0f172a" transform="rotate(-25 324.00 520.00)">noise_insertion</text>
+<text x="480.00" y="520.00" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#0f172a" transform="rotate(-25 480.00 520.00)">regret_2_insertion</text>
+<text x="636.00" y="520.00" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#0f172a" transform="rotate(-25 636.00 520.00)">regret_3_insertion</text>
+<text x="792.00" y="520.00" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#0f172a" transform="rotate(-25 792.00 520.00)">time_window_priority_insertion</text>
+<text x="80.00" y="102.00" font-family="Arial, sans-serif" font-size="10" text-anchor="end" fill="#0f172a">random_removal</text>
+<text x="80.00" y="186.00" font-family="Arial, sans-serif" font-size="10" text-anchor="end" fill="#0f172a">route_removal</text>
+<text x="80.00" y="270.00" font-family="Arial, sans-serif" font-size="10" text-anchor="end" fill="#0f172a">shaw_related_removal</text>
+<text x="80.00" y="354.00" font-family="Arial, sans-serif" font-size="10" text-anchor="end" fill="#0f172a">time_window_tight_removal</text>
+<text x="80.00" y="438.00" font-family="Arial, sans-serif" font-size="10" text-anchor="end" fill="#0f172a">worst_distance_removal</text>
+</svg>

@@ -1,0 +1,3988 @@
+{
+  "feasible": true,
+  "instance_name": "c1_2_1",
+  "metadata": {
+    "ablation": "alns_uniform",
+    "best_iteration": 44,
+    "candidate_neighbor_size": 24,
+    "destroy_fraction": 0.2,
+    "destroy_operators": [
+      "random_removal",
+      "worst_distance_removal",
+      "shaw_related_removal",
+      "route_removal",
+      "time_window_tight_removal"
+    ],
+    "deterministic": true,
+    "feasibility_violations": [],
+    "history": [
+      {
+        "accepted": true,
+        "best_cost": 2003332.9308755365,
+        "best_objective": 2003332.9308755365,
+        "candidate_cost": 2003332.9308755365,
+        "candidate_objective": 2003332.9308755365,
+        "current_cost": 2003332.9308755365,
+        "current_objective": 2003332.9308755365,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 1,
+        "new_best": false,
+        "no_improvement_iterations": 1,
+        "repair": "time_window_priority_insertion",
+        "repair_operator": "time_window_priority_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 1,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2003332.9308755365,
+        "best_objective": 2003332.9308755365,
+        "candidate_cost": 2103537.1165903397,
+        "candidate_objective": 2103537.1165903397,
+        "current_cost": 2003332.9308755365,
+        "current_objective": 2003332.9308755365,
+        "delta_cost": 100204.18571480317,
+        "destroy": "shaw_related_removal",
+        "destroy_operator": "shaw_related_removal",
+        "feasible": true,
+        "iteration": 2,
+        "new_best": false,
+        "no_improvement_iterations": 2,
+        "repair": "noise_insertion",
+        "repair_operator": "noise_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 2,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2003332.9308755365,
+        "best_objective": 2003332.9308755365,
+        "candidate_cost": 2003332.9308755365,
+        "candidate_objective": 2003332.9308755365,
+        "current_cost": 2003332.9308755365,
+        "current_objective": 2003332.9308755365,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 3,
+        "new_best": false,
+        "no_improvement_iterations": 3,
+        "repair": "greedy_cheapest_insertion",
+        "repair_operator": "greedy_cheapest_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 3,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2003332.869783764,
+        "best_objective": 2003332.869783764,
+        "candidate_cost": 2003332.869783764,
+        "candidate_objective": 2003332.869783764,
+        "current_cost": 2003332.869783764,
+        "current_objective": 2003332.869783764,
+        "delta_cost": -0.06109177251346409,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 4,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "regret_3_insertion",
+        "repair_operator": "regret_3_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 4,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2003332.869783764,
+        "best_objective": 2003332.869783764,
+        "candidate_cost": 2103461.619942978,
+        "candidate_objective": 2103461.619942978,
+        "current_cost": 2003332.869783764,
+        "current_objective": 2003332.869783764,
+        "delta_cost": 100128.75015921402,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 5,
+        "new_best": false,
+        "no_improvement_iterations": 1,
+        "repair": "time_window_priority_insertion",
+        "repair_operator": "time_window_priority_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 5,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2003332.869783764,
+        "best_objective": 2003332.869783764,
+        "candidate_cost": 2103478.6689960593,
+        "candidate_objective": 2103478.6689960593,
+        "current_cost": 2003332.869783764,
+        "current_objective": 2003332.869783764,
+        "delta_cost": 100145.79921229533,
+        "destroy": "shaw_related_removal",
+        "destroy_operator": "shaw_related_removal",
+        "feasible": true,
+        "iteration": 6,
+        "new_best": false,
+        "no_improvement_iterations": 2,
+        "repair": "regret_3_insertion",
+        "repair_operator": "regret_3_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 6,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2003332.869783764,
+        "best_objective": 2003332.869783764,
+        "candidate_cost": 2203314.989951039,
+        "candidate_objective": 2203314.989951039,
+        "current_cost": 2003332.869783764,
+        "current_objective": 2003332.869783764,
+        "delta_cost": 199982.1201672752,
+        "destroy": "worst_distance_removal",
+        "destroy_operator": "worst_distance_removal",
+        "feasible": true,
+        "iteration": 7,
+        "new_best": false,
+        "no_improvement_iterations": 3,
+        "repair": "noise_insertion",
+        "repair_operator": "noise_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 7,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2003332.869783764,
+        "best_objective": 2003332.869783764,
+        "candidate_cost": 2103197.321941725,
+        "candidate_objective": 2103197.321941725,
+        "current_cost": 2003332.869783764,
+        "current_objective": 2003332.869783764,
+        "delta_cost": 99864.45215796097,
+        "destroy": "worst_distance_removal",
+        "destroy_operator": "worst_distance_removal",
+        "feasible": true,
+        "iteration": 8,
+        "new_best": false,
+        "no_improvement_iterations": 4,
+        "repair": "time_window_priority_insertion",
+        "repair_operator": "time_window_priority_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 8,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2003136.6455733553,
+        "best_objective": 2003136.6455733553,
+        "candidate_cost": 2003136.6455733553,
+        "candidate_objective": 2003136.6455733553,
+        "current_cost": 2003136.6455733553,
+        "current_objective": 2003136.6455733553,
+        "delta_cost": -196.22421040874906,
+        "destroy": "worst_distance_removal",
+        "destroy_operator": "worst_distance_removal",
+        "feasible": true,
+        "iteration": 9,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "regret_2_insertion",
+        "repair_operator": "regret_2_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 9,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2003136.6455733553,
+        "best_objective": 2003136.6455733553,
+        "candidate_cost": 2003136.6455733553,
+        "candidate_objective": 2003136.6455733553,
+        "current_cost": 2003136.6455733553,
+        "current_objective": 2003136.6455733553,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 10,
+        "new_best": false,
+        "no_improvement_iterations": 1,
+        "repair": "regret_3_insertion",
+        "repair_operator": "regret_3_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 10,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2003136.6455733553,
+        "best_objective": 2003136.6455733553,
+        "candidate_cost": 2003136.6455733553,
+        "candidate_objective": 2003136.6455733553,
+        "current_cost": 2003136.6455733553,
+        "current_objective": 2003136.6455733553,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 11,
+        "new_best": false,
+        "no_improvement_iterations": 2,
+        "repair": "noise_insertion",
+        "repair_operator": "noise_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 11,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2003136.6455733553,
+        "best_objective": 2003136.6455733553,
+        "candidate_cost": 2003136.6455733553,
+        "candidate_objective": 2003136.6455733553,
+        "current_cost": 2003136.6455733553,
+        "current_objective": 2003136.6455733553,
+        "delta_cost": 0.0,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 12,
+        "new_best": false,
+        "no_improvement_iterations": 3,
+        "repair": "regret_2_insertion",
+        "repair_operator": "regret_2_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 12,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2003136.6455733553,
+        "best_objective": 2003136.6455733553,
+        "candidate_cost": 2003136.6455733553,
+        "candidate_objective": 2003136.6455733553,
+        "current_cost": 2003136.6455733553,
+        "current_objective": 2003136.6455733553,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 13,
+        "new_best": false,
+        "no_improvement_iterations": 4,
+        "repair": "time_window_priority_insertion",
+        "repair_operator": "time_window_priority_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 13,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2003136.6455733553,
+        "best_objective": 2003136.6455733553,
+        "candidate_cost": 2003136.6455733553,
+        "candidate_objective": 2003136.6455733553,
+        "current_cost": 2003136.6455733553,
+        "current_objective": 2003136.6455733553,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 14,
+        "new_best": false,
+        "no_improvement_iterations": 5,
+        "repair": "regret_3_insertion",
+        "repair_operator": "regret_3_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 14,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2003136.6455733553,
+        "best_objective": 2003136.6455733553,
+        "candidate_cost": 2103054.026250143,
+        "candidate_objective": 2103054.026250143,
+        "current_cost": 2003136.6455733553,
+        "current_objective": 2003136.6455733553,
+        "delta_cost": 99917.38067678781,
+        "destroy": "worst_distance_removal",
+        "destroy_operator": "worst_distance_removal",
+        "feasible": true,
+        "iteration": 15,
+        "new_best": false,
+        "no_improvement_iterations": 6,
+        "repair": "time_window_priority_insertion",
+        "repair_operator": "time_window_priority_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 15,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2003136.6455733553,
+        "best_objective": 2003136.6455733553,
+        "candidate_cost": 2003136.6455733553,
+        "candidate_objective": 2003136.6455733553,
+        "current_cost": 2003136.6455733553,
+        "current_objective": 2003136.6455733553,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 16,
+        "new_best": false,
+        "no_improvement_iterations": 7,
+        "repair": "time_window_priority_insertion",
+        "repair_operator": "time_window_priority_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 16,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2003136.6455733553,
+        "best_objective": 2003136.6455733553,
+        "candidate_cost": 2003136.6455733553,
+        "candidate_objective": 2003136.6455733553,
+        "current_cost": 2003136.6455733553,
+        "current_objective": 2003136.6455733553,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 17,
+        "new_best": false,
+        "no_improvement_iterations": 8,
+        "repair": "noise_insertion",
+        "repair_operator": "noise_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 17,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2003136.6455733553,
+        "best_objective": 2003136.6455733553,
+        "candidate_cost": 2103054.026250143,
+        "candidate_objective": 2103054.026250143,
+        "current_cost": 2003136.6455733553,
+        "current_objective": 2003136.6455733553,
+        "delta_cost": 99917.38067678781,
+        "destroy": "worst_distance_removal",
+        "destroy_operator": "worst_distance_removal",
+        "feasible": true,
+        "iteration": 18,
+        "new_best": false,
+        "no_improvement_iterations": 9,
+        "repair": "time_window_priority_insertion",
+        "repair_operator": "time_window_priority_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 18,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2003136.6455733553,
+        "best_objective": 2003136.6455733553,
+        "candidate_cost": 2103163.3982012747,
+        "candidate_objective": 2103163.3982012747,
+        "current_cost": 2003136.6455733553,
+        "current_objective": 2003136.6455733553,
+        "delta_cost": 100026.75262791943,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 19,
+        "new_best": false,
+        "no_improvement_iterations": 10,
+        "repair": "time_window_priority_insertion",
+        "repair_operator": "time_window_priority_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 19,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2003065.8498236688,
+        "best_objective": 2003065.8498236688,
+        "candidate_cost": 2003065.8498236688,
+        "candidate_objective": 2003065.8498236688,
+        "current_cost": 2003065.8498236688,
+        "current_objective": 2003065.8498236688,
+        "delta_cost": -70.79574968642555,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 20,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "regret_2_insertion",
+        "repair_operator": "regret_2_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 20,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2002993.569241723,
+        "best_objective": 2002993.569241723,
+        "candidate_cost": 2002993.569241723,
+        "candidate_objective": 2002993.569241723,
+        "current_cost": 2002993.569241723,
+        "current_objective": 2002993.569241723,
+        "delta_cost": -72.28058194578625,
+        "destroy": "worst_distance_removal",
+        "destroy_operator": "worst_distance_removal",
+        "feasible": true,
+        "iteration": 21,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "regret_2_insertion",
+        "repair_operator": "regret_2_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 21,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2002993.569241723,
+        "best_objective": 2002993.569241723,
+        "candidate_cost": 2103044.035604592,
+        "candidate_objective": 2103044.035604592,
+        "current_cost": 2002993.569241723,
+        "current_objective": 2002993.569241723,
+        "delta_cost": 100050.4663628689,
+        "destroy": "worst_distance_removal",
+        "destroy_operator": "worst_distance_removal",
+        "feasible": true,
+        "iteration": 22,
+        "new_best": false,
+        "no_improvement_iterations": 1,
+        "repair": "greedy_cheapest_insertion",
+        "repair_operator": "greedy_cheapest_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 22,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2002993.569241723,
+        "best_objective": 2002993.569241723,
+        "candidate_cost": 2002993.569241723,
+        "candidate_objective": 2002993.569241723,
+        "current_cost": 2002993.569241723,
+        "current_objective": 2002993.569241723,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 23,
+        "new_best": false,
+        "no_improvement_iterations": 2,
+        "repair": "time_window_priority_insertion",
+        "repair_operator": "time_window_priority_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 23,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2002983.5785961724,
+        "best_objective": 2002983.5785961724,
+        "candidate_cost": 2002983.5785961724,
+        "candidate_objective": 2002983.5785961724,
+        "current_cost": 2002983.5785961724,
+        "current_objective": 2002983.5785961724,
+        "delta_cost": -9.990645550657064,
+        "destroy": "worst_distance_removal",
+        "destroy_operator": "worst_distance_removal",
+        "feasible": true,
+        "iteration": 24,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "regret_3_insertion",
+        "repair_operator": "regret_3_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 24,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2002983.5785961724,
+        "best_objective": 2002983.5785961724,
+        "candidate_cost": 2002983.5785961724,
+        "candidate_objective": 2002983.5785961724,
+        "current_cost": 2002983.5785961724,
+        "current_objective": 2002983.5785961724,
+        "delta_cost": 0.0,
+        "destroy": "shaw_related_removal",
+        "destroy_operator": "shaw_related_removal",
+        "feasible": true,
+        "iteration": 25,
+        "new_best": false,
+        "no_improvement_iterations": 1,
+        "repair": "regret_2_insertion",
+        "repair_operator": "regret_2_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 25,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2002946.6397828143,
+        "best_objective": 2002946.6397828143,
+        "candidate_cost": 2002946.6397828143,
+        "candidate_objective": 2002946.6397828143,
+        "current_cost": 2002946.6397828143,
+        "current_objective": 2002946.6397828143,
+        "delta_cost": -36.93881335807964,
+        "destroy": "worst_distance_removal",
+        "destroy_operator": "worst_distance_removal",
+        "feasible": true,
+        "iteration": 26,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "regret_3_insertion",
+        "repair_operator": "regret_3_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 26,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2002946.6397828143,
+        "best_objective": 2002946.6397828143,
+        "candidate_cost": 2002946.6397828143,
+        "candidate_objective": 2002946.6397828143,
+        "current_cost": 2002946.6397828143,
+        "current_objective": 2002946.6397828143,
+        "delta_cost": 0.0,
+        "destroy": "shaw_related_removal",
+        "destroy_operator": "shaw_related_removal",
+        "feasible": true,
+        "iteration": 27,
+        "new_best": false,
+        "no_improvement_iterations": 1,
+        "repair": "regret_2_insertion",
+        "repair_operator": "regret_2_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 27,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2002946.6397828143,
+        "best_objective": 2002946.6397828143,
+        "candidate_cost": 2203159.155011291,
+        "candidate_objective": 2203159.155011291,
+        "current_cost": 2002946.6397828143,
+        "current_objective": 2002946.6397828143,
+        "delta_cost": 200212.51522847684,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 28,
+        "new_best": false,
+        "no_improvement_iterations": 2,
+        "repair": "noise_insertion",
+        "repair_operator": "noise_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 28,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2002918.9761233605,
+        "best_objective": 2002918.9761233605,
+        "candidate_cost": 2002918.9761233605,
+        "candidate_objective": 2002918.9761233605,
+        "current_cost": 2002918.9761233605,
+        "current_objective": 2002918.9761233605,
+        "delta_cost": -27.66365945385769,
+        "destroy": "worst_distance_removal",
+        "destroy_operator": "worst_distance_removal",
+        "feasible": true,
+        "iteration": 29,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "regret_2_insertion",
+        "repair_operator": "regret_2_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 29,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2002918.9761233605,
+        "best_objective": 2002918.9761233605,
+        "candidate_cost": 2303270.5954699484,
+        "candidate_objective": 2303270.5954699484,
+        "current_cost": 2002918.9761233605,
+        "current_objective": 2002918.9761233605,
+        "delta_cost": 300351.6193465879,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 30,
+        "new_best": false,
+        "no_improvement_iterations": 1,
+        "repair": "time_window_priority_insertion",
+        "repair_operator": "time_window_priority_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 30,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2002918.9761233605,
+        "best_objective": 2002918.9761233605,
+        "candidate_cost": 2102967.2667004303,
+        "candidate_objective": 2102967.2667004303,
+        "current_cost": 2002918.9761233605,
+        "current_objective": 2002918.9761233605,
+        "delta_cost": 100048.29057706986,
+        "destroy": "shaw_related_removal",
+        "destroy_operator": "shaw_related_removal",
+        "feasible": true,
+        "iteration": 31,
+        "new_best": false,
+        "no_improvement_iterations": 2,
+        "repair": "regret_2_insertion",
+        "repair_operator": "regret_2_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 31,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2002893.8835272011,
+        "best_objective": 2002893.8835272011,
+        "candidate_cost": 2002893.8835272011,
+        "candidate_objective": 2002893.8835272011,
+        "current_cost": 2002893.8835272011,
+        "current_objective": 2002893.8835272011,
+        "delta_cost": -25.0925961593166,
+        "destroy": "shaw_related_removal",
+        "destroy_operator": "shaw_related_removal",
+        "feasible": true,
+        "iteration": 32,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "regret_3_insertion",
+        "repair_operator": "regret_3_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 32,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2002893.4664109333,
+        "best_objective": 2002893.4664109333,
+        "candidate_cost": 2002893.4664109333,
+        "candidate_objective": 2002893.4664109333,
+        "current_cost": 2002893.4664109333,
+        "current_objective": 2002893.4664109333,
+        "delta_cost": -0.41711626783944666,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 33,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "greedy_cheapest_insertion",
+        "repair_operator": "greedy_cheapest_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 33,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2002854.308526635,
+        "best_objective": 2002854.308526635,
+        "candidate_cost": 2002854.308526635,
+        "candidate_objective": 2002854.308526635,
+        "current_cost": 2002854.308526635,
+        "current_objective": 2002854.308526635,
+        "delta_cost": -39.15788429835811,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 34,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "regret_3_insertion",
+        "repair_operator": "regret_3_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 34,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2002854.308526635,
+        "best_objective": 2002854.308526635,
+        "candidate_cost": 2102946.260591149,
+        "candidate_objective": 2102946.260591149,
+        "current_cost": 2002854.308526635,
+        "current_objective": 2002854.308526635,
+        "delta_cost": 100091.95206451393,
+        "destroy": "shaw_related_removal",
+        "destroy_operator": "shaw_related_removal",
+        "feasible": true,
+        "iteration": 35,
+        "new_best": false,
+        "no_improvement_iterations": 1,
+        "repair": "time_window_priority_insertion",
+        "repair_operator": "time_window_priority_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 35,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2002850.0062378447,
+        "best_objective": 2002850.0062378447,
+        "candidate_cost": 2002850.0062378447,
+        "candidate_objective": 2002850.0062378447,
+        "current_cost": 2002850.0062378447,
+        "current_objective": 2002850.0062378447,
+        "delta_cost": -4.302288790233433,
+        "destroy": "time_window_tight_removal",
+        "destroy_operator": "time_window_tight_removal",
+        "feasible": true,
+        "iteration": 36,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "noise_insertion",
+        "repair_operator": "noise_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 36,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2002846.186796637,
+        "best_objective": 2002846.186796637,
+        "candidate_cost": 2002846.186796637,
+        "candidate_objective": 2002846.186796637,
+        "current_cost": 2002846.186796637,
+        "current_objective": 2002846.186796637,
+        "delta_cost": -3.8194412076845765,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 37,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "regret_2_insertion",
+        "repair_operator": "regret_2_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 37,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2002846.186796637,
+        "best_objective": 2002846.186796637,
+        "candidate_cost": 2002846.186796637,
+        "candidate_objective": 2002846.186796637,
+        "current_cost": 2002846.186796637,
+        "current_objective": 2002846.186796637,
+        "delta_cost": 0.0,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 38,
+        "new_best": false,
+        "no_improvement_iterations": 1,
+        "repair": "regret_2_insertion",
+        "repair_operator": "regret_2_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 38,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2002846.186796637,
+        "best_objective": 2002846.186796637,
+        "candidate_cost": 2102999.933349422,
+        "candidate_objective": 2102999.933349422,
+        "current_cost": 2002846.186796637,
+        "current_objective": 2002846.186796637,
+        "delta_cost": 100153.74655278516,
+        "destroy": "shaw_related_removal",
+        "destroy_operator": "shaw_related_removal",
+        "feasible": true,
+        "iteration": 39,
+        "new_best": false,
+        "no_improvement_iterations": 2,
+        "repair": "noise_insertion",
+        "repair_operator": "noise_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 39,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2002846.186796637,
+        "best_objective": 2002846.186796637,
+        "candidate_cost": 2002846.186796637,
+        "candidate_objective": 2002846.186796637,
+        "current_cost": 2002846.186796637,
+        "current_objective": 2002846.186796637,
+        "delta_cost": 0.0,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 40,
+        "new_best": false,
+        "no_improvement_iterations": 3,
+        "repair": "greedy_cheapest_insertion",
+        "repair_operator": "greedy_cheapest_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 40,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2002846.186796637,
+        "best_objective": 2002846.186796637,
+        "candidate_cost": 2002846.186796637,
+        "candidate_objective": 2002846.186796637,
+        "current_cost": 2002846.186796637,
+        "current_objective": 2002846.186796637,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 41,
+        "new_best": false,
+        "no_improvement_iterations": 4,
+        "repair": "noise_insertion",
+        "repair_operator": "noise_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 41,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2002846.186796637,
+        "best_objective": 2002846.186796637,
+        "candidate_cost": 2002846.186796637,
+        "candidate_objective": 2002846.186796637,
+        "current_cost": 2002846.186796637,
+        "current_objective": 2002846.186796637,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 42,
+        "new_best": false,
+        "no_improvement_iterations": 5,
+        "repair": "greedy_cheapest_insertion",
+        "repair_operator": "greedy_cheapest_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 42,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2002807.8977283482,
+        "best_objective": 2002807.8977283482,
+        "candidate_cost": 2002807.8977283482,
+        "candidate_objective": 2002807.8977283482,
+        "current_cost": 2002807.8977283482,
+        "current_objective": 2002807.8977283482,
+        "delta_cost": -38.28906828886829,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 43,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "regret_3_insertion",
+        "repair_operator": "regret_3_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 43,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2002758.292252149,
+        "best_objective": 2002758.292252149,
+        "candidate_cost": 2002758.292252149,
+        "candidate_objective": 2002758.292252149,
+        "current_cost": 2002758.292252149,
+        "current_objective": 2002758.292252149,
+        "delta_cost": -49.60547619918361,
+        "destroy": "worst_distance_removal",
+        "destroy_operator": "worst_distance_removal",
+        "feasible": true,
+        "iteration": 44,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "regret_2_insertion",
+        "repair_operator": "regret_2_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_operators": [
+            "random_removal",
+            "worst_distance_removal",
+            "shaw_related_removal",
+            "route_removal",
+            "time_window_tight_removal"
+          ],
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "events_seen": 44,
+          "name": "uniform",
+          "repair_operators": [
+            "greedy_cheapest_insertion",
+            "regret_2_insertion",
+            "regret_3_insertion",
+            "time_window_priority_insertion",
+            "noise_insertion"
+          ],
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          }
+        }
+      }
+    ],
+    "inserted_customers": [
+      177,
+      182,
+      60,
+      124,
+      7,
+      22,
+      132,
+      127,
+      185,
+      187,
+      151,
+      128,
+      135,
+      54,
+      58,
+      57,
+      167,
+      121,
+      153,
+      138,
+      35,
+      119,
+      24,
+      53,
+      173,
+      27,
+      43,
+      178,
+      174,
+      45,
+      70,
+      122,
+      113,
+      198,
+      147,
+      12,
+      76,
+      14,
+      15,
+      28
+    ],
+    "instance_name": "c1_2_1",
+    "iterations": 44,
+    "last_destroy": "worst_distance_removal",
+    "last_repair": "regret_2_insertion",
+    "max_iterations": 500,
+    "profiler": {
+      "candidate_neighbor_size": 24,
+      "counters": {
+        "repair_candidate_positions_evaluated": 860683,
+        "repair_candidate_routes_considered": 90540,
+        "repair_candidates_feasible": 36099,
+        "repair_customers_considered": 23408,
+        "repair_new_route_candidates_feasible": 23408,
+        "repair_restricted_route_sets": 23379,
+        "route_eval_cache_hits": 1668095,
+        "route_eval_cache_misses": 76679,
+        "shaw_related_candidates_considered": 192
+      },
+      "route_cache": {
+        "entries": 76679
+      },
+      "timings_sec": {
+        "destroy_sec": 0.012396,
+        "repair_sec": 7.598894
+      }
+    },
+    "remaining_unassigned": [],
+    "removed_customers": [
+      7,
+      12,
+      14,
+      15,
+      22,
+      24,
+      27,
+      28,
+      35,
+      43,
+      45,
+      53,
+      54,
+      57,
+      58,
+      60,
+      70,
+      76,
+      113,
+      119,
+      121,
+      122,
+      124,
+      127,
+      128,
+      132,
+      135,
+      138,
+      147,
+      151,
+      153,
+      167,
+      173,
+      174,
+      177,
+      178,
+      182,
+      185,
+      187,
+      198
+    ],
+    "repair_operators": [
+      "greedy_cheapest_insertion",
+      "regret_2_insertion",
+      "regret_3_insertion",
+      "time_window_priority_insertion",
+      "noise_insertion"
+    ],
+    "seed": 0,
+    "selector": {
+      "destroy_operators": [
+        "random_removal",
+        "worst_distance_removal",
+        "shaw_related_removal",
+        "route_removal",
+        "time_window_tight_removal"
+      ],
+      "destroy_probabilities": {
+        "random_removal": 0.2,
+        "route_removal": 0.2,
+        "shaw_related_removal": 0.2,
+        "time_window_tight_removal": 0.2,
+        "worst_distance_removal": 0.2
+      },
+      "events_seen": 44,
+      "name": "uniform",
+      "repair_operators": [
+        "greedy_cheapest_insertion",
+        "regret_2_insertion",
+        "regret_3_insertion",
+        "time_window_priority_insertion",
+        "noise_insertion"
+      ],
+      "repair_probabilities": {
+        "greedy_cheapest_insertion": 0.2,
+        "noise_insertion": 0.2,
+        "regret_2_insertion": 0.2,
+        "regret_3_insertion": 0.2,
+        "time_window_priority_insertion": 0.2
+      }
+    },
+    "source_solver": "greedy",
+    "state_cost": 2002758.292252149,
+    "strategy": "minimum_delta_insertion",
+    "unassigned": []
+  },
+  "objective": 2002758.292252149,
+  "routes": [
+    {
+      "distance": 70.5675400960912,
+      "duration": 1060.5675400960913,
+      "load": 180,
+      "stops": [
+        {
+          "arrival_time": 19.235384061671343,
+          "customer_id": 45,
+          "departure_time": 109.23538406167134,
+          "load_after": 10,
+          "start_service_time": 19.235384061671343
+        },
+        {
+          "arrival_time": 114.62054886880584,
+          "customer_id": 178,
+          "departure_time": 204.62054886880583,
+          "load_after": 20,
+          "start_service_time": 114.62054886880584
+        },
+        {
+          "arrival_time": 208.22610014426982,
+          "customer_id": 27,
+          "departure_time": 298.2261001442698,
+          "load_after": 50,
+          "start_service_time": 208.22610014426982
+        },
+        {
+          "arrival_time": 301.05452726901603,
+          "customer_id": 173,
+          "departure_time": 391.05452726901603,
+          "load_after": 60,
+          "start_service_time": 301.05452726901603
+        },
+        {
+          "arrival_time": 394.21680492918443,
+          "customer_id": 154,
+          "departure_time": 484.21680492918443,
+          "load_after": 70,
+          "start_service_time": 394.21680492918443
+        },
+        {
+          "arrival_time": 488.68894088418403,
+          "customer_id": 24,
+          "departure_time": 578.688940884184,
+          "load_after": 80,
+          "start_service_time": 488.68894088418403
+        },
+        {
+          "arrival_time": 582.688940884184,
+          "customer_id": 61,
+          "departure_time": 672.688940884184,
+          "load_after": 100,
+          "start_service_time": 582.688940884184
+        },
+        {
+          "arrival_time": 674.688940884184,
+          "customer_id": 100,
+          "departure_time": 764.688940884184,
+          "load_after": 120,
+          "start_service_time": 674.688940884184
+        },
+        {
+          "arrival_time": 765.688940884184,
+          "customer_id": 64,
+          "departure_time": 855.688940884184,
+          "load_after": 130,
+          "start_service_time": 765.688940884184
+        },
+        {
+          "arrival_time": 859.294492159648,
+          "customer_id": 179,
+          "departure_time": 949.294492159648,
+          "load_after": 150,
+          "start_service_time": 859.294492159648
+        },
+        {
+          "arrival_time": 952.4567698198164,
+          "customer_id": 109,
+          "departure_time": 1042.4567698198164,
+          "load_after": 180,
+          "start_service_time": 952.4567698198164
+        }
+      ],
+      "vehicle_id": 0
+    },
+    {
+      "distance": 107.89451573596611,
+      "duration": 1097.894515735966,
+      "load": 200,
+      "stops": [
+        {
+          "arrival_time": 23.345235059857504,
+          "customer_id": 62,
+          "departure_time": 113.3452350598575,
+          "load_after": 20,
+          "start_service_time": 23.345235059857504
+        },
+        {
+          "arrival_time": 116.3452350598575,
+          "customer_id": 131,
+          "departure_time": 206.3452350598575,
+          "load_after": 50,
+          "start_service_time": 116.3452350598575
+        },
+        {
+          "arrival_time": 209.3452350598575,
+          "customer_id": 44,
+          "departure_time": 299.3452350598575,
+          "load_after": 70,
+          "start_service_time": 209.3452350598575
+        },
+        {
+          "arrival_time": 301.3452350598575,
+          "customer_id": 102,
+          "departure_time": 391.3452350598575,
+          "load_after": 90,
+          "start_service_time": 301.3452350598575
+        },
+        {
+          "arrival_time": 392.7594486222306,
+          "customer_id": 146,
+          "departure_time": 482.7594486222306,
+          "load_after": 110,
+          "start_service_time": 392.7594486222306
+        },
+        {
+          "arrival_time": 487.00208930934986,
+          "customer_id": 68,
+          "departure_time": 577.0020893093499,
+          "load_after": 120,
+          "start_service_time": 487.00208930934986
+        },
+        {
+          "arrival_time": 582.3872541164844,
+          "customer_id": 76,
+          "departure_time": 672.3872541164844,
+          "load_after": 150,
+          "start_service_time": 582.3872541164844
+        },
+        {
+          "arrival_time": 693.0027822445727,
+          "customer_id": 96,
+          "departure_time": 783.0027822445727,
+          "load_after": 160,
+          "start_service_time": 693.0027822445727
+        },
+        {
+          "arrival_time": 784.0027822445727,
+          "customer_id": 130,
+          "departure_time": 874.0027822445727,
+          "load_after": 170,
+          "start_service_time": 784.0027822445727
+        },
+        {
+          "arrival_time": 878.0027822445727,
+          "customer_id": 28,
+          "departure_time": 968.0027822445727,
+          "load_after": 190,
+          "start_service_time": 878.0027822445727
+        },
+        {
+          "arrival_time": 971.0027822445727,
+          "customer_id": 74,
+          "departure_time": 1061.0027822445727,
+          "load_after": 200,
+          "start_service_time": 971.0027822445727
+        }
+      ],
+      "vehicle_id": 1
+    },
+    {
+      "distance": 103.09836555088964,
+      "duration": 1158.649655434629,
+      "load": 140,
+      "stops": [
+        {
+          "arrival_time": 32.202484376209235,
+          "customer_id": 30,
+          "departure_time": 122.20248437620924,
+          "load_after": 20,
+          "start_service_time": 32.202484376209235
+        },
+        {
+          "arrival_time": 125.80803565167324,
+          "customer_id": 120,
+          "departure_time": 215.80803565167324,
+          "load_after": 30,
+          "start_service_time": 125.80803565167324
+        },
+        {
+          "arrival_time": 219.9311412772909,
+          "customer_id": 19,
+          "departure_time": 309.93114127729086,
+          "load_after": 50,
+          "start_service_time": 219.9311412772909
+        },
+        {
+          "arrival_time": 312.7595684020371,
+          "customer_id": 192,
+          "departure_time": 402.7595684020371,
+          "load_after": 70,
+          "start_service_time": 312.7595684020371
+        },
+        {
+          "arrival_time": 406.7595684020371,
+          "customer_id": 196,
+          "departure_time": 496.7595684020371,
+          "load_after": 80,
+          "start_service_time": 406.7595684020371
+        },
+        {
+          "arrival_time": 498.1737819644102,
+          "customer_id": 97,
+          "departure_time": 588.1737819644102,
+          "load_after": 110,
+          "start_service_time": 498.1737819644102
+        },
+        {
+          "arrival_time": 596.2360397127087,
+          "customer_id": 14,
+          "departure_time": 686.2360397127087,
+          "load_after": 120,
+          "start_service_time": 596.2360397127087
+        },
+        {
+          "arrival_time": 700.4487101162606,
+          "customer_id": 149,
+          "departure_time": 1126.0,
+          "load_after": 140,
+          "start_service_time": 1036.0
+        }
+      ],
+      "vehicle_id": 2
+    },
+    {
+      "distance": 93.589686709093,
+      "duration": 993.589686709093,
+      "load": 200,
+      "stops": [
+        {
+          "arrival_time": 33.015148038438355,
+          "customer_id": 20,
+          "departure_time": 123.01514803843835,
+          "load_after": 30,
+          "start_service_time": 33.015148038438355
+        },
+        {
+          "arrival_time": 129.33970335877513,
+          "customer_id": 41,
+          "departure_time": 219.33970335877513,
+          "load_after": 50,
+          "start_service_time": 129.33970335877513
+        },
+        {
+          "arrival_time": 222.33970335877513,
+          "customer_id": 85,
+          "departure_time": 312.3397033587751,
+          "load_after": 70,
+          "start_service_time": 222.33970335877513
+        },
+        {
+          "arrival_time": 313.3397033587751,
+          "customer_id": 80,
+          "departure_time": 403.3397033587751,
+          "load_after": 80,
+          "start_service_time": 313.3397033587751
+        },
+        {
+          "arrival_time": 405.3397033587751,
+          "customer_id": 31,
+          "departure_time": 495.3397033587751,
+          "load_after": 100,
+          "start_service_time": 405.3397033587751
+        },
+        {
+          "arrival_time": 497.5757713362749,
+          "customer_id": 25,
+          "departure_time": 587.5757713362749,
+          "load_after": 110,
+          "start_service_time": 497.5757713362749
+        },
+        {
+          "arrival_time": 588.989984898648,
+          "customer_id": 172,
+          "departure_time": 678.989984898648,
+          "load_after": 130,
+          "start_service_time": 588.989984898648
+        },
+        {
+          "arrival_time": 679.989984898648,
+          "customer_id": 77,
+          "departure_time": 769.989984898648,
+          "load_after": 140,
+          "start_service_time": 679.989984898648
+        },
+        {
+          "arrival_time": 774.2326255857673,
+          "customer_id": 110,
+          "departure_time": 864.2326255857673,
+          "load_after": 170,
+          "start_service_time": 774.2326255857673
+        },
+        {
+          "arrival_time": 870.0635774806126,
+          "customer_id": 162,
+          "departure_time": 960.0635774806126,
+          "load_after": 200,
+          "start_service_time": 870.0635774806126
+        }
+      ],
+      "vehicle_id": 3
+    },
+    {
+      "distance": 110.40172852307539,
+      "duration": 931.0293863659264,
+      "load": 140,
+      "stops": [
+        {
+          "arrival_time": 35.35533905932738,
+          "customer_id": 73,
+          "departure_time": 125.35533905932738,
+          "load_after": 20,
+          "start_service_time": 35.35533905932738
+        },
+        {
+          "arrival_time": 132.06354299182675,
+          "customer_id": 116,
+          "departure_time": 222.06354299182675,
+          "load_after": 40,
+          "start_service_time": 132.06354299182675
+        },
+        {
+          "arrival_time": 224.29961096932655,
+          "customer_id": 12,
+          "departure_time": 314.2996109693265,
+          "load_after": 50,
+          "start_service_time": 224.29961096932655
+        },
+        {
+          "arrival_time": 321.2996109693265,
+          "customer_id": 129,
+          "departure_time": 411.2996109693265,
+          "load_after": 70,
+          "start_service_time": 321.2996109693265
+        },
+        {
+          "arrival_time": 413.5356789468263,
+          "customer_id": 11,
+          "departure_time": 503.5356789468263,
+          "load_after": 90,
+          "start_service_time": 413.5356789468263
+        },
+        {
+          "arrival_time": 504.5356789468263,
+          "customer_id": 6,
+          "departure_time": 594.5356789468262,
+          "load_after": 100,
+          "start_service_time": 504.5356789468263
+        },
+        {
+          "arrival_time": 596.7717469243261,
+          "customer_id": 122,
+          "departure_time": 686.7717469243261,
+          "load_after": 110,
+          "start_service_time": 596.7717469243261
+        },
+        {
+          "arrival_time": 689.7717469243261,
+          "customer_id": 139,
+          "departure_time": 779.7717469243261,
+          "load_after": 130,
+          "start_service_time": 689.7717469243261
+        },
+        {
+          "arrival_time": 813.372342157149,
+          "customer_id": 17,
+          "departure_time": 914.0,
+          "load_after": 140,
+          "start_service_time": 824.0
+        }
+      ],
+      "vehicle_id": 4
+    },
+    {
+      "distance": 102.05804670466067,
+      "duration": 1092.0580467046607,
+      "load": 170,
+      "stops": [
+        {
+          "arrival_time": 35.510561809129406,
+          "customer_id": 101,
+          "departure_time": 125.5105618091294,
+          "load_after": 10,
+          "start_service_time": 35.510561809129406
+        },
+        {
+          "arrival_time": 128.67283946929777,
+          "customer_id": 144,
+          "departure_time": 218.67283946929777,
+          "load_after": 30,
+          "start_service_time": 128.67283946929777
+        },
+        {
+          "arrival_time": 223.67283946929777,
+          "customer_id": 119,
+          "departure_time": 313.67283946929774,
+          "load_after": 50,
+          "start_service_time": 223.67283946929777
+        },
+        {
+          "arrival_time": 316.83511712946614,
+          "customer_id": 166,
+          "departure_time": 406.83511712946614,
+          "load_after": 60,
+          "start_service_time": 316.83511712946614
+        },
+        {
+          "arrival_time": 410.44066840493014,
+          "customer_id": 35,
+          "departure_time": 500.44066840493014,
+          "load_after": 80,
+          "start_service_time": 410.44066840493014
+        },
+        {
+          "arrival_time": 504.04621968039413,
+          "customer_id": 126,
+          "departure_time": 594.0462196803942,
+          "load_after": 90,
+          "start_service_time": 504.04621968039413
+        },
+        {
+          "arrival_time": 596.282287657894,
+          "customer_id": 71,
+          "departure_time": 686.282287657894,
+          "load_after": 110,
+          "start_service_time": 596.282287657894
+        },
+        {
+          "arrival_time": 688.282287657894,
+          "customer_id": 9,
+          "departure_time": 778.282287657894,
+          "load_after": 130,
+          "start_service_time": 688.282287657894
+        },
+        {
+          "arrival_time": 779.6965012202671,
+          "customer_id": 1,
+          "departure_time": 869.6965012202671,
+          "load_after": 150,
+          "start_service_time": 779.6965012202671
+        },
+        {
+          "arrival_time": 871.1107147826402,
+          "customer_id": 99,
+          "departure_time": 961.1107147826402,
+          "load_after": 160,
+          "start_service_time": 871.1107147826402
+        },
+        {
+          "arrival_time": 964.1107147826402,
+          "customer_id": 53,
+          "departure_time": 1054.1107147826401,
+          "load_after": 170,
+          "start_service_time": 964.1107147826402
+        }
+      ],
+      "vehicle_id": 5
+    },
+    {
+      "distance": 122.55642671882747,
+      "duration": 1202.5564267188274,
+      "load": 200,
+      "stops": [
+        {
+          "arrival_time": 38.948684188300895,
+          "customer_id": 133,
+          "departure_time": 128.9486841883009,
+          "load_after": 10,
+          "start_service_time": 38.948684188300895
+        },
+        {
+          "arrival_time": 130.9486841883009,
+          "customer_id": 48,
+          "departure_time": 220.9486841883009,
+          "load_after": 20,
+          "start_service_time": 130.9486841883009
+        },
+        {
+          "arrival_time": 229.01094193659944,
+          "customer_id": 26,
+          "departure_time": 319.01094193659947,
+          "load_after": 40,
+          "start_service_time": 229.01094193659944
+        },
+        {
+          "arrival_time": 321.24700991409924,
+          "customer_id": 152,
+          "departure_time": 411.24700991409924,
+          "load_after": 70,
+          "start_service_time": 321.24700991409924
+        },
+        {
+          "arrival_time": 412.24700991409924,
+          "customer_id": 40,
+          "departure_time": 502.24700991409924,
+          "load_after": 90,
+          "start_service_time": 412.24700991409924
+        },
+        {
+          "arrival_time": 505.40928757426764,
+          "customer_id": 153,
+          "departure_time": 595.4092875742676,
+          "load_after": 100,
+          "start_service_time": 505.40928757426764
+        },
+        {
+          "arrival_time": 600.7944523814022,
+          "customer_id": 169,
+          "departure_time": 690.7944523814022,
+          "load_after": 120,
+          "start_service_time": 600.7944523814022
+        },
+        {
+          "arrival_time": 693.030520358902,
+          "customer_id": 89,
+          "departure_time": 783.030520358902,
+          "load_after": 140,
+          "start_service_time": 693.030520358902
+        },
+        {
+          "arrival_time": 784.4447339212751,
+          "customer_id": 105,
+          "departure_time": 874.4447339212751,
+          "load_after": 150,
+          "start_service_time": 784.4447339212751
+        },
+        {
+          "arrival_time": 878.0502851967391,
+          "customer_id": 15,
+          "departure_time": 968.0502851967391,
+          "load_after": 170,
+          "start_service_time": 878.0502851967391
+        },
+        {
+          "arrival_time": 972.0502851967391,
+          "customer_id": 59,
+          "departure_time": 1062.050285196739,
+          "load_after": 190,
+          "start_service_time": 972.0502851967391
+        },
+        {
+          "arrival_time": 1064.2863531742387,
+          "customer_id": 198,
+          "departure_time": 1154.2863531742387,
+          "load_after": 200,
+          "start_service_time": 1064.2863531742387
+        }
+      ],
+      "vehicle_id": 6
+    },
+    {
+      "distance": 115.1575101553469,
+      "duration": 745.1575101553469,
+      "load": 180,
+      "stops": [
+        {
+          "arrival_time": 49.09175083453431,
+          "customer_id": 164,
+          "departure_time": 139.0917508345343,
+          "load_after": 30,
+          "start_service_time": 49.09175083453431
+        },
+        {
+          "arrival_time": 140.0917508345343,
+          "customer_id": 66,
+          "departure_time": 230.0917508345343,
+          "load_after": 50,
+          "start_service_time": 140.0917508345343
+        },
+        {
+          "arrival_time": 232.3278188120341,
+          "customer_id": 147,
+          "departure_time": 322.32781881203414,
+          "load_after": 60,
+          "start_service_time": 232.3278188120341
+        },
+        {
+          "arrival_time": 325.32781881203414,
+          "customer_id": 160,
+          "departure_time": 415.32781881203414,
+          "load_after": 100,
+          "start_service_time": 325.32781881203414
+        },
+        {
+          "arrival_time": 417.32781881203414,
+          "customer_id": 47,
+          "departure_time": 507.32781881203414,
+          "load_after": 130,
+          "start_service_time": 417.32781881203414
+        },
+        {
+          "arrival_time": 510.49009647220254,
+          "customer_id": 91,
+          "departure_time": 600.4900964722026,
+          "load_after": 150,
+          "start_service_time": 510.49009647220254
+        },
+        {
+          "arrival_time": 606.3210483670479,
+          "customer_id": 70,
+          "departure_time": 696.3210483670479,
+          "load_after": 180,
+          "start_service_time": 606.3210483670479
+        }
+      ],
+      "vehicle_id": 7
+    },
+    {
+      "distance": 145.77110798404212,
+      "duration": 1135.7711079840421,
+      "load": 180,
+      "stops": [
+        {
+          "arrival_time": 51.03920062069938,
+          "customer_id": 93,
+          "departure_time": 141.03920062069938,
+          "load_after": 10,
+          "start_service_time": 51.03920062069938
+        },
+        {
+          "arrival_time": 147.36375594103615,
+          "customer_id": 55,
+          "departure_time": 237.36375594103615,
+          "load_after": 50,
+          "start_service_time": 147.36375594103615
+        },
+        {
+          "arrival_time": 240.19218306578233,
+          "customer_id": 135,
+          "departure_time": 330.19218306578233,
+          "load_after": 70,
+          "start_service_time": 240.19218306578233
+        },
+        {
+          "arrival_time": 340.822328878517,
+          "customer_id": 58,
+          "departure_time": 430.822328878517,
+          "load_after": 80,
+          "start_service_time": 340.822328878517
+        },
+        {
+          "arrival_time": 441.26263538742757,
+          "customer_id": 184,
+          "departure_time": 531.2626353874275,
+          "load_after": 100,
+          "start_service_time": 441.26263538742757
+        },
+        {
+          "arrival_time": 536.2626353874275,
+          "customer_id": 199,
+          "departure_time": 626.2626353874275,
+          "load_after": 110,
+          "start_service_time": 536.2626353874275
+        },
+        {
+          "arrival_time": 629.0910625121737,
+          "customer_id": 37,
+          "departure_time": 719.0910625121737,
+          "load_after": 120,
+          "start_service_time": 629.0910625121737
+        },
+        {
+          "arrival_time": 721.9194896369199,
+          "customer_id": 81,
+          "departure_time": 811.9194896369199,
+          "load_after": 130,
+          "start_service_time": 721.9194896369199
+        },
+        {
+          "arrival_time": 814.1555576144198,
+          "customer_id": 138,
+          "departure_time": 904.1555576144198,
+          "load_after": 150,
+          "start_service_time": 814.1555576144198
+        },
+        {
+          "arrival_time": 907.3178352745881,
+          "customer_id": 137,
+          "departure_time": 997.3178352745881,
+          "load_after": 160,
+          "start_service_time": 907.3178352745881
+        },
+        {
+          "arrival_time": 1000.3178352745881,
+          "customer_id": 183,
+          "departure_time": 1090.317835274588,
+          "load_after": 180,
+          "start_service_time": 1000.3178352745881
+        }
+      ],
+      "vehicle_id": 8
+    },
+    {
+      "distance": 132.88354119184484,
+      "duration": 942.8835411918449,
+      "load": 170,
+      "stops": [
+        {
+          "arrival_time": 53.71219600798314,
+          "customer_id": 57,
+          "departure_time": 143.71219600798315,
+          "load_after": 10,
+          "start_service_time": 53.71219600798314
+        },
+        {
+          "arrival_time": 147.71219600798315,
+          "customer_id": 118,
+          "departure_time": 237.71219600798315,
+          "load_after": 30,
+          "start_service_time": 147.71219600798315
+        },
+        {
+          "arrival_time": 241.8353016336008,
+          "customer_id": 83,
+          "departure_time": 331.8353016336008,
+          "load_after": 40,
+          "start_service_time": 241.8353016336008
+        },
+        {
+          "arrival_time": 335.95840725921846,
+          "customer_id": 143,
+          "departure_time": 425.95840725921846,
+          "load_after": 60,
+          "start_service_time": 335.95840725921846
+        },
+        {
+          "arrival_time": 426.95840725921846,
+          "customer_id": 176,
+          "departure_time": 516.9584072592185,
+          "load_after": 80,
+          "start_service_time": 426.95840725921846
+        },
+        {
+          "arrival_time": 518.3726208215916,
+          "customer_id": 36,
+          "departure_time": 608.3726208215916,
+          "load_after": 110,
+          "start_service_time": 518.3726208215916
+        },
+        {
+          "arrival_time": 609.7868343839647,
+          "customer_id": 33,
+          "departure_time": 699.7868343839647,
+          "load_after": 140,
+          "start_service_time": 609.7868343839647
+        },
+        {
+          "arrival_time": 701.2010479463378,
+          "customer_id": 121,
+          "departure_time": 791.2010479463378,
+          "load_after": 160,
+          "start_service_time": 701.2010479463378
+        },
+        {
+          "arrival_time": 793.2010479463378,
+          "customer_id": 165,
+          "departure_time": 883.2010479463378,
+          "load_after": 170,
+          "start_service_time": 793.2010479463378
+        }
+      ],
+      "vehicle_id": 9
+    },
+    {
+      "distance": 144.02208788379977,
+      "duration": 1134.0220878837997,
+      "load": 180,
+      "stops": [
+        {
+          "arrival_time": 55.97320787662612,
+          "customer_id": 190,
+          "departure_time": 145.97320787662613,
+          "load_after": 20,
+          "start_service_time": 55.97320787662612
+        },
+        {
+          "arrival_time": 153.58898098249006,
+          "customer_id": 5,
+          "departure_time": 243.58898098249006,
+          "load_after": 40,
+          "start_service_time": 153.58898098249006
+        },
+        {
+          "arrival_time": 244.58898098249006,
+          "customer_id": 10,
+          "departure_time": 334.58898098249006,
+          "load_after": 60,
+          "start_service_time": 244.58898098249006
+        },
+        {
+          "arrival_time": 337.58898098249006,
+          "customer_id": 193,
+          "departure_time": 427.58898098249006,
+          "load_after": 80,
+          "start_service_time": 337.58898098249006
+        },
+        {
+          "arrival_time": 428.58898098249006,
+          "customer_id": 46,
+          "departure_time": 518.58898098249,
+          "load_after": 100,
+          "start_service_time": 428.58898098249006
+        },
+        {
+          "arrival_time": 521.7512586426584,
+          "customer_id": 128,
+          "departure_time": 611.7512586426584,
+          "load_after": 110,
+          "start_service_time": 521.7512586426584
+        },
+        {
+          "arrival_time": 614.5796857674046,
+          "customer_id": 106,
+          "departure_time": 704.5796857674046,
+          "load_after": 120,
+          "start_service_time": 614.5796857674046
+        },
+        {
+          "arrival_time": 710.5796857674046,
+          "customer_id": 167,
+          "departure_time": 800.5796857674046,
+          "load_after": 140,
+          "start_service_time": 710.5796857674046
+        },
+        {
+          "arrival_time": 803.5796857674046,
+          "customer_id": 34,
+          "departure_time": 893.5796857674046,
+          "load_after": 150,
+          "start_service_time": 803.5796857674046
+        },
+        {
+          "arrival_time": 894.9938993297777,
+          "customer_id": 95,
+          "departure_time": 984.9938993297777,
+          "load_after": 160,
+          "start_service_time": 894.9938993297777
+        },
+        {
+          "arrival_time": 988.1561769899461,
+          "customer_id": 158,
+          "departure_time": 1078.156176989946,
+          "load_after": 180,
+          "start_service_time": 988.1561769899461
+        }
+      ],
+      "vehicle_id": 10
+    },
+    {
+      "distance": 151.07073532441063,
+      "duration": 1141.0707353244106,
+      "load": 190,
+      "stops": [
+        {
+          "arrival_time": 65.11528238439882,
+          "customer_id": 170,
+          "departure_time": 155.11528238439882,
+          "load_after": 10,
+          "start_service_time": 65.11528238439882
+        },
+        {
+          "arrival_time": 156.11528238439882,
+          "customer_id": 134,
+          "departure_time": 246.11528238439882,
+          "load_after": 30,
+          "start_service_time": 156.11528238439882
+        },
+        {
+          "arrival_time": 248.943709509145,
+          "customer_id": 50,
+          "departure_time": 338.94370950914504,
+          "load_after": 50,
+          "start_service_time": 248.943709509145
+        },
+        {
+          "arrival_time": 340.35792307151814,
+          "customer_id": 156,
+          "departure_time": 430.35792307151814,
+          "load_after": 70,
+          "start_service_time": 340.35792307151814
+        },
+        {
+          "arrival_time": 431.77213663389125,
+          "customer_id": 112,
+          "departure_time": 521.7721366338913,
+          "load_after": 90,
+          "start_service_time": 431.77213663389125
+        },
+        {
+          "arrival_time": 524.7721366338913,
+          "customer_id": 168,
+          "departure_time": 614.7721366338913,
+          "load_after": 100,
+          "start_service_time": 524.7721366338913
+        },
+        {
+          "arrival_time": 615.7721366338913,
+          "customer_id": 79,
+          "departure_time": 705.7721366338913,
+          "load_after": 120,
+          "start_service_time": 615.7721366338913
+        },
+        {
+          "arrival_time": 709.7721366338913,
+          "customer_id": 29,
+          "departure_time": 799.7721366338913,
+          "load_after": 130,
+          "start_service_time": 709.7721366338913
+        },
+        {
+          "arrival_time": 801.7721366338913,
+          "customer_id": 87,
+          "departure_time": 891.7721366338913,
+          "load_after": 150,
+          "start_service_time": 801.7721366338913
+        },
+        {
+          "arrival_time": 896.2442725888908,
+          "customer_id": 42,
+          "departure_time": 986.2442725888908,
+          "load_after": 180,
+          "start_service_time": 896.2442725888908
+        },
+        {
+          "arrival_time": 989.8498238643548,
+          "customer_id": 123,
+          "departure_time": 1079.8498238643547,
+          "load_after": 190,
+          "start_service_time": 989.8498238643548
+        }
+      ],
+      "vehicle_id": 11
+    },
+    {
+      "distance": 180.1252790086901,
+      "duration": 1350.1252790086903,
+      "load": 200,
+      "stops": [
+        {
+          "arrival_time": 65.76473218982953,
+          "customer_id": 114,
+          "departure_time": 155.76473218982954,
+          "load_after": 10,
+          "start_service_time": 65.76473218982953
+        },
+        {
+          "arrival_time": 159.8878378154472,
+          "customer_id": 159,
+          "departure_time": 249.8878378154472,
+          "load_after": 30,
+          "start_service_time": 159.8878378154472
+        },
+        {
+          "arrival_time": 254.1304785025665,
+          "customer_id": 38,
+          "departure_time": 344.13047850256646,
+          "load_after": 40,
+          "start_service_time": 254.1304785025665
+        },
+        {
+          "arrival_time": 345.54469206493957,
+          "customer_id": 150,
+          "departure_time": 435.54469206493957,
+          "load_after": 50,
+          "start_service_time": 345.54469206493957
+        },
+        {
+          "arrival_time": 439.6677976905572,
+          "customer_id": 22,
+          "departure_time": 529.6677976905572,
+          "load_after": 60,
+          "start_service_time": 439.6677976905572
+        },
+        {
+          "arrival_time": 540.2979435032919,
+          "customer_id": 151,
+          "departure_time": 630.2979435032919,
+          "load_after": 70,
+          "start_service_time": 540.2979435032919
+        },
+        {
+          "arrival_time": 633.2979435032919,
+          "customer_id": 16,
+          "departure_time": 723.2979435032919,
+          "load_after": 80,
+          "start_service_time": 633.2979435032919
+        },
+        {
+          "arrival_time": 726.9034947787559,
+          "customer_id": 140,
+          "departure_time": 816.9034947787559,
+          "load_after": 100,
+          "start_service_time": 726.9034947787559
+        },
+        {
+          "arrival_time": 821.3756307337554,
+          "customer_id": 187,
+          "departure_time": 911.3756307337554,
+          "load_after": 110,
+          "start_service_time": 821.3756307337554
+        },
+        {
+          "arrival_time": 915.6182714208747,
+          "customer_id": 142,
+          "departure_time": 1005.6182714208747,
+          "load_after": 130,
+          "start_service_time": 915.6182714208747
+        },
+        {
+          "arrival_time": 1007.6182714208747,
+          "customer_id": 111,
+          "departure_time": 1097.6182714208749,
+          "load_after": 160,
+          "start_service_time": 1007.6182714208747
+        },
+        {
+          "arrival_time": 1100.7805490810433,
+          "customer_id": 63,
+          "departure_time": 1190.7805490810433,
+          "load_after": 180,
+          "start_service_time": 1100.7805490810433
+        },
+        {
+          "arrival_time": 1196.6115009758887,
+          "customer_id": 56,
+          "departure_time": 1286.6115009758887,
+          "load_after": 200,
+          "start_service_time": 1196.6115009758887
+        }
+      ],
+      "vehicle_id": 12
+    },
+    {
+      "distance": 179.18654299039147,
+      "duration": 1097.688820407424,
+      "load": 170,
+      "stops": [
+        {
+          "arrival_time": 77.82673062643708,
+          "customer_id": 60,
+          "departure_time": 167.8267306264371,
+          "load_after": 20,
+          "start_service_time": 77.82673062643708
+        },
+        {
+          "arrival_time": 173.90949315673532,
+          "customer_id": 82,
+          "departure_time": 263.9094931567353,
+          "load_after": 30,
+          "start_service_time": 173.90949315673532
+        },
+        {
+          "arrival_time": 266.1455611342351,
+          "customer_id": 180,
+          "departure_time": 356.1455611342351,
+          "load_after": 60,
+          "start_service_time": 266.1455611342351
+        },
+        {
+          "arrival_time": 359.3078387944035,
+          "customer_id": 84,
+          "departure_time": 449.3078387944035,
+          "load_after": 70,
+          "start_service_time": 359.3078387944035
+        },
+        {
+          "arrival_time": 452.4701164545719,
+          "customer_id": 191,
+          "departure_time": 542.4701164545719,
+          "load_after": 80,
+          "start_service_time": 452.4701164545719
+        },
+        {
+          "arrival_time": 545.2985435793181,
+          "customer_id": 125,
+          "departure_time": 635.2985435793181,
+          "load_after": 90,
+          "start_service_time": 545.2985435793181
+        },
+        {
+          "arrival_time": 638.9040948547821,
+          "customer_id": 4,
+          "departure_time": 728.9040948547821,
+          "load_after": 100,
+          "start_service_time": 638.9040948547821
+        },
+        {
+          "arrival_time": 730.9040948547821,
+          "customer_id": 72,
+          "departure_time": 820.9040948547821,
+          "load_after": 140,
+          "start_service_time": 730.9040948547821
+        },
+        {
+          "arrival_time": 839.2616546054679,
+          "customer_id": 188,
+          "departure_time": 945.0,
+          "load_after": 150,
+          "start_service_time": 855.0
+        },
+        {
+          "arrival_time": 947.2360679774998,
+          "customer_id": 108,
+          "departure_time": 1040.0,
+          "load_after": 170,
+          "start_service_time": 950.0
+        }
+      ],
+      "vehicle_id": 13
+    },
+    {
+      "distance": 202.63243691972087,
+      "duration": 1102.632436919721,
+      "load": 180,
+      "stops": [
+        {
+          "arrival_time": 84.86459803710851,
+          "customer_id": 32,
+          "departure_time": 174.86459803710852,
+          "load_after": 10,
+          "start_service_time": 84.86459803710851
+        },
+        {
+          "arrival_time": 181.5728019696079,
+          "customer_id": 171,
+          "departure_time": 271.5728019696079,
+          "load_after": 40,
+          "start_service_time": 181.5728019696079
+        },
+        {
+          "arrival_time": 274.5728019696079,
+          "customer_id": 65,
+          "departure_time": 364.5728019696079,
+          "load_after": 60,
+          "start_service_time": 274.5728019696079
+        },
+        {
+          "arrival_time": 367.5728019696079,
+          "customer_id": 86,
+          "departure_time": 457.5728019696079,
+          "load_after": 70,
+          "start_service_time": 367.5728019696079
+        },
+        {
+          "arrival_time": 458.5728019696079,
+          "customer_id": 115,
+          "departure_time": 548.5728019696079,
+          "load_after": 100,
+          "start_service_time": 458.5728019696079
+        },
+        {
+          "arrival_time": 551.7350796297762,
+          "customer_id": 94,
+          "departure_time": 641.7350796297762,
+          "load_after": 120,
+          "start_service_time": 551.7350796297762
+        },
+        {
+          "arrival_time": 644.7350796297762,
+          "customer_id": 51,
+          "departure_time": 734.7350796297762,
+          "load_after": 130,
+          "start_service_time": 644.7350796297762
+        },
+        {
+          "arrival_time": 739.2072155847758,
+          "customer_id": 174,
+          "departure_time": 829.2072155847758,
+          "load_after": 160,
+          "start_service_time": 739.2072155847758
+        },
+        {
+          "arrival_time": 835.5317709051126,
+          "customer_id": 136,
+          "departure_time": 925.5317709051126,
+          "load_after": 170,
+          "start_service_time": 835.5317709051126
+        },
+        {
+          "arrival_time": 927.7678388826124,
+          "customer_id": 189,
+          "departure_time": 1017.7678388826124,
+          "load_after": 180,
+          "start_service_time": 927.7678388826124
+        }
+      ],
+      "vehicle_id": 14
+    },
+    {
+      "distance": 60.94858834879776,
+      "duration": 1125.422205101856,
+      "load": 170,
+      "stops": [
+        {
+          "arrival_time": 15.297058540778355,
+          "customer_id": 113,
+          "departure_time": 105.29705854077835,
+          "load_after": 10,
+          "start_service_time": 15.297058540778355
+        },
+        {
+          "arrival_time": 109.76919449577792,
+          "customer_id": 155,
+          "departure_time": 199.76919449577792,
+          "load_after": 20,
+          "start_service_time": 109.76919449577792
+        },
+        {
+          "arrival_time": 201.18340805815103,
+          "customer_id": 78,
+          "departure_time": 291.18340805815103,
+          "load_after": 40,
+          "start_service_time": 201.18340805815103
+        },
+        {
+          "arrival_time": 295.3065136837687,
+          "customer_id": 175,
+          "departure_time": 385.3065136837687,
+          "load_after": 50,
+          "start_service_time": 295.3065136837687
+        },
+        {
+          "arrival_time": 389.7786496387683,
+          "customer_id": 13,
+          "departure_time": 479.7786496387683,
+          "load_after": 60,
+          "start_service_time": 389.7786496387683
+        },
+        {
+          "arrival_time": 482.6070767635145,
+          "customer_id": 43,
+          "departure_time": 572.6070767635144,
+          "load_after": 80,
+          "start_service_time": 482.6070767635145
+        },
+        {
+          "arrival_time": 577.079212718514,
+          "customer_id": 2,
+          "departure_time": 667.079212718514,
+          "load_after": 100,
+          "start_service_time": 577.079212718514
+        },
+        {
+          "arrival_time": 669.3152806960138,
+          "customer_id": 90,
+          "departure_time": 759.3152806960138,
+          "load_after": 110,
+          "start_service_time": 669.3152806960138
+        },
+        {
+          "arrival_time": 762.9208319714778,
+          "customer_id": 67,
+          "departure_time": 852.9208319714778,
+          "load_after": 130,
+          "start_service_time": 762.9208319714778
+        },
+        {
+          "arrival_time": 856.5263832469418,
+          "customer_id": 39,
+          "departure_time": 1021.0,
+          "load_after": 150,
+          "start_service_time": 931.0
+        },
+        {
+          "arrival_time": 1024.605551275464,
+          "customer_id": 107,
+          "departure_time": 1114.605551275464,
+          "load_after": 170,
+          "start_service_time": 1024.605551275464
+        }
+      ],
+      "vehicle_id": 15
+    },
+    {
+      "distance": 193.81514051637038,
+      "duration": 1093.8151405163705,
+      "load": 180,
+      "stops": [
+        {
+          "arrival_time": 76.83749084919418,
+          "customer_id": 161,
+          "departure_time": 166.83749084919418,
+          "load_after": 10,
+          "start_service_time": 76.83749084919418
+        },
+        {
+          "arrival_time": 169.07355882669398,
+          "customer_id": 104,
+          "departure_time": 259.073558826694,
+          "load_after": 30,
+          "start_service_time": 169.07355882669398
+        },
+        {
+          "arrival_time": 264.073558826694,
+          "customer_id": 18,
+          "departure_time": 354.073558826694,
+          "load_after": 40,
+          "start_service_time": 264.073558826694
+        },
+        {
+          "arrival_time": 358.19666445231167,
+          "customer_id": 54,
+          "departure_time": 448.19666445231167,
+          "load_after": 70,
+          "start_service_time": 358.19666445231167
+        },
+        {
+          "arrival_time": 454.2794269826099,
+          "customer_id": 185,
+          "departure_time": 544.27942698261,
+          "load_after": 90,
+          "start_service_time": 454.2794269826099
+        },
+        {
+          "arrival_time": 549.6645917897445,
+          "customer_id": 132,
+          "departure_time": 639.6645917897445,
+          "load_after": 120,
+          "start_service_time": 549.6645917897445
+        },
+        {
+          "arrival_time": 647.726849538043,
+          "customer_id": 7,
+          "departure_time": 737.726849538043,
+          "load_after": 130,
+          "start_service_time": 647.726849538043
+        },
+        {
+          "arrival_time": 744.1299737754758,
+          "customer_id": 181,
+          "departure_time": 834.1299737754758,
+          "load_after": 150,
+          "start_service_time": 744.1299737754758
+        },
+        {
+          "arrival_time": 836.3660417529757,
+          "customer_id": 117,
+          "departure_time": 926.3660417529757,
+          "load_after": 160,
+          "start_service_time": 836.3660417529757
+        },
+        {
+          "arrival_time": 928.6021097304755,
+          "customer_id": 49,
+          "departure_time": 1018.6021097304755,
+          "load_after": 180,
+          "start_service_time": 928.6021097304755
+        }
+      ],
+      "vehicle_id": 16
+    },
+    {
+      "distance": 200.97304861367604,
+      "duration": 920.9730486136759,
+      "load": 160,
+      "stops": [
+        {
+          "arrival_time": 86.83317338436964,
+          "customer_id": 177,
+          "departure_time": 176.83317338436964,
+          "load_after": 10,
+          "start_service_time": 86.83317338436964
+        },
+        {
+          "arrival_time": 182.91593591466787,
+          "customer_id": 3,
+          "departure_time": 272.9159359146679,
+          "load_after": 40,
+          "start_service_time": 182.91593591466787
+        },
+        {
+          "arrival_time": 275.15200389216767,
+          "customer_id": 88,
+          "departure_time": 365.15200389216767,
+          "load_after": 70,
+          "start_service_time": 275.15200389216767
+        },
+        {
+          "arrival_time": 368.75755516763166,
+          "customer_id": 8,
+          "departure_time": 458.75755516763166,
+          "load_after": 110,
+          "start_service_time": 368.75755516763166
+        },
+        {
+          "arrival_time": 461.75755516763166,
+          "customer_id": 186,
+          "departure_time": 551.7575551676316,
+          "load_after": 130,
+          "start_service_time": 461.75755516763166
+        },
+        {
+          "arrival_time": 554.9198328278,
+          "customer_id": 127,
+          "departure_time": 644.9198328278,
+          "load_after": 140,
+          "start_service_time": 554.9198328278
+        },
+        {
+          "arrival_time": 653.1660440790353,
+          "customer_id": 98,
+          "departure_time": 743.1660440790353,
+          "load_after": 150,
+          "start_service_time": 653.1660440790353
+        },
+        {
+          "arrival_time": 748.1660440790353,
+          "customer_id": 157,
+          "departure_time": 838.1660440790353,
+          "load_after": 160,
+          "start_service_time": 748.1660440790353
+        }
+      ],
+      "vehicle_id": 17
+    },
+    {
+      "distance": 178.9249267097086,
+      "duration": 1078.9249267097086,
+      "load": 200,
+      "stops": [
+        {
+          "arrival_time": 72.40165743959182,
+          "customer_id": 21,
+          "departure_time": 162.40165743959182,
+          "load_after": 20,
+          "start_service_time": 72.40165743959182
+        },
+        {
+          "arrival_time": 169.1098613720912,
+          "customer_id": 23,
+          "departure_time": 259.1098613720912,
+          "load_after": 50,
+          "start_service_time": 169.1098613720912
+        },
+        {
+          "arrival_time": 265.51298560952404,
+          "customer_id": 182,
+          "departure_time": 355.51298560952404,
+          "load_after": 70,
+          "start_service_time": 265.51298560952404
+        },
+        {
+          "arrival_time": 358.51298560952404,
+          "customer_id": 75,
+          "departure_time": 448.51298560952404,
+          "load_after": 100,
+          "start_service_time": 358.51298560952404
+        },
+        {
+          "arrival_time": 449.51298560952404,
+          "customer_id": 163,
+          "departure_time": 539.5129856095241,
+          "load_after": 110,
+          "start_service_time": 449.51298560952404
+        },
+        {
+          "arrival_time": 541.7490535870239,
+          "customer_id": 194,
+          "departure_time": 631.7490535870239,
+          "load_after": 130,
+          "start_service_time": 541.7490535870239
+        },
+        {
+          "arrival_time": 634.9113312471923,
+          "customer_id": 145,
+          "departure_time": 724.9113312471923,
+          "load_after": 150,
+          "start_service_time": 634.9113312471923
+        },
+        {
+          "arrival_time": 728.0736089073606,
+          "customer_id": 195,
+          "departure_time": 818.0736089073606,
+          "load_after": 170,
+          "start_service_time": 728.0736089073606
+        },
+        {
+          "arrival_time": 819.4878224697337,
+          "customer_id": 52,
+          "departure_time": 909.4878224697337,
+          "load_after": 190,
+          "start_service_time": 819.4878224697337
+        },
+        {
+          "arrival_time": 911.7238904472335,
+          "customer_id": 92,
+          "departure_time": 1001.7238904472335,
+          "load_after": 200,
+          "start_service_time": 911.7238904472335
+        }
+      ],
+      "vehicle_id": 18
+    },
+    {
+      "distance": 162.61499646357106,
+      "duration": 792.6149964635711,
+      "load": 140,
+      "stops": [
+        {
+          "arrival_time": 70.21395872616783,
+          "customer_id": 148,
+          "departure_time": 160.21395872616785,
+          "load_after": 20,
+          "start_service_time": 70.21395872616783
+        },
+        {
+          "arrival_time": 161.21395872616785,
+          "customer_id": 103,
+          "departure_time": 251.21395872616785,
+          "load_after": 50,
+          "start_service_time": 161.21395872616785
+        },
+        {
+          "arrival_time": 254.37623638633622,
+          "customer_id": 197,
+          "departure_time": 344.37623638633625,
+          "load_after": 80,
+          "start_service_time": 254.37623638633622
+        },
+        {
+          "arrival_time": 347.98178766180024,
+          "customer_id": 124,
+          "departure_time": 437.98178766180024,
+          "load_after": 90,
+          "start_service_time": 347.98178766180024
+        },
+        {
+          "arrival_time": 444.3849118992331,
+          "customer_id": 141,
+          "departure_time": 534.3849118992331,
+          "load_after": 100,
+          "start_service_time": 444.3849118992331
+        },
+        {
+          "arrival_time": 537.2133390239793,
+          "customer_id": 69,
+          "departure_time": 627.2133390239793,
+          "load_after": 120,
+          "start_service_time": 537.2133390239793
+        },
+        {
+          "arrival_time": 630.2133390239793,
+          "customer_id": 200,
+          "departure_time": 720.2133390239793,
+          "load_after": 140,
+          "start_service_time": 630.2133390239793
+        }
+      ],
+      "vehicle_id": 19
+    }
+  ],
+  "runtime_sec": 60.06277290001162,
+  "solver_name": "alns",
+  "total_distance": 2758.2922521489736,
+  "total_duration": 21197.447094045652,
+  "vehicles_used": 20
+}

@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 import csv
+from collections import defaultdict
 from dataclasses import dataclass
 from html import escape
 from pathlib import Path
-from statistics import median
+from statistics import fmean, median
 from typing import Any
 
 from vrptw_hybrid.core.solution_io import load_solution_json
@@ -37,14 +38,19 @@ def generate_report_figures(
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
     solutions = _load_solutions(rows)
-    paths = (
+    figure_paths = (
         _plot_convergence(solutions, output_path / "convergence.svg"),
         _plot_cost_runtime(rows, output_path / "cost_runtime.svg"),
         _plot_gap_boxplot(rows, output_path / "gap_boxplot.svg"),
         _plot_operator_probabilities(solutions, output_path / "operator_probabilities.svg"),
         _plot_pair_heatmap(solutions, output_path / "pair_heatmap.svg"),
+        _plot_solver_cost_png(rows, output_path / "solver_cost_comparison.png"),
+        _plot_solver_runtime_png(rows, output_path / "solver_runtime_comparison.png"),
+        _plot_alns_convergence_png(solutions, output_path / "alns_convergence.png"),
+        _plot_selector_ablation_png(rows, output_path / "selector_ablation.png"),
     )
-    return FigureOutputs(paths=paths)
+    manifest = _write_figure_sources(Path(runs_csv), output_path, figure_paths)
+    return FigureOutputs(paths=(*figure_paths, manifest))
 
 
 def _read_rows(path: Path) -> list[dict[str, str]]:
@@ -72,6 +78,28 @@ def _load_solutions(rows: list[dict[str, str]]) -> list[dict[str, Any]]:
     return solutions
 
 
+def _write_figure_sources(
+    runs_csv: Path,
+    output_dir: Path,
+    paths: tuple[Path, ...],
+) -> Path:
+    manifest = output_dir / "figure_sources.md"
+    lines = [
+        "# Figure Sources",
+        "",
+        f"- Command: `vrptw plot --results {runs_csv} --output {output_dir}`",
+        f"- Primary input CSV: `{runs_csv}`",
+        "- Solution JSON paths are read from the `solution_json` column.",
+        "- ALNS convergence data is read from solution metadata and convergence-capable runs.",
+        "",
+        "## Outputs",
+        "",
+    ]
+    lines.extend(f"- `{path}`" for path in paths)
+    manifest.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return manifest
+
+
 def _plot_convergence(solutions: list[dict[str, Any]], path: Path) -> Path:
     series: list[tuple[str, list[tuple[float, float]]]] = []
     for item in solutions:
@@ -89,7 +117,7 @@ def _plot_convergence(solutions: list[dict[str, Any]], path: Path) -> Path:
 def _plot_cost_runtime(rows: list[dict[str, str]], path: Path) -> Path:
     points: list[tuple[str, float, float]] = []
     for row in rows:
-        if row.get("status") != "ok":
+        if not _pipeline_ok(row):
             continue
         cost = _float_or_none(row.get("cost"))
         runtime = _float_or_none(row.get("runtime_sec"))
@@ -101,6 +129,8 @@ def _plot_cost_runtime(rows: list[dict[str, str]], path: Path) -> Path:
 def _plot_gap_boxplot(rows: list[dict[str, str]], path: Path) -> Path:
     values_by_solver: dict[str, list[float]] = {}
     for row in rows:
+        if not _pipeline_ok(row):
+            continue
         gap = _float_or_none(row.get("distance_gap_pct"))
         if gap is not None:
             values_by_solver.setdefault(row.get("solver", "solver"), []).append(gap)
@@ -166,6 +196,140 @@ def _plot_pair_heatmap(solutions: list[dict[str, Any]], path: Path) -> Path:
         y = TOP + index * cell_height + cell_height / 2
         elements.append(_text(LEFT - 10, y, name, size=10, anchor="end"))
     return _write_svg(path, elements)
+
+
+def _plot_solver_cost_png(rows: list[dict[str, str]], path: Path) -> Path:
+    return _write_bar_png(
+        path,
+        title="Solver Objective Comparison",
+        y_label="Mean objective",
+        values_by_label=_group_metric_by_solver(rows, "cost"),
+    )
+
+
+def _plot_solver_runtime_png(rows: list[dict[str, str]], path: Path) -> Path:
+    return _write_bar_png(
+        path,
+        title="Solver Runtime Comparison",
+        y_label="Mean runtime (sec)",
+        values_by_label=_group_metric_by_solver(rows, "runtime_sec"),
+    )
+
+
+def _plot_alns_convergence_png(solutions: list[dict[str, Any]], path: Path) -> Path:
+    series: list[tuple[str, list[tuple[float, float]]]] = []
+    for item in solutions:
+        solver = str(item["solver"])
+        if not solver.startswith("alns"):
+            continue
+        history = item["solution"].metadata.get("history", [])
+        if not isinstance(history, list):
+            continue
+        points = [
+            (float(entry["iteration"]), float(entry["best_cost"]))
+            for entry in history
+            if isinstance(entry, dict) and "iteration" in entry and "best_cost" in entry
+        ]
+        if points:
+            series.append((f"{solver} seed={item['seed']}", points))
+
+    if not series:
+        return _write_placeholder_png(path, "ALNS Convergence")
+
+    plt = _pyplot()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fig, ax = plt.subplots(figsize=(9, 5))
+    for label, points in series:
+        xs = [point[0] for point in points]
+        ys = [point[1] for point in points]
+        ax.plot(xs, ys, label=label)
+    ax.set_title("ALNS Convergence")
+    ax.set_xlabel("Iteration")
+    ax.set_ylabel("Best objective")
+    ax.legend(fontsize=8)
+    ax.grid(True, alpha=0.25)
+    fig.tight_layout()
+    fig.savefig(path, dpi=160)
+    plt.close(fig)
+    return path
+
+
+def _plot_selector_ablation_png(rows: list[dict[str, str]], path: Path) -> Path:
+    values = {
+        solver: metric_values
+        for solver, metric_values in _group_metric_by_solver(rows, "cost").items()
+        if solver in {"alns_uniform", "alns_mosade"}
+    }
+    return _write_bar_png(
+        path,
+        title="ALNS Selector Ablation",
+        y_label="Mean objective",
+        values_by_label=values,
+    )
+
+
+def _group_metric_by_solver(
+    rows: list[dict[str, str]],
+    metric: str,
+) -> dict[str, list[float]]:
+    values_by_solver: dict[str, list[float]] = defaultdict(list)
+    for row in rows:
+        if not _pipeline_ok(row):
+            continue
+        if str(row.get("feasible", "")).lower() not in {"1", "true", "yes"}:
+            continue
+        value = _float_or_none(row.get(metric))
+        if value is not None:
+            values_by_solver[row.get("solver", "solver")].append(value)
+    return dict(values_by_solver)
+
+
+def _write_bar_png(
+    path: Path,
+    *,
+    title: str,
+    y_label: str,
+    values_by_label: dict[str, list[float]],
+) -> Path:
+    if not values_by_label:
+        return _write_placeholder_png(path, title)
+
+    labels = sorted(values_by_label)
+    values = [fmean(values_by_label[label]) for label in labels]
+    plt = _pyplot()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fig, ax = plt.subplots(figsize=(8, 5))
+    ax.bar(labels, values, color="#2563eb")
+    ax.set_title(title)
+    ax.set_ylabel(y_label)
+    ax.tick_params(axis="x", rotation=20)
+    ax.grid(axis="y", alpha=0.25)
+    fig.tight_layout()
+    fig.savefig(path, dpi=160)
+    plt.close(fig)
+    return path
+
+
+def _write_placeholder_png(path: Path, title: str) -> Path:
+    plt = _pyplot()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fig, ax = plt.subplots(figsize=(8, 5))
+    ax.set_title(title)
+    ax.text(0.5, 0.5, "No data available yet", ha="center", va="center")
+    ax.set_axis_off()
+    fig.tight_layout()
+    fig.savefig(path, dpi=160)
+    plt.close(fig)
+    return path
+
+
+def _pyplot() -> Any:
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    return plt
 
 
 def _write_line_chart(
@@ -430,3 +594,11 @@ def _float_or_none(value: object) -> float | None:
     if isinstance(value, str | int | float):
         return float(value)
     return None
+
+
+def _pipeline_ok(row: dict[str, str]) -> bool:
+    status = row.get("pipeline_status")
+    if status:
+        return status == "ok"
+    legacy_status = row.get("status", "ok")
+    return legacy_status == "ok" or legacy_status not in {"ok", "error"}

@@ -25,6 +25,7 @@ def test_solve_help_exposes_reserved_parameters() -> None:
     assert "--solver" in result.output
     assert "--time-limit" in result.output
     assert "--max-iterations" in result.output
+    assert "--output-json" in result.output
 
 
 def test_solve_command_runs_greedy_solver() -> None:
@@ -119,6 +120,29 @@ alns:
     assert "regret_3_insertion" not in selected_repair
 
 
+def test_solve_command_writes_explicit_output_json(tmp_path: Path) -> None:
+    output_path = tmp_path / "solution.json"
+
+    result = runner.invoke(
+        app,
+        [
+            "solve",
+            "--instance",
+            "tests/fixtures/mini_solomon.txt",
+            "--solver",
+            "greedy",
+            "--seed",
+            "42",
+            "--output-json",
+            str(output_path),
+        ],
+    )
+
+    assert result.exit_code == 0
+    assert output_path.exists()
+    assert "solution_json:" in result.output
+
+
 def test_batch_command_runs_configured_experiment(tmp_path: Path) -> None:
     config_path = tmp_path / "batch.yaml"
     output_dir = tmp_path / "results"
@@ -153,3 +177,29 @@ experiment:
     assert "runs_csv:" in result.output
     assert "runs: 1" in result.output
     assert len(list(output_dir.glob("runs_*.csv"))) == 1
+
+
+def test_batch_command_supports_dry_run(tmp_path: Path) -> None:
+    config_path = tmp_path / "batch.yaml"
+    config_path.write_text(
+        """
+seed: 42
+experiment:
+  instances:
+    - name: mini_c101_8
+      path: tests/fixtures/mini_solomon.txt
+      limit_customers: 8
+  solvers:
+    - name: greedy
+      solver: greedy
+      ablation: greedy
+  seeds: [42]
+""",
+        encoding="utf-8",
+    )
+
+    result = runner.invoke(app, ["batch", "--config", str(config_path), "--dry-run"])
+
+    assert result.exit_code == 0
+    assert "planned_runs: 1" in result.output
+    assert "instance=mini_c101_8 solver=greedy seed=42" in result.output

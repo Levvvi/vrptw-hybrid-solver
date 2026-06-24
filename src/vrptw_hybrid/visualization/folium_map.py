@@ -34,6 +34,8 @@ def render_solution_map(
     weight: str = "length",
     tiles: str = "OpenStreetMap",
     zoom_start: int = 12,
+    vehicle_layers: bool = False,
+    caption: str | None = None,
 ) -> Any:
     """Return a Folium map containing depot, customers, and solution routes."""
 
@@ -54,8 +56,9 @@ def render_solution_map(
     customer_group = folium.FeatureGroup(name="Customers", show=True).add_to(map_object)
 
     stop_index = _route_stop_index(solution)
-    _add_route_layers(folium, route_group, routes)
+    _add_route_layers(folium, map_object, route_group, routes, vehicle_layers=vehicle_layers)
     _add_point_layers(folium, depot_group, customer_group, points, stop_index)
+    _add_caption(folium, map_object, caption)
     _fit_points(map_object, points)
     folium.LayerControl(collapsed=False).add_to(map_object)
     return map_object
@@ -71,6 +74,8 @@ def save_solution_map_html(
     weight: str = "length",
     tiles: str = "OpenStreetMap",
     zoom_start: int = 12,
+    vehicle_layers: bool = False,
+    caption: str | None = None,
 ) -> Path:
     """Render a solution map and save it as an HTML file."""
 
@@ -82,6 +87,8 @@ def save_solution_map_html(
         weight=weight,
         tiles=tiles,
         zoom_start=zoom_start,
+        vehicle_layers=vehicle_layers,
+        caption=caption,
     )
     path = Path(output_path)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -129,8 +136,11 @@ def _fit_points(map_object: Any, points: list[dict[str, Any]]) -> None:
 
 def _add_route_layers(
     folium: Any,
+    map_object: Any,
     route_group: Any,
     routes: list[dict[str, Any]],
+    *,
+    vehicle_layers: bool,
 ) -> None:
     for index, feature in enumerate(routes):
         coordinates = feature["geometry"].get("coordinates", [])
@@ -139,6 +149,11 @@ def _add_route_layers(
             continue
         properties = feature.get("properties", {})
         vehicle_id = properties.get("vehicle_id", index)
+        parent = route_group
+        if vehicle_layers:
+            parent = folium.FeatureGroup(name=f"Vehicle {vehicle_id}", show=True).add_to(
+                map_object
+            )
         folium.PolyLine(
             locations=locations,
             color=_route_color(index),
@@ -146,7 +161,24 @@ def _add_route_layers(
             opacity=0.85,
             tooltip=f"Vehicle {vehicle_id}",
             popup=folium.Popup(_route_popup_html(properties), max_width=320),
-        ).add_to(route_group)
+        ).add_to(parent)
+
+
+def _add_caption(folium: Any, map_object: Any, caption: str | None) -> None:
+    if not caption:
+        return
+    get_root = getattr(map_object, "get_root", None)
+    element_factory = getattr(folium, "Element", None)
+    if not callable(get_root) or element_factory is None:
+        return
+    html = (
+        '<div style="position: fixed; top: 12px; left: 50px; z-index: 9999; '
+        'background: white; padding: 8px 10px; border: 1px solid #555; '
+        'border-radius: 4px; font-size: 13px; max-width: 420px;">'
+        f"{escape(caption)}"
+        "</div>"
+    )
+    get_root().html.add_child(element_factory(html))
 
 
 def _add_point_layers(
@@ -185,9 +217,10 @@ def _add_point_layers(
 def _route_stop_index(solution: Solution) -> dict[int, dict[str, Any]]:
     index: dict[int, dict[str, Any]] = {}
     for route in solution.routes:
-        for stop in route.stops:
+        for sequence_order, stop in enumerate(route.stops, start=1):
             index[stop.customer_id] = {
                 "vehicle_id": route.vehicle_id,
+                "sequence_order": sequence_order,
                 "arrival_time": stop.arrival_time,
                 "start_service_time": stop.start_service_time,
                 "departure_time": stop.departure_time,
@@ -235,6 +268,7 @@ def _point_popup_html(
         rows.extend(
             [
                 f"vehicle: {escape(str(stop['vehicle_id']))}",
+                f"sequence: {escape(str(stop['sequence_order']))}",
                 f"arrival: {_format_number(stop['arrival_time'])}",
                 f"service start: {_format_number(stop['start_service_time'])}",
                 f"departure: {_format_number(stop['departure_time'])}",

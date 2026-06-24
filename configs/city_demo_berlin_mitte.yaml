@@ -1,0 +1,60 @@
+city:
+  city_id: berlin_mitte_30
+  place_name: "Mitte, Berlin, Germany"
+  network_type: drive
+  coordinate_system: lat_lon
+  # Small central-Mitte bbox in OSMnx order fields: north, south, east, west.
+  bbox:
+    north: 52.5320
+    south: 52.5100
+    east: 13.4200
+    west: 13.3700
+  network_cache: cache/osm/berlin_mitte_drive.graphml
+  distance_matrix_cache: cache/distance_matrices/berlin_mitte_30_seed42.npz
+
+generation:
+  order_count: 30
+  seed: 42
+  vehicle_count: 6
+  vehicle_capacity: 35
+  demand_min: 1
+  demand_max: 4
+  service_time_min: 5.0
+  horizon_min: 720.0
+
+solvers:
+  - greedy
+  - ortools_routing
+  - alns_roulette
+  - alns_mosade
+
+solver:
+  time_limit_sec: 60
+  max_iterations: 1000
+
+time_limits:
+  ortools_routing: 60
+  alns: 60
+
+objective:
+  vehicle_weight: 100000.0
+
+alns:
+  candidate_neighbor_size: 20
+  segment_length: 100
+  reaction_factor: 0.2
+  exploration_floor: 0.05
+  temperature: 1.0
+  decay: 0.8
+  memory_size: 50
+  use_pair_memory: true
+  use_diversity_bonus: true
+  enabled_destroy_operators:
+  disabled_destroy_operators: []
+  enabled_repair_operators:
+  disabled_repair_operators: []
+
+outputs:
+  demo_dir: reports/demo/city
+  instance_json: reports/demo/city/city_instance_berlin_mitte_30.json
+  summary_csv: reports/demo/city/city_summary.csv

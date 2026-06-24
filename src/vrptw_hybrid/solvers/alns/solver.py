@@ -155,6 +155,7 @@ class ALNSSolver(BaseSolver):
                 delta_cost=delta_cost,
                 feasible=candidate_solution.feasible,
             )
+            reward = _history_reward(event)
             self.selector.update(event)
 
             if accepted:
@@ -170,11 +171,17 @@ class ALNSSolver(BaseSolver):
                 {
                     "iteration": iteration,
                     "destroy": destroy_operator.name,
+                    "destroy_operator": destroy_operator.name,
                     "repair": repair_operator.name,
+                    "repair_operator": repair_operator.name,
                     "candidate_cost": candidate_cost,
+                    "candidate_objective": candidate_cost,
                     "current_cost": current.cost,
+                    "current_objective": current.cost,
                     "best_cost": best.cost,
+                    "best_objective": best.cost,
                     "delta_cost": delta_cost,
+                    "reward": reward,
                     "accepted": accepted,
                     "new_best": new_best,
                     "feasible": candidate_solution.feasible,
@@ -291,6 +298,18 @@ def _make_selector(
             use_diversity_bonus=use_diversity_bonus,
         )
     raise ValueError(f"Unknown ALNS selector: {selector_name}")
+
+
+def _history_reward(event: OperatorEvent) -> float:
+    if event.new_best:
+        return 5.0
+    if event.accepted and event.delta_cost < 0:
+        return 3.0
+    if event.accepted:
+        return 1.0
+    if event.feasible:
+        return 0.2
+    return 0.0
 
 
 def _normalize_candidate_neighbor_size(value: int | None) -> int | None:

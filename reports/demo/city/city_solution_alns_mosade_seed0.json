@@ -1,0 +1,656 @@
+{
+  "feasible": true,
+  "instance_name": "berlin_mitte_30",
+  "metadata": {
+    "ablation": "default",
+    "best_iteration": 190,
+    "city_id": "berlin_mitte_30",
+    "coordinate_system": "lat_lon",
+    "curated_metadata_note": "full ALNS history omitted from city demo JSON",
+    "destroy_fraction": 0.2,
+    "distance_unit": "meters",
+    "feasibility_violations": [],
+    "iterations": 1000,
+    "max_iterations": 1000,
+    "place_name": "Mitte, Berlin, Germany",
+    "seed": 42,
+    "selector": {
+      "decay": 0.8,
+      "events_seen": 1000,
+      "exploration_floor": 0.05,
+      "memory_size": 50,
+      "name": "mosade_inspired",
+      "pair_credit": {
+        "random_removal|greedy_cheapest_insertion": 0.21671567988064977,
+        "random_removal|noise_insertion": 0.212429409450318,
+        "random_removal|regret_2_insertion": 1.2167668176985253,
+        "random_removal|regret_3_insertion": 1.2152564405734827,
+        "random_removal|time_window_priority_insertion": 0.23552799079041775,
+        "route_removal|greedy_cheapest_insertion": 1.2127201511452523,
+        "route_removal|noise_insertion": 0.22071924395585968,
+        "route_removal|regret_2_insertion": 4.550428070592386e-06,
+        "route_removal|regret_3_insertion": 1.2113313167796524,
+        "route_removal|time_window_priority_insertion": 1.2143598259533577,
+        "shaw_related_removal|greedy_cheapest_insertion": 0.8872000770709296,
+        "shaw_related_removal|noise_insertion": 0.1751160798772553,
+        "shaw_related_removal|regret_2_insertion": 1.2188462241482698,
+        "shaw_related_removal|regret_3_insertion": 0.318168430848486,
+        "shaw_related_removal|time_window_priority_insertion": 0.21474431535732447,
+        "time_window_tight_removal|greedy_cheapest_insertion": 0.22389483871085386,
+        "time_window_tight_removal|noise_insertion": 0.1734907601437437,
+        "time_window_tight_removal|regret_2_insertion": 1.2138968634505076,
+        "time_window_tight_removal|regret_3_insertion": 1.2149973747538876,
+        "time_window_tight_removal|time_window_priority_insertion": 0.22500665464242453,
+        "worst_distance_removal|greedy_cheapest_insertion": 1.2121512373781846,
+        "worst_distance_removal|noise_insertion": 0.21666896864297341,
+        "worst_distance_removal|regret_2_insertion": 1.212317303280009,
+        "worst_distance_removal|regret_3_insertion": 0.16322192577743005,
+        "worst_distance_removal|time_window_priority_insertion": 1.2214963009162847
+      },
+      "pair_heatmap": [
+        {
+          "credit": 0.21671567988064977,
+          "destroy": "random_removal",
+          "probability": 0.023294783619497585,
+          "repair": "greedy_cheapest_insertion"
+        },
+        {
+          "credit": 1.2167668176985253,
+          "destroy": "random_removal",
+          "probability": 0.0598881835535456,
+          "repair": "regret_2_insertion"
+        },
+        {
+          "credit": 1.2152564405734827,
+          "destroy": "random_removal",
+          "probability": 0.05980081656045873,
+          "repair": "regret_3_insertion"
+        },
+        {
+          "credit": 0.23552799079041775,
+          "destroy": "random_removal",
+          "probability": 0.023699179594769075,
+          "repair": "time_window_priority_insertion"
+        },
+        {
+          "credit": 0.212429409450318,
+          "destroy": "random_removal",
+          "probability": 0.023203703754060126,
+          "repair": "noise_insertion"
+        },
+        {
+          "credit": 1.2121512373781846,
+          "destroy": "worst_distance_removal",
+          "probability": 0.05962161165799763,
+          "repair": "greedy_cheapest_insertion"
+        },
+        {
+          "credit": 1.212317303280009,
+          "destroy": "worst_distance_removal",
+          "probability": 0.05963118143748721,
+          "repair": "regret_2_insertion"
+        },
+        {
+          "credit": 0.16322192577743005,
+          "destroy": "worst_distance_removal",
+          "probability": 0.022185577981955022,
+          "repair": "regret_3_insertion"
+        },
+        {
+          "credit": 1.2214963009162847,
+          "destroy": "worst_distance_removal",
+          "probability": 0.060162613189811344,
+          "repair": "time_window_priority_insertion"
+        },
+        {
+          "credit": 0.21666896864297341,
+          "destroy": "worst_distance_removal",
+          "probability": 0.02329378893703027,
+          "repair": "noise_insertion"
+        },
+        {
+          "credit": 0.8872000770709296,
+          "destroy": "shaw_related_removal",
+          "probability": 0.04363522398573527,
+          "repair": "greedy_cheapest_insertion"
+        },
+        {
+          "credit": 1.2188462241482698,
+          "destroy": "shaw_related_removal",
+          "probability": 0.060008681854844426,
+          "repair": "regret_2_insertion"
+        },
+        {
+          "credit": 0.318168430848486,
+          "destroy": "shaw_related_removal",
+          "probability": 0.025568589996367137,
+          "repair": "regret_3_insertion"
+        },
+        {
+          "credit": 0.21474431535732447,
+          "destroy": "shaw_related_removal",
+          "probability": 0.023252845190086205,
+          "repair": "time_window_priority_insertion"
+        },
+        {
+          "credit": 0.1751160798772553,
+          "destroy": "shaw_related_removal",
+          "probability": 0.02242710187086637,
+          "repair": "noise_insertion"
+        },
+        {
+          "credit": 1.2127201511452523,
+          "destroy": "route_removal",
+          "probability": 0.05965440271290734,
+          "repair": "greedy_cheapest_insertion"
+        },
+        {
+          "credit": 4.550428070592386e-06,
+          "destroy": "route_removal",
+          "probability": 0.019145761715466135,
+          "repair": "regret_2_insertion"
+        },
+        {
+          "credit": 1.2113313167796524,
+          "destroy": "route_removal",
+          "probability": 0.05957438587502044,
+          "repair": "regret_3_insertion"
+        },
+        {
+          "credit": 1.2143598259533577,
+          "destroy": "route_removal",
+          "probability": 0.05974901472988515,
+          "repair": "time_window_priority_insertion"
+        },
+        {
+          "credit": 0.22071924395585968,
+          "destroy": "route_removal",
+          "probability": 0.023380209540155225,
+          "repair": "noise_insertion"
+        },
+        {
+          "credit": 0.22389483871085386,
+          "destroy": "time_window_tight_removal",
+          "probability": 0.02344821233894992,
+          "repair": "greedy_cheapest_insertion"
+        },
+        {
+          "credit": 1.2138968634505076,
+          "destroy": "time_window_tight_removal",
+          "probability": 0.05972228528933045,
+          "repair": "regret_2_insertion"
+        },
+        {
+          "credit": 1.2149973747538876,
+          "destroy": "time_window_tight_removal",
+          "probability": 0.0597858442840295,
+          "repair": "regret_3_insertion"
+        },
+        {
+          "credit": 0.22500665464242453,
+          "destroy": "time_window_tight_removal",
+          "probability": 0.023472072064485747,
+          "repair": "time_window_priority_insertion"
+        },
+        {
+          "credit": 0.1734907601437437,
+          "destroy": "time_window_tight_removal",
+          "probability": 0.022393928265257906,
+          "repair": "noise_insertion"
+        }
+      ],
+      "pair_probabilities": {
+        "random_removal|greedy_cheapest_insertion": 0.023294783619497585,
+        "random_removal|noise_insertion": 0.023203703754060126,
+        "random_removal|regret_2_insertion": 0.0598881835535456,
+        "random_removal|regret_3_insertion": 0.05980081656045873,
+        "random_removal|time_window_priority_insertion": 0.023699179594769075,
+        "route_removal|greedy_cheapest_insertion": 0.05965440271290734,
+        "route_removal|noise_insertion": 0.023380209540155225,
+        "route_removal|regret_2_insertion": 0.019145761715466135,
+        "route_removal|regret_3_insertion": 0.05957438587502044,
+        "route_removal|time_window_priority_insertion": 0.05974901472988515,
+        "shaw_related_removal|greedy_cheapest_insertion": 0.04363522398573527,
+        "shaw_related_removal|noise_insertion": 0.02242710187086637,
+        "shaw_related_removal|regret_2_insertion": 0.060008681854844426,
+        "shaw_related_removal|regret_3_insertion": 0.025568589996367137,
+        "shaw_related_removal|time_window_priority_insertion": 0.023252845190086205,
+        "time_window_tight_removal|greedy_cheapest_insertion": 0.02344821233894992,
+        "time_window_tight_removal|noise_insertion": 0.022393928265257906,
+        "time_window_tight_removal|regret_2_insertion": 0.05972228528933045,
+        "time_window_tight_removal|regret_3_insertion": 0.0597858442840295,
+        "time_window_tight_removal|time_window_priority_insertion": 0.023472072064485747,
+        "worst_distance_removal|greedy_cheapest_insertion": 0.05962161165799763,
+        "worst_distance_removal|noise_insertion": 0.02329378893703027,
+        "worst_distance_removal|regret_2_insertion": 0.05963118143748721,
+        "worst_distance_removal|regret_3_insertion": 0.022185577981955022,
+        "worst_distance_removal|time_window_priority_insertion": 0.060162613189811344
+      },
+      "pair_stats": {
+        "random_removal|greedy_cheapest_insertion": {
+          "accepted": 26,
+          "improvement_sum": 0.0,
+          "new_best": 0,
+          "reward_sum": 34.26227859325893,
+          "selected": 36
+        },
+        "random_removal|noise_insertion": {
+          "accepted": 26,
+          "improvement_sum": 1791.9028265366796,
+          "new_best": 8,
+          "reward_sum": 108.06192306167608,
+          "selected": 45
+        },
+        "random_removal|regret_2_insertion": {
+          "accepted": 36,
+          "improvement_sum": 0.0,
+          "new_best": 0,
+          "reward_sum": 44.69494063410254,
+          "selected": 38
+        },
+        "random_removal|regret_3_insertion": {
+          "accepted": 43,
+          "improvement_sum": 0.8612502468167804,
+          "new_best": 1,
+          "reward_sum": 61.665771826517265,
+          "selected": 45
+        },
+        "random_removal|time_window_priority_insertion": {
+          "accepted": 26,
+          "improvement_sum": 0.0,
+          "new_best": 0,
+          "reward_sum": 34.26227859325891,
+          "selected": 36
+        },
+        "route_removal|greedy_cheapest_insertion": {
+          "accepted": 48,
+          "improvement_sum": 0.0,
+          "new_best": 0,
+          "reward_sum": 58.84680954457611,
+          "selected": 48
+        },
+        "route_removal|noise_insertion": {
+          "accepted": 10,
+          "improvement_sum": 0.0,
+          "new_best": 0,
+          "reward_sum": 16.521686065254315,
+          "selected": 28
+        },
+        "route_removal|regret_2_insertion": {
+          "accepted": 37,
+          "improvement_sum": 0.0,
+          "new_best": 0,
+          "reward_sum": 45.69494063410254,
+          "selected": 38
+        },
+        "route_removal|regret_3_insertion": {
+          "accepted": 45,
+          "improvement_sum": 0.0,
+          "new_best": 0,
+          "reward_sum": 55.41778928869658,
+          "selected": 46
+        },
+        "route_removal|time_window_priority_insertion": {
+          "accepted": 49,
+          "improvement_sum": 0.0,
+          "new_best": 0,
+          "reward_sum": 60.061095258861826,
+          "selected": 49
+        },
+        "shaw_related_removal|greedy_cheapest_insertion": {
+          "accepted": 9,
+          "improvement_sum": 0.0,
+          "new_best": 0,
+          "reward_sum": 17.045611926592258,
+          "selected": 35
+        },
+        "shaw_related_removal|noise_insertion": {
+          "accepted": 10,
+          "improvement_sum": 0.0,
+          "new_best": 0,
+          "reward_sum": 16.521686065254315,
+          "selected": 28
+        },
+        "shaw_related_removal|regret_2_insertion": {
+          "accepted": 20,
+          "improvement_sum": 0.0,
+          "new_best": 0,
+          "reward_sum": 26.521686065254308,
+          "selected": 28
+        },
+        "shaw_related_removal|regret_3_insertion": {
+          "accepted": 40,
+          "improvement_sum": 1092.8516865911079,
+          "new_best": 2,
+          "reward_sum": 70.759906238705,
+          "selected": 57
+        },
+        "shaw_related_removal|time_window_priority_insertion": {
+          "accepted": 22,
+          "improvement_sum": 100.72852505202172,
+          "new_best": 3,
+          "reward_sum": 59.03669129167091,
+          "selected": 46
+        },
+        "time_window_tight_removal|greedy_cheapest_insertion": {
+          "accepted": 1,
+          "improvement_sum": 0.0,
+          "new_best": 0,
+          "reward_sum": 5.314223249366929,
+          "selected": 18
+        },
+        "time_window_tight_removal|noise_insertion": {
+          "accepted": 4,
+          "improvement_sum": 0.0,
+          "new_best": 0,
+          "reward_sum": 10.302787841603852,
+          "selected": 27
+        },
+        "time_window_tight_removal|regret_2_insertion": {
+          "accepted": 53,
+          "improvement_sum": 0.0,
+          "new_best": 0,
+          "reward_sum": 64.91684375662633,
+          "selected": 53
+        },
+        "time_window_tight_removal|regret_3_insertion": {
+          "accepted": 45,
+          "improvement_sum": 44.26256911008386,
+          "new_best": 1,
+          "reward_sum": 64.18095178243478,
+          "selected": 45
+        },
+        "time_window_tight_removal|time_window_priority_insertion": {
+          "accepted": 2,
+          "improvement_sum": 0.0,
+          "new_best": 0,
+          "reward_sum": 5.866399460823744,
+          "selected": 16
+        },
+        "worst_distance_removal|greedy_cheapest_insertion": {
+          "accepted": 66,
+          "improvement_sum": 5322.61109888315,
+          "new_best": 3,
+          "reward_sum": 108.31394841099659,
+          "selected": 69
+        },
+        "worst_distance_removal|noise_insertion": {
+          "accepted": 10,
+          "improvement_sum": 0.0,
+          "new_best": 0,
+          "reward_sum": 18.91095344948304,
+          "selected": 39
+        },
+        "worst_distance_removal|regret_2_insertion": {
+          "accepted": 67,
+          "improvement_sum": 0.051628237939439714,
+          "new_best": 1,
+          "reward_sum": 89.94622959901818,
+          "selected": 67
+        },
+        "worst_distance_removal|regret_3_insertion": {
+          "accepted": 39,
+          "improvement_sum": 0.0,
+          "new_best": 0,
+          "reward_sum": 47.910953449483046,
+          "selected": 39
+        },
+        "worst_distance_removal|time_window_priority_insertion": {
+          "accepted": 24,
+          "improvement_sum": 0.0,
+          "new_best": 0,
+          "reward_sum": 29.643931219117043,
+          "selected": 24
+        }
+      },
+      "temperature": 1.0,
+      "use_diversity_bonus": true,
+      "use_pair_memory": true
+    },
+    "solver_alias": "alns_mosade",
+    "time_unit": "minutes",
+    "travel_time_note": "road-network shortest-path proxy"
+  },
+  "objective": 323956.684174675,
+  "routes": [
+    {
+      "distance": 11039.303388593915,
+      "duration": 78.22408827058176,
+      "load": 35,
+      "stops": [
+        {
+          "arrival_time": 3.130459104246661,
+          "customer_id": 22,
+          "departure_time": 8.130459104246661,
+          "load_after": 4,
+          "start_service_time": 3.130459104246661
+        },
+        {
+          "arrival_time": 9.68270236846515,
+          "customer_id": 24,
+          "departure_time": 14.68270236846515,
+          "load_after": 7,
+          "start_service_time": 9.68270236846515
+        },
+        {
+          "arrival_time": 15.498398270371393,
+          "customer_id": 30,
+          "departure_time": 20.498398270371393,
+          "load_after": 11,
+          "start_service_time": 15.498398270371393
+        },
+        {
+          "arrival_time": 21.86844557327651,
+          "customer_id": 14,
+          "departure_time": 26.86844557327651,
+          "load_after": 14,
+          "start_service_time": 21.86844557327651
+        },
+        {
+          "arrival_time": 27.546930114469834,
+          "customer_id": 26,
+          "departure_time": 32.54693011446983,
+          "load_after": 18,
+          "start_service_time": 27.546930114469834
+        },
+        {
+          "arrival_time": 32.81958516997212,
+          "customer_id": 3,
+          "departure_time": 37.81958516997212,
+          "load_after": 19,
+          "start_service_time": 32.81958516997212
+        },
+        {
+          "arrival_time": 38.808462707326846,
+          "customer_id": 2,
+          "departure_time": 43.808462707326846,
+          "load_after": 20,
+          "start_service_time": 38.808462707326846
+        },
+        {
+          "arrival_time": 46.53571041923559,
+          "customer_id": 15,
+          "departure_time": 51.53571041923559,
+          "load_after": 21,
+          "start_service_time": 46.53571041923559
+        },
+        {
+          "arrival_time": 53.55344421418569,
+          "customer_id": 25,
+          "departure_time": 58.55344421418569,
+          "load_after": 25,
+          "start_service_time": 53.55344421418569
+        },
+        {
+          "arrival_time": 60.4296197541036,
+          "customer_id": 18,
+          "departure_time": 65.4296197541036,
+          "load_after": 29,
+          "start_service_time": 60.4296197541036
+        },
+        {
+          "arrival_time": 66.70628487725543,
+          "customer_id": 12,
+          "departure_time": 71.70628487725543,
+          "load_after": 32,
+          "start_service_time": 66.70628487725543
+        },
+        {
+          "arrival_time": 72.00431975562086,
+          "customer_id": 6,
+          "departure_time": 77.00431975562086,
+          "load_after": 35,
+          "start_service_time": 72.00431975562086
+        }
+      ],
+      "vehicle_id": 0
+    },
+    {
+      "distance": 9770.407827883984,
+      "duration": 90.53621352821753,
+      "load": 35,
+      "stops": [
+        {
+          "arrival_time": 1.972674224623095,
+          "customer_id": 7,
+          "departure_time": 6.972674224623095,
+          "load_after": 1,
+          "start_service_time": 1.972674224623095
+        },
+        {
+          "arrival_time": 7.544468502175034,
+          "customer_id": 21,
+          "departure_time": 12.544468502175034,
+          "load_after": 2,
+          "start_service_time": 7.544468502175034
+        },
+        {
+          "arrival_time": 13.508272409399428,
+          "customer_id": 11,
+          "departure_time": 18.508272409399428,
+          "load_after": 6,
+          "start_service_time": 13.508272409399428
+        },
+        {
+          "arrival_time": 18.90924820703546,
+          "customer_id": 10,
+          "departure_time": 23.90924820703546,
+          "load_after": 7,
+          "start_service_time": 18.90924820703546
+        },
+        {
+          "arrival_time": 25.739639382110013,
+          "customer_id": 17,
+          "departure_time": 30.739639382110013,
+          "load_after": 9,
+          "start_service_time": 25.739639382110013
+        },
+        {
+          "arrival_time": 30.94897732710817,
+          "customer_id": 27,
+          "departure_time": 35.94897732710817,
+          "load_after": 11,
+          "start_service_time": 30.94897732710817
+        },
+        {
+          "arrival_time": 37.00678677969481,
+          "customer_id": 4,
+          "departure_time": 42.00678677969481,
+          "load_after": 15,
+          "start_service_time": 37.00678677969481
+        },
+        {
+          "arrival_time": 43.28141140817394,
+          "customer_id": 13,
+          "departure_time": 48.28141140817394,
+          "load_after": 18,
+          "start_service_time": 43.28141140817394
+        },
+        {
+          "arrival_time": 48.555208782533825,
+          "customer_id": 28,
+          "departure_time": 53.555208782533825,
+          "load_after": 21,
+          "start_service_time": 48.555208782533825
+        },
+        {
+          "arrival_time": 53.937979177594784,
+          "customer_id": 20,
+          "departure_time": 58.937979177594784,
+          "load_after": 22,
+          "start_service_time": 53.937979177594784
+        },
+        {
+          "arrival_time": 60.97664916938406,
+          "customer_id": 16,
+          "departure_time": 65.97664916938406,
+          "load_after": 24,
+          "start_service_time": 60.97664916938406
+        },
+        {
+          "arrival_time": 66.3778973574145,
+          "customer_id": 1,
+          "departure_time": 71.3778973574145,
+          "load_after": 27,
+          "start_service_time": 66.3778973574145
+        },
+        {
+          "arrival_time": 73.10986301056504,
+          "customer_id": 8,
+          "departure_time": 78.10986301056504,
+          "load_after": 29,
+          "start_service_time": 73.10986301056504
+        },
+        {
+          "arrival_time": 78.13250677741436,
+          "customer_id": 29,
+          "departure_time": 83.13250677741436,
+          "load_after": 33,
+          "start_service_time": 78.13250677741436
+        },
+        {
+          "arrival_time": 83.82219433460149,
+          "customer_id": 23,
+          "departure_time": 88.82219433460149,
+          "load_after": 35,
+          "start_service_time": 83.82219433460149
+        }
+      ],
+      "vehicle_id": 1
+    },
+    {
+      "distance": 3146.9729581971346,
+      "duration": 20.688402766792944,
+      "load": 6,
+      "stops": [
+        {
+          "arrival_time": 1.5329325505697502,
+          "customer_id": 9,
+          "departure_time": 6.53293255056975,
+          "load_after": 1,
+          "start_service_time": 1.5329325505697502
+        },
+        {
+          "arrival_time": 7.766340106670575,
+          "customer_id": 19,
+          "departure_time": 12.766340106670576,
+          "load_after": 3,
+          "start_service_time": 7.766340106670575
+        },
+        {
+          "arrival_time": 13.378430370938213,
+          "customer_id": 5,
+          "departure_time": 18.37843037093821,
+          "load_after": 6,
+          "start_service_time": 13.378430370938213
+        }
+      ],
+      "vehicle_id": 2
+    }
+  ],
+  "runtime_sec": 6.256464200007031,
+  "solver_name": "alns_mosade",
+  "total_distance": 23956.684174675032,
+  "total_duration": 189.4487045655922,
+  "vehicles_used": 3
+}

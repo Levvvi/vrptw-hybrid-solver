@@ -1,0 +1,4 @@
+solver_a,solver_b,metric,paired_n,mean_a,mean_b,mean_diff_a_minus_b,relative_mean_diff_pct,median_diff_a_minus_b,p_value,p_value_holm,reject_0_05,effect_size_rank_biserial,better_solver
+alns_mosade,alns_roulette,cost,15,333584.54849419947,333581.07067562063,3.4778185788658447,0.0010425707225494233,0.0,0.7874064906662693,1.0,False,0.13333333333333333,alns_roulette
+alns_mosade,alns_uniform,cost,15,333584.54849419947,333577.0137363803,7.534757819147004,0.0022587760873408686,0.0,0.4184922334468198,1.0,False,0.4,alns_uniform
+alns_roulette,alns_uniform,cost,15,333581.07067562063,333577.0137363803,4.056939240281159,0.0012161926851225807,0.0,0.5929800980174267,1.0,False,0.3333333333333333,alns_uniform

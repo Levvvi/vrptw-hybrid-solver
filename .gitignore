@@ -1,8 +1,12 @@
 .venv/
+.venv*/
+.ai-bridge/
+cache/
 .mypy_cache/
 .pytest_cache/
 .ruff_cache/
 __pycache__/
+*.pyc
 *.py[cod]
 *$py.class
 

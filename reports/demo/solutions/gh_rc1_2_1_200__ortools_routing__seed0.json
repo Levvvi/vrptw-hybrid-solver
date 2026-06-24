@@ -1,0 +1,1589 @@
+{
+  "feasible": true,
+  "instance_name": "rc1_2_1",
+  "metadata": {
+    "ablation": "ortools_routing",
+    "feasibility_violations": [],
+    "first_solution_strategy": "PATH_CHEAPEST_ARC",
+    "local_search_metaheuristic": "GUIDED_LOCAL_SEARCH",
+    "scale_factor": 100,
+    "status": "SOLUTION_FOUND",
+    "time_limit_sec": 60.0
+  },
+  "objective": 2103673.743332351,
+  "routes": [
+    {
+      "distance": 241.8508756958478,
+      "duration": 618.6516365581881,
+      "load": 181,
+      "stops": [
+        {
+          "arrival_time": 10.63014581273465,
+          "customer_id": 142,
+          "departure_time": 20.63014581273465,
+          "load_after": 19,
+          "start_service_time": 10.63014581273465
+        },
+        {
+          "arrival_time": 52.03078274894982,
+          "customer_id": 152,
+          "departure_time": 62.03078274894982,
+          "load_after": 31,
+          "start_service_time": 52.03078274894982
+        },
+        {
+          "arrival_time": 75.48440679602353,
+          "customer_id": 167,
+          "departure_time": 85.48440679602353,
+          "load_after": 40,
+          "start_service_time": 75.48440679602353
+        },
+        {
+          "arrival_time": 92.55547460788901,
+          "customer_id": 190,
+          "departure_time": 106.0,
+          "load_after": 58,
+          "start_service_time": 96.0
+        },
+        {
+          "arrival_time": 143.0135110466435,
+          "customer_id": 111,
+          "departure_time": 166.0,
+          "load_after": 98,
+          "start_service_time": 156.0
+        },
+        {
+          "arrival_time": 198.38826948140328,
+          "customer_id": 95,
+          "departure_time": 234.0,
+          "load_after": 99,
+          "start_service_time": 224.0
+        },
+        {
+          "arrival_time": 242.06225774829855,
+          "customer_id": 116,
+          "departure_time": 309.0,
+          "load_after": 112,
+          "start_service_time": 299.0
+        },
+        {
+          "arrival_time": 320.180339887499,
+          "customer_id": 83,
+          "departure_time": 508.0,
+          "load_after": 121,
+          "start_service_time": 498.0
+        },
+        {
+          "arrival_time": 525.0293863659264,
+          "customer_id": 148,
+          "departure_time": 535.03,
+          "load_after": 148,
+          "start_service_time": 525.03
+        },
+        {
+          "arrival_time": 563.8744102037119,
+          "customer_id": 36,
+          "departure_time": 573.8744102037119,
+          "load_after": 181,
+          "start_service_time": 563.8744102037119
+        }
+      ],
+      "vehicle_id": 0
+    },
+    {
+      "distance": 157.24714021115727,
+      "duration": 506.95,
+      "load": 188,
+      "stops": [
+        {
+          "arrival_time": 31.827660925679098,
+          "customer_id": 162,
+          "departure_time": 41.83,
+          "load_after": 19,
+          "start_service_time": 31.83
+        },
+        {
+          "arrival_time": 68.99615541441224,
+          "customer_id": 172,
+          "departure_time": 79.0,
+          "load_after": 39,
+          "start_service_time": 69.0
+        },
+        {
+          "arrival_time": 83.12310562561765,
+          "customer_id": 197,
+          "departure_time": 93.12310562561765,
+          "load_after": 49,
+          "start_service_time": 83.12310562561765
+        },
+        {
+          "arrival_time": 97.24621125123531,
+          "customer_id": 5,
+          "departure_time": 107.24621125123531,
+          "load_after": 69,
+          "start_service_time": 97.24621125123531
+        },
+        {
+          "arrival_time": 108.24621125123531,
+          "customer_id": 62,
+          "departure_time": 118.24621125123531,
+          "load_after": 89,
+          "start_service_time": 108.24621125123531
+        },
+        {
+          "arrival_time": 119.6604248136084,
+          "customer_id": 26,
+          "departure_time": 129.66042481360842,
+          "load_after": 119,
+          "start_service_time": 119.6604248136084
+        },
+        {
+          "arrival_time": 131.07463837598152,
+          "customer_id": 159,
+          "departure_time": 141.07463837598152,
+          "load_after": 149,
+          "start_service_time": 131.07463837598152
+        },
+        {
+          "arrival_time": 156.30618458770934,
+          "customer_id": 141,
+          "departure_time": 426.0,
+          "load_after": 173,
+          "start_service_time": 416.0
+        },
+        {
+          "arrival_time": 435.8488578017961,
+          "customer_id": 185,
+          "departure_time": 445.85,
+          "load_after": 188,
+          "start_service_time": 435.85
+        }
+      ],
+      "vehicle_id": 1
+    },
+    {
+      "distance": 209.02553982541883,
+      "duration": 520.43,
+      "load": 98,
+      "stops": [
+        {
+          "arrival_time": 15.297058540778355,
+          "customer_id": 153,
+          "departure_time": 25.3,
+          "load_after": 10,
+          "start_service_time": 15.3
+        },
+        {
+          "arrival_time": 40.33329637837291,
+          "customer_id": 47,
+          "departure_time": 50.33329637837291,
+          "load_after": 30,
+          "start_service_time": 40.33329637837291
+        },
+        {
+          "arrival_time": 68.36105275569285,
+          "customer_id": 200,
+          "departure_time": 78.36105275569285,
+          "load_after": 46,
+          "start_service_time": 68.36105275569285
+        },
+        {
+          "arrival_time": 97.5964368173642,
+          "customer_id": 103,
+          "departure_time": 107.6,
+          "load_after": 54,
+          "start_service_time": 97.6
+        },
+        {
+          "arrival_time": 149.38516483155234,
+          "customer_id": 73,
+          "departure_time": 332.0,
+          "load_after": 66,
+          "start_service_time": 322.0
+        },
+        {
+          "arrival_time": 344.0415945787923,
+          "customer_id": 93,
+          "departure_time": 386.0,
+          "load_after": 86,
+          "start_service_time": 376.0
+        },
+        {
+          "arrival_time": 411.17935662402834,
+          "customer_id": 120,
+          "departure_time": 448.0,
+          "load_after": 91,
+          "start_service_time": 438.0
+        },
+        {
+          "arrival_time": 473.31797780234433,
+          "customer_id": 39,
+          "departure_time": 483.32,
+          "load_after": 98,
+          "start_service_time": 473.32
+        }
+      ],
+      "vehicle_id": 2
+    },
+    {
+      "distance": 146.7375249018339,
+      "duration": 354.42,
+      "load": 181,
+      "stops": [
+        {
+          "arrival_time": 51.03920062069938,
+          "customer_id": 84,
+          "departure_time": 61.04,
+          "load_after": 10,
+          "start_service_time": 51.04
+        },
+        {
+          "arrival_time": 67.36455532033676,
+          "customer_id": 199,
+          "departure_time": 77.36455532033676,
+          "load_after": 50,
+          "start_service_time": 67.36455532033676
+        },
+        {
+          "arrival_time": 80.19298244508295,
+          "customer_id": 127,
+          "departure_time": 90.19298244508295,
+          "load_after": 70,
+          "start_service_time": 80.19298244508295
+        },
+        {
+          "arrival_time": 100.8231282578176,
+          "customer_id": 118,
+          "departure_time": 110.8231282578176,
+          "load_after": 80,
+          "start_service_time": 100.8231282578176
+        },
+        {
+          "arrival_time": 121.26343476672815,
+          "customer_id": 105,
+          "departure_time": 131.26343476672815,
+          "load_after": 100,
+          "start_service_time": 121.26343476672815
+        },
+        {
+          "arrival_time": 136.26343476672815,
+          "customer_id": 69,
+          "departure_time": 146.26343476672815,
+          "load_after": 110,
+          "start_service_time": 136.26343476672815
+        },
+        {
+          "arrival_time": 149.09186189147434,
+          "customer_id": 176,
+          "departure_time": 159.09186189147434,
+          "load_after": 120,
+          "start_service_time": 149.09186189147434
+        },
+        {
+          "arrival_time": 161.92028901622052,
+          "customer_id": 113,
+          "departure_time": 171.92028901622052,
+          "load_after": 130,
+          "start_service_time": 161.92028901622052
+        },
+        {
+          "arrival_time": 174.15635699372032,
+          "customer_id": 191,
+          "departure_time": 184.16,
+          "load_after": 150,
+          "start_service_time": 174.16
+        },
+        {
+          "arrival_time": 187.32227766016837,
+          "customer_id": 58,
+          "departure_time": 197.32227766016837,
+          "load_after": 160,
+          "start_service_time": 187.32227766016837
+        },
+        {
+          "arrival_time": 200.32227766016837,
+          "customer_id": 134,
+          "departure_time": 210.32227766016837,
+          "load_after": 180,
+          "start_service_time": 200.32227766016837
+        },
+        {
+          "arrival_time": 230.32227766016837,
+          "customer_id": 174,
+          "departure_time": 328.0,
+          "load_after": 181,
+          "start_service_time": 318.0
+        }
+      ],
+      "vehicle_id": 3
+    },
+    {
+      "distance": 206.8849214299755,
+      "duration": 414.19202405202645,
+      "load": 198,
+      "stops": [
+        {
+          "arrival_time": 9.219544457292887,
+          "customer_id": 4,
+          "departure_time": 19.22,
+          "load_after": 22,
+          "start_service_time": 9.22
+        },
+        {
+          "arrival_time": 77.22,
+          "customer_id": 45,
+          "departure_time": 87.22,
+          "load_after": 42,
+          "start_service_time": 77.22
+        },
+        {
+          "arrival_time": 89.22,
+          "customer_id": 108,
+          "departure_time": 107.0,
+          "load_after": 62,
+          "start_service_time": 97.0
+        },
+        {
+          "arrival_time": 110.0,
+          "customer_id": 38,
+          "departure_time": 120.0,
+          "load_after": 72,
+          "start_service_time": 110.0
+        },
+        {
+          "arrival_time": 121.0,
+          "customer_id": 32,
+          "departure_time": 131.0,
+          "load_after": 92,
+          "start_service_time": 121.0
+        },
+        {
+          "arrival_time": 135.0,
+          "customer_id": 23,
+          "departure_time": 145.0,
+          "load_after": 102,
+          "start_service_time": 135.0
+        },
+        {
+          "arrival_time": 147.0,
+          "customer_id": 117,
+          "departure_time": 157.0,
+          "load_after": 122,
+          "start_service_time": 147.0
+        },
+        {
+          "arrival_time": 183.57066051117283,
+          "customer_id": 129,
+          "departure_time": 193.57066051117283,
+          "load_after": 152,
+          "start_service_time": 183.57066051117283
+        },
+        {
+          "arrival_time": 216.1316888565298,
+          "customer_id": 106,
+          "departure_time": 226.1316888565298,
+          "load_after": 195,
+          "start_service_time": 216.1316888565298
+        },
+        {
+          "arrival_time": 239.4733529206561,
+          "customer_id": 70,
+          "departure_time": 349.0,
+          "load_after": 198,
+          "start_service_time": 339.0
+        }
+      ],
+      "vehicle_id": 4
+    },
+    {
+      "distance": 116.2424801813218,
+      "duration": 545.1540058485093,
+      "load": 146,
+      "stops": [
+        {
+          "arrival_time": 32.31098884280702,
+          "customer_id": 89,
+          "departure_time": 114.0,
+          "load_after": 18,
+          "start_service_time": 104.0
+        },
+        {
+          "arrival_time": 148.17601498127013,
+          "customer_id": 87,
+          "departure_time": 242.0,
+          "load_after": 36,
+          "start_service_time": 232.0
+        },
+        {
+          "arrival_time": 248.0,
+          "customer_id": 17,
+          "departure_time": 330.0,
+          "load_after": 61,
+          "start_service_time": 320.0
+        },
+        {
+          "arrival_time": 343.6014705087354,
+          "customer_id": 30,
+          "departure_time": 495.0,
+          "load_after": 96,
+          "start_service_time": 485.0
+        },
+        {
+          "arrival_time": 506.180339887499,
+          "customer_id": 64,
+          "departure_time": 516.180339887499,
+          "load_after": 119,
+          "start_service_time": 506.180339887499
+        },
+        {
+          "arrival_time": 522.5048952078358,
+          "customer_id": 67,
+          "departure_time": 532.5048952078358,
+          "load_after": 146,
+          "start_service_time": 522.5048952078358
+        }
+      ],
+      "vehicle_id": 6
+    },
+    {
+      "distance": 59.084044604722116,
+      "duration": 180.68,
+      "load": 170,
+      "stops": [
+        {
+          "arrival_time": 14.422205101855956,
+          "customer_id": 163,
+          "departure_time": 36.0,
+          "load_after": 20,
+          "start_service_time": 26.0
+        },
+        {
+          "arrival_time": 37.41421356237309,
+          "customer_id": 28,
+          "departure_time": 47.41421356237309,
+          "load_after": 30,
+          "start_service_time": 37.41421356237309
+        },
+        {
+          "arrival_time": 51.01976483783708,
+          "customer_id": 6,
+          "departure_time": 61.02,
+          "load_after": 40,
+          "start_service_time": 51.02
+        },
+        {
+          "arrival_time": 65.49213595499958,
+          "customer_id": 49,
+          "departure_time": 75.49213595499958,
+          "load_after": 50,
+          "start_service_time": 65.49213595499958
+        },
+        {
+          "arrival_time": 78.32056307974577,
+          "customer_id": 14,
+          "departure_time": 88.32056307974577,
+          "load_after": 70,
+          "start_service_time": 78.32056307974577
+        },
+        {
+          "arrival_time": 92.79269903474534,
+          "customer_id": 132,
+          "departure_time": 102.79269903474534,
+          "load_after": 90,
+          "start_service_time": 92.79269903474534
+        },
+        {
+          "arrival_time": 105.02876701224513,
+          "customer_id": 78,
+          "departure_time": 115.03,
+          "load_after": 100,
+          "start_service_time": 105.03
+        },
+        {
+          "arrival_time": 118.635551275464,
+          "customer_id": 171,
+          "departure_time": 128.64,
+          "load_after": 120,
+          "start_service_time": 118.64
+        },
+        {
+          "arrival_time": 132.24555127546398,
+          "customer_id": 130,
+          "departure_time": 142.25,
+          "load_after": 130,
+          "start_service_time": 132.25
+        },
+        {
+          "arrival_time": 146.25,
+          "customer_id": 187,
+          "departure_time": 156.25,
+          "load_after": 150,
+          "start_service_time": 146.25
+        },
+        {
+          "arrival_time": 159.855551275464,
+          "customer_id": 150,
+          "departure_time": 169.86,
+          "load_after": 170,
+          "start_service_time": 159.86
+        }
+      ],
+      "vehicle_id": 7
+    },
+    {
+      "distance": 168.37630767498663,
+      "duration": 371.1140997321589,
+      "load": 163,
+      "stops": [
+        {
+          "arrival_time": 15.811388300841896,
+          "customer_id": 92,
+          "departure_time": 25.811388300841898,
+          "load_after": 37,
+          "start_service_time": 15.811388300841896
+        },
+        {
+          "arrival_time": 47.90211033521642,
+          "customer_id": 195,
+          "departure_time": 57.90211033521642,
+          "load_after": 71,
+          "start_service_time": 47.90211033521642
+        },
+        {
+          "arrival_time": 93.41267214434583,
+          "customer_id": 31,
+          "departure_time": 103.41267214434583,
+          "load_after": 80,
+          "start_service_time": 93.41267214434583
+        },
+        {
+          "arrival_time": 108.41267214434583,
+          "customer_id": 52,
+          "departure_time": 179.0,
+          "load_after": 92,
+          "start_service_time": 169.0
+        },
+        {
+          "arrival_time": 188.2195444572929,
+          "customer_id": 74,
+          "departure_time": 201.0,
+          "load_after": 111,
+          "start_service_time": 191.0
+        },
+        {
+          "arrival_time": 229.4253408071038,
+          "customer_id": 55,
+          "departure_time": 293.0,
+          "load_after": 136,
+          "start_service_time": 283.0
+        },
+        {
+          "arrival_time": 310.20465053408526,
+          "customer_id": 158,
+          "departure_time": 336.0,
+          "load_after": 163,
+          "start_service_time": 326.0
+        }
+      ],
+      "vehicle_id": 8
+    },
+    {
+      "distance": 255.26587485960457,
+      "duration": 498.8712887414928,
+      "load": 187,
+      "stops": [
+        {
+          "arrival_time": 21.37755832643195,
+          "customer_id": 140,
+          "departure_time": 31.38,
+          "load_after": 16,
+          "start_service_time": 21.38
+        },
+        {
+          "arrival_time": 64.68165161069342,
+          "customer_id": 88,
+          "departure_time": 74.68165161069342,
+          "load_after": 43,
+          "start_service_time": 64.68165161069342
+        },
+        {
+          "arrival_time": 97.7684443719238,
+          "customer_id": 144,
+          "departure_time": 220.0,
+          "load_after": 48,
+          "start_service_time": 210.0
+        },
+        {
+          "arrival_time": 234.0356688476182,
+          "customer_id": 71,
+          "departure_time": 244.04,
+          "load_after": 82,
+          "start_service_time": 234.04
+        },
+        {
+          "arrival_time": 261.50424919657297,
+          "customer_id": 137,
+          "departure_time": 271.50424919657297,
+          "load_after": 98,
+          "start_service_time": 261.50424919657297
+        },
+        {
+          "arrival_time": 292.59927230630194,
+          "customer_id": 123,
+          "departure_time": 302.6,
+          "load_after": 108,
+          "start_service_time": 292.6
+        },
+        {
+          "arrival_time": 338.0400902933387,
+          "customer_id": 13,
+          "departure_time": 348.0400902933387,
+          "load_after": 126,
+          "start_service_time": 338.0400902933387
+        },
+        {
+          "arrival_time": 360.2056153539352,
+          "customer_id": 8,
+          "departure_time": 370.21,
+          "load_after": 136,
+          "start_service_time": 360.21
+        },
+        {
+          "arrival_time": 379.6439811320566,
+          "customer_id": 60,
+          "departure_time": 411.0,
+          "load_after": 153,
+          "start_service_time": 401.0
+        },
+        {
+          "arrival_time": 413.2360679774998,
+          "customer_id": 1,
+          "departure_time": 423.24,
+          "load_after": 167,
+          "start_service_time": 413.24
+        },
+        {
+          "arrival_time": 448.55797780234434,
+          "customer_id": 97,
+          "departure_time": 458.56,
+          "load_after": 187,
+          "start_service_time": 448.56
+        }
+      ],
+      "vehicle_id": 9
+    },
+    {
+      "distance": 185.25491877390292,
+      "duration": 416.5018792991333,
+      "load": 151,
+      "stops": [
+        {
+          "arrival_time": 35.77708763999664,
+          "customer_id": 37,
+          "departure_time": 45.78,
+          "load_after": 10,
+          "start_service_time": 35.78
+        },
+        {
+          "arrival_time": 82.79351104664349,
+          "customer_id": 177,
+          "departure_time": 92.79351104664349,
+          "load_after": 30,
+          "start_service_time": 82.79351104664349
+        },
+        {
+          "arrival_time": 99.50171497914286,
+          "customer_id": 128,
+          "departure_time": 109.50171497914286,
+          "load_after": 60,
+          "start_service_time": 99.50171497914286
+        },
+        {
+          "arrival_time": 117.31196465504951,
+          "customer_id": 65,
+          "departure_time": 127.31196465504951,
+          "load_after": 68,
+          "start_service_time": 117.31196465504951
+        },
+        {
+          "arrival_time": 139.3535592338418,
+          "customer_id": 189,
+          "departure_time": 174.0,
+          "load_after": 88,
+          "start_service_time": 164.0
+        },
+        {
+          "arrival_time": 175.4142135623731,
+          "customer_id": 109,
+          "departure_time": 185.4142135623731,
+          "load_after": 108,
+          "start_service_time": 175.4142135623731
+        },
+        {
+          "arrival_time": 189.0197648378371,
+          "customer_id": 125,
+          "departure_time": 199.02,
+          "load_after": 118,
+          "start_service_time": 189.02
+        },
+        {
+          "arrival_time": 217.40477631085025,
+          "customer_id": 33,
+          "departure_time": 344.0,
+          "load_after": 136,
+          "start_service_time": 334.0
+        },
+        {
+          "arrival_time": 372.0178514522438,
+          "customer_id": 66,
+          "departure_time": 382.02,
+          "load_after": 151,
+          "start_service_time": 372.02
+        }
+      ],
+      "vehicle_id": 10
+    },
+    {
+      "distance": 193.18371895345447,
+      "duration": 419.58,
+      "load": 167,
+      "stops": [
+        {
+          "arrival_time": 32.802438933713454,
+          "customer_id": 24,
+          "departure_time": 62.0,
+          "load_after": 6,
+          "start_service_time": 52.0
+        },
+        {
+          "arrival_time": 71.21954445729288,
+          "customer_id": 124,
+          "departure_time": 81.22,
+          "load_after": 26,
+          "start_service_time": 71.22
+        },
+        {
+          "arrival_time": 83.45606797749979,
+          "customer_id": 43,
+          "departure_time": 93.46,
+          "load_after": 46,
+          "start_service_time": 83.46
+        },
+        {
+          "arrival_time": 94.46,
+          "customer_id": 180,
+          "departure_time": 104.46,
+          "load_after": 56,
+          "start_service_time": 94.46
+        },
+        {
+          "arrival_time": 107.28842712474618,
+          "customer_id": 136,
+          "departure_time": 125.0,
+          "load_after": 76,
+          "start_service_time": 115.0
+        },
+        {
+          "arrival_time": 128.0,
+          "customer_id": 3,
+          "departure_time": 138.0,
+          "load_after": 86,
+          "start_service_time": 128.0
+        },
+        {
+          "arrival_time": 154.1245154965971,
+          "customer_id": 110,
+          "departure_time": 200.0,
+          "load_after": 104,
+          "start_service_time": 190.0
+        },
+        {
+          "arrival_time": 211.18033988749895,
+          "customer_id": 44,
+          "departure_time": 221.18033988749895,
+          "load_after": 114,
+          "start_service_time": 211.18033988749895
+        },
+        {
+          "arrival_time": 235.18033988749895,
+          "customer_id": 90,
+          "departure_time": 245.18033988749895,
+          "load_after": 143,
+          "start_service_time": 235.18033988749895
+        },
+        {
+          "arrival_time": 286.1925331963187,
+          "customer_id": 79,
+          "departure_time": 296.1925331963187,
+          "load_after": 152,
+          "start_service_time": 286.1925331963187
+        },
+        {
+          "arrival_time": 318.3961365074932,
+          "customer_id": 96,
+          "departure_time": 382.0,
+          "load_after": 167,
+          "start_service_time": 372.0
+        }
+      ],
+      "vehicle_id": 11
+    },
+    {
+      "distance": 225.78312072866356,
+      "duration": 571.18,
+      "load": 182,
+      "stops": [
+        {
+          "arrival_time": 53.71219600798314,
+          "customer_id": 42,
+          "departure_time": 63.71219600798314,
+          "load_after": 10,
+          "start_service_time": 53.71219600798314
+        },
+        {
+          "arrival_time": 88.12530723945054,
+          "customer_id": 181,
+          "departure_time": 98.12530723945054,
+          "load_after": 30,
+          "start_service_time": 88.12530723945054
+        },
+        {
+          "arrival_time": 104.20806976974876,
+          "customer_id": 35,
+          "departure_time": 114.20806976974876,
+          "load_after": 40,
+          "start_service_time": 104.20806976974876
+        },
+        {
+          "arrival_time": 116.44413774724855,
+          "customer_id": 164,
+          "departure_time": 126.44413774724855,
+          "load_after": 70,
+          "start_service_time": 116.44413774724855
+        },
+        {
+          "arrival_time": 129.60641540741693,
+          "customer_id": 104,
+          "departure_time": 139.60641540741693,
+          "load_after": 80,
+          "start_service_time": 129.60641540741693
+        },
+        {
+          "arrival_time": 142.7686930675853,
+          "customer_id": 25,
+          "departure_time": 152.7686930675853,
+          "load_after": 90,
+          "start_service_time": 142.7686930675853
+        },
+        {
+          "arrival_time": 155.5971201923315,
+          "customer_id": 10,
+          "departure_time": 165.5971201923315,
+          "load_after": 100,
+          "start_service_time": 155.5971201923315
+        },
+        {
+          "arrival_time": 169.20267146779548,
+          "customer_id": 77,
+          "departure_time": 179.20267146779548,
+          "load_after": 110,
+          "start_service_time": 169.20267146779548
+        },
+        {
+          "arrival_time": 181.20267146779548,
+          "customer_id": 122,
+          "departure_time": 191.20267146779548,
+          "load_after": 150,
+          "start_service_time": 181.20267146779548
+        },
+        {
+          "arrival_time": 207.4814920638952,
+          "customer_id": 193,
+          "departure_time": 410.0,
+          "load_after": 160,
+          "start_service_time": 400.0
+        },
+        {
+          "arrival_time": 419.0,
+          "customer_id": 19,
+          "departure_time": 429.0,
+          "load_after": 162,
+          "start_service_time": 419.0
+        },
+        {
+          "arrival_time": 449.1246117974981,
+          "customer_id": 146,
+          "departure_time": 492.0,
+          "load_after": 182,
+          "start_service_time": 482.0
+        }
+      ],
+      "vehicle_id": 12
+    },
+    {
+      "distance": 108.4469791226834,
+      "duration": 388.8035085019828,
+      "load": 196,
+      "stops": [
+        {
+          "arrival_time": 32.202484376209235,
+          "customer_id": 100,
+          "departure_time": 42.202484376209235,
+          "load_after": 20,
+          "start_service_time": 32.202484376209235
+        },
+        {
+          "arrival_time": 49.27355218807471,
+          "customer_id": 9,
+          "departure_time": 59.27355218807471,
+          "load_after": 40,
+          "start_service_time": 49.27355218807471
+        },
+        {
+          "arrival_time": 62.1019793128209,
+          "customer_id": 12,
+          "departure_time": 72.1019793128209,
+          "load_after": 60,
+          "start_service_time": 62.1019793128209
+        },
+        {
+          "arrival_time": 76.1019793128209,
+          "customer_id": 59,
+          "departure_time": 86.1019793128209,
+          "load_after": 70,
+          "start_service_time": 76.1019793128209
+        },
+        {
+          "arrival_time": 87.516192875194,
+          "customer_id": 143,
+          "departure_time": 97.516192875194,
+          "load_after": 100,
+          "start_service_time": 87.516192875194
+        },
+        {
+          "arrival_time": 105.57845062349254,
+          "customer_id": 173,
+          "departure_time": 115.57845062349254,
+          "load_after": 110,
+          "start_service_time": 105.57845062349254
+        },
+        {
+          "arrival_time": 121.66121315379077,
+          "customer_id": 188,
+          "departure_time": 131.66121315379075,
+          "load_after": 120,
+          "start_service_time": 121.66121315379077
+        },
+        {
+          "arrival_time": 132.66121315379075,
+          "customer_id": 29,
+          "departure_time": 142.66121315379075,
+          "load_after": 130,
+          "start_service_time": 132.66121315379075
+        },
+        {
+          "arrival_time": 146.66121315379075,
+          "customer_id": 139,
+          "departure_time": 156.66121315379075,
+          "load_after": 150,
+          "start_service_time": 146.66121315379075
+        },
+        {
+          "arrival_time": 159.66121315379075,
+          "customer_id": 21,
+          "departure_time": 169.66121315379075,
+          "load_after": 160,
+          "start_service_time": 159.66121315379075
+        },
+        {
+          "arrival_time": 175.74397568408898,
+          "customer_id": 166,
+          "departure_time": 185.74397568408898,
+          "load_after": 180,
+          "start_service_time": 175.74397568408898
+        },
+        {
+          "arrival_time": 195.64347062070064,
+          "customer_id": 82,
+          "departure_time": 366.0,
+          "load_after": 196,
+          "start_service_time": 356.0
+        }
+      ],
+      "vehicle_id": 24
+    },
+    {
+      "distance": 207.69992115865983,
+      "duration": 575.6704891960967,
+      "load": 110,
+      "stops": [
+        {
+          "arrival_time": 24.0,
+          "customer_id": 54,
+          "departure_time": 34.0,
+          "load_after": 32,
+          "start_service_time": 24.0
+        },
+        {
+          "arrival_time": 72.47076812334268,
+          "customer_id": 155,
+          "departure_time": 82.47076812334268,
+          "load_after": 40,
+          "start_service_time": 72.47076812334268
+        },
+        {
+          "arrival_time": 91.0147718686602,
+          "customer_id": 121,
+          "departure_time": 297.0,
+          "load_after": 61,
+          "start_service_time": 287.0
+        },
+        {
+          "arrival_time": 307.0,
+          "customer_id": 115,
+          "departure_time": 320.0,
+          "load_after": 79,
+          "start_service_time": 310.0
+        },
+        {
+          "arrival_time": 343.6008474424119,
+          "customer_id": 11,
+          "departure_time": 353.6008474424119,
+          "load_after": 89,
+          "start_service_time": 343.6008474424119
+        },
+        {
+          "arrival_time": 384.014660093903,
+          "customer_id": 75,
+          "departure_time": 503.0,
+          "load_after": 110,
+          "start_service_time": 493.0
+        }
+      ],
+      "vehicle_id": 26
+    },
+    {
+      "distance": 182.62879537782337,
+      "duration": 402.87,
+      "load": 108,
+      "stops": [
+        {
+          "arrival_time": 37.57658845611187,
+          "customer_id": 169,
+          "departure_time": 63.0,
+          "load_after": 13,
+          "start_service_time": 53.0
+        },
+        {
+          "arrival_time": 100.94733192202055,
+          "customer_id": 61,
+          "departure_time": 111.0,
+          "load_after": 26,
+          "start_service_time": 101.0
+        },
+        {
+          "arrival_time": 117.0,
+          "customer_id": 198,
+          "departure_time": 186.0,
+          "load_after": 27,
+          "start_service_time": 176.0
+        },
+        {
+          "arrival_time": 221.34119409414458,
+          "customer_id": 22,
+          "departure_time": 231.34119409414458,
+          "load_after": 47,
+          "start_service_time": 221.34119409414458
+        },
+        {
+          "arrival_time": 250.2091563582578,
+          "customer_id": 41,
+          "departure_time": 260.21000000000004,
+          "load_after": 68,
+          "start_service_time": 250.21
+        },
+        {
+          "arrival_time": 270.21000000000004,
+          "customer_id": 194,
+          "departure_time": 280.21000000000004,
+          "load_after": 87,
+          "start_service_time": 270.21000000000004
+        },
+        {
+          "arrival_time": 298.23775637732,
+          "customer_id": 154,
+          "departure_time": 384.0,
+          "load_after": 108,
+          "start_service_time": 374.0
+        }
+      ],
+      "vehicle_id": 27
+    },
+    {
+      "distance": 202.84695704364492,
+      "duration": 491.2922470831599,
+      "load": 138,
+      "stops": [
+        {
+          "arrival_time": 65.11528238439882,
+          "customer_id": 165,
+          "departure_time": 75.12,
+          "load_after": 10,
+          "start_service_time": 65.12
+        },
+        {
+          "arrival_time": 76.12,
+          "customer_id": 85,
+          "departure_time": 86.12,
+          "load_after": 30,
+          "start_service_time": 76.12
+        },
+        {
+          "arrival_time": 89.28227766016839,
+          "customer_id": 56,
+          "departure_time": 99.28227766016839,
+          "load_after": 50,
+          "start_service_time": 89.28227766016839
+        },
+        {
+          "arrival_time": 127.58422105633821,
+          "customer_id": 53,
+          "departure_time": 137.5842210563382,
+          "load_after": 77,
+          "start_service_time": 127.58422105633821
+        },
+        {
+          "arrival_time": 147.5842210563382,
+          "customer_id": 101,
+          "departure_time": 206.0,
+          "load_after": 105,
+          "start_service_time": 196.0
+        },
+        {
+          "arrival_time": 211.0,
+          "customer_id": 192,
+          "departure_time": 232.0,
+          "load_after": 118,
+          "start_service_time": 222.0
+        },
+        {
+          "arrival_time": 245.89244398944982,
+          "customer_id": 50,
+          "departure_time": 267.0,
+          "load_after": 127,
+          "start_service_time": 257.0
+        },
+        {
+          "arrival_time": 273.0827625302982,
+          "customer_id": 157,
+          "departure_time": 421.0,
+          "load_after": 138,
+          "start_service_time": 411.0
+        }
+      ],
+      "vehicle_id": 31
+    },
+    {
+      "distance": 224.20342632001586,
+      "duration": 595.06,
+      "load": 200,
+      "stops": [
+        {
+          "arrival_time": 42.80186911806539,
+          "customer_id": 63,
+          "departure_time": 58.0,
+          "load_after": 9,
+          "start_service_time": 48.0
+        },
+        {
+          "arrival_time": 61.0,
+          "customer_id": 149,
+          "departure_time": 71.0,
+          "load_after": 22,
+          "start_service_time": 61.0
+        },
+        {
+          "arrival_time": 112.2310562561766,
+          "customer_id": 170,
+          "departure_time": 122.2310562561766,
+          "load_after": 45,
+          "start_service_time": 112.2310562561766
+        },
+        {
+          "arrival_time": 155.47259653336593,
+          "customer_id": 20,
+          "departure_time": 165.47259653336593,
+          "load_after": 65,
+          "start_service_time": 155.47259653336593
+        },
+        {
+          "arrival_time": 167.47259653336593,
+          "customer_id": 46,
+          "departure_time": 177.47259653336593,
+          "load_after": 75,
+          "start_service_time": 167.47259653336593
+        },
+        {
+          "arrival_time": 178.47259653336593,
+          "customer_id": 138,
+          "departure_time": 188.47259653336593,
+          "load_after": 85,
+          "start_service_time": 178.47259653336593
+        },
+        {
+          "arrival_time": 190.70866451086573,
+          "customer_id": 186,
+          "departure_time": 200.71,
+          "load_after": 105,
+          "start_service_time": 190.71
+        },
+        {
+          "arrival_time": 202.12421356237311,
+          "customer_id": 135,
+          "departure_time": 362.0,
+          "load_after": 125,
+          "start_service_time": 352.0
+        },
+        {
+          "arrival_time": 392.14962686336264,
+          "customer_id": 34,
+          "departure_time": 402.15,
+          "load_after": 138,
+          "start_service_time": 392.15
+        },
+        {
+          "arrival_time": 404.38606797749975,
+          "customer_id": 76,
+          "departure_time": 414.39,
+          "load_after": 164,
+          "start_service_time": 404.39
+        },
+        {
+          "arrival_time": 422.6362112512353,
+          "customer_id": 2,
+          "departure_time": 432.64,
+          "load_after": 179,
+          "start_service_time": 422.64
+        },
+        {
+          "arrival_time": 453.23126028197396,
+          "customer_id": 175,
+          "departure_time": 559.0,
+          "load_after": 200,
+          "start_service_time": 549.0
+        }
+      ],
+      "vehicle_id": 32
+    },
+    {
+      "distance": 182.47045176038284,
+      "duration": 374.73,
+      "load": 199,
+      "stops": [
+        {
+          "arrival_time": 84.62860036654276,
+          "customer_id": 168,
+          "departure_time": 101.0,
+          "load_after": 20,
+          "start_service_time": 91.0
+        },
+        {
+          "arrival_time": 104.0,
+          "customer_id": 99,
+          "departure_time": 114.0,
+          "load_after": 50,
+          "start_service_time": 104.0
+        },
+        {
+          "arrival_time": 115.0,
+          "customer_id": 94,
+          "departure_time": 125.0,
+          "load_after": 60,
+          "start_service_time": 115.0
+        },
+        {
+          "arrival_time": 127.23606797749979,
+          "customer_id": 151,
+          "departure_time": 137.24,
+          "load_after": 80,
+          "start_service_time": 127.24
+        },
+        {
+          "arrival_time": 140.40227766016838,
+          "customer_id": 160,
+          "departure_time": 150.40227766016838,
+          "load_after": 100,
+          "start_service_time": 140.40227766016838
+        },
+        {
+          "arrival_time": 157.47334547203386,
+          "customer_id": 112,
+          "departure_time": 167.47334547203386,
+          "load_after": 121,
+          "start_service_time": 157.47334547203386
+        },
+        {
+          "arrival_time": 181.47334547203386,
+          "customer_id": 114,
+          "departure_time": 191.47334547203386,
+          "load_after": 151,
+          "start_service_time": 181.47334547203386
+        },
+        {
+          "arrival_time": 195.07889674749785,
+          "customer_id": 86,
+          "departure_time": 205.08,
+          "load_after": 161,
+          "start_service_time": 195.08
+        },
+        {
+          "arrival_time": 217.1215945787923,
+          "customer_id": 81,
+          "departure_time": 313.0,
+          "load_after": 182,
+          "start_service_time": 303.0
+        },
+        {
+          "arrival_time": 323.0,
+          "customer_id": 107,
+          "departure_time": 333.0,
+          "load_after": 199,
+          "start_service_time": 323.0
+        }
+      ],
+      "vehicle_id": 33
+    },
+    {
+      "distance": 139.50969907695563,
+      "duration": 361.8,
+      "load": 198,
+      "stops": [
+        {
+          "arrival_time": 35.35533905932738,
+          "customer_id": 48,
+          "departure_time": 45.36,
+          "load_after": 20,
+          "start_service_time": 35.36
+        },
+        {
+          "arrival_time": 59.50213562373095,
+          "customer_id": 15,
+          "departure_time": 69.50213562373095,
+          "load_after": 50,
+          "start_service_time": 59.50213562373095
+        },
+        {
+          "arrival_time": 70.50213562373095,
+          "customer_id": 179,
+          "departure_time": 80.50213562373095,
+          "load_after": 70,
+          "start_service_time": 70.50213562373095
+        },
+        {
+          "arrival_time": 82.73820360123074,
+          "customer_id": 7,
+          "departure_time": 92.74,
+          "load_after": 80,
+          "start_service_time": 82.74
+        },
+        {
+          "arrival_time": 95.74,
+          "customer_id": 68,
+          "departure_time": 105.74,
+          "load_after": 120,
+          "start_service_time": 95.74
+        },
+        {
+          "arrival_time": 107.74,
+          "customer_id": 18,
+          "departure_time": 117.74,
+          "load_after": 150,
+          "start_service_time": 107.74
+        },
+        {
+          "arrival_time": 120.90227766016838,
+          "customer_id": 183,
+          "departure_time": 130.90227766016838,
+          "load_after": 170,
+          "start_service_time": 120.90227766016838
+        },
+        {
+          "arrival_time": 141.71893148656034,
+          "customer_id": 80,
+          "departure_time": 284.0,
+          "load_after": 183,
+          "start_service_time": 274.0
+        },
+        {
+          "arrival_time": 302.02775637732,
+          "customer_id": 178,
+          "departure_time": 312.03,
+          "load_after": 198,
+          "start_service_time": 302.03
+        }
+      ],
+      "vehicle_id": 35
+    },
+    {
+      "distance": 93.589686709093,
+      "duration": 193.59453867065463,
+      "load": 200,
+      "stops": [
+        {
+          "arrival_time": 33.015148038438355,
+          "customer_id": 182,
+          "departure_time": 43.02,
+          "load_after": 30,
+          "start_service_time": 33.02
+        },
+        {
+          "arrival_time": 49.34455532033676,
+          "customer_id": 57,
+          "departure_time": 59.34455532033676,
+          "load_after": 50,
+          "start_service_time": 49.34455532033676
+        },
+        {
+          "arrival_time": 62.34455532033676,
+          "customer_id": 133,
+          "departure_time": 72.34455532033675,
+          "load_after": 70,
+          "start_service_time": 62.34455532033676
+        },
+        {
+          "arrival_time": 73.34455532033675,
+          "customer_id": 147,
+          "departure_time": 83.34455532033675,
+          "load_after": 80,
+          "start_service_time": 73.34455532033675
+        },
+        {
+          "arrival_time": 85.34455532033675,
+          "customer_id": 40,
+          "departure_time": 95.34455532033675,
+          "load_after": 100,
+          "start_service_time": 85.34455532033675
+        },
+        {
+          "arrival_time": 97.58062329783654,
+          "customer_id": 16,
+          "departure_time": 107.58062329783654,
+          "load_after": 110,
+          "start_service_time": 97.58062329783654
+        },
+        {
+          "arrival_time": 108.99483686020963,
+          "customer_id": 98,
+          "departure_time": 118.99483686020963,
+          "load_after": 130,
+          "start_service_time": 108.99483686020963
+        },
+        {
+          "arrival_time": 119.99483686020963,
+          "customer_id": 119,
+          "departure_time": 129.99483686020963,
+          "load_after": 140,
+          "start_service_time": 119.99483686020963
+        },
+        {
+          "arrival_time": 134.23747754732892,
+          "customer_id": 161,
+          "departure_time": 144.23747754732892,
+          "load_after": 170,
+          "start_service_time": 134.23747754732892
+        },
+        {
+          "arrival_time": 150.06842944217422,
+          "customer_id": 72,
+          "departure_time": 160.06842944217422,
+          "load_after": 200,
+          "start_service_time": 150.06842944217422
+        }
+      ],
+      "vehicle_id": 36
+    },
+    {
+      "distance": 167.4109479411452,
+      "duration": 375.1131851401448,
+      "load": 197,
+      "stops": [
+        {
+          "arrival_time": 36.359317925395686,
+          "customer_id": 131,
+          "departure_time": 46.36,
+          "load_after": 23,
+          "start_service_time": 36.36
+        },
+        {
+          "arrival_time": 51.36,
+          "customer_id": 156,
+          "departure_time": 61.36,
+          "load_after": 43,
+          "start_service_time": 51.36
+        },
+        {
+          "arrival_time": 63.596067977499786,
+          "customer_id": 102,
+          "departure_time": 73.6,
+          "load_after": 53,
+          "start_service_time": 63.6
+        },
+        {
+          "arrival_time": 77.72310562561765,
+          "customer_id": 196,
+          "departure_time": 87.72310562561765,
+          "load_after": 62,
+          "start_service_time": 77.72310562561765
+        },
+        {
+          "arrival_time": 91.72310562561765,
+          "customer_id": 184,
+          "departure_time": 121.0,
+          "load_after": 92,
+          "start_service_time": 111.0
+        },
+        {
+          "arrival_time": 131.19803902718556,
+          "customer_id": 27,
+          "departure_time": 154.0,
+          "load_after": 128,
+          "start_service_time": 144.0
+        },
+        {
+          "arrival_time": 164.44030650891054,
+          "customer_id": 51,
+          "departure_time": 174.44030650891054,
+          "load_after": 160,
+          "start_service_time": 164.44030650891054
+        },
+        {
+          "arrival_time": 183.3845784189097,
+          "customer_id": 145,
+          "departure_time": 269.0,
+          "load_after": 180,
+          "start_service_time": 259.0
+        },
+        {
+          "arrival_time": 279.816653826392,
+          "customer_id": 91,
+          "departure_time": 289.82,
+          "load_after": 193,
+          "start_service_time": 279.82
+        },
+        {
+          "arrival_time": 315.37386467836126,
+          "customer_id": 126,
+          "departure_time": 325.37386467836126,
+          "load_after": 197,
+          "start_service_time": 315.37386467836126
+        }
+      ],
+      "vehicle_id": 40
+    }
+  ],
+  "runtime_sec": 60.006666200002655,
+  "solver_name": "ortools_routing",
+  "total_distance": 3673.7433323512932,
+  "total_duration": 9176.658902823547,
+  "vehicles_used": 21
+}

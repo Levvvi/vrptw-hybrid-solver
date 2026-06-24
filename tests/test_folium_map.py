@@ -161,7 +161,10 @@ def test_render_solution_map_adds_routes_markers_popups_and_layers(
     popup_texts = [
         str(element.args[0]) for element in registry if element.kind == "Popup" and element.args
     ]
-    assert any("Customer 1" in text and "arrival: 10" in text for text in popup_texts)
+    assert any(
+        "Customer 1" in text and "sequence: 1" in text and "arrival: 10" in text
+        for text in popup_texts
+    )
     assert any("time window: [5, 35]" in text for text in popup_texts)
 
 
@@ -177,3 +180,16 @@ def test_save_solution_map_html_writes_nonempty_file(
     assert saved_path == output_path
     assert output_path.exists()
     assert output_path.stat().st_size > 0
+
+
+def test_render_solution_map_can_create_vehicle_layers(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    registry = install_fake_folium(monkeypatch)
+
+    render_solution_map(make_instance(), make_solution(), vehicle_layers=True)
+
+    feature_group_names = [
+        element.kwargs["name"] for element in registry if element.kind == "FeatureGroup"
+    ]
+    assert "Vehicle 2" in feature_group_names

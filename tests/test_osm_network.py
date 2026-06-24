@@ -10,10 +10,15 @@ import vrptw_hybrid.data.osm_network as osm_network
 from vrptw_hybrid.data.osm_network import (
     OSMNetworkError,
     add_travel_time,
+    build_network_distance_matrix,
+    build_shortest_path_geometry,
     load_drive_network,
     nearest_graph_nodes,
+    nearest_nodes_for_orders,
     network_distance_time_matrix,
     osm_cache_path,
+    shortest_path_geometry,
+    shortest_path_nodes,
 )
 
 
@@ -88,10 +93,22 @@ def test_add_travel_time_uses_speed_or_highway_default() -> None:
     edge_default = edges[0][3]
     edge_explicit = edges[1][3]
 
+    assert isinstance(edge_default["length"], float)
     assert edge_default["speed_kph"] == 25.0
     assert edge_default["travel_time"] == pytest.approx(144.0)
     assert edge_explicit["speed_kph"] == 50.0
     assert edge_explicit["travel_time"] == pytest.approx(72.0)
+
+
+def test_add_travel_time_normalizes_graphml_string_lengths() -> None:
+    graph = FakeGraph()
+    graph.add_edge("1", "2", key=0, length="1000.0", highway="residential")
+
+    enriched = add_travel_time(graph)
+    edge_data = next(iter(enriched.edges(keys=True, data=True)))[3]
+
+    assert edge_data["length"] == 1000.0
+    assert edge_data["travel_time"] == pytest.approx(144.0)
 
 
 def test_load_drive_network_uses_existing_cache_without_osmnx(
@@ -116,6 +133,21 @@ def test_load_drive_network_without_cache_has_clear_error(tmp_path: Path) -> Non
 
 def test_nearest_graph_nodes_uses_lat_lon_points() -> None:
     nearest = nearest_graph_nodes(make_path_graph(), [(0.0, 0.1), (0.0, 1.8)])
+
+    assert nearest == ("1", "3")
+
+
+def test_nearest_nodes_for_orders_reads_lat_lon_attributes() -> None:
+    class Order:
+        def __init__(self, lat: float, lon: float) -> None:
+            self.lat = lat
+            self.lon = lon
+
+    nearest = nearest_nodes_for_orders(
+        make_path_graph(),
+        Order(0.0, 0.1),
+        (Order(0.0, 1.8),),
+    )
 
     assert nearest == ("1", "3")
 
@@ -164,3 +196,25 @@ def test_network_distance_time_matrix_uses_npz_cache(tmp_path: Path) -> None:
 
     assert cache_path.exists()
     assert cached_distance.tolist() == first_distance.tolist()
+
+
+def test_build_network_distance_matrix_returns_weight_matrix() -> None:
+    matrix = build_network_distance_matrix(make_path_graph(), ("1", "3"), weight="length")
+
+    assert matrix.shape == (2, 2)
+    assert matrix[0, 1] == 17.0
+
+
+def test_build_shortest_path_geometry_returns_lon_lat_path() -> None:
+    geometry = build_shortest_path_geometry(make_path_graph(), ("1", "3"))
+
+    assert geometry == [(0.0, 0.0), (1.0, 0.0), (2.0, 0.0)]
+
+
+def test_shortest_path_nodes_and_geometry_are_public_helpers() -> None:
+    graph = make_path_graph()
+    path = shortest_path_nodes(graph, "1", "3")
+    geometry = shortest_path_geometry(graph, path)
+
+    assert path == ["1", "2", "3"]
+    assert geometry == [(0.0, 0.0), (1.0, 0.0), (2.0, 0.0)]

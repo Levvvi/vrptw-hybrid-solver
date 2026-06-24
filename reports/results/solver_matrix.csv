@@ -1,0 +1,6 @@
+solver,instance,seed,feasible,vehicles,distance,objective,runtime_sec,status,solution_json,time_limit_sec,gap,lower_bound,best_bound,has_solution,error,route_count,customer_count,source_file,config_file,created_at,pipeline_status
+greedy,MINI_C101,42,True,2,180.0,200180.0,0.0032659999997122213,FEASIBLE,data\results\smoke\solutions\greedy_seed42.json,10,,,,True,,2,10,tests/fixtures/mini_solomon.txt,configs/solomon_small.yaml,2026-06-22T21:47:42,ok
+ortools_routing,MINI_C101,42,True,2,140.0,200140.0,3.010913800004346,SOLUTION_FOUND,data\results\smoke\solutions\ortools_routing_seed42.json,10,,,,True,,2,10,tests/fixtures/mini_solomon.txt,configs/solomon_small.yaml,2026-06-22T21:47:42,ok
+cp_sat,MINI_C101,42,True,2,150.0,200150.0,3.0167989999972633,FEASIBLE,data\results\smoke\solutions\cp_sat_seed42.json,30,,,10007000.0,True,,2,10,tests/fixtures/mini_solomon.txt,configs/solomon_small.yaml,2026-06-22T21:47:42,ok
+alns_uniform,MINI_C101,42,True,2,140.0,200140.0,0.016572799999266863,FEASIBLE,data\results\smoke\solutions\alns_uniform_seed42.json,10,,,,True,,2,10,tests/fixtures/mini_solomon.txt,configs/solomon_small.yaml,2026-06-22T21:47:42,ok
+alns_mosade,MINI_C101,42,True,2,140.0,200140.0,0.015681199998653028,FEASIBLE,data\results\smoke\solutions\alns_mosade_seed42.json,10,,,,True,,2,10,tests/fixtures/mini_solomon.txt,configs/solomon_small.yaml,2026-06-22T21:47:42,ok

@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
+import logging
 import re
+from datetime import UTC, datetime
 from heapq import heappop, heappush
+from itertools import pairwise
 from pathlib import Path
 from typing import Any
 
@@ -11,6 +14,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 DEFAULT_OSM_CACHE_DIR = Path("data/raw/osm")
+LOGGER = logging.getLogger(__name__)
 DEFAULT_SPEED_KPH_BY_HIGHWAY = {
     "motorway": 90.0,
     "trunk": 70.0,
@@ -25,6 +29,76 @@ DEFAULT_SPEED_KPH_BY_HIGHWAY = {
 
 class OSMNetworkError(RuntimeError):
     """Raised when OSM network retrieval or caching fails."""
+
+
+def download_graph(
+    *,
+    place_name: str | None = None,
+    network_type: str = "drive",
+    cache_path: str | Path,
+    bbox: tuple[float, float, float, float] | None = None,
+    use_cache: bool = True,
+) -> Any:
+    """Load a GraphML cache or download an OSM graph and save it."""
+
+    path = Path(cache_path)
+    if use_cache and path.exists():
+        LOGGER.info("loading OSM GraphML cache path=%s", path)
+        return load_graphml(path)
+
+    if (place_name is None) == (bbox is None):
+        raise ValueError("provide exactly one of place_name or bbox")
+
+    osmnx = _import_osmnx()
+    created_at = datetime.now(UTC).isoformat()
+    LOGGER.info(
+        "downloading OSM graph source=%s network_type=%s cache_path=%s created_at=%s",
+        place_name or bbox,
+        network_type,
+        path,
+        created_at,
+    )
+    try:
+        if bbox is not None:
+            graph = osmnx.graph_from_bbox(
+                _bbox_for_osmnx(bbox),
+                network_type=network_type,
+            )
+        else:
+            graph = osmnx.graph_from_place(place_name, network_type=network_type)
+    except Exception as exc:
+        raise OSMNetworkError(
+            "Failed to download OSM network. Provide a cached GraphML file "
+            f"at {path} or check the place/bbox and network connection."
+        ) from exc
+
+    graph = _largest_component(add_travel_time(graph), strongly=True)
+    save_graphml(graph, path)
+    return graph
+
+
+def load_graphml(path: str | Path) -> Any:
+    """Load a cached GraphML road network and enrich travel-time fields."""
+
+    input_path = Path(path)
+    if not input_path.exists():
+        raise OSMNetworkError(f"GraphML cache not found: {input_path}")
+    LOGGER.info("loading GraphML path=%s", input_path)
+    return _largest_component(add_travel_time(_read_graphml(input_path)), strongly=True)
+
+
+def save_graphml(graph: Any, path: str | Path) -> Path:
+    """Save a graph as GraphML and return the output path."""
+
+    output_path = Path(path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        osmnx = _import_osmnx()
+        osmnx.save_graphml(graph, output_path)
+    except Exception as exc:
+        raise OSMNetworkError(f"Failed to save GraphML cache: {output_path}") from exc
+    LOGGER.info("saved GraphML cache path=%s", output_path)
+    return output_path
 
 
 def nearest_graph_nodes(
@@ -49,6 +123,18 @@ def nearest_graph_nodes(
         )
         nearest.append(node_id)
     return tuple(nearest)
+
+
+def nearest_nodes_for_orders(
+    graph: Any,
+    depot: Any,
+    customers: list[Any] | tuple[Any, ...],
+) -> tuple[Any, ...]:
+    """Return nearest graph nodes for a depot and customers with lat/lon fields."""
+
+    orders = (depot, *tuple(customers))
+    points = tuple(_lat_lon_from_order(order) for order in orders)
+    return nearest_graph_nodes(graph, points)
 
 
 def network_distance_time_matrix(
@@ -91,6 +177,85 @@ def network_distance_time_matrix(
     return distance_matrix, time_matrix
 
 
+def build_network_distance_matrix(
+    graph: Any,
+    node_ids: tuple[Any, ...] | list[Any],
+    *,
+    weight: str = "length",
+    cache_path: str | Path | None = None,
+) -> NDArray[np.float64]:
+    """Return a shortest-path matrix for one graph edge weight."""
+
+    if weight == "length":
+        distance_matrix, _time_matrix = network_distance_time_matrix(
+            graph,
+            node_ids,
+            cache_path=cache_path,
+        )
+        return distance_matrix
+    if weight == "travel_time":
+        _distance_matrix, time_matrix = network_distance_time_matrix(
+            graph,
+            node_ids,
+            cache_path=cache_path,
+        )
+        return time_matrix
+    return _shortest_path_matrix(
+        graph,
+        tuple(node_ids),
+        weight=weight,
+        unreachable="raise",
+        large_m=1e9,
+    )
+
+
+def build_shortest_path_geometry(
+    graph: Any,
+    route_node_sequence: list[Any] | tuple[Any, ...],
+    *,
+    weight: str = "length",
+) -> list[tuple[float, float]]:
+    """Return lon/lat coordinates for shortest paths between route nodes."""
+
+    node_ids = tuple(route_node_sequence)
+    if not node_ids:
+        return []
+    if len(node_ids) == 1:
+        return [_node_coordinate(graph, node_ids[0])]
+
+    edge_lookup = _edge_lookup(graph, weight=weight)
+    adjacency = _adjacency_from_edge_lookup(edge_lookup, weight=weight)
+    coordinates: list[tuple[float, float]] = []
+    for source, target in pairwise(node_ids):
+        path = _dijkstra_path(adjacency, source, target)
+        segment = _path_geometry(graph, path, edge_lookup)
+        _extend_without_duplicate(coordinates, segment)
+    return coordinates
+
+
+def shortest_path_nodes(
+    graph: Any,
+    origin_node: Any,
+    dest_node: Any,
+    *,
+    weight: str = "length",
+) -> list[Any]:
+    """Return shortest-path graph nodes between two OSM nodes."""
+
+    edge_lookup = _edge_lookup(graph, weight=weight)
+    adjacency = _adjacency_from_edge_lookup(edge_lookup, weight=weight)
+    return _dijkstra_path(adjacency, origin_node, dest_node)
+
+
+def shortest_path_geometry(
+    graph: Any,
+    node_path: list[Any] | tuple[Any, ...],
+) -> list[tuple[float, float]]:
+    """Return lon/lat geometry coordinates for a graph node path."""
+
+    return _path_geometry(graph, list(node_path), _edge_lookup(graph, weight="length"))
+
+
 def load_drive_network(
     *,
     place: str | None = None,
@@ -112,31 +277,24 @@ def load_drive_network(
     )
     if use_cache and cache_path.exists():
         graph = _read_graphml(cache_path)
-        return add_travel_time(graph)
+        return _largest_component(add_travel_time(graph), strongly=True)
 
     osmnx = _import_osmnx()
     try:
         if place is not None:
             graph = osmnx.graph_from_place(place, network_type="drive")
         else:
-            north, south, east, west = _bbox_for_osmnx(bbox)
-            graph = osmnx.graph_from_bbox(
-                north,
-                south,
-                east,
-                west,
-                network_type="drive",
-            )
+            graph = osmnx.graph_from_bbox(_bbox_for_osmnx(bbox), network_type="drive")
     except Exception as exc:
         raise OSMNetworkError(
             "Failed to download OSM driving network. Provide a cached GraphML file "
             f"at {cache_path} or check the place/bbox and network connection."
         ) from exc
 
-    graph = add_travel_time(graph)
+    graph = _largest_component(add_travel_time(graph), strongly=True)
     if use_cache:
         cache_path.parent.mkdir(parents=True, exist_ok=True)
-        osmnx.save_graphml(graph, cache_path)
+        save_graphml(graph, cache_path)
     return graph
 
 
@@ -164,6 +322,7 @@ def add_travel_time(
     enriched = graph.copy()
     for _u, _v, _key, data in enriched.edges(keys=True, data=True):
         length_m = float(data.get("length", 0.0))
+        data["length"] = length_m
         speed_kph = _edge_speed_kph(data, speeds)
         data["speed_kph"] = speed_kph
         data["travel_time"] = length_m / (speed_kph * 1000.0 / 3600.0) if speed_kph > 0 else 0.0
@@ -225,6 +384,128 @@ def _weighted_adjacency(graph: Any, weight: str) -> dict[Any, list[tuple[Any, fl
         adjacency.setdefault(source, []).append((target, float(value)))
         adjacency.setdefault(target, adjacency.get(target, []))
     return adjacency
+
+
+def _lat_lon_from_order(order: Any) -> tuple[float, float]:
+    lat = getattr(order, "lat", None)
+    lon = getattr(order, "lon", None)
+    if lat is None and isinstance(order, dict):
+        lat = order.get("lat")
+    if lon is None and isinstance(order, dict):
+        lon = order.get("lon")
+    if lat is None or lon is None:
+        raise OSMNetworkError("order is missing lat/lon coordinates")
+    return (float(lat), float(lon))
+
+
+def _edge_lookup(graph: Any, *, weight: str) -> dict[tuple[Any, Any], dict[str, Any]]:
+    lookup: dict[tuple[Any, Any], dict[str, Any]] = {}
+    for edge in graph.edges(data=True):
+        source, target, data = _normalize_edge(edge)
+        candidate = dict(data)
+        previous = lookup.get((source, target))
+        if previous is None or _edge_weight(candidate, weight) < _edge_weight(previous, weight):
+            lookup[(source, target)] = candidate
+    return lookup
+
+
+def _adjacency_from_edge_lookup(
+    edge_lookup: dict[tuple[Any, Any], dict[str, Any]],
+    *,
+    weight: str,
+) -> dict[Any, list[tuple[Any, float]]]:
+    adjacency: dict[Any, list[tuple[Any, float]]] = {}
+    for (source, target), data in edge_lookup.items():
+        adjacency.setdefault(source, []).append((target, _edge_weight(data, weight)))
+        adjacency.setdefault(target, adjacency.get(target, []))
+    return adjacency
+
+
+def _dijkstra_path(
+    adjacency: dict[Any, list[tuple[Any, float]]],
+    source: Any,
+    target: Any,
+) -> list[Any]:
+    if source == target:
+        return [source]
+
+    distances: dict[Any, float] = {source: 0.0}
+    predecessors: dict[Any, Any] = {}
+    counter = 0
+    heap: list[tuple[float, int, Any]] = [(0.0, counter, source)]
+    while heap:
+        current_distance, _order, node = heappop(heap)
+        if node == target:
+            return _reconstruct_path(predecessors, source, target)
+        if current_distance > distances[node]:
+            continue
+        for neighbor, edge_weight in adjacency.get(node, []):
+            candidate = current_distance + edge_weight
+            if candidate < distances.get(neighbor, float("inf")):
+                distances[neighbor] = candidate
+                predecessors[neighbor] = node
+                counter += 1
+                heappush(heap, (candidate, counter, neighbor))
+    raise OSMNetworkError(f"no path between graph nodes {source!r} and {target!r}")
+
+
+def _reconstruct_path(predecessors: dict[Any, Any], source: Any, target: Any) -> list[Any]:
+    path = [target]
+    while path[-1] != source:
+        path.append(predecessors[path[-1]])
+    path.reverse()
+    return path
+
+
+def _path_geometry(
+    graph: Any,
+    node_path: list[Any],
+    edge_lookup: dict[tuple[Any, Any], dict[str, Any]],
+) -> list[tuple[float, float]]:
+    if len(node_path) == 1:
+        return [_node_coordinate(graph, node_path[0])]
+
+    coordinates: list[tuple[float, float]] = []
+    for source, target in pairwise(node_path):
+        edge_data = edge_lookup[(source, target)]
+        segment = _geometry_coordinates(edge_data.get("geometry"))
+        if not segment:
+            segment = [_node_coordinate(graph, source), _node_coordinate(graph, target)]
+        _extend_without_duplicate(coordinates, segment)
+    return coordinates
+
+
+def _geometry_coordinates(geometry: Any) -> list[tuple[float, float]]:
+    if geometry is None:
+        return []
+    raw_coordinates = getattr(geometry, "coords", geometry)
+    coordinates: list[tuple[float, float]] = []
+    for item in raw_coordinates:
+        if len(item) < 2:
+            continue
+        coordinates.append((float(item[0]), float(item[1])))
+    return coordinates
+
+
+def _node_coordinate(graph: Any, node_id: Any) -> tuple[float, float]:
+    for current_node_id, data in graph.nodes(data=True):
+        if current_node_id == node_id:
+            return (float(data["x"]), float(data["y"]))
+    raise OSMNetworkError(f"graph node {node_id!r} is missing x/y coordinates")
+
+
+def _extend_without_duplicate(
+    coordinates: list[tuple[float, float]],
+    segment_coordinates: list[tuple[float, float]],
+) -> None:
+    for coordinate in segment_coordinates:
+        if not coordinates or coordinates[-1] != coordinate:
+            coordinates.append(coordinate)
+
+
+def _edge_weight(edge_data: dict[str, Any], weight: str) -> float:
+    value = edge_data.get(weight, edge_data.get("length", 1.0))
+    return float(value)
 
 
 def _normalize_edge(edge: tuple[Any, ...]) -> tuple[Any, Any, dict[str, Any]]:
@@ -301,13 +582,21 @@ def _import_osmnx() -> Any:
     return ox
 
 
+def _largest_component(graph: Any, *, strongly: bool) -> Any:
+    try:
+        osmnx = _import_osmnx()
+        return osmnx.truncate.largest_component(graph, strongly=strongly)
+    except Exception:
+        return graph
+
+
 def _bbox_for_osmnx(
     bbox: tuple[float, float, float, float] | None,
 ) -> tuple[float, float, float, float]:
     if bbox is None:
         raise ValueError("bbox is required")
     north, south, east, west = bbox
-    return north, south, east, west
+    return west, south, east, north
 
 
 def _bbox_slug(bbox: tuple[float, float, float, float] | None) -> str:

@@ -1,3 +1,4 @@
+import json
 import random
 
 import pytest
@@ -32,6 +33,24 @@ def test_uniform_selector_selects_registered_operators() -> None:
 
     assert destroy in DESTROY_OPERATORS
     assert repair in REPAIR_OPERATORS
+
+
+def test_uniform_selector_seed_reproducibility() -> None:
+    first = UniformSelector()
+    second = UniformSelector()
+    first_rng = random.Random(7)
+    second_rng = random.Random(7)
+
+    first_sequence = [
+        (first.select_destroy(first_rng).name, first.select_repair(first_rng).name)
+        for _ in range(5)
+    ]
+    second_sequence = [
+        (second.select_destroy(second_rng).name, second.select_repair(second_rng).name)
+        for _ in range(5)
+    ]
+
+    assert first_sequence == second_sequence
 
 
 def test_uniform_selector_update_and_snapshot() -> None:
@@ -86,6 +105,47 @@ def test_roulette_selector_selects_valid_operator() -> None:
 
     assert selector.select_destroy(rng) in DESTROY_OPERATORS
     assert selector.select_repair(rng) in REPAIR_OPERATORS
+
+
+def test_roulette_selector_seed_reproducibility_after_rewards() -> None:
+    first = RouletteWheelSelector(segment_length=1, reaction_factor=0.5)
+    second = RouletteWheelSelector(segment_length=1, reaction_factor=0.5)
+    first_rng = random.Random(9)
+    second_rng = random.Random(9)
+
+    first_sequence: list[tuple[str, str]] = []
+    second_sequence: list[tuple[str, str]] = []
+    for _ in range(5):
+        first_pair = (first.select_destroy(first_rng).name, first.select_repair(first_rng).name)
+        second_pair = (
+            second.select_destroy(second_rng).name,
+            second.select_repair(second_rng).name,
+        )
+        first_sequence.append(first_pair)
+        second_sequence.append(second_pair)
+        event = OperatorEvent(
+            destroy_name=first_pair[0],
+            repair_name=first_pair[1],
+            accepted=True,
+            new_best=False,
+            delta_cost=-1.0,
+            feasible=True,
+        )
+        first.update(event)
+        second.update(event)
+
+    assert first_sequence == second_sequence
+
+
+def test_adaptive_selectors_reject_empty_operator_pools() -> None:
+    with pytest.raises(ValueError, match="at least one destroy operator"):
+        RouletteWheelSelector(destroy_operators=())
+    with pytest.raises(ValueError, match="at least one repair operator"):
+        RouletteWheelSelector(repair_operators=())
+    with pytest.raises(ValueError, match="at least one destroy operator"):
+        MOSADEInspiredSelector(destroy_operators=())
+    with pytest.raises(ValueError, match="at least one repair operator"):
+        MOSADEInspiredSelector(repair_operators=())
 
 
 def test_mosade_pair_reward_increases_pair_probability() -> None:
@@ -202,3 +262,15 @@ def test_mosade_can_disable_pair_memory_and_diversity_bonus() -> None:
     assert snapshot["use_pair_memory"] is False
     assert snapshot["use_diversity_bonus"] is False
     assert snapshot["pair_credit"][f"{DESTROY_OPERATORS[0].name}|{REPAIR_OPERATORS[0].name}"] == 0.0
+
+
+def test_selector_snapshots_are_json_serializable() -> None:
+    selectors = [
+        UniformSelector(),
+        RouletteWheelSelector(segment_length=1),
+        MOSADEInspiredSelector(),
+    ]
+
+    for selector in selectors:
+        selector.update(make_event())
+        json.dumps(selector.snapshot(), sort_keys=True)

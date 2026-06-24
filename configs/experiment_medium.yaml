@@ -1,0 +1,76 @@
+seed: 42
+ablation:
+  name: experiment_medium
+objective:
+  vehicle_weight: 100000.0
+solver:
+  time_limit_sec: 60
+  max_iterations: 500
+alns:
+  selector: uniform
+  destroy_fraction_min: 0.05
+  destroy_fraction_max: 0.25
+  segment_length: 10
+  reaction_factor: 0.5
+  exploration_floor: 0.05
+  temperature: 1.0
+  decay: 0.8
+  memory_size: 30
+  candidate_neighbor_size: 24
+  use_pair_memory: true
+  use_diversity_bonus: true
+  enabled_destroy_operators:
+  disabled_destroy_operators: []
+  enabled_repair_operators:
+  disabled_repair_operators: []
+experiment:
+  output_dir: data/results/experiments
+  runs_csv: data/results/experiments/runs_medium.csv
+  solution_dir: data/results/experiments/solutions/medium
+  convergence_dir: data/results/experiments/convergence/medium
+  instances:
+    - name: c101_100
+      path: data/raw/benchmark/solomon_100/In/c101.txt
+    - name: r101_100
+      path: data/raw/benchmark/solomon_100/In/r101.txt
+    - name: rc101_100
+      path: data/raw/benchmark/solomon_100/In/rc101.txt
+    - name: gh_c1_2_1_200
+      path: data/raw/benchmark/homberger_200/C1_2_1.TXT
+    - name: gh_r1_2_1_200
+      path: data/raw/benchmark/homberger_200/R1_2_1.TXT
+    - name: gh_rc1_2_1_200
+      path: data/raw/benchmark/homberger_200/RC1_2_1.TXT
+  solvers:
+    - name: greedy
+      solver: greedy
+      ablation: greedy
+    - name: ortools_routing
+      solver: ortools_routing
+      ablation: ortools_routing
+    - name: alns_uniform
+      solver: alns_uniform
+      ablation: alns_uniform
+      alns:
+        selector: uniform
+    - name: alns_roulette
+      solver: alns_roulette
+      ablation: alns_roulette
+      alns:
+        selector: roulette
+    - name: alns_mosade
+      solver: alns_mosade
+      ablation: alns_mosade_adaptive
+      alns:
+        selector: mosade
+  seeds: [0, 1, 2]
+  time_limits:
+    ortools_routing: 60
+    alns: 60
+  max_iterations: 500
+report:
+  summary_csv: data/results/experiments/summary_medium.csv
+  stat_tests_csv: data/results/experiments/stat_tests_medium.csv
+  convergence_dir: data/results/experiments/convergence/medium
+  curated_dir: reports/results
+  figures_dir: reports/figures

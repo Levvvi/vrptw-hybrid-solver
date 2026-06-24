@@ -81,3 +81,81 @@ def test_precomputed_solution_json_round_trips(tmp_path: Path) -> None:
     assert loaded.instance_name == solution.instance_name
     assert json.loads(download_json)["solver_name"] == solution.solver_name
     assert "vehicles_used" in metrics
+
+
+def test_curated_route_artifacts_load_if_present() -> None:
+    artifacts = streamlit_app.load_curated_route_artifacts()
+
+    assert artifacts
+    assert all(artifact["coordinate_system"] == "benchmark_xy" for artifact in artifacts)
+    assert all(artifact["is_real_map"] is False for artifact in artifacts)
+
+
+def test_artifact_route_table_rows_ignore_no_solution() -> None:
+    no_solution = {
+        "instance": "r101_100",
+        "solver": "ortools_routing",
+        "seed": 0,
+        "status": "NO_SOLUTION",
+        "feasible": False,
+        "has_solution": False,
+        "routes": [],
+    }
+
+    assert streamlit_app.route_table_rows_from_artifact(no_solution) == []
+
+
+def test_medium_run_rows_can_filter_no_solution() -> None:
+    rows = [
+        {"feasible": "True", "has_solution": "True", "status": "FEASIBLE"},
+        {"feasible": "False", "has_solution": "False", "status": "NO_SOLUTION"},
+    ]
+
+    feasible = streamlit_app.filter_display_rows(
+        rows,
+        feasible_only=True,
+        include_no_solution=False,
+    )
+    with_no_solution = streamlit_app.filter_display_rows(
+        rows,
+        feasible_only=True,
+        include_no_solution=True,
+    )
+
+    assert len(feasible) == 1
+    assert len(with_no_solution) == 2
+
+
+def test_city_summary_and_route_rows_load_from_curated_artifacts(tmp_path: Path) -> None:
+    summary = tmp_path / "city_summary.csv"
+    summary.write_text(
+        "solver,seed,status,feasible,solution_json,map_html\n"
+        "greedy,0,FEASIBLE,True,solution.json,map.html\n",
+        encoding="utf-8",
+    )
+    city_instance = {
+        "customers": [
+            {
+                "id": 1,
+                "lat": 52.51,
+                "lon": 13.37,
+                "demand": 2,
+                "ready_time": 0,
+                "due_time": 100,
+            }
+        ]
+    }
+    solution = streamlit_app.run_demo_solver(
+        streamlit_app.load_demo_instance("mini_solomon_8"),
+        solver_name="greedy",
+        seed=7,
+        time_limit=1.0,
+        max_iterations=1,
+    )
+
+    rows = streamlit_app.load_city_summary_rows(summary)
+    route_rows = streamlit_app.city_route_table_rows(solution, city_instance)
+
+    assert rows[0]["solver"] == "greedy"
+    assert route_rows
+    assert {"vehicle_id", "sequence_order", "customer_id"}.issubset(route_rows[0])

@@ -105,6 +105,83 @@ def load_solution_json(path: str | Path) -> Solution:
     return solution_from_dict(data)
 
 
+def save_convergence_csv(solution: Solution, path: str | Path) -> Path:
+    """Write ALNS convergence history from a Solution metadata block to CSV."""
+
+    history = solution.metadata.get("history", [])
+    rows: list[dict[str, Any]] = []
+    if isinstance(history, list):
+        for entry in history:
+            if not isinstance(entry, Mapping):
+                continue
+            snapshot = entry.get("selector_snapshot")
+            snapshot_mapping = snapshot if isinstance(snapshot, Mapping) else {}
+            destroy_name = _string_value(entry.get("destroy_operator") or entry.get("destroy"))
+            repair_name = _string_value(entry.get("repair_operator") or entry.get("repair"))
+            rows.append(
+                {
+                    "instance": solution.instance_name,
+                    "solver": solution.solver_name,
+                    "seed": solution.metadata.get("seed"),
+                    "iteration": entry.get("iteration"),
+                    "current_cost": entry.get("current_cost"),
+                    "current_objective": entry.get("current_objective", entry.get("current_cost")),
+                    "candidate_cost": entry.get("candidate_cost"),
+                    "candidate_objective": entry.get(
+                        "candidate_objective",
+                        entry.get("candidate_cost"),
+                    ),
+                    "best_cost": entry.get("best_cost"),
+                    "best_objective": entry.get("best_objective", entry.get("best_cost")),
+                    "delta_cost": entry.get("delta_cost"),
+                    "reward": entry.get("reward"),
+                    "accepted": entry.get("accepted"),
+                    "new_best": entry.get("new_best"),
+                    "destroy": destroy_name,
+                    "destroy_operator": destroy_name,
+                    "repair": repair_name,
+                    "repair_operator": repair_name,
+                    "selector": snapshot_mapping.get("name", ""),
+                    "selected_destroy_probability": _operator_probability(
+                        snapshot_mapping,
+                        "destroy_probabilities",
+                        destroy_name,
+                    ),
+                    "selected_repair_probability": _operator_probability(
+                        snapshot_mapping,
+                        "repair_probabilities",
+                        repair_name,
+                    ),
+                    "selected_pair_probability": _pair_value(
+                        snapshot_mapping,
+                        "pair_probabilities",
+                        destroy_name,
+                        repair_name,
+                    ),
+                    "selected_destroy_weight": _operator_probability(
+                        snapshot_mapping,
+                        "destroy_weights",
+                        destroy_name,
+                    ),
+                    "selected_repair_weight": _operator_probability(
+                        snapshot_mapping,
+                        "repair_weights",
+                        repair_name,
+                    ),
+                    "selected_pair_credit": _pair_value(
+                        snapshot_mapping,
+                        "pair_credit",
+                        destroy_name,
+                        repair_name,
+                    ),
+                    "selector_snapshot": json.dumps(snapshot, sort_keys=True)
+                    if snapshot is not None
+                    else "",
+                }
+            )
+    return save_metrics_csv(rows, path)
+
+
 def save_metrics_csv(rows: Iterable[Mapping[str, Any]], path: str | Path) -> Path:
     """Write experiment metric rows to CSV and return the output path."""
 
@@ -152,3 +229,30 @@ def _collect_fieldnames(rows: list[dict[str, Any]]) -> list[str]:
                 seen.add(key)
                 fieldnames.append(key)
     return fieldnames
+
+
+def _operator_probability(
+    snapshot: Mapping[str, Any],
+    field_name: str,
+    operator_name: str,
+) -> Any:
+    values = snapshot.get(field_name)
+    if isinstance(values, Mapping):
+        return values.get(operator_name, "")
+    return ""
+
+
+def _pair_value(
+    snapshot: Mapping[str, Any],
+    field_name: str,
+    destroy_name: str,
+    repair_name: str,
+) -> Any:
+    values = snapshot.get(field_name)
+    if isinstance(values, Mapping):
+        return values.get(f"{destroy_name}|{repair_name}", "")
+    return ""
+
+
+def _string_value(value: object) -> str:
+    return "" if value is None else str(value)

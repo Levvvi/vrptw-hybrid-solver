@@ -164,7 +164,11 @@ def test_routes_feature_collection_uses_edge_geometry_and_vehicle_id() -> None:
     assert routes["type"] == "FeatureCollection"
     assert len(routes["features"]) == 1
     route = routes["features"][0]
+    assert route["properties"]["route_id"] == 0
     assert route["properties"]["vehicle_id"] == 7
+    assert route["properties"]["solver"] == "unit"
+    assert route["properties"]["feasible"] is True
+    assert route["properties"]["distance_m"] == 27.0
     assert route["geometry"]["type"] == "LineString"
     assert route["geometry"]["coordinates"] == [
         [0.0, 0.0],

@@ -1,82 +1,41 @@
 # Resume Bullets
 
-This document contains resume-ready wording. Any numeric placeholder must remain
-unfilled until it can be traced to a real result CSV under `data/results/`.
+Use only evidence-backed wording. Do not add percentage improvements, large-scale
+scaling claims, or MOSADE superiority claims unless a later report supports
+them.
 
-## Evidence Rule
+## A. Conservative Version
 
-Before replacing `<X>`, `<Y>`, `<Z>`, or `<instances>`, collect:
+Implemented a VRPTW hybrid solver and visualization demo integrating OR-Tools
+Routing, CP-SAT small-instance validation, greedy construction, and ALNS
+variants; ran a 90-row Solomon 100 / Gehring-Homberger 200 experiment and built
+a Streamlit demo for benchmark route inspection and Berlin Mitte OSM road-map
+visualization.
 
-- the exact `runs_*.csv` path;
-- solver names and baselines;
-- seed list;
-- time budget;
-- metric definition;
-- failed/infeasible run counts;
-- summary or pairwise statistics, if used.
+## B. Technical Detail Version
 
-If those files do not exist, keep the placeholder.
+Built a reproducible VRPTW experiment pipeline with solution feasibility
+checking, CSV/JSON result persistence, convergence logging, selector ablation,
+statistical comparison tables, and report figures; instrumented ALNS operator
+selection with uniform, roulette, and MOSADE-inspired pair-level selector logs.
 
-## Full Chinese Bullet
+## C. Interview Finding Version
 
-```text
-实现城配 VRPTW 混合求解器：基于 Solomon benchmark 与 OSM 城市路网构建配送实例，小规模采用 OR-Tools CP-SAT 精确校验，大规模实现自适应 ALNS；在 <instances> 上较 <baseline> 车辆数减少 <X>、距离成本降低 <Y>%、求解时间缩短 <Z>%，并提供 Streamlit+Folium 地图演示。
-```
+Compared OR-Tools Routing and ALNS variants under fixed time budgets: OR-Tools
+Routing produced strong solutions when feasible but reached only 0.5 feasible
+rate in the EXP-02 medium suite, while ALNS variants reached 1.0 feasible rate;
+the MOSADE-inspired selector was implemented and audited but did not outperform
+uniform or roulette in the current ablation.
 
-## Short Chinese Bullet
+## D. Short Project Line
 
-```text
-将博士阶段自适应策略选择思想迁移到 ALNS 算子选择，实现 VRPTW 混合求解器；支持 CP-SAT 精确校验、OR-Tools 基线、消融实验与地图可视化 demo。
-```
+VRPTW hybrid solver with exact validation, ALNS variants, OR-Tools baselines,
+medium benchmark reports, and Streamlit/Folium route demos.
 
-## English Bullet With Placeholders
+## Do Not Write
 
-```text
-Built a hybrid VRPTW solver for urban delivery using CP-SAT validation, OR-Tools baselines, and MOSADE-inspired adaptive ALNS; on <instance set>, reduced <metric> by <X> versus <baseline> under <time budget>, with Streamlit/Folium route visualization.
-```
-
-## Safe English Bullet Before Results
-
-```text
-Built a portfolio-grade VRPTW optimization project with exact small-instance validation, greedy and OR-Tools baselines, adaptive ALNS operator selection, reproducible experiment runners, statistical reporting, and Streamlit/Folium map visualization.
-```
-
-## Technical Depth Bullet
-
-```text
-Implemented ALNS destroy/repair operators, route-evaluation caching, nearest-neighbor insertion filtering, and a MOSADE-inspired pair-level selector that logs operator probabilities, convergence history, and profiler counters for ablation analysis.
-```
-
-## Demo/Engineering Bullet
-
-```text
-Packaged the VRPTW workflow into a reproducible Python project with Typer CLI, pytest/ruff/mypy quality gates, GitHub Actions CI, Dockerized Streamlit demo, solution JSON export, experiment CSVs, and Folium route maps.
-```
-
-## How To Fill The Numbers
-
-Use this checklist before editing a bullet:
-
-1. Run the batch protocol with fixed seeds and budgets.
-2. Generate summary and pairwise statistics.
-3. Confirm the baseline solver and metric direction.
-4. Compute the percentage from the CSV, not from memory.
-5. Link or cite the CSV path in README or interview notes.
-
-Example template for a supported claim:
-
-```text
-Evidence: data/results/<experiment>/runs_<timestamp>.csv
-Instances: <instances>
-Seeds: <seed list>
-Budget: <seconds> seconds, <iterations> ALNS iterations
-Baseline: <baseline>
-Metric: <vehicles/distance/cost/runtime>
-Claim: <X>
-```
-
-## LinkedIn/GitHub Summary
-
-```text
-Hybrid VRPTW solver for urban delivery: exact validation for small cases, adaptive ALNS for scalable search, OR-Tools baselines, statistical experiment reporting, and Streamlit/Folium map visualization. The key design idea is transferring MOSADE-style adaptive strategy selection into ALNS destroy/repair operator selection.
-```
+- Reduced cost by X%.
+- Proved MOSADE is better.
+- Solved production-scale routing.
+- Used live traffic or measured travel-time data.
+- Used CP-SAT as the medium benchmark baseline.

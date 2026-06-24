@@ -36,13 +36,15 @@ def routes_feature_collection(
     features = [
         _route_feature(
             instance=instance,
+            solution=solution,
             route=route,
+            route_index=route_index,
             customer_by_id=customer_by_id,
             graph=graph,
             graph_node_by_customer_id=graph_node_by_customer_id,
             weight=weight,
         )
-        for route in solution.routes
+        for route_index, route in enumerate(solution.routes)
     ]
     return {"type": "FeatureCollection", "features": features}
 
@@ -113,7 +115,9 @@ def _popup_text(customer: Customer, *, role: str) -> str:
 def _route_feature(
     *,
     instance: VRPTWInstance,
+    solution: Solution,
     route: Route,
+    route_index: int,
     customer_by_id: dict[int, Customer],
     graph: Any | None,
     graph_node_by_customer_id: dict[int, NodeId],
@@ -135,11 +139,22 @@ def _route_feature(
             "coordinates": [list(coordinate) for coordinate in coordinates],
         },
         "properties": {
+            "route_id": route_index,
             "vehicle_id": route.vehicle_id,
+            "solver": solution.solver_name,
+            "feasible": solution.feasible,
+            "sequence": customer_ids,
             "customer_ids": customer_ids,
+            "distance_m": float(route.distance),
             "distance": float(route.distance),
             "duration": float(route.duration),
             "load": route.load,
+            "popup": (
+                f"Vehicle {route.vehicle_id}<br>"
+                f"customers: {', '.join(str(customer_id) for customer_id in customer_ids)}<br>"
+                f"distance_m: {route.distance:g}<br>"
+                f"duration_min: {route.duration:g}"
+            ),
         },
     }
 

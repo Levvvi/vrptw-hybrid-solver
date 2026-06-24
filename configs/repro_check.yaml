@@ -1,0 +1,53 @@
+seed: 42
+ablation:
+  name: repro_check
+objective:
+  vehicle_weight: 100000.0
+solver:
+  time_limit_sec: 3
+  max_iterations: 10
+alns:
+  selector: uniform
+  segment_length: 5
+  reaction_factor: 0.5
+  exploration_floor: 0.05
+  temperature: 1.0
+  decay: 0.8
+  memory_size: 10
+  candidate_neighbor_size: 8
+  use_pair_memory: true
+  use_diversity_bonus: true
+experiment:
+  output_dir: data/results/repro_check
+  runs_csv: data/results/repro_check/runs_repro_check.csv
+  solution_dir: data/results/repro_check/solutions
+  convergence_dir: data/results/repro_check/convergence
+  instances:
+    - name: mini_solomon
+      path: tests/fixtures/mini_solomon.txt
+  solvers:
+    - name: greedy
+      solver: greedy
+      ablation: greedy
+    - name: ortools_routing
+      solver: ortools_routing
+      ablation: ortools_routing
+    - name: cp_sat
+      solver: cp_sat
+      ablation: cp_sat_limited
+    - name: alns_uniform
+      solver: alns_uniform
+      ablation: alns_uniform
+      alns:
+        selector: uniform
+    - name: alns_mosade
+      solver: alns_mosade
+      ablation: alns_mosade_adaptive
+      alns:
+        selector: mosade
+  seeds: [42]
+  time_limits:
+    cp_sat: 3
+    alns: 3
+    ortools_routing: 3
+  max_iterations: 10

@@ -1,172 +1,132 @@
 # Interview Notes
 
-This document turns the project into an interview narrative. It follows the
-intended arc:
+## 30-Second Introduction
 
-```text
-constraints as math -> exact vs heuristic trade-off -> adaptive mechanism
--> validation and evidence -> demo
-```
+I built a VRPTW portfolio project that connects the full chain from business
+constraints to modeling, solving, evaluation, and visualization. Small instances
+use CP-SAT as a correctness anchor, medium instances compare OR-Tools Routing,
+greedy construction, and ALNS variants, and the final demo includes both a
+benchmark route viewer and a Berlin Mitte OSM road-network map.
 
-No performance numbers are filled in here until they are backed by result CSVs.
+The important part is not that one heuristic wins everywhere. It is that every
+claim is backed by CSVs, checker output, statistical summaries, and visual
+artifacts.
 
-## 30-Second Pitch
+## 2-Minute Technical Story
 
-I built a hybrid VRPTW project for urban delivery routing. It models vehicle
-capacity, customer time windows, service times, and depot return; uses CP-SAT
-for small-instance validation; uses greedy construction and ALNS for larger
-instances; compares against an OR-Tools baseline; and exposes convergence,
-operator-selection metadata, statistics, and a Streamlit/Folium map demo. The
-differentiating part is that I transferred MOSADE-style adaptive strategy
-selection into ALNS destroy/repair operator selection.
+The business problem is urban delivery with hard time windows: each customer
+must be visited once, vehicles have capacity limits, service takes time, and
+routes must return to the depot. I model that as VRPTW with a vehicle-first,
+distance-second objective convention.
 
-## 2-Minute Technical Walkthrough
+I implemented a shared instance model, solution model, and feasibility checker.
+The checker validates customer coverage, capacity, time-window service starts,
+travel-time consistency, depot return, and route count. That checker is used
+across solvers and experiments.
 
-1. Business problem: a dispatcher needs feasible routes that use few vehicles,
-   travel short distances, and arrive inside customer time windows.
-2. Mathematical model: customers are nodes, vehicles are routes, arc decisions
-   represent travel, and service start times enforce time-window feasibility.
-3. Exact validation: on small instances, CP-SAT helps verify that the objective
-   and constraints are encoded correctly.
-4. Heuristic solving: for larger cases, exact search becomes expensive, so the
-   project uses greedy insertion to get a feasible solution and ALNS to improve
-   it.
-5. Adaptive mechanism: ALNS chooses destroy/repair operators online. The
-   MOSADE-inspired selector treats each destroy/repair pair as a strategy and
-   updates pair probabilities from accepted moves and new best solutions.
-6. Evaluation: the batch runner records cost, vehicles, distance, runtime,
-   feasibility, BKS gaps where verified, convergence history, and selector
-   snapshots.
-7. Demo: Streamlit shows metrics, a Folium route map, route tables,
-   convergence curves, operator probabilities, and downloadable JSON/CSV.
+For solving, I use several layers. CP-SAT is used for small validation; OR-Tools
+Routing is the external baseline; greedy construction gives quick feasible
+solutions; ALNS variants handle heuristic search. The ALNS code supports uniform
+selection, roulette weighting, and a MOSADE-inspired selector that tracks
+destroy/repair pairs.
 
-## Mathematical Model Talk Track
+The experiments are intentionally evidence-driven. RUN-01 verifies that outputs
+land as CSV/JSON. RUN-02 audits UNKNOWN and provenance rules. ABL-01 tests the
+selector mechanism. EXP-02 runs 90 rows across Solomon 100 and
+Gehring-Homberger 200 selected instances. VIS-01A visualizes benchmark x-y
+routes, and VIS-01B visualizes a small Berlin Mitte road-network demo.
 
-The core decision is whether vehicle `k` travels from node `i` to node `j`.
-That is the binary arc variable `x_ijk`. Then each customer has a service start
-time `T_i` and a load state `L_i`.
+## Business -> Model -> Solve -> Evaluate -> Visualize
 
-Use this framing:
+1. Business: delivery routes must balance vehicle count, distance, capacity, and
+   delivery time windows.
+2. Model: nodes, depot, demand, service time, travel matrix, time windows, and
+   vehicle capacity.
+3. Solve: CP-SAT for small checks, OR-Tools Routing as a baseline, ALNS for
+   heuristic variants.
+4. Evaluate: feasible rate, vehicles, distance, runtime, objective, convergence,
+   and paired exploratory tests.
+5. Visualize: benchmark x-y route viewer and Berlin Mitte Folium road-map demo.
 
-- visit constraint: every customer appears exactly once;
-- flow constraint: if a vehicle enters a customer, it must leave that customer;
-- capacity constraint: cumulative demand cannot exceed vehicle capacity;
-- time-window constraint: service must start between `ready_time` and
-  `due_time`; early arrival becomes waiting;
-- objective: prioritize fewer vehicles, then lower distance.
+## Why Not Pure Exact Optimization
 
-Interview wording:
+Exact formulations are valuable because they expose modeling errors and provide
+small-instance validation. They become expensive as customer count and vehicle
+route decisions grow. In this project, CP-SAT is deliberately scoped to mini and
+small validation. The medium comparison uses OR-Tools Routing and ALNS variants.
 
-```text
-I separate feasibility from cost. A route is only valid if the decoder can walk
-through the sequence, compute arrival/start/departure times, and keep both time
-windows and capacity satisfied. Only then do I compare vehicle count and travel
-distance.
-```
+## Why CP-SAT Is Only A Small Anchor
 
-## Why Not Use Only Exact Optimization
+CP-SAT gives useful correctness pressure on small cases, but it is not presented
+as a medium benchmark baseline. Earlier small experiments include UNKNOWN rows
+under time limits, and those are not counted as optimal or successful. That is
+why EXP-02 excludes CP-SAT.
 
-Exact methods are valuable because they catch modeling mistakes and can certify
-small cases. But VRPTW has combinatorial route assignment and sequencing, and
-time windows make feasibility tightly coupled with order. As the number of
-customers grows, exact search can spend the budget proving optimality rather
-than giving a good operational answer.
+## OR-Tools Routing: Strong But Budget-Limited
 
-Interview wording:
+In EXP-02, OR-Tools Routing returned strong solutions when it found one. Under
+the fixed 60-second budget, its feasible rate was 0.5 on the selected medium
+suite. ALNS variants reached 1.0 feasible rate. The honest phrasing is:
 
-```text
-I use exact optimization as a correctness anchor, not as the only production
-strategy. That is the engineering trade-off: exact methods validate the model
-on small cases; ALNS gives controllable runtime and useful solutions on larger
-cases.
-```
+> OR-Tools Routing was strongest on feasible paired rows, but not consistently
+> available under the fixed budget.
 
-## Adaptive Operator Selection Talk Track
+## MOSADE Did Not Win
 
-Plain ALNS needs to choose a destroy operator and a repair operator every
-iteration. Uniform selection ignores feedback. Roulette selection can adapt
-independent operator weights. My MOSADE-inspired version adapts the pair:
+This is a useful interview point, not a failure to hide. I migrated the idea of
+adaptive strategy selection into ALNS destroy/repair pair selection, instrumented
+operator probabilities and rewards, and ran an ablation. The result was that the
+MOSADE-inspired selector did not outperform uniform or roulette in the current
+settings.
 
-```text
-strategy = destroy_operator | repair_operator
-```
+Good phrasing:
 
-Why pair-level matters:
+> The mechanism is implemented and explainable, but the current evidence does
+> not support a superiority claim. The next technical step is ABL-02: reward
+> scaling, pair-memory diagnosis, and selector parameter tuning.
 
-- the value of a destroy operator depends on how the removed customers are
-  repaired;
-- a related-customer destroy can be strong with regret insertion but weaker
-  with another repair operator;
-- pair statistics reveal interactions that independent weights hide.
+## VIS-01A vs VIS-01B
 
-Reward explanation:
+VIS-01A is a benchmark route viewer. It uses Solomon and Gehring-Homberger x-y
+coordinates and must not be described as a real map.
 
-```text
-new best solution: strong reward
-accepted improving solution: medium reward
-feasible exploratory solution: small reward
-rarely sampled pair: small diversity bonus
-```
+VIS-01B is a city road demo. It uses a Berlin Mitte OSM driving graph, synthetic
+orders sampled from road-network nodes, road shortest-path distances, GeoJSON,
+and Folium HTML.
 
-Interview wording:
+## City Demo Travel-Time Caveat
 
-```text
-The adaptive selector is deliberately modest. I am not claiming a new global
-optimizer. I am taking a proven idea, online strategy selection, and moving it
-to the ALNS operator layer where the strategy is a destroy/repair pair.
-```
+The Berlin Mitte demo uses road-network shortest paths and a travel-time proxy
+from edge lengths and speed assumptions. It is not based on observed traffic
+measurements. Phrase it as a visualization and integration demo.
 
-## Gap, Convergence, Ablation, Statistics
+## Defensive Answers To Likely Follow-Ups
 
-How to discuss evidence before final benchmark numbers:
+Q: Why did MOSADE not beat simpler selectors?
 
-- Gap: "The code can compute BKS gap fields when the BKS entry is verified; I
-  leave unknown values blank rather than inventing targets."
-- Convergence: "ALNS stores `best_cost` by iteration, so I can show whether
-  improvements happen early, late, or not at all under a fixed budget."
-- Ablation: "Uniform, roulette, and MOSADE-inspired selectors share the same
-  solver shell. That isolates the effect of operator selection."
-- Statistics: "The analysis aligns rows by instance and seed, then uses paired
-  comparisons. I only fill resume percentages after the matched CSV supports
-  them."
+A: The current reward scale and problem slice may not give the pair-memory
+mechanism enough signal. I kept the negative result because the point of the
+project is an evidence-backed engineering workflow, not forcing a success story.
 
-When results are available, fill this sentence:
+Q: Why keep OR-Tools if ALNS is the project focus?
 
-```text
-On <instance set> with <seed count> seeds and <time budget>, <solver> reduced
-<metric> by <X> versus <baseline>, with evidence in <runs csv>.
-```
+A: It gives a serious external baseline. Where OR-Tools returns a solution it is
+very strong, which keeps the comparison honest.
 
-## Demo Flow
+Q: Why use a weighted objective?
 
-1. Open Streamlit.
-2. Select `Mini Solomon 8`.
-3. Run `greedy` to show a fast feasible baseline.
-4. Run `alns_uniform` or `alns_mosade` to show convergence and route metadata.
-5. Point at map layers: depot, customers, route polylines, and popups with time
-   windows and arrival times.
-6. Download solution JSON to show route details are not only visual.
+A: The benchmark convention prioritizes vehicle count before distance. The code
+reports objective, vehicles, distance, and runtime separately so objective is
+not confused with distance.
 
-## Follow-Up Questions
+Q: Are the city routes real delivery routes?
 
-**How do you know the solution is feasible?**  
-Each route is decoded stop by stop. The checker validates customer coverage,
-duplicates, capacity, arrival/service times, and depot return.
+A: They are synthetic orders on a real OSM road network. The map is useful for
+demonstration, but it is not a production dispatch or measured travel-time
+system.
 
-**Why OR-Tools if you already implemented solvers?**  
-OR-Tools is a credible external baseline. It helps separate "my heuristic
-works" from "my heuristic beats a trivial implementation."
+Q: What would you do next?
 
-**What is the risk in the adaptive selector?**  
-It can overfit to early lucky rewards. The exploration floor and sliding memory
-reduce that risk, and ablations compare it against uniform and roulette
-selection.
-
-**Why not claim MOSADE fully?**  
-Because the project transfers one idea, adaptive strategy selection. It is
-more accurate and more defensible to call it MOSADE-inspired.
-
-**What would you improve next?**  
-Run larger Solomon and synthetic-city batches, add more acceptance criteria,
-test richer road-network travel times, and fill the resume numbers only after
-the CSV and statistical summaries support them.
+A: First package the repository for release. Then ABL-02 to diagnose selector
+behavior. After that, broader experiments only if the medium-scale evidence is
+stable.

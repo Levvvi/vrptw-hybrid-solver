@@ -1,0 +1,4513 @@
+{
+  "feasible": true,
+  "instance_name": "rc1_2_1",
+  "metadata": {
+    "ablation": "alns_roulette",
+    "best_iteration": 40,
+    "candidate_neighbor_size": 24,
+    "destroy_fraction": 0.2,
+    "destroy_operators": [
+      "random_removal",
+      "worst_distance_removal",
+      "shaw_related_removal",
+      "route_removal",
+      "time_window_tight_removal"
+    ],
+    "deterministic": true,
+    "feasibility_violations": [],
+    "history": [
+      {
+        "accepted": false,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2806165.360073873,
+        "candidate_objective": 2806165.360073873,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 400303.75419787643,
+        "destroy": "time_window_tight_removal",
+        "destroy_operator": "time_window_tight_removal",
+        "feasible": true,
+        "iteration": 1,
+        "new_best": false,
+        "no_improvement_iterations": 1,
+        "repair": "time_window_priority_insertion",
+        "repair_operator": "time_window_priority_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.0,
+            "route_removal": 0.0,
+            "shaw_related_removal": 0.0,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 1.0,
+            "route_removal": 1.0,
+            "shaw_related_removal": 1.0,
+            "time_window_tight_removal": 1.0,
+            "worst_distance_removal": 1.0
+          },
+          "events_seen": 1,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.0,
+            "noise_insertion": 0.0,
+            "regret_2_insertion": 0.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 0.2
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 1.0,
+            "regret_2_insertion": 1.0,
+            "regret_3_insertion": 1.0,
+            "time_window_priority_insertion": 1.0
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2605823.942333781,
+        "candidate_objective": 2605823.942333781,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 199962.33645778475,
+        "destroy": "shaw_related_removal",
+        "destroy_operator": "shaw_related_removal",
+        "feasible": true,
+        "iteration": 2,
+        "new_best": false,
+        "no_improvement_iterations": 2,
+        "repair": "regret_2_insertion",
+        "repair_operator": "regret_2_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.0,
+            "route_removal": 0.0,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 1.0,
+            "route_removal": 1.0,
+            "shaw_related_removal": 1.0,
+            "time_window_tight_removal": 1.0,
+            "worst_distance_removal": 1.0
+          },
+          "events_seen": 2,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.0,
+            "noise_insertion": 0.0,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 0.2
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 1.0,
+            "regret_2_insertion": 1.0,
+            "regret_3_insertion": 1.0,
+            "time_window_priority_insertion": 1.0
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2505801.407531196,
+        "candidate_objective": 2505801.407531196,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 99939.80165519938,
+        "destroy": "shaw_related_removal",
+        "destroy_operator": "shaw_related_removal",
+        "feasible": true,
+        "iteration": 3,
+        "new_best": false,
+        "no_improvement_iterations": 3,
+        "repair": "noise_insertion",
+        "repair_operator": "noise_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.0,
+            "route_removal": 0.0,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 1.0,
+            "route_removal": 1.0,
+            "shaw_related_removal": 1.0,
+            "time_window_tight_removal": 1.0,
+            "worst_distance_removal": 1.0
+          },
+          "events_seen": 3,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.0,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 0.2
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 1.0,
+            "regret_2_insertion": 1.0,
+            "regret_3_insertion": 1.0,
+            "time_window_priority_insertion": 1.0
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2505727.2039726237,
+        "candidate_objective": 2505727.2039726237,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 99865.59809662728,
+        "destroy": "time_window_tight_removal",
+        "destroy_operator": "time_window_tight_removal",
+        "feasible": true,
+        "iteration": 4,
+        "new_best": false,
+        "no_improvement_iterations": 4,
+        "repair": "regret_2_insertion",
+        "repair_operator": "regret_2_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.0,
+            "route_removal": 0.0,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.4,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 1.0,
+            "route_removal": 1.0,
+            "shaw_related_removal": 1.0,
+            "time_window_tight_removal": 1.0,
+            "worst_distance_removal": 1.0
+          },
+          "events_seen": 4,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.0,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.4,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 0.2
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 1.0,
+            "regret_2_insertion": 1.0,
+            "regret_3_insertion": 1.0,
+            "time_window_priority_insertion": 1.0
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2605019.16854954,
+        "candidate_objective": 2605019.16854954,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 199157.56267354358,
+        "destroy": "worst_distance_removal",
+        "destroy_operator": "worst_distance_removal",
+        "feasible": true,
+        "iteration": 5,
+        "new_best": false,
+        "no_improvement_iterations": 5,
+        "repair": "regret_3_insertion",
+        "repair_operator": "regret_3_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.0,
+            "route_removal": 0.0,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.4,
+            "worst_distance_removal": 0.2
+          },
+          "destroy_weights": {
+            "random_removal": 1.0,
+            "route_removal": 1.0,
+            "shaw_related_removal": 1.0,
+            "time_window_tight_removal": 1.0,
+            "worst_distance_removal": 1.0
+          },
+          "events_seen": 5,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.0,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.4,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 1.0,
+            "regret_2_insertion": 1.0,
+            "regret_3_insertion": 1.0,
+            "time_window_priority_insertion": 1.0
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2604938.553357067,
+        "candidate_objective": 2604938.553357067,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 199076.94748107065,
+        "destroy": "worst_distance_removal",
+        "destroy_operator": "worst_distance_removal",
+        "feasible": true,
+        "iteration": 6,
+        "new_best": false,
+        "no_improvement_iterations": 6,
+        "repair": "regret_2_insertion",
+        "repair_operator": "regret_2_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.0,
+            "route_removal": 0.0,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.4,
+            "worst_distance_removal": 0.4
+          },
+          "destroy_weights": {
+            "random_removal": 1.0,
+            "route_removal": 1.0,
+            "shaw_related_removal": 1.0,
+            "time_window_tight_removal": 1.0,
+            "worst_distance_removal": 1.0
+          },
+          "events_seen": 6,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.0,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.6000000000000001,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 1.0,
+            "regret_2_insertion": 1.0,
+            "regret_3_insertion": 1.0,
+            "time_window_priority_insertion": 1.0
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2405861.6058759964,
+        "candidate_objective": 2405861.6058759964,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 7,
+        "new_best": false,
+        "no_improvement_iterations": 7,
+        "repair": "regret_3_insertion",
+        "repair_operator": "regret_3_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.0,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.4,
+            "worst_distance_removal": 0.4
+          },
+          "destroy_weights": {
+            "random_removal": 1.0,
+            "route_removal": 1.0,
+            "shaw_related_removal": 1.0,
+            "time_window_tight_removal": 1.0,
+            "worst_distance_removal": 1.0
+          },
+          "events_seen": 7,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.0,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.6000000000000001,
+            "regret_3_insertion": 1.2,
+            "time_window_priority_insertion": 0.2
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 1.0,
+            "regret_2_insertion": 1.0,
+            "regret_3_insertion": 1.0,
+            "time_window_priority_insertion": 1.0
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2806165.360073873,
+        "candidate_objective": 2806165.360073873,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 400303.75419787643,
+        "destroy": "time_window_tight_removal",
+        "destroy_operator": "time_window_tight_removal",
+        "feasible": true,
+        "iteration": 8,
+        "new_best": false,
+        "no_improvement_iterations": 8,
+        "repair": "time_window_priority_insertion",
+        "repair_operator": "time_window_priority_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.0,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.6000000000000001,
+            "worst_distance_removal": 0.4
+          },
+          "destroy_weights": {
+            "random_removal": 1.0,
+            "route_removal": 1.0,
+            "shaw_related_removal": 1.0,
+            "time_window_tight_removal": 1.0,
+            "worst_distance_removal": 1.0
+          },
+          "events_seen": 8,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.0,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.6000000000000001,
+            "regret_3_insertion": 1.2,
+            "time_window_priority_insertion": 0.4
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 1.0,
+            "regret_2_insertion": 1.0,
+            "regret_3_insertion": 1.0,
+            "time_window_priority_insertion": 1.0
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2505581.4463045783,
+        "candidate_objective": 2505581.4463045783,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 99719.84042858193,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 9,
+        "new_best": false,
+        "no_improvement_iterations": 9,
+        "repair": "time_window_priority_insertion",
+        "repair_operator": "time_window_priority_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.2,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.2,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.6000000000000001,
+            "worst_distance_removal": 0.4
+          },
+          "destroy_weights": {
+            "random_removal": 1.0,
+            "route_removal": 1.0,
+            "shaw_related_removal": 1.0,
+            "time_window_tight_removal": 1.0,
+            "worst_distance_removal": 1.0
+          },
+          "events_seen": 9,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.2
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.0,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.6000000000000001,
+            "regret_3_insertion": 1.2,
+            "time_window_priority_insertion": 0.6000000000000001
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 1.0,
+            "regret_2_insertion": 1.0,
+            "regret_3_insertion": 1.0,
+            "time_window_priority_insertion": 1.0
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2405861.6058759964,
+        "candidate_objective": 2405861.6058759964,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 10,
+        "new_best": false,
+        "no_improvement_iterations": 10,
+        "repair": "noise_insertion",
+        "repair_operator": "noise_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1823529411764706,
+            "route_removal": 0.27058823529411763,
+            "shaw_related_removal": 0.1823529411764706,
+            "time_window_tight_removal": 0.1823529411764706,
+            "worst_distance_removal": 0.1823529411764706
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.0,
+            "route_removal": 0.0,
+            "shaw_related_removal": 0.0,
+            "time_window_tight_removal": 0.0,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 0.6,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.6,
+            "time_window_tight_removal": 0.6,
+            "worst_distance_removal": 0.6
+          },
+          "events_seen": 10,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2473684210526316,
+            "noise_insertion": 0.20789473684210527,
+            "regret_2_insertion": 0.16842105263157894,
+            "regret_3_insertion": 0.20789473684210527,
+            "time_window_priority_insertion": 0.16842105263157894
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.0,
+            "noise_insertion": 0.0,
+            "regret_2_insertion": 0.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 0.8,
+            "regret_2_insertion": 0.6,
+            "regret_3_insertion": 0.8,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2405861.6058759964,
+        "candidate_objective": 2405861.6058759964,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 11,
+        "new_best": false,
+        "no_improvement_iterations": 11,
+        "repair": "regret_2_insertion",
+        "repair_operator": "regret_2_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1823529411764706,
+            "route_removal": 0.27058823529411763,
+            "shaw_related_removal": 0.1823529411764706,
+            "time_window_tight_removal": 0.1823529411764706,
+            "worst_distance_removal": 0.1823529411764706
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.0,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.0,
+            "time_window_tight_removal": 0.0,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 0.6,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.6,
+            "time_window_tight_removal": 0.6,
+            "worst_distance_removal": 0.6
+          },
+          "events_seen": 11,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2473684210526316,
+            "noise_insertion": 0.20789473684210527,
+            "regret_2_insertion": 0.16842105263157894,
+            "regret_3_insertion": 0.20789473684210527,
+            "time_window_priority_insertion": 0.16842105263157894
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.0,
+            "noise_insertion": 0.0,
+            "regret_2_insertion": 1.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 0.8,
+            "regret_2_insertion": 0.6,
+            "regret_3_insertion": 0.8,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2605713.8208259465,
+        "candidate_objective": 2605713.8208259465,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 199852.2149499501,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 12,
+        "new_best": false,
+        "no_improvement_iterations": 12,
+        "repair": "greedy_cheapest_insertion",
+        "repair_operator": "greedy_cheapest_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1823529411764706,
+            "route_removal": 0.27058823529411763,
+            "shaw_related_removal": 0.1823529411764706,
+            "time_window_tight_removal": 0.1823529411764706,
+            "worst_distance_removal": 0.1823529411764706
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.2,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.0,
+            "time_window_tight_removal": 0.0,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 0.6,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.6,
+            "time_window_tight_removal": 0.6,
+            "worst_distance_removal": 0.6
+          },
+          "events_seen": 12,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2473684210526316,
+            "noise_insertion": 0.20789473684210527,
+            "regret_2_insertion": 0.16842105263157894,
+            "regret_3_insertion": 0.20789473684210527,
+            "time_window_priority_insertion": 0.16842105263157894
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.0,
+            "regret_2_insertion": 1.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 0.8,
+            "regret_2_insertion": 0.6,
+            "regret_3_insertion": 0.8,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2705912.3245242713,
+        "candidate_objective": 2705912.3245242713,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 300050.7186482749,
+        "destroy": "time_window_tight_removal",
+        "destroy_operator": "time_window_tight_removal",
+        "feasible": true,
+        "iteration": 13,
+        "new_best": false,
+        "no_improvement_iterations": 13,
+        "repair": "noise_insertion",
+        "repair_operator": "noise_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1823529411764706,
+            "route_removal": 0.27058823529411763,
+            "shaw_related_removal": 0.1823529411764706,
+            "time_window_tight_removal": 0.1823529411764706,
+            "worst_distance_removal": 0.1823529411764706
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.2,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.0,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 0.6,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.6,
+            "time_window_tight_removal": 0.6,
+            "worst_distance_removal": 0.6
+          },
+          "events_seen": 13,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2473684210526316,
+            "noise_insertion": 0.20789473684210527,
+            "regret_2_insertion": 0.16842105263157894,
+            "regret_3_insertion": 0.20789473684210527,
+            "time_window_priority_insertion": 0.16842105263157894
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 1.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 0.8,
+            "regret_2_insertion": 0.6,
+            "regret_3_insertion": 0.8,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2505807.6335275113,
+        "candidate_objective": 2505807.6335275113,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 99946.02765151486,
+        "destroy": "shaw_related_removal",
+        "destroy_operator": "shaw_related_removal",
+        "feasible": true,
+        "iteration": 14,
+        "new_best": false,
+        "no_improvement_iterations": 14,
+        "repair": "greedy_cheapest_insertion",
+        "repair_operator": "greedy_cheapest_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1823529411764706,
+            "route_removal": 0.27058823529411763,
+            "shaw_related_removal": 0.1823529411764706,
+            "time_window_tight_removal": 0.1823529411764706,
+            "worst_distance_removal": 0.1823529411764706
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.2,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 0.6,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.6,
+            "time_window_tight_removal": 0.6,
+            "worst_distance_removal": 0.6
+          },
+          "events_seen": 14,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2473684210526316,
+            "noise_insertion": 0.20789473684210527,
+            "regret_2_insertion": 0.16842105263157894,
+            "regret_3_insertion": 0.20789473684210527,
+            "time_window_priority_insertion": 0.16842105263157894
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.4,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 1.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 0.8,
+            "regret_2_insertion": 0.6,
+            "regret_3_insertion": 0.8,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2805253.0815189234,
+        "candidate_objective": 2805253.0815189234,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 399391.475642927,
+        "destroy": "worst_distance_removal",
+        "destroy_operator": "worst_distance_removal",
+        "feasible": true,
+        "iteration": 15,
+        "new_best": false,
+        "no_improvement_iterations": 15,
+        "repair": "greedy_cheapest_insertion",
+        "repair_operator": "greedy_cheapest_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1823529411764706,
+            "route_removal": 0.27058823529411763,
+            "shaw_related_removal": 0.1823529411764706,
+            "time_window_tight_removal": 0.1823529411764706,
+            "worst_distance_removal": 0.1823529411764706
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.2,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "destroy_weights": {
+            "random_removal": 0.6,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.6,
+            "time_window_tight_removal": 0.6,
+            "worst_distance_removal": 0.6
+          },
+          "events_seen": 15,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2473684210526316,
+            "noise_insertion": 0.20789473684210527,
+            "regret_2_insertion": 0.16842105263157894,
+            "regret_3_insertion": 0.20789473684210527,
+            "time_window_priority_insertion": 0.16842105263157894
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.6000000000000001,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 1.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 0.8,
+            "regret_2_insertion": 0.6,
+            "regret_3_insertion": 0.8,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2705812.043097248,
+        "candidate_objective": 2705812.043097248,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 299950.4372212514,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 16,
+        "new_best": false,
+        "no_improvement_iterations": 16,
+        "repair": "regret_3_insertion",
+        "repair_operator": "regret_3_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1823529411764706,
+            "route_removal": 0.27058823529411763,
+            "shaw_related_removal": 0.1823529411764706,
+            "time_window_tight_removal": 0.1823529411764706,
+            "worst_distance_removal": 0.1823529411764706
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.4,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "destroy_weights": {
+            "random_removal": 0.6,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.6,
+            "time_window_tight_removal": 0.6,
+            "worst_distance_removal": 0.6
+          },
+          "events_seen": 16,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2473684210526316,
+            "noise_insertion": 0.20789473684210527,
+            "regret_2_insertion": 0.16842105263157894,
+            "regret_3_insertion": 0.20789473684210527,
+            "time_window_priority_insertion": 0.16842105263157894
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.6000000000000001,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 1.0,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 0.8,
+            "regret_2_insertion": 0.6,
+            "regret_3_insertion": 0.8,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2405861.6058759964,
+        "candidate_objective": 2405861.6058759964,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 17,
+        "new_best": false,
+        "no_improvement_iterations": 17,
+        "repair": "regret_3_insertion",
+        "repair_operator": "regret_3_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1823529411764706,
+            "route_removal": 0.27058823529411763,
+            "shaw_related_removal": 0.1823529411764706,
+            "time_window_tight_removal": 0.1823529411764706,
+            "worst_distance_removal": 0.1823529411764706
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.4,
+            "route_removal": 2.0,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "destroy_weights": {
+            "random_removal": 0.6,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.6,
+            "time_window_tight_removal": 0.6,
+            "worst_distance_removal": 0.6
+          },
+          "events_seen": 17,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2473684210526316,
+            "noise_insertion": 0.20789473684210527,
+            "regret_2_insertion": 0.16842105263157894,
+            "regret_3_insertion": 0.20789473684210527,
+            "time_window_priority_insertion": 0.16842105263157894
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.6000000000000001,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 1.0,
+            "regret_3_insertion": 1.2,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 0.8,
+            "regret_2_insertion": 0.6,
+            "regret_3_insertion": 0.8,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2405861.6058759964,
+        "candidate_objective": 2405861.6058759964,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 18,
+        "new_best": false,
+        "no_improvement_iterations": 18,
+        "repair": "regret_3_insertion",
+        "repair_operator": "regret_3_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1823529411764706,
+            "route_removal": 0.27058823529411763,
+            "shaw_related_removal": 0.1823529411764706,
+            "time_window_tight_removal": 0.1823529411764706,
+            "worst_distance_removal": 0.1823529411764706
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.4,
+            "route_removal": 3.0,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "destroy_weights": {
+            "random_removal": 0.6,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.6,
+            "time_window_tight_removal": 0.6,
+            "worst_distance_removal": 0.6
+          },
+          "events_seen": 18,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2473684210526316,
+            "noise_insertion": 0.20789473684210527,
+            "regret_2_insertion": 0.16842105263157894,
+            "regret_3_insertion": 0.20789473684210527,
+            "time_window_priority_insertion": 0.16842105263157894
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.6000000000000001,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 1.0,
+            "regret_3_insertion": 2.2,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 0.8,
+            "regret_2_insertion": 0.6,
+            "regret_3_insertion": 0.8,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2705116.8805915415,
+        "candidate_objective": 2705116.8805915415,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 299255.2747155451,
+        "destroy": "worst_distance_removal",
+        "destroy_operator": "worst_distance_removal",
+        "feasible": true,
+        "iteration": 19,
+        "new_best": false,
+        "no_improvement_iterations": 19,
+        "repair": "noise_insertion",
+        "repair_operator": "noise_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1823529411764706,
+            "route_removal": 0.27058823529411763,
+            "shaw_related_removal": 0.1823529411764706,
+            "time_window_tight_removal": 0.1823529411764706,
+            "worst_distance_removal": 0.1823529411764706
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.4,
+            "route_removal": 3.0,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.4
+          },
+          "destroy_weights": {
+            "random_removal": 0.6,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.6,
+            "time_window_tight_removal": 0.6,
+            "worst_distance_removal": 0.6
+          },
+          "events_seen": 19,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2473684210526316,
+            "noise_insertion": 0.20789473684210527,
+            "regret_2_insertion": 0.16842105263157894,
+            "regret_3_insertion": 0.20789473684210527,
+            "time_window_priority_insertion": 0.16842105263157894
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.6000000000000001,
+            "noise_insertion": 0.4,
+            "regret_2_insertion": 1.0,
+            "regret_3_insertion": 2.2,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 0.8,
+            "regret_2_insertion": 0.6,
+            "regret_3_insertion": 0.8,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2705888.8798860293,
+        "candidate_objective": 2705888.8798860293,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 300027.2740100329,
+        "destroy": "time_window_tight_removal",
+        "destroy_operator": "time_window_tight_removal",
+        "feasible": true,
+        "iteration": 20,
+        "new_best": false,
+        "no_improvement_iterations": 20,
+        "repair": "greedy_cheapest_insertion",
+        "repair_operator": "greedy_cheapest_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1653846153846154,
+            "route_removal": 0.3384615384615384,
+            "shaw_related_removal": 0.1653846153846154,
+            "time_window_tight_removal": 0.1653846153846154,
+            "worst_distance_removal": 0.1653846153846154
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.0,
+            "route_removal": 0.0,
+            "shaw_related_removal": 0.0,
+            "time_window_tight_removal": 0.0,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 0.4,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.4,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 20,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.1877551020408163,
+            "noise_insertion": 0.16479591836734694,
+            "regret_2_insertion": 0.23367346938775513,
+            "regret_3_insertion": 0.22602040816326535,
+            "time_window_priority_insertion": 0.1877551020408163
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.0,
+            "noise_insertion": 0.0,
+            "regret_2_insertion": 0.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.6,
+            "noise_insertion": 0.5,
+            "regret_2_insertion": 0.8,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2405861.6058759964,
+        "candidate_objective": 2405861.6058759964,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 21,
+        "new_best": false,
+        "no_improvement_iterations": 21,
+        "repair": "greedy_cheapest_insertion",
+        "repair_operator": "greedy_cheapest_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1653846153846154,
+            "route_removal": 0.3384615384615384,
+            "shaw_related_removal": 0.1653846153846154,
+            "time_window_tight_removal": 0.1653846153846154,
+            "worst_distance_removal": 0.1653846153846154
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.0,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.0,
+            "time_window_tight_removal": 0.0,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 0.4,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.4,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 21,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.1877551020408163,
+            "noise_insertion": 0.16479591836734694,
+            "regret_2_insertion": 0.23367346938775513,
+            "regret_3_insertion": 0.22602040816326535,
+            "time_window_priority_insertion": 0.1877551020408163
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 0.0,
+            "regret_2_insertion": 0.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.6,
+            "noise_insertion": 0.5,
+            "regret_2_insertion": 0.8,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2405861.6058759964,
+        "best_objective": 2405861.6058759964,
+        "candidate_cost": 2405861.6058759964,
+        "candidate_objective": 2405861.6058759964,
+        "current_cost": 2405861.6058759964,
+        "current_objective": 2405861.6058759964,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 22,
+        "new_best": false,
+        "no_improvement_iterations": 22,
+        "repair": "time_window_priority_insertion",
+        "repair_operator": "time_window_priority_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1653846153846154,
+            "route_removal": 0.3384615384615384,
+            "shaw_related_removal": 0.1653846153846154,
+            "time_window_tight_removal": 0.1653846153846154,
+            "worst_distance_removal": 0.1653846153846154
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.0,
+            "route_removal": 2.0,
+            "shaw_related_removal": 0.0,
+            "time_window_tight_removal": 0.0,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 0.4,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.4,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 22,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.1877551020408163,
+            "noise_insertion": 0.16479591836734694,
+            "regret_2_insertion": 0.23367346938775513,
+            "regret_3_insertion": 0.22602040816326535,
+            "time_window_priority_insertion": 0.1877551020408163
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 0.0,
+            "regret_2_insertion": 0.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 1.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.6,
+            "noise_insertion": 0.5,
+            "regret_2_insertion": 0.8,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2405636.532371418,
+        "best_objective": 2405636.532371418,
+        "candidate_cost": 2405636.532371418,
+        "candidate_objective": 2405636.532371418,
+        "current_cost": 2405636.532371418,
+        "current_objective": 2405636.532371418,
+        "delta_cost": -225.07350457832217,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 23,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "regret_2_insertion",
+        "repair_operator": "regret_2_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1653846153846154,
+            "route_removal": 0.3384615384615384,
+            "shaw_related_removal": 0.1653846153846154,
+            "time_window_tight_removal": 0.1653846153846154,
+            "worst_distance_removal": 0.1653846153846154
+          },
+          "destroy_segment_scores": {
+            "random_removal": 5.0,
+            "route_removal": 2.0,
+            "shaw_related_removal": 0.0,
+            "time_window_tight_removal": 0.0,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 0.4,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.4,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 23,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.1877551020408163,
+            "noise_insertion": 0.16479591836734694,
+            "regret_2_insertion": 0.23367346938775513,
+            "regret_3_insertion": 0.22602040816326535,
+            "time_window_priority_insertion": 0.1877551020408163
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 0.0,
+            "regret_2_insertion": 5.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 1.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.6,
+            "noise_insertion": 0.5,
+            "regret_2_insertion": 0.8,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2405636.532371418,
+        "best_objective": 2405636.532371418,
+        "candidate_cost": 2405636.532371418,
+        "candidate_objective": 2405636.532371418,
+        "current_cost": 2405636.532371418,
+        "current_objective": 2405636.532371418,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 24,
+        "new_best": false,
+        "no_improvement_iterations": 1,
+        "repair": "regret_2_insertion",
+        "repair_operator": "regret_2_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1653846153846154,
+            "route_removal": 0.3384615384615384,
+            "shaw_related_removal": 0.1653846153846154,
+            "time_window_tight_removal": 0.1653846153846154,
+            "worst_distance_removal": 0.1653846153846154
+          },
+          "destroy_segment_scores": {
+            "random_removal": 5.0,
+            "route_removal": 3.0,
+            "shaw_related_removal": 0.0,
+            "time_window_tight_removal": 0.0,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 0.4,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.4,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 24,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.1877551020408163,
+            "noise_insertion": 0.16479591836734694,
+            "regret_2_insertion": 0.23367346938775513,
+            "regret_3_insertion": 0.22602040816326535,
+            "time_window_priority_insertion": 0.1877551020408163
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 0.0,
+            "regret_2_insertion": 6.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 1.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.6,
+            "noise_insertion": 0.5,
+            "regret_2_insertion": 0.8,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405636.532371418,
+        "best_objective": 2405636.532371418,
+        "candidate_cost": 2505559.01378176,
+        "candidate_objective": 2505559.01378176,
+        "current_cost": 2405636.532371418,
+        "current_objective": 2405636.532371418,
+        "delta_cost": 99922.4814103418,
+        "destroy": "time_window_tight_removal",
+        "destroy_operator": "time_window_tight_removal",
+        "feasible": true,
+        "iteration": 25,
+        "new_best": false,
+        "no_improvement_iterations": 2,
+        "repair": "noise_insertion",
+        "repair_operator": "noise_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1653846153846154,
+            "route_removal": 0.3384615384615384,
+            "shaw_related_removal": 0.1653846153846154,
+            "time_window_tight_removal": 0.1653846153846154,
+            "worst_distance_removal": 0.1653846153846154
+          },
+          "destroy_segment_scores": {
+            "random_removal": 5.0,
+            "route_removal": 3.0,
+            "shaw_related_removal": 0.0,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 0.4,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.4,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 25,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.1877551020408163,
+            "noise_insertion": 0.16479591836734694,
+            "regret_2_insertion": 0.23367346938775513,
+            "regret_3_insertion": 0.22602040816326535,
+            "time_window_priority_insertion": 0.1877551020408163
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 1.0,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 6.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 1.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.6,
+            "noise_insertion": 0.5,
+            "regret_2_insertion": 0.8,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2405636.532371418,
+        "best_objective": 2405636.532371418,
+        "candidate_cost": 2405636.532371418,
+        "candidate_objective": 2405636.532371418,
+        "current_cost": 2405636.532371418,
+        "current_objective": 2405636.532371418,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 26,
+        "new_best": false,
+        "no_improvement_iterations": 3,
+        "repair": "greedy_cheapest_insertion",
+        "repair_operator": "greedy_cheapest_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1653846153846154,
+            "route_removal": 0.3384615384615384,
+            "shaw_related_removal": 0.1653846153846154,
+            "time_window_tight_removal": 0.1653846153846154,
+            "worst_distance_removal": 0.1653846153846154
+          },
+          "destroy_segment_scores": {
+            "random_removal": 5.0,
+            "route_removal": 4.0,
+            "shaw_related_removal": 0.0,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 0.4,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.4,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 26,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.1877551020408163,
+            "noise_insertion": 0.16479591836734694,
+            "regret_2_insertion": 0.23367346938775513,
+            "regret_3_insertion": 0.22602040816326535,
+            "time_window_priority_insertion": 0.1877551020408163
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 2.0,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 6.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 1.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.6,
+            "noise_insertion": 0.5,
+            "regret_2_insertion": 0.8,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405636.532371418,
+        "best_objective": 2405636.532371418,
+        "candidate_cost": 2705731.9641621755,
+        "candidate_objective": 2705731.9641621755,
+        "current_cost": 2405636.532371418,
+        "current_objective": 2405636.532371418,
+        "delta_cost": 300095.43179075746,
+        "destroy": "time_window_tight_removal",
+        "destroy_operator": "time_window_tight_removal",
+        "feasible": true,
+        "iteration": 27,
+        "new_best": false,
+        "no_improvement_iterations": 4,
+        "repair": "time_window_priority_insertion",
+        "repair_operator": "time_window_priority_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1653846153846154,
+            "route_removal": 0.3384615384615384,
+            "shaw_related_removal": 0.1653846153846154,
+            "time_window_tight_removal": 0.1653846153846154,
+            "worst_distance_removal": 0.1653846153846154
+          },
+          "destroy_segment_scores": {
+            "random_removal": 5.0,
+            "route_removal": 4.0,
+            "shaw_related_removal": 0.0,
+            "time_window_tight_removal": 0.4,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 0.4,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.4,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 27,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.1877551020408163,
+            "noise_insertion": 0.16479591836734694,
+            "regret_2_insertion": 0.23367346938775513,
+            "regret_3_insertion": 0.22602040816326535,
+            "time_window_priority_insertion": 0.1877551020408163
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 2.0,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 6.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 1.2
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.6,
+            "noise_insertion": 0.5,
+            "regret_2_insertion": 0.8,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2405636.532371418,
+        "best_objective": 2405636.532371418,
+        "candidate_cost": 2405636.532371418,
+        "candidate_objective": 2405636.532371418,
+        "current_cost": 2405636.532371418,
+        "current_objective": 2405636.532371418,
+        "delta_cost": 0.0,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 28,
+        "new_best": false,
+        "no_improvement_iterations": 5,
+        "repair": "greedy_cheapest_insertion",
+        "repair_operator": "greedy_cheapest_insertion",
+        "reward": 1.0,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1653846153846154,
+            "route_removal": 0.3384615384615384,
+            "shaw_related_removal": 0.1653846153846154,
+            "time_window_tight_removal": 0.1653846153846154,
+            "worst_distance_removal": 0.1653846153846154
+          },
+          "destroy_segment_scores": {
+            "random_removal": 5.0,
+            "route_removal": 5.0,
+            "shaw_related_removal": 0.0,
+            "time_window_tight_removal": 0.4,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 0.4,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.4,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 28,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.1877551020408163,
+            "noise_insertion": 0.16479591836734694,
+            "regret_2_insertion": 0.23367346938775513,
+            "regret_3_insertion": 0.22602040816326535,
+            "time_window_priority_insertion": 0.1877551020408163
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 3.0,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 6.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 1.2
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.6,
+            "noise_insertion": 0.5,
+            "regret_2_insertion": 0.8,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2405387.394443308,
+        "best_objective": 2405387.394443308,
+        "candidate_cost": 2405387.394443308,
+        "candidate_objective": 2405387.394443308,
+        "current_cost": 2405387.394443308,
+        "current_objective": 2405387.394443308,
+        "delta_cost": -249.1379281100817,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 29,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "time_window_priority_insertion",
+        "repair_operator": "time_window_priority_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.1653846153846154,
+            "route_removal": 0.3384615384615384,
+            "shaw_related_removal": 0.1653846153846154,
+            "time_window_tight_removal": 0.1653846153846154,
+            "worst_distance_removal": 0.1653846153846154
+          },
+          "destroy_segment_scores": {
+            "random_removal": 10.0,
+            "route_removal": 5.0,
+            "shaw_related_removal": 0.0,
+            "time_window_tight_removal": 0.4,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 0.4,
+            "route_removal": 1.0,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.4,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 29,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.1877551020408163,
+            "noise_insertion": 0.16479591836734694,
+            "regret_2_insertion": 0.23367346938775513,
+            "regret_3_insertion": 0.22602040816326535,
+            "time_window_priority_insertion": 0.1877551020408163
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 3.0,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 6.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 6.2
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.6,
+            "noise_insertion": 0.5,
+            "regret_2_insertion": 0.8,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 0.6
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405387.394443308,
+        "best_objective": 2405387.394443308,
+        "candidate_cost": 2405414.149062164,
+        "candidate_objective": 2405414.149062164,
+        "current_cost": 2405387.394443308,
+        "current_objective": 2405387.394443308,
+        "delta_cost": 26.75461885612458,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 30,
+        "new_best": false,
+        "no_improvement_iterations": 1,
+        "repair": "greedy_cheapest_insertion",
+        "repair_operator": "greedy_cheapest_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.4778169014084508,
+            "route_removal": 0.19788732394366199,
+            "shaw_related_removal": 0.11338028169014086,
+            "time_window_tight_removal": 0.09753521126760564,
+            "worst_distance_removal": 0.11338028169014086
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.0,
+            "route_removal": 0.0,
+            "shaw_related_removal": 0.0,
+            "time_window_tight_removal": 0.0,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 2.7,
+            "route_removal": 0.9333333333333333,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.30000000000000004,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 30,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.15396039603960396,
+            "noise_insertion": 0.10198019801980196,
+            "regret_2_insertion": 0.33217821782178214,
+            "regret_3_insertion": 0.16386138613861387,
+            "time_window_priority_insertion": 0.24801980198019802
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.0,
+            "noise_insertion": 0.0,
+            "regret_2_insertion": 0.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.7,
+            "noise_insertion": 0.35,
+            "regret_2_insertion": 1.9,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 1.3333333333333335
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405387.394443308,
+        "best_objective": 2405387.394443308,
+        "candidate_cost": 2405414.149062164,
+        "candidate_objective": 2405414.149062164,
+        "current_cost": 2405387.394443308,
+        "current_objective": 2405387.394443308,
+        "delta_cost": 26.75461885612458,
+        "destroy": "route_removal",
+        "destroy_operator": "route_removal",
+        "feasible": true,
+        "iteration": 31,
+        "new_best": false,
+        "no_improvement_iterations": 2,
+        "repair": "greedy_cheapest_insertion",
+        "repair_operator": "greedy_cheapest_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.4778169014084508,
+            "route_removal": 0.19788732394366199,
+            "shaw_related_removal": 0.11338028169014086,
+            "time_window_tight_removal": 0.09753521126760564,
+            "worst_distance_removal": 0.11338028169014086
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.0,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.0,
+            "time_window_tight_removal": 0.0,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 2.7,
+            "route_removal": 0.9333333333333333,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.30000000000000004,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 31,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.15396039603960396,
+            "noise_insertion": 0.10198019801980196,
+            "regret_2_insertion": 0.33217821782178214,
+            "regret_3_insertion": 0.16386138613861387,
+            "time_window_priority_insertion": 0.24801980198019802
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.2,
+            "noise_insertion": 0.0,
+            "regret_2_insertion": 0.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.7,
+            "noise_insertion": 0.35,
+            "regret_2_insertion": 1.9,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 1.3333333333333335
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2405275.8868589723,
+        "best_objective": 2405275.8868589723,
+        "candidate_cost": 2405275.8868589723,
+        "candidate_objective": 2405275.8868589723,
+        "current_cost": 2405275.8868589723,
+        "current_objective": 2405275.8868589723,
+        "delta_cost": -111.5075843357481,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 32,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "greedy_cheapest_insertion",
+        "repair_operator": "greedy_cheapest_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.4778169014084508,
+            "route_removal": 0.19788732394366199,
+            "shaw_related_removal": 0.11338028169014086,
+            "time_window_tight_removal": 0.09753521126760564,
+            "worst_distance_removal": 0.11338028169014086
+          },
+          "destroy_segment_scores": {
+            "random_removal": 5.0,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.0,
+            "time_window_tight_removal": 0.0,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 2.7,
+            "route_removal": 0.9333333333333333,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.30000000000000004,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 32,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.15396039603960396,
+            "noise_insertion": 0.10198019801980196,
+            "regret_2_insertion": 0.33217821782178214,
+            "regret_3_insertion": 0.16386138613861387,
+            "time_window_priority_insertion": 0.24801980198019802
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 5.2,
+            "noise_insertion": 0.0,
+            "regret_2_insertion": 0.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.7,
+            "noise_insertion": 0.35,
+            "regret_2_insertion": 1.9,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 1.3333333333333335
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405275.8868589723,
+        "best_objective": 2405275.8868589723,
+        "candidate_cost": 2505361.692187724,
+        "candidate_objective": 2505361.692187724,
+        "current_cost": 2405275.8868589723,
+        "current_objective": 2405275.8868589723,
+        "delta_cost": 100085.80532875191,
+        "destroy": "shaw_related_removal",
+        "destroy_operator": "shaw_related_removal",
+        "feasible": true,
+        "iteration": 33,
+        "new_best": false,
+        "no_improvement_iterations": 1,
+        "repair": "regret_3_insertion",
+        "repair_operator": "regret_3_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.4778169014084508,
+            "route_removal": 0.19788732394366199,
+            "shaw_related_removal": 0.11338028169014086,
+            "time_window_tight_removal": 0.09753521126760564,
+            "worst_distance_removal": 0.11338028169014086
+          },
+          "destroy_segment_scores": {
+            "random_removal": 5.0,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.0,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 2.7,
+            "route_removal": 0.9333333333333333,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.30000000000000004,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 33,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.15396039603960396,
+            "noise_insertion": 0.10198019801980196,
+            "regret_2_insertion": 0.33217821782178214,
+            "regret_3_insertion": 0.16386138613861387,
+            "time_window_priority_insertion": 0.24801980198019802
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 5.2,
+            "noise_insertion": 0.0,
+            "regret_2_insertion": 0.0,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.7,
+            "noise_insertion": 0.35,
+            "regret_2_insertion": 1.9,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 1.3333333333333335
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405275.8868589723,
+        "best_objective": 2405275.8868589723,
+        "candidate_cost": 2505170.0314811794,
+        "candidate_objective": 2505170.0314811794,
+        "current_cost": 2405275.8868589723,
+        "current_objective": 2405275.8868589723,
+        "delta_cost": 99894.14462220715,
+        "destroy": "time_window_tight_removal",
+        "destroy_operator": "time_window_tight_removal",
+        "feasible": true,
+        "iteration": 34,
+        "new_best": false,
+        "no_improvement_iterations": 2,
+        "repair": "regret_2_insertion",
+        "repair_operator": "regret_2_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.4778169014084508,
+            "route_removal": 0.19788732394366199,
+            "shaw_related_removal": 0.11338028169014086,
+            "time_window_tight_removal": 0.09753521126760564,
+            "worst_distance_removal": 0.11338028169014086
+          },
+          "destroy_segment_scores": {
+            "random_removal": 5.0,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 2.7,
+            "route_removal": 0.9333333333333333,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.30000000000000004,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 34,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.15396039603960396,
+            "noise_insertion": 0.10198019801980196,
+            "regret_2_insertion": 0.33217821782178214,
+            "regret_3_insertion": 0.16386138613861387,
+            "time_window_priority_insertion": 0.24801980198019802
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 5.2,
+            "noise_insertion": 0.0,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.7,
+            "noise_insertion": 0.35,
+            "regret_2_insertion": 1.9,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 1.3333333333333335
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": false,
+        "best_cost": 2405275.8868589723,
+        "best_objective": 2405275.8868589723,
+        "candidate_cost": 2704717.83807693,
+        "candidate_objective": 2704717.83807693,
+        "current_cost": 2405275.8868589723,
+        "current_objective": 2405275.8868589723,
+        "delta_cost": 299441.9512179578,
+        "destroy": "worst_distance_removal",
+        "destroy_operator": "worst_distance_removal",
+        "feasible": true,
+        "iteration": 35,
+        "new_best": false,
+        "no_improvement_iterations": 3,
+        "repair": "noise_insertion",
+        "repair_operator": "noise_insertion",
+        "reward": 0.2,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.4778169014084508,
+            "route_removal": 0.19788732394366199,
+            "shaw_related_removal": 0.11338028169014086,
+            "time_window_tight_removal": 0.09753521126760564,
+            "worst_distance_removal": 0.11338028169014086
+          },
+          "destroy_segment_scores": {
+            "random_removal": 5.0,
+            "route_removal": 0.2,
+            "shaw_related_removal": 0.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "destroy_weights": {
+            "random_removal": 2.7,
+            "route_removal": 0.9333333333333333,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.30000000000000004,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 35,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.15396039603960396,
+            "noise_insertion": 0.10198019801980196,
+            "regret_2_insertion": 0.33217821782178214,
+            "regret_3_insertion": 0.16386138613861387,
+            "time_window_priority_insertion": 0.24801980198019802
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 5.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.7,
+            "noise_insertion": 0.35,
+            "regret_2_insertion": 1.9,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 1.3333333333333335
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2405239.415133468,
+        "best_objective": 2405239.415133468,
+        "candidate_cost": 2405239.415133468,
+        "candidate_objective": 2405239.415133468,
+        "current_cost": 2405239.415133468,
+        "current_objective": 2405239.415133468,
+        "delta_cost": -36.47172550437972,
+        "destroy": "shaw_related_removal",
+        "destroy_operator": "shaw_related_removal",
+        "feasible": true,
+        "iteration": 36,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "greedy_cheapest_insertion",
+        "repair_operator": "greedy_cheapest_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.4778169014084508,
+            "route_removal": 0.19788732394366199,
+            "shaw_related_removal": 0.11338028169014086,
+            "time_window_tight_removal": 0.09753521126760564,
+            "worst_distance_removal": 0.11338028169014086
+          },
+          "destroy_segment_scores": {
+            "random_removal": 5.0,
+            "route_removal": 0.2,
+            "shaw_related_removal": 5.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "destroy_weights": {
+            "random_removal": 2.7,
+            "route_removal": 0.9333333333333333,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.30000000000000004,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 36,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.15396039603960396,
+            "noise_insertion": 0.10198019801980196,
+            "regret_2_insertion": 0.33217821782178214,
+            "regret_3_insertion": 0.16386138613861387,
+            "time_window_priority_insertion": 0.24801980198019802
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 10.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.7,
+            "noise_insertion": 0.35,
+            "regret_2_insertion": 1.9,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 1.3333333333333335
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2404958.0364017393,
+        "best_objective": 2404958.0364017393,
+        "candidate_cost": 2404958.0364017393,
+        "candidate_objective": 2404958.0364017393,
+        "current_cost": 2404958.0364017393,
+        "current_objective": 2404958.0364017393,
+        "delta_cost": -281.3787317285314,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 37,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "time_window_priority_insertion",
+        "repair_operator": "time_window_priority_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.4778169014084508,
+            "route_removal": 0.19788732394366199,
+            "shaw_related_removal": 0.11338028169014086,
+            "time_window_tight_removal": 0.09753521126760564,
+            "worst_distance_removal": 0.11338028169014086
+          },
+          "destroy_segment_scores": {
+            "random_removal": 10.0,
+            "route_removal": 0.2,
+            "shaw_related_removal": 5.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "destroy_weights": {
+            "random_removal": 2.7,
+            "route_removal": 0.9333333333333333,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.30000000000000004,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 37,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.15396039603960396,
+            "noise_insertion": 0.10198019801980196,
+            "regret_2_insertion": 0.33217821782178214,
+            "regret_3_insertion": 0.16386138613861387,
+            "time_window_priority_insertion": 0.24801980198019802
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 10.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 0.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 5.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.7,
+            "noise_insertion": 0.35,
+            "regret_2_insertion": 1.9,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 1.3333333333333335
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2404784.954884912,
+        "best_objective": 2404784.954884912,
+        "candidate_cost": 2404784.954884912,
+        "candidate_objective": 2404784.954884912,
+        "current_cost": 2404784.954884912,
+        "current_objective": 2404784.954884912,
+        "delta_cost": -173.08151682745665,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 38,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "regret_2_insertion",
+        "repair_operator": "regret_2_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.4778169014084508,
+            "route_removal": 0.19788732394366199,
+            "shaw_related_removal": 0.11338028169014086,
+            "time_window_tight_removal": 0.09753521126760564,
+            "worst_distance_removal": 0.11338028169014086
+          },
+          "destroy_segment_scores": {
+            "random_removal": 15.0,
+            "route_removal": 0.2,
+            "shaw_related_removal": 5.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "destroy_weights": {
+            "random_removal": 2.7,
+            "route_removal": 0.9333333333333333,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.30000000000000004,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 38,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.15396039603960396,
+            "noise_insertion": 0.10198019801980196,
+            "regret_2_insertion": 0.33217821782178214,
+            "regret_3_insertion": 0.16386138613861387,
+            "time_window_priority_insertion": 0.24801980198019802
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 10.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 5.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 5.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.7,
+            "noise_insertion": 0.35,
+            "regret_2_insertion": 1.9,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 1.3333333333333335
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2404704.9593066564,
+        "best_objective": 2404704.9593066564,
+        "candidate_cost": 2404704.9593066564,
+        "candidate_objective": 2404704.9593066564,
+        "current_cost": 2404704.9593066564,
+        "current_objective": 2404704.9593066564,
+        "delta_cost": -79.99557825550437,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 39,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "time_window_priority_insertion",
+        "repair_operator": "time_window_priority_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.4778169014084508,
+            "route_removal": 0.19788732394366199,
+            "shaw_related_removal": 0.11338028169014086,
+            "time_window_tight_removal": 0.09753521126760564,
+            "worst_distance_removal": 0.11338028169014086
+          },
+          "destroy_segment_scores": {
+            "random_removal": 20.0,
+            "route_removal": 0.2,
+            "shaw_related_removal": 5.2,
+            "time_window_tight_removal": 0.2,
+            "worst_distance_removal": 0.2
+          },
+          "destroy_weights": {
+            "random_removal": 2.7,
+            "route_removal": 0.9333333333333333,
+            "shaw_related_removal": 0.4,
+            "time_window_tight_removal": 0.30000000000000004,
+            "worst_distance_removal": 0.4
+          },
+          "events_seen": 39,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.15396039603960396,
+            "noise_insertion": 0.10198019801980196,
+            "regret_2_insertion": 0.33217821782178214,
+            "regret_3_insertion": 0.16386138613861387,
+            "time_window_priority_insertion": 0.24801980198019802
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 10.2,
+            "noise_insertion": 0.2,
+            "regret_2_insertion": 5.2,
+            "regret_3_insertion": 0.2,
+            "time_window_priority_insertion": 10.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 0.7,
+            "noise_insertion": 0.35,
+            "regret_2_insertion": 1.9,
+            "regret_3_insertion": 0.7666666666666667,
+            "time_window_priority_insertion": 1.3333333333333335
+          },
+          "segment_length": 10
+        }
+      },
+      {
+        "accepted": true,
+        "best_cost": 2404547.2206187164,
+        "best_objective": 2404547.2206187164,
+        "candidate_cost": 2404547.2206187164,
+        "candidate_objective": 2404547.2206187164,
+        "current_cost": 2404547.2206187164,
+        "current_objective": 2404547.2206187164,
+        "delta_cost": -157.73868793994188,
+        "destroy": "random_removal",
+        "destroy_operator": "random_removal",
+        "feasible": true,
+        "iteration": 40,
+        "new_best": true,
+        "no_improvement_iterations": 0,
+        "repair": "greedy_cheapest_insertion",
+        "repair_operator": "greedy_cheapest_insertion",
+        "reward": 5.0,
+        "selector_snapshot": {
+          "destroy_probabilities": {
+            "random_removal": 0.49652061855670104,
+            "route_removal": 0.11572164948453609,
+            "shaw_related_removal": 0.22396907216494844,
+            "time_window_tight_removal": 0.07899484536082474,
+            "worst_distance_removal": 0.0847938144329897
+          },
+          "destroy_segment_scores": {
+            "random_removal": 0.0,
+            "route_removal": 0.0,
+            "shaw_related_removal": 0.0,
+            "time_window_tight_removal": 0.0,
+            "worst_distance_removal": 0.0
+          },
+          "destroy_weights": {
+            "random_removal": 3.85,
+            "route_removal": 0.5666666666666667,
+            "shaw_related_removal": 1.5,
+            "time_window_tight_removal": 0.25,
+            "worst_distance_removal": 0.30000000000000004
+          },
+          "events_seen": 40,
+          "exploration_floor": 0.05,
+          "name": "roulette",
+          "reaction_factor": 0.5,
+          "repair_probabilities": {
+            "greedy_cheapest_insertion": 0.2502967359050445,
+            "noise_insertion": 0.07448071216617211,
+            "regret_2_insertion": 0.2502967359050445,
+            "regret_3_insertion": 0.09302670623145401,
+            "time_window_priority_insertion": 0.3318991097922848
+          },
+          "repair_segment_scores": {
+            "greedy_cheapest_insertion": 0.0,
+            "noise_insertion": 0.0,
+            "regret_2_insertion": 0.0,
+            "regret_3_insertion": 0.0,
+            "time_window_priority_insertion": 0.0
+          },
+          "repair_weights": {
+            "greedy_cheapest_insertion": 2.25,
+            "noise_insertion": 0.275,
+            "regret_2_insertion": 2.25,
+            "regret_3_insertion": 0.4833333333333334,
+            "time_window_priority_insertion": 3.166666666666667
+          },
+          "segment_length": 10
+        }
+      }
+    ],
+    "inserted_customers": [
+      54,
+      196,
+      21,
+      6,
+      43,
+      20,
+      139,
+      150,
+      62,
+      119,
+      92,
+      1,
+      34,
+      41,
+      15,
+      131,
+      77,
+      135,
+      142,
+      171,
+      30,
+      166,
+      8,
+      163,
+      188,
+      107,
+      81,
+      137,
+      125,
+      127,
+      49,
+      14,
+      89,
+      190,
+      173,
+      118,
+      39,
+      11,
+      101,
+      106
+    ],
+    "instance_name": "rc1_2_1",
+    "iterations": 40,
+    "last_destroy": "random_removal",
+    "last_repair": "greedy_cheapest_insertion",
+    "max_iterations": 500,
+    "profiler": {
+      "candidate_neighbor_size": 24,
+      "counters": {
+        "repair_candidate_positions_evaluated": 953522,
+        "repair_candidate_routes_considered": 107980,
+        "repair_candidates_feasible": 63781,
+        "repair_customers_considered": 20501,
+        "repair_new_route_candidates_feasible": 20501,
+        "repair_restricted_route_sets": 20495,
+        "route_eval_cache_hits": 1854356,
+        "route_eval_cache_misses": 73189,
+        "shaw_related_candidates_considered": 120
+      },
+      "route_cache": {
+        "entries": 73189
+      },
+      "timings_sec": {
+        "destroy_sec": 0.009423,
+        "repair_sec": 7.445805
+      }
+    },
+    "remaining_unassigned": [],
+    "removed_customers": [
+      1,
+      6,
+      8,
+      11,
+      14,
+      15,
+      20,
+      21,
+      30,
+      34,
+      39,
+      41,
+      43,
+      49,
+      54,
+      62,
+      77,
+      81,
+      89,
+      92,
+      101,
+      106,
+      107,
+      118,
+      119,
+      125,
+      127,
+      131,
+      135,
+      137,
+      139,
+      142,
+      150,
+      163,
+      166,
+      171,
+      173,
+      188,
+      190,
+      196
+    ],
+    "repair_operators": [
+      "greedy_cheapest_insertion",
+      "regret_2_insertion",
+      "regret_3_insertion",
+      "time_window_priority_insertion",
+      "noise_insertion"
+    ],
+    "seed": 0,
+    "selector": {
+      "destroy_probabilities": {
+        "random_removal": 0.49652061855670104,
+        "route_removal": 0.11572164948453609,
+        "shaw_related_removal": 0.22396907216494844,
+        "time_window_tight_removal": 0.07899484536082474,
+        "worst_distance_removal": 0.0847938144329897
+      },
+      "destroy_segment_scores": {
+        "random_removal": 0.0,
+        "route_removal": 0.0,
+        "shaw_related_removal": 0.0,
+        "time_window_tight_removal": 0.0,
+        "worst_distance_removal": 0.0
+      },
+      "destroy_weights": {
+        "random_removal": 3.85,
+        "route_removal": 0.5666666666666667,
+        "shaw_related_removal": 1.5,
+        "time_window_tight_removal": 0.25,
+        "worst_distance_removal": 0.30000000000000004
+      },
+      "events_seen": 40,
+      "exploration_floor": 0.05,
+      "name": "roulette",
+      "reaction_factor": 0.5,
+      "repair_probabilities": {
+        "greedy_cheapest_insertion": 0.2502967359050445,
+        "noise_insertion": 0.07448071216617211,
+        "regret_2_insertion": 0.2502967359050445,
+        "regret_3_insertion": 0.09302670623145401,
+        "time_window_priority_insertion": 0.3318991097922848
+      },
+      "repair_segment_scores": {
+        "greedy_cheapest_insertion": 0.0,
+        "noise_insertion": 0.0,
+        "regret_2_insertion": 0.0,
+        "regret_3_insertion": 0.0,
+        "time_window_priority_insertion": 0.0
+      },
+      "repair_weights": {
+        "greedy_cheapest_insertion": 2.25,
+        "noise_insertion": 0.275,
+        "regret_2_insertion": 2.25,
+        "regret_3_insertion": 0.4833333333333334,
+        "time_window_priority_insertion": 3.166666666666667
+      },
+      "segment_length": 10
+    },
+    "source_solver": "greedy",
+    "state_cost": 2404547.2206187164,
+    "strategy": "minimum_delta_insertion",
+    "unassigned": []
+  },
+  "objective": 2404547.2206187164,
+  "routes": [
+    {
+      "distance": 114.92146940280134,
+      "duration": 523.6491106406735,
+      "load": 71,
+      "stops": [
+        {
+          "arrival_time": 9.219544457292887,
+          "customer_id": 4,
+          "departure_time": 19.219544457292887,
+          "load_after": 22,
+          "start_service_time": 9.219544457292887
+        },
+        {
+          "arrival_time": 53.05739308867015,
+          "customer_id": 174,
+          "departure_time": 328.0,
+          "load_after": 23,
+          "start_service_time": 318.0
+        },
+        {
+          "arrival_time": 367.1152144312159,
+          "customer_id": 154,
+          "departure_time": 384.0,
+          "load_after": 44,
+          "start_service_time": 374.0
+        },
+        {
+          "arrival_time": 404.0997512422418,
+          "customer_id": 67,
+          "departure_time": 511.0,
+          "load_after": 71,
+          "start_service_time": 501.0
+        }
+      ],
+      "vehicle_id": 0
+    },
+    {
+      "distance": 64.94858834879776,
+      "duration": 184.94858834879776,
+      "load": 180,
+      "stops": [
+        {
+          "arrival_time": 15.297058540778355,
+          "customer_id": 153,
+          "departure_time": 25.297058540778355,
+          "load_after": 10,
+          "start_service_time": 15.297058540778355
+        },
+        {
+          "arrival_time": 29.769194495777935,
+          "customer_id": 28,
+          "departure_time": 39.76919449577794,
+          "load_after": 20,
+          "start_service_time": 29.769194495777935
+        },
+        {
+          "arrival_time": 41.18340805815103,
+          "customer_id": 163,
+          "departure_time": 51.18340805815103,
+          "load_after": 40,
+          "start_service_time": 41.18340805815103
+        },
+        {
+          "arrival_time": 55.30651368376869,
+          "customer_id": 6,
+          "departure_time": 65.30651368376869,
+          "load_after": 50,
+          "start_service_time": 55.30651368376869
+        },
+        {
+          "arrival_time": 69.77864963876826,
+          "customer_id": 49,
+          "departure_time": 79.77864963876826,
+          "load_after": 60,
+          "start_service_time": 69.77864963876826
+        },
+        {
+          "arrival_time": 82.60707676351444,
+          "customer_id": 14,
+          "departure_time": 92.60707676351444,
+          "load_after": 80,
+          "start_service_time": 82.60707676351444
+        },
+        {
+          "arrival_time": 97.07921271851401,
+          "customer_id": 132,
+          "departure_time": 107.07921271851401,
+          "load_after": 100,
+          "start_service_time": 97.07921271851401
+        },
+        {
+          "arrival_time": 109.3152806960138,
+          "customer_id": 78,
+          "departure_time": 119.3152806960138,
+          "load_after": 110,
+          "start_service_time": 109.3152806960138
+        },
+        {
+          "arrival_time": 122.9208319714778,
+          "customer_id": 171,
+          "departure_time": 132.9208319714778,
+          "load_after": 130,
+          "start_service_time": 122.9208319714778
+        },
+        {
+          "arrival_time": 136.5263832469418,
+          "customer_id": 130,
+          "departure_time": 146.5263832469418,
+          "load_after": 140,
+          "start_service_time": 136.5263832469418
+        },
+        {
+          "arrival_time": 150.5263832469418,
+          "customer_id": 187,
+          "departure_time": 160.5263832469418,
+          "load_after": 160,
+          "start_service_time": 150.5263832469418
+        },
+        {
+          "arrival_time": 164.1319345224058,
+          "customer_id": 150,
+          "departure_time": 174.1319345224058,
+          "load_after": 180,
+          "start_service_time": 164.1319345224058
+        }
+      ],
+      "vehicle_id": 1
+    },
+    {
+      "distance": 166.49000893471867,
+      "duration": 416.4818792991333,
+      "load": 179,
+      "stops": [
+        {
+          "arrival_time": 21.37755832643195,
+          "customer_id": 140,
+          "departure_time": 31.37755832643195,
+          "load_after": 16,
+          "start_service_time": 21.37755832643195
+        },
+        {
+          "arrival_time": 36.37755832643195,
+          "customer_id": 54,
+          "departure_time": 46.37755832643195,
+          "load_after": 48,
+          "start_service_time": 36.37755832643195
+        },
+        {
+          "arrival_time": 65.5869310387305,
+          "customer_id": 9,
+          "departure_time": 75.5869310387305,
+          "load_after": 68,
+          "start_service_time": 65.5869310387305
+        },
+        {
+          "arrival_time": 82.29513497122987,
+          "customer_id": 89,
+          "departure_time": 114.0,
+          "load_after": 86,
+          "start_service_time": 104.0
+        },
+        {
+          "arrival_time": 122.94427190999916,
+          "customer_id": 139,
+          "departure_time": 152.0,
+          "load_after": 106,
+          "start_service_time": 142.0
+        },
+        {
+          "arrival_time": 156.0,
+          "customer_id": 29,
+          "departure_time": 166.0,
+          "load_after": 116,
+          "start_service_time": 156.0
+        },
+        {
+          "arrival_time": 190.33105012119287,
+          "customer_id": 86,
+          "departure_time": 200.33105012119287,
+          "load_after": 126,
+          "start_service_time": 190.33105012119287
+        },
+        {
+          "arrival_time": 212.37264469998516,
+          "customer_id": 81,
+          "departure_time": 313.0,
+          "load_after": 147,
+          "start_service_time": 303.0
+        },
+        {
+          "arrival_time": 323.0,
+          "customer_id": 107,
+          "departure_time": 333.0,
+          "load_after": 164,
+          "start_service_time": 323.0
+        },
+        {
+          "arrival_time": 353.3960780543711,
+          "customer_id": 66,
+          "departure_time": 382.0,
+          "load_after": 179,
+          "start_service_time": 372.0
+        }
+      ],
+      "vehicle_id": 2
+    },
+    {
+      "distance": 105.89265224132633,
+      "duration": 388.8035085019828,
+      "load": 156,
+      "stops": [
+        {
+          "arrival_time": 32.202484376209235,
+          "customer_id": 100,
+          "departure_time": 42.202484376209235,
+          "load_after": 20,
+          "start_service_time": 32.202484376209235
+        },
+        {
+          "arrival_time": 45.80803565167322,
+          "customer_id": 37,
+          "departure_time": 55.80803565167322,
+          "load_after": 30,
+          "start_service_time": 45.80803565167322
+        },
+        {
+          "arrival_time": 61.89079818197144,
+          "customer_id": 12,
+          "departure_time": 71.89079818197143,
+          "load_after": 50,
+          "start_service_time": 61.89079818197144
+        },
+        {
+          "arrival_time": 75.89079818197143,
+          "customer_id": 59,
+          "departure_time": 85.89079818197143,
+          "load_after": 60,
+          "start_service_time": 75.89079818197143
+        },
+        {
+          "arrival_time": 87.30501174434453,
+          "customer_id": 143,
+          "departure_time": 97.30501174434453,
+          "load_after": 90,
+          "start_service_time": 87.30501174434453
+        },
+        {
+          "arrival_time": 105.36726949264308,
+          "customer_id": 173,
+          "departure_time": 115.36726949264308,
+          "load_after": 100,
+          "start_service_time": 105.36726949264308
+        },
+        {
+          "arrival_time": 121.4500320229413,
+          "customer_id": 188,
+          "departure_time": 131.4500320229413,
+          "load_after": 110,
+          "start_service_time": 121.4500320229413
+        },
+        {
+          "arrival_time": 137.10688627243366,
+          "customer_id": 21,
+          "departure_time": 165.0,
+          "load_after": 120,
+          "start_service_time": 155.0
+        },
+        {
+          "arrival_time": 171.08276253029823,
+          "customer_id": 166,
+          "departure_time": 181.08276253029823,
+          "load_after": 140,
+          "start_service_time": 171.08276253029823
+        },
+        {
+          "arrival_time": 190.98225746690989,
+          "customer_id": 82,
+          "departure_time": 366.0,
+          "load_after": 156,
+          "start_service_time": 356.0
+        }
+      ],
+      "vehicle_id": 3
+    },
+    {
+      "distance": 205.06420561909647,
+      "duration": 595.05551275464,
+      "load": 113,
+      "stops": [
+        {
+          "arrival_time": 85.9127464349732,
+          "customer_id": 170,
+          "departure_time": 111.0,
+          "load_after": 23,
+          "start_service_time": 101.0
+        },
+        {
+          "arrival_time": 144.24154027718933,
+          "customer_id": 20,
+          "departure_time": 154.24154027718933,
+          "load_after": 43,
+          "start_service_time": 144.24154027718933
+        },
+        {
+          "arrival_time": 156.47760825468913,
+          "customer_id": 138,
+          "departure_time": 166.47760825468913,
+          "load_after": 53,
+          "start_service_time": 156.47760825468913
+        },
+        {
+          "arrival_time": 197.54205738870726,
+          "customer_id": 76,
+          "departure_time": 401.0,
+          "load_after": 79,
+          "start_service_time": 391.0
+        },
+        {
+          "arrival_time": 403.2360679774998,
+          "customer_id": 34,
+          "departure_time": 413.2360679774998,
+          "load_after": 92,
+          "start_service_time": 403.2360679774998
+        },
+        {
+          "arrival_time": 427.55388904077614,
+          "customer_id": 175,
+          "departure_time": 559.0,
+          "load_after": 113,
+          "start_service_time": 549.0
+        }
+      ],
+      "vehicle_id": 4
+    },
+    {
+      "distance": 93.589686709093,
+      "duration": 193.58968670909303,
+      "load": 200,
+      "stops": [
+        {
+          "arrival_time": 33.015148038438355,
+          "customer_id": 182,
+          "departure_time": 43.015148038438355,
+          "load_after": 30,
+          "start_service_time": 33.015148038438355
+        },
+        {
+          "arrival_time": 49.33970335877511,
+          "customer_id": 57,
+          "departure_time": 59.33970335877511,
+          "load_after": 50,
+          "start_service_time": 49.33970335877511
+        },
+        {
+          "arrival_time": 62.33970335877511,
+          "customer_id": 133,
+          "departure_time": 72.33970335877511,
+          "load_after": 70,
+          "start_service_time": 62.33970335877511
+        },
+        {
+          "arrival_time": 73.33970335877511,
+          "customer_id": 147,
+          "departure_time": 83.33970335877511,
+          "load_after": 80,
+          "start_service_time": 73.33970335877511
+        },
+        {
+          "arrival_time": 85.33970335877511,
+          "customer_id": 40,
+          "departure_time": 95.33970335877511,
+          "load_after": 100,
+          "start_service_time": 85.33970335877511
+        },
+        {
+          "arrival_time": 97.5757713362749,
+          "customer_id": 16,
+          "departure_time": 107.5757713362749,
+          "load_after": 110,
+          "start_service_time": 97.5757713362749
+        },
+        {
+          "arrival_time": 108.98998489864799,
+          "customer_id": 98,
+          "departure_time": 118.98998489864799,
+          "load_after": 130,
+          "start_service_time": 108.98998489864799
+        },
+        {
+          "arrival_time": 119.98998489864799,
+          "customer_id": 119,
+          "departure_time": 129.989984898648,
+          "load_after": 140,
+          "start_service_time": 119.98998489864799
+        },
+        {
+          "arrival_time": 134.2326255857673,
+          "customer_id": 161,
+          "departure_time": 144.2326255857673,
+          "load_after": 170,
+          "start_service_time": 134.2326255857673
+        },
+        {
+          "arrival_time": 150.0635774806126,
+          "customer_id": 72,
+          "departure_time": 160.0635774806126,
+          "load_after": 200,
+          "start_service_time": 150.0635774806126
+        }
+      ],
+      "vehicle_id": 5
+    },
+    {
+      "distance": 176.9761356955707,
+      "duration": 604.7772263544762,
+      "load": 128,
+      "stops": [
+        {
+          "arrival_time": 10.63014581273465,
+          "customer_id": 142,
+          "departure_time": 20.63014581273465,
+          "load_after": 19,
+          "start_service_time": 10.63014581273465
+        },
+        {
+          "arrival_time": 46.26215704868724,
+          "customer_id": 48,
+          "departure_time": 56.26215704868724,
+          "load_after": 39,
+          "start_service_time": 46.26215704868724
+        },
+        {
+          "arrival_time": 62.09310894353254,
+          "customer_id": 24,
+          "departure_time": 72.09310894353254,
+          "load_after": 45,
+          "start_service_time": 62.09310894353254
+        },
+        {
+          "arrival_time": 80.15536669183109,
+          "customer_id": 180,
+          "departure_time": 100.0,
+          "load_after": 55,
+          "start_service_time": 90.0
+        },
+        {
+          "arrival_time": 102.82842712474618,
+          "customer_id": 136,
+          "departure_time": 125.0,
+          "load_after": 75,
+          "start_service_time": 115.0
+        },
+        {
+          "arrival_time": 128.0,
+          "customer_id": 3,
+          "departure_time": 138.0,
+          "load_after": 85,
+          "start_service_time": 128.0
+        },
+        {
+          "arrival_time": 177.96248240537616,
+          "customer_id": 95,
+          "departure_time": 234.0,
+          "load_after": 86,
+          "start_service_time": 224.0
+        },
+        {
+          "arrival_time": 238.47213595499957,
+          "customer_id": 83,
+          "departure_time": 508.0,
+          "load_after": 95,
+          "start_service_time": 498.0
+        },
+        {
+          "arrival_time": 539.7804971641414,
+          "customer_id": 36,
+          "departure_time": 560.0,
+          "load_after": 128,
+          "start_service_time": 550.0
+        }
+      ],
+      "vehicle_id": 6
+    },
+    {
+      "distance": 271.2747543218428,
+      "duration": 414.19202405202645,
+      "load": 175,
+      "stops": [
+        {
+          "arrival_time": 42.01190307520001,
+          "customer_id": 152,
+          "departure_time": 52.01190307520001,
+          "load_after": 12,
+          "start_service_time": 42.01190307520001
+        },
+        {
+          "arrival_time": 62.78223268946902,
+          "customer_id": 196,
+          "departure_time": 86.0,
+          "load_after": 21,
+          "start_service_time": 76.0
+        },
+        {
+          "arrival_time": 89.16227766016839,
+          "customer_id": 183,
+          "departure_time": 105.0,
+          "load_after": 41,
+          "start_service_time": 95.0
+        },
+        {
+          "arrival_time": 115.04987562112089,
+          "customer_id": 190,
+          "departure_time": 125.04987562112089,
+          "load_after": 59,
+          "start_service_time": 115.04987562112089
+        },
+        {
+          "arrival_time": 131.45299985855374,
+          "customer_id": 184,
+          "departure_time": 141.45299985855374,
+          "load_after": 89,
+          "start_service_time": 131.45299985855374
+        },
+        {
+          "arrival_time": 151.6510388857393,
+          "customer_id": 27,
+          "departure_time": 161.6510388857393,
+          "load_after": 125,
+          "start_service_time": 151.6510388857393
+        },
+        {
+          "arrival_time": 214.005599336573,
+          "customer_id": 106,
+          "departure_time": 224.005599336573,
+          "load_after": 168,
+          "start_service_time": 214.005599336573
+        },
+        {
+          "arrival_time": 265.4060824255419,
+          "customer_id": 126,
+          "departure_time": 309.0,
+          "load_after": 172,
+          "start_service_time": 299.0
+        },
+        {
+          "arrival_time": 338.732137494637,
+          "customer_id": 70,
+          "departure_time": 349.0,
+          "load_after": 175,
+          "start_service_time": 339.0
+        }
+      ],
+      "vehicle_id": 7
+    },
+    {
+      "distance": 134.19368184241637,
+      "duration": 371.1140997321589,
+      "load": 188,
+      "stops": [
+        {
+          "arrival_time": 15.811388300841896,
+          "customer_id": 92,
+          "departure_time": 25.811388300841898,
+          "load_after": 37,
+          "start_service_time": 15.811388300841896
+        },
+        {
+          "arrival_time": 47.90211033521642,
+          "customer_id": 195,
+          "departure_time": 57.90211033521642,
+          "load_after": 71,
+          "start_service_time": 47.90211033521642
+        },
+        {
+          "arrival_time": 68.71876416160839,
+          "customer_id": 129,
+          "departure_time": 189.0,
+          "load_after": 101,
+          "start_service_time": 179.0
+        },
+        {
+          "arrival_time": 206.4928556845359,
+          "customer_id": 22,
+          "departure_time": 216.4928556845359,
+          "load_after": 121,
+          "start_service_time": 206.4928556845359
+        },
+        {
+          "arrival_time": 235.3608179486491,
+          "customer_id": 41,
+          "departure_time": 248.0,
+          "load_after": 142,
+          "start_service_time": 238.0
+        },
+        {
+          "arrival_time": 258.0,
+          "customer_id": 194,
+          "departure_time": 268.0,
+          "load_after": 161,
+          "start_service_time": 258.0
+        },
+        {
+          "arrival_time": 272.0,
+          "customer_id": 158,
+          "departure_time": 336.0,
+          "load_after": 188,
+          "start_service_time": 326.0
+        }
+      ],
+      "vehicle_id": 8
+    },
+    {
+      "distance": 151.1622979114838,
+      "duration": 509.20465053408526,
+      "load": 186,
+      "stops": [
+        {
+          "arrival_time": 55.97320787662612,
+          "customer_id": 127,
+          "departure_time": 75.0,
+          "load_after": 20,
+          "start_service_time": 65.0
+        },
+        {
+          "arrival_time": 80.8309518948453,
+          "customer_id": 105,
+          "departure_time": 116.0,
+          "load_after": 40,
+          "start_service_time": 106.0
+        },
+        {
+          "arrival_time": 121.0,
+          "customer_id": 69,
+          "departure_time": 131.0,
+          "load_after": 50,
+          "start_service_time": 121.0
+        },
+        {
+          "arrival_time": 133.82842712474618,
+          "customer_id": 176,
+          "departure_time": 144.0,
+          "load_after": 60,
+          "start_service_time": 134.0
+        },
+        {
+          "arrival_time": 146.82842712474618,
+          "customer_id": 113,
+          "departure_time": 157.0,
+          "load_after": 70,
+          "start_service_time": 147.0
+        },
+        {
+          "arrival_time": 159.2360679774998,
+          "customer_id": 58,
+          "departure_time": 182.0,
+          "load_after": 80,
+          "start_service_time": 172.0
+        },
+        {
+          "arrival_time": 185.16227766016837,
+          "customer_id": 191,
+          "departure_time": 195.16227766016837,
+          "load_after": 100,
+          "start_service_time": 185.16227766016837
+        },
+        {
+          "arrival_time": 201.2450401904666,
+          "customer_id": 134,
+          "departure_time": 211.2450401904666,
+          "load_after": 120,
+          "start_service_time": 201.2450401904666
+        },
+        {
+          "arrival_time": 231.0944734317458,
+          "customer_id": 87,
+          "departure_time": 242.0,
+          "load_after": 138,
+          "start_service_time": 232.0
+        },
+        {
+          "arrival_time": 248.0,
+          "customer_id": 17,
+          "departure_time": 330.0,
+          "load_after": 163,
+          "start_service_time": 320.0
+        },
+        {
+          "arrival_time": 354.16609194718916,
+          "customer_id": 64,
+          "departure_time": 492.0,
+          "load_after": 186,
+          "start_service_time": 482.0
+        }
+      ],
+      "vehicle_id": 9
+    },
+    {
+      "distance": 184.7601052701871,
+      "duration": 520.4259284329032,
+      "load": 108,
+      "stops": [
+        {
+          "arrival_time": 31.827660925679098,
+          "customer_id": 162,
+          "departure_time": 41.8276609256791,
+          "load_after": 19,
+          "start_service_time": 31.827660925679098
+        },
+        {
+          "arrival_time": 53.53236083639872,
+          "customer_id": 63,
+          "departure_time": 63.53236083639872,
+          "load_after": 28,
+          "start_service_time": 53.53236083639872
+        },
+        {
+          "arrival_time": 66.53236083639872,
+          "customer_id": 149,
+          "departure_time": 76.53236083639872,
+          "load_after": 41,
+          "start_service_time": 66.53236083639872
+        },
+        {
+          "arrival_time": 95.63733401094152,
+          "customer_id": 186,
+          "departure_time": 171.0,
+          "load_after": 61,
+          "start_service_time": 161.0
+        },
+        {
+          "arrival_time": 172.4142135623731,
+          "customer_id": 135,
+          "departure_time": 362.0,
+          "load_after": 81,
+          "start_service_time": 352.0
+        },
+        {
+          "arrival_time": 386.04163056034264,
+          "customer_id": 2,
+          "departure_time": 406.0,
+          "load_after": 96,
+          "start_service_time": 396.0
+        },
+        {
+          "arrival_time": 437.2409987036266,
+          "customer_id": 120,
+          "departure_time": 448.0,
+          "load_after": 101,
+          "start_service_time": 438.0
+        },
+        {
+          "arrival_time": 473.31797780234433,
+          "customer_id": 39,
+          "departure_time": 483.31797780234433,
+          "load_after": 108,
+          "start_service_time": 473.31797780234433
+        }
+      ],
+      "vehicle_id": 10
+    },
+    {
+      "distance": 169.15039816602956,
+      "duration": 342.258046654518,
+      "load": 196,
+      "stops": [
+        {
+          "arrival_time": 36.359317925395686,
+          "customer_id": 131,
+          "departure_time": 46.359317925395686,
+          "load_after": 23,
+          "start_service_time": 36.359317925395686
+        },
+        {
+          "arrival_time": 53.57042047632366,
+          "customer_id": 102,
+          "departure_time": 63.57042047632366,
+          "load_after": 33,
+          "start_service_time": 53.57042047632366
+        },
+        {
+          "arrival_time": 69.89497579666042,
+          "customer_id": 15,
+          "departure_time": 79.89497579666042,
+          "load_after": 63,
+          "start_service_time": 69.89497579666042
+        },
+        {
+          "arrival_time": 82.1310437741602,
+          "customer_id": 18,
+          "departure_time": 92.1310437741602,
+          "load_after": 93,
+          "start_service_time": 82.1310437741602
+        },
+        {
+          "arrival_time": 94.1310437741602,
+          "customer_id": 68,
+          "departure_time": 104.1310437741602,
+          "load_after": 133,
+          "start_service_time": 94.1310437741602
+        },
+        {
+          "arrival_time": 121.59529297073318,
+          "customer_id": 51,
+          "departure_time": 148.0,
+          "load_after": 165,
+          "start_service_time": 138.0
+        },
+        {
+          "arrival_time": 172.0,
+          "customer_id": 110,
+          "departure_time": 200.0,
+          "load_after": 183,
+          "start_service_time": 190.0
+        },
+        {
+          "arrival_time": 215.29705854077835,
+          "customer_id": 80,
+          "departure_time": 284.0,
+          "load_after": 196,
+          "start_service_time": 274.0
+        }
+      ],
+      "vehicle_id": 11
+    },
+    {
+      "distance": 299.56132138520275,
+      "duration": 604.8025423272356,
+      "load": 165,
+      "stops": [
+        {
+          "arrival_time": 30.265491900843113,
+          "customer_id": 47,
+          "departure_time": 40.26549190084312,
+          "load_after": 20,
+          "start_service_time": 30.265491900843113
+        },
+        {
+          "arrival_time": 58.29324827816306,
+          "customer_id": 200,
+          "departure_time": 68.29324827816306,
+          "load_after": 36,
+          "start_service_time": 58.29324827816306
+        },
+        {
+          "arrival_time": 87.5286323398344,
+          "customer_id": 103,
+          "departure_time": 97.5286323398344,
+          "load_after": 44,
+          "start_service_time": 87.5286323398344
+        },
+        {
+          "arrival_time": 165.53598488351162,
+          "customer_id": 111,
+          "departure_time": 175.53598488351162,
+          "load_after": 84,
+          "start_service_time": 165.53598488351162
+        },
+        {
+          "arrival_time": 215.84727362500436,
+          "customer_id": 44,
+          "departure_time": 225.84727362500436,
+          "load_after": 94,
+          "start_service_time": 215.84727362500436
+        },
+        {
+          "arrival_time": 239.84727362500436,
+          "customer_id": 90,
+          "departure_time": 249.84727362500436,
+          "load_after": 123,
+          "start_service_time": 239.84727362500436
+        },
+        {
+          "arrival_time": 263.2636814900031,
+          "customer_id": 178,
+          "departure_time": 311.0,
+          "load_after": 138,
+          "start_service_time": 301.0
+        },
+        {
+          "arrival_time": 336.4950975679639,
+          "customer_id": 148,
+          "departure_time": 534.0,
+          "load_after": 165,
+          "start_service_time": 524.0
+        }
+      ],
+      "vehicle_id": 12
+    },
+    {
+      "distance": 169.41069079351635,
+      "duration": 498.8653345213369,
+      "load": 139,
+      "stops": [
+        {
+          "arrival_time": 51.03920062069938,
+          "customer_id": 84,
+          "departure_time": 61.03920062069938,
+          "load_after": 10,
+          "start_service_time": 51.03920062069938
+        },
+        {
+          "arrival_time": 67.36375594103615,
+          "customer_id": 199,
+          "departure_time": 77.36375594103615,
+          "load_after": 50,
+          "start_service_time": 67.36375594103615
+        },
+        {
+          "arrival_time": 88.54409582853509,
+          "customer_id": 118,
+          "departure_time": 98.54409582853509,
+          "load_after": 60,
+          "start_service_time": 88.54409582853509
+        },
+        {
+          "arrival_time": 109.94585007952647,
+          "customer_id": 13,
+          "departure_time": 347.0,
+          "load_after": 78,
+          "start_service_time": 337.0
+        },
+        {
+          "arrival_time": 359.16552506059645,
+          "customer_id": 8,
+          "departure_time": 369.16552506059645,
+          "load_after": 88,
+          "start_service_time": 359.16552506059645
+        },
+        {
+          "arrival_time": 378.59950619265305,
+          "customer_id": 60,
+          "departure_time": 411.0,
+          "load_after": 105,
+          "start_service_time": 401.0
+        },
+        {
+          "arrival_time": 413.2360679774998,
+          "customer_id": 1,
+          "departure_time": 423.2360679774998,
+          "load_after": 119,
+          "start_service_time": 413.2360679774998
+        },
+        {
+          "arrival_time": 448.5540457798441,
+          "customer_id": 97,
+          "departure_time": 458.5540457798441,
+          "load_after": 139,
+          "start_service_time": 448.5540457798441
+        }
+      ],
+      "vehicle_id": 13
+    },
+    {
+      "distance": 202.1098245220877,
+      "duration": 419.5765884561119,
+      "load": 126,
+      "stops": [
+        {
+          "arrival_time": 41.048751503547585,
+          "customer_id": 156,
+          "departure_time": 51.048751503547585,
+          "load_after": 20,
+          "start_service_time": 41.048751503547585
+        },
+        {
+          "arrival_time": 61.48905801245814,
+          "customer_id": 7,
+          "departure_time": 71.48905801245814,
+          "load_after": 30,
+          "start_service_time": 61.48905801245814
+        },
+        {
+          "arrival_time": 73.72512598995793,
+          "customer_id": 179,
+          "departure_time": 83.72512598995793,
+          "load_after": 50,
+          "start_service_time": 73.72512598995793
+        },
+        {
+          "arrival_time": 95.1268802409493,
+          "customer_id": 124,
+          "departure_time": 105.1268802409493,
+          "load_after": 70,
+          "start_service_time": 95.1268802409493
+        },
+        {
+          "arrival_time": 107.36294821844909,
+          "customer_id": 43,
+          "departure_time": 117.36294821844909,
+          "load_after": 90,
+          "start_service_time": 107.36294821844909
+        },
+        {
+          "arrival_time": 149.7512176998524,
+          "customer_id": 79,
+          "departure_time": 291.0,
+          "load_after": 99,
+          "start_service_time": 281.0
+        },
+        {
+          "arrival_time": 322.2409987036266,
+          "customer_id": 73,
+          "departure_time": 332.2409987036266,
+          "load_after": 111,
+          "start_service_time": 322.2409987036266
+        },
+        {
+          "arrival_time": 365.78201836612345,
+          "customer_id": 96,
+          "departure_time": 382.0,
+          "load_after": 126,
+          "start_service_time": 372.0
+        }
+      ],
+      "vehicle_id": 14
+    },
+    {
+      "distance": 238.71307008914528,
+      "duration": 522.7308492477241,
+      "load": 158,
+      "stops": [
+        {
+          "arrival_time": 52.839379254491625,
+          "customer_id": 88,
+          "departure_time": 63.0,
+          "load_after": 27,
+          "start_service_time": 53.0
+        },
+        {
+          "arrival_time": 88.6124969497314,
+          "customer_id": 155,
+          "departure_time": 98.6124969497314,
+          "load_after": 35,
+          "start_service_time": 88.6124969497314
+        },
+        {
+          "arrival_time": 126.27113032161006,
+          "customer_id": 144,
+          "departure_time": 220.0,
+          "load_after": 40,
+          "start_service_time": 210.0
+        },
+        {
+          "arrival_time": 234.0356688476182,
+          "customer_id": 71,
+          "departure_time": 244.0356688476182,
+          "load_after": 74,
+          "start_service_time": 234.0356688476182
+        },
+        {
+          "arrival_time": 264.6511969757065,
+          "customer_id": 121,
+          "departure_time": 297.0,
+          "load_after": 95,
+          "start_service_time": 287.0
+        },
+        {
+          "arrival_time": 307.0,
+          "customer_id": 115,
+          "departure_time": 320.0,
+          "load_after": 113,
+          "start_service_time": 310.0
+        },
+        {
+          "arrival_time": 343.6008474424119,
+          "customer_id": 11,
+          "departure_time": 353.6008474424119,
+          "load_after": 123,
+          "start_service_time": 343.6008474424119
+        },
+        {
+          "arrival_time": 390.22051428961305,
+          "customer_id": 30,
+          "departure_time": 495.0,
+          "load_after": 158,
+          "start_service_time": 485.0
+        }
+      ],
+      "vehicle_id": 15
+    },
+    {
+      "distance": 311.0512503297096,
+      "duration": 575.6704891960967,
+      "load": 157,
+      "stops": [
+        {
+          "arrival_time": 53.71219600798314,
+          "customer_id": 42,
+          "departure_time": 63.71219600798314,
+          "load_after": 10,
+          "start_service_time": 53.71219600798314
+        },
+        {
+          "arrival_time": 70.11532024541599,
+          "customer_id": 197,
+          "departure_time": 80.11532024541599,
+          "load_after": 20,
+          "start_service_time": 70.11532024541599
+        },
+        {
+          "arrival_time": 84.23842587103364,
+          "customer_id": 5,
+          "departure_time": 94.23842587103364,
+          "load_after": 40,
+          "start_service_time": 84.23842587103364
+        },
+        {
+          "arrival_time": 114.23842587103364,
+          "customer_id": 164,
+          "departure_time": 124.23842587103364,
+          "load_after": 70,
+          "start_service_time": 114.23842587103364
+        },
+        {
+          "arrival_time": 127.40070353120203,
+          "customer_id": 104,
+          "departure_time": 137.40070353120203,
+          "load_after": 80,
+          "start_service_time": 127.40070353120203
+        },
+        {
+          "arrival_time": 140.5629811913704,
+          "customer_id": 25,
+          "departure_time": 150.5629811913704,
+          "load_after": 90,
+          "start_service_time": 140.5629811913704
+        },
+        {
+          "arrival_time": 153.39140831611658,
+          "customer_id": 10,
+          "departure_time": 163.39140831611658,
+          "load_after": 100,
+          "start_service_time": 153.39140831611658
+        },
+        {
+          "arrival_time": 166.99695959158058,
+          "customer_id": 77,
+          "departure_time": 176.99695959158058,
+          "load_after": 110,
+          "start_service_time": 166.99695959158058
+        },
+        {
+          "arrival_time": 270.21176528252215,
+          "customer_id": 137,
+          "departure_time": 280.21176528252215,
+          "load_after": 126,
+          "start_service_time": 270.21176528252215
+        },
+        {
+          "arrival_time": 301.3067883922511,
+          "customer_id": 123,
+          "departure_time": 311.3067883922511,
+          "load_after": 136,
+          "start_service_time": 301.3067883922511
+        },
+        {
+          "arrival_time": 338.3807611336129,
+          "customer_id": 75,
+          "departure_time": 503.0,
+          "load_after": 157,
+          "start_service_time": 493.0
+        }
+      ],
+      "vehicle_id": 16
+    },
+    {
+      "distance": 165.4451063373566,
+      "duration": 403.0762219509677,
+      "load": 198,
+      "stops": [
+        {
+          "arrival_time": 65.11528238439882,
+          "customer_id": 165,
+          "departure_time": 75.11528238439882,
+          "load_after": 10,
+          "start_service_time": 65.11528238439882
+        },
+        {
+          "arrival_time": 76.11528238439882,
+          "customer_id": 85,
+          "departure_time": 86.11528238439882,
+          "load_after": 30,
+          "start_service_time": 76.11528238439882
+        },
+        {
+          "arrival_time": 88.94370950914501,
+          "customer_id": 45,
+          "departure_time": 98.94370950914501,
+          "load_after": 50,
+          "start_service_time": 88.94370950914501
+        },
+        {
+          "arrival_time": 100.3579230715181,
+          "customer_id": 56,
+          "departure_time": 110.3579230715181,
+          "load_after": 70,
+          "start_service_time": 100.3579230715181
+        },
+        {
+          "arrival_time": 111.7721366338912,
+          "customer_id": 108,
+          "departure_time": 121.7721366338912,
+          "load_after": 90,
+          "start_service_time": 111.7721366338912
+        },
+        {
+          "arrival_time": 124.7721366338912,
+          "customer_id": 38,
+          "departure_time": 134.7721366338912,
+          "load_after": 100,
+          "start_service_time": 124.7721366338912
+        },
+        {
+          "arrival_time": 135.7721366338912,
+          "customer_id": 32,
+          "departure_time": 145.7721366338912,
+          "load_after": 120,
+          "start_service_time": 135.7721366338912
+        },
+        {
+          "arrival_time": 149.7721366338912,
+          "customer_id": 23,
+          "departure_time": 159.7721366338912,
+          "load_after": 130,
+          "start_service_time": 149.7721366338912
+        },
+        {
+          "arrival_time": 161.7721366338912,
+          "customer_id": 117,
+          "departure_time": 171.7721366338912,
+          "load_after": 150,
+          "start_service_time": 161.7721366338912
+        },
+        {
+          "arrival_time": 176.24427258889077,
+          "customer_id": 114,
+          "departure_time": 186.24427258889077,
+          "load_after": 180,
+          "start_service_time": 176.24427258889077
+        },
+        {
+          "arrival_time": 206.36888438638888,
+          "customer_id": 33,
+          "departure_time": 344.0,
+          "load_after": 198,
+          "start_service_time": 334.0
+        }
+      ],
+      "vehicle_id": 17
+    },
+    {
+      "distance": 220.47235353656038,
+      "duration": 491.2922470831599,
+      "load": 181,
+      "stops": [
+        {
+          "arrival_time": 72.40165743959182,
+          "customer_id": 177,
+          "departure_time": 82.40165743959182,
+          "load_after": 20,
+          "start_service_time": 72.40165743959182
+        },
+        {
+          "arrival_time": 89.10986137209119,
+          "customer_id": 128,
+          "departure_time": 99.10986137209119,
+          "load_after": 50,
+          "start_service_time": 89.10986137209119
+        },
+        {
+          "arrival_time": 103.58199732709076,
+          "customer_id": 99,
+          "departure_time": 114.0,
+          "load_after": 80,
+          "start_service_time": 104.0
+        },
+        {
+          "arrival_time": 115.0,
+          "customer_id": 94,
+          "departure_time": 125.0,
+          "load_after": 90,
+          "start_service_time": 115.0
+        },
+        {
+          "arrival_time": 136.4017542509914,
+          "customer_id": 65,
+          "departure_time": 146.4017542509914,
+          "load_after": 98,
+          "start_service_time": 136.4017542509914
+        },
+        {
+          "arrival_time": 159.8553782980651,
+          "customer_id": 109,
+          "departure_time": 169.8553782980651,
+          "load_after": 118,
+          "start_service_time": 159.8553782980651
+        },
+        {
+          "arrival_time": 171.2695918604382,
+          "customer_id": 189,
+          "departure_time": 181.2695918604382,
+          "load_after": 138,
+          "start_service_time": 171.2695918604382
+        },
+        {
+          "arrival_time": 183.505659837938,
+          "customer_id": 125,
+          "departure_time": 193.505659837938,
+          "load_after": 148,
+          "start_service_time": 183.505659837938
+        },
+        {
+          "arrival_time": 210.6229026065617,
+          "customer_id": 192,
+          "departure_time": 232.0,
+          "load_after": 161,
+          "start_service_time": 222.0
+        },
+        {
+          "arrival_time": 245.89244398944982,
+          "customer_id": 50,
+          "departure_time": 267.0,
+          "load_after": 170,
+          "start_service_time": 257.0
+        },
+        {
+          "arrival_time": 273.0827625302982,
+          "customer_id": 157,
+          "departure_time": 421.0,
+          "load_after": 181,
+          "start_service_time": 411.0
+        }
+      ],
+      "vehicle_id": 18
+    },
+    {
+      "distance": 206.94630537734264,
+      "duration": 388.3482963430966,
+      "load": 82,
+      "stops": [
+        {
+          "arrival_time": 37.57658845611187,
+          "customer_id": 169,
+          "departure_time": 63.0,
+          "load_after": 13,
+          "start_service_time": 53.0
+        },
+        {
+          "arrival_time": 84.02379604162864,
+          "customer_id": 167,
+          "departure_time": 94.02379604162864,
+          "load_after": 22,
+          "start_service_time": 84.02379604162864
+        },
+        {
+          "arrival_time": 121.91644740359135,
+          "customer_id": 61,
+          "departure_time": 131.91644740359135,
+          "load_after": 35,
+          "start_service_time": 121.91644740359135
+        },
+        {
+          "arrival_time": 137.91644740359135,
+          "customer_id": 198,
+          "departure_time": 186.0,
+          "load_after": 36,
+          "start_service_time": 176.0
+        },
+        {
+          "arrival_time": 205.1049731745428,
+          "customer_id": 91,
+          "departure_time": 273.0,
+          "load_after": 49,
+          "start_service_time": 263.0
+        },
+        {
+          "arrival_time": 283.816653826392,
+          "customer_id": 145,
+          "departure_time": 293.816653826392,
+          "load_after": 69,
+          "start_service_time": 283.816653826392
+        },
+        {
+          "arrival_time": 308.376873604953,
+          "customer_id": 116,
+          "departure_time": 318.376873604953,
+          "load_after": 82,
+          "start_service_time": 308.376873604953
+        }
+      ],
+      "vehicle_id": 19
+    },
+    {
+      "distance": 190.9893035502159,
+      "duration": 506.9471392833566,
+      "load": 139,
+      "stops": [
+        {
+          "arrival_time": 77.82673062643708,
+          "customer_id": 181,
+          "departure_time": 87.82673062643708,
+          "load_after": 20,
+          "start_service_time": 77.82673062643708
+        },
+        {
+          "arrival_time": 93.90949315673531,
+          "customer_id": 35,
+          "departure_time": 103.90949315673531,
+          "load_after": 30,
+          "start_service_time": 93.90949315673531
+        },
+        {
+          "arrival_time": 121.4023488412712,
+          "customer_id": 26,
+          "departure_time": 131.4023488412712,
+          "load_after": 60,
+          "start_service_time": 121.4023488412712
+        },
+        {
+          "arrival_time": 132.8165624036443,
+          "customer_id": 159,
+          "departure_time": 142.8165624036443,
+          "load_after": 90,
+          "start_service_time": 132.8165624036443
+        },
+        {
+          "arrival_time": 144.2307759660174,
+          "customer_id": 46,
+          "departure_time": 154.2307759660174,
+          "load_after": 100,
+          "start_service_time": 144.2307759660174
+        },
+        {
+          "arrival_time": 170.0421642668593,
+          "customer_id": 141,
+          "departure_time": 426.0,
+          "load_after": 124,
+          "start_service_time": 416.0
+        },
+        {
+          "arrival_time": 435.8488578017961,
+          "customer_id": 185,
+          "departure_time": 445.8488578017961,
+          "load_after": 139,
+          "start_service_time": 435.8488578017961
+        }
+      ],
+      "vehicle_id": 20
+    },
+    {
+      "distance": 197.3855880436514,
+      "duration": 257.4387880790081,
+      "load": 70,
+      "stops": [
+        {
+          "arrival_time": 71.8679344353238,
+          "customer_id": 31,
+          "departure_time": 81.8679344353238,
+          "load_after": 9,
+          "start_service_time": 71.8679344353238
+        },
+        {
+          "arrival_time": 119.94679996464335,
+          "customer_id": 160,
+          "departure_time": 150.0,
+          "load_after": 29,
+          "start_service_time": 140.0
+        },
+        {
+          "arrival_time": 153.16227766016837,
+          "customer_id": 151,
+          "departure_time": 163.16227766016837,
+          "load_after": 49,
+          "start_service_time": 153.16227766016837
+        },
+        {
+          "arrival_time": 173.16227766016837,
+          "customer_id": 112,
+          "departure_time": 183.16227766016837,
+          "load_after": 70,
+          "start_service_time": 173.16227766016837
+        }
+      ],
+      "vehicle_id": 21
+    },
+    {
+      "distance": 249.4302506969156,
+      "duration": 571.1770168672703,
+      "load": 132,
+      "stops": [
+        {
+          "arrival_time": 55.47071299343465,
+          "customer_id": 172,
+          "departure_time": 65.47071299343466,
+          "load_after": 20,
+          "start_service_time": 55.47071299343465
+        },
+        {
+          "arrival_time": 73.2809626693413,
+          "customer_id": 62,
+          "departure_time": 102.0,
+          "load_after": 40,
+          "start_service_time": 92.0
+        },
+        {
+          "arrival_time": 116.42220510185595,
+          "customer_id": 122,
+          "departure_time": 166.0,
+          "load_after": 80,
+          "start_service_time": 156.0
+        },
+        {
+          "arrival_time": 204.91015291668742,
+          "customer_id": 93,
+          "departure_time": 386.0,
+          "load_after": 100,
+          "start_service_time": 376.0
+        },
+        {
+          "arrival_time": 410.5153013442625,
+          "customer_id": 193,
+          "departure_time": 420.5153013442625,
+          "load_after": 110,
+          "start_service_time": 410.5153013442625
+        },
+        {
+          "arrival_time": 429.5153013442625,
+          "customer_id": 19,
+          "departure_time": 439.5153013442625,
+          "load_after": 112,
+          "start_service_time": 429.5153013442625
+        },
+        {
+          "arrival_time": 459.63991314176064,
+          "customer_id": 146,
+          "departure_time": 492.0,
+          "load_after": 132,
+          "start_service_time": 482.0
+        }
+      ],
+      "vehicle_id": 22
+    },
+    {
+      "distance": 257.2815695915434,
+      "duration": 344.8941229813165,
+      "load": 131,
+      "stops": [
+        {
+          "arrival_time": 84.62860036654276,
+          "customer_id": 168,
+          "departure_time": 101.0,
+          "load_after": 20,
+          "start_service_time": 91.0
+        },
+        {
+          "arrival_time": 119.11077027627483,
+          "customer_id": 53,
+          "departure_time": 129.11077027627482,
+          "load_after": 47,
+          "start_service_time": 119.11077027627483
+        },
+        {
+          "arrival_time": 165.11077027627482,
+          "customer_id": 52,
+          "departure_time": 179.0,
+          "load_after": 59,
+          "start_service_time": 169.0
+        },
+        {
+          "arrival_time": 188.2195444572929,
+          "customer_id": 74,
+          "departure_time": 201.0,
+          "load_after": 78,
+          "start_service_time": 191.0
+        },
+        {
+          "arrival_time": 218.1172427686237,
+          "customer_id": 101,
+          "departure_time": 228.1172427686237,
+          "load_after": 106,
+          "start_service_time": 218.1172427686237
+        },
+        {
+          "arrival_time": 268.42853151011644,
+          "customer_id": 55,
+          "departure_time": 293.0,
+          "load_after": 131,
+          "start_service_time": 283.0
+        }
+      ],
+      "vehicle_id": 23
+    }
+  ],
+  "runtime_sec": 60.25758510000014,
+  "solver_name": "alns",
+  "total_distance": 4547.220618716612,
+  "total_duration": 10649.319898351168,
+  "vehicles_used": 24
+}

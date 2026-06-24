@@ -1,0 +1,1601 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3786799,
+          52.5282583
+        ]
+      },
+      "properties": {
+        "type": "depot",
+        "id": 0,
+        "demand": 0,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 0.0,
+        "popup": "Depot<br>demand: 0<br>time window: [0, 720]<br>service: 0"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.381489,
+          52.5151329
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 1,
+        "demand": 3,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 1<br>demand: 3<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.418829,
+          52.5204341
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 2,
+        "demand": 1,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 2<br>demand: 1<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4181199,
+          52.5164967
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 3,
+        "demand": 1,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 3<br>demand: 1<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3962428,
+          52.513209
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 4,
+        "demand": 4,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 4<br>demand: 4<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3949109,
+          52.5280273
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 5,
+        "demand": 3,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 5<br>demand: 3<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3783968,
+          52.5233245
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 6,
+        "demand": 3,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 6<br>demand: 3<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3869044,
+          52.5226152
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 7,
+        "demand": 1,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 7<br>demand: 1<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3735121,
+          52.5194003
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 8,
+        "demand": 2,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 8<br>demand: 2<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3895535,
+          52.5297502
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 9,
+        "demand": 1,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 9<br>demand: 1<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3863608,
+          52.5136829
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 10,
+        "demand": 1,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 10<br>demand: 1<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3858218,
+          52.5166697
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 11,
+        "demand": 4,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 11<br>demand: 4<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 11
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3796081,
+          52.5228527
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 12,
+        "demand": 3,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 12<br>demand: 3<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 12
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.397971,
+          52.5109143
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 13,
+        "demand": 3,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 13<br>demand: 3<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 13
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4152746,
+          52.5142121
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 14,
+        "demand": 3,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 14<br>demand: 3<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 14
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4099673,
+          52.5285905
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 15,
+        "demand": 1,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 15<br>demand: 1<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 15
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3829867,
+          52.5122673
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 16,
+        "demand": 2,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 16<br>demand: 2<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 16
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3963053,
+          52.517378
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 17,
+        "demand": 2,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 17<br>demand: 2<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 17
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3895549,
+          52.5244069
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 18,
+        "demand": 4,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 18<br>demand: 4<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 18
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3918924,
+          52.5300468
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 19,
+        "demand": 2,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 19<br>demand: 2<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 19
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3967392,
+          52.5109681
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 20,
+        "demand": 1,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 20<br>demand: 1<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 20
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3863794,
+          52.5207918
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 21,
+        "demand": 1,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 21<br>demand: 1<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 21
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4001514,
+          52.522687
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 22,
+        "demand": 4,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 22<br>demand: 4<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 22
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3764762,
+          52.5220688
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 23,
+        "demand": 2,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 23<br>demand: 2<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 23
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4101981,
+          52.5226495
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 24,
+        "demand": 3,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 24<br>demand: 3<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 24
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.402575,
+          52.5235557
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 25,
+        "demand": 4,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 25<br>demand: 4<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 25
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4172201,
+          52.5157933
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 26,
+        "demand": 4,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 26<br>demand: 4<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 26
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3975233,
+          52.5170161
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 27,
+        "demand": 2,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 27<br>demand: 2<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 27
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.401301,
+          52.5112032
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 28,
+        "demand": 3,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 28<br>demand: 3<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 28
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3735121,
+          52.51957
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 29,
+        "demand": 4,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 29<br>demand: 4<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 29
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4151293,
+          52.5209758
+        ]
+      },
+      "properties": {
+        "type": "customer",
+        "id": 30,
+        "demand": 4,
+        "ready_time": 0.0,
+        "due_time": 720.0,
+        "service_time": 5.0,
+        "popup": "Customer 30<br>demand: 4<br>time window: [0, 720]<br>service: 5",
+        "customer_id": 30
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.3786799,
+            52.5282583
+          ],
+          [
+            13.3792504,
+            52.528295
+          ],
+          [
+            13.3806492,
+            52.5284286
+          ],
+          [
+            13.382422,
+            52.5274228
+          ],
+          [
+            13.3864196,
+            52.5270745
+          ],
+          [
+            13.3869818,
+            52.5271368
+          ],
+          [
+            13.3871438,
+            52.5263744
+          ],
+          [
+            13.387156,
+            52.5262915
+          ],
+          [
+            13.3873372,
+            52.5262393
+          ],
+          [
+            13.3889866,
+            52.5259332
+          ],
+          [
+            13.3900175,
+            52.5256848
+          ],
+          [
+            13.3928669,
+            52.5249879
+          ],
+          [
+            13.3951941,
+            52.5244146
+          ],
+          [
+            13.3954165,
+            52.5243556
+          ],
+          [
+            13.3977322,
+            52.5237532
+          ],
+          [
+            13.3987778,
+            52.5233347
+          ],
+          [
+            13.4001514,
+            52.522687
+          ],
+          [
+            13.4004473,
+            52.5221547
+          ],
+          [
+            13.402859,
+            52.5213792
+          ],
+          [
+            13.404628,
+            52.5200437
+          ],
+          [
+            13.4048107,
+            52.5199179
+          ],
+          [
+            13.4049874,
+            52.5200133
+          ],
+          [
+            13.4092855,
+            52.5221984
+          ],
+          [
+            13.4095747,
+            52.5223406
+          ],
+          [
+            13.4101981,
+            52.5226495
+          ],
+          [
+            13.4121513,
+            52.5238926
+          ],
+          [
+            13.4162651,
+            52.5220341
+          ],
+          [
+            13.4159903,
+            52.5217752
+          ],
+          [
+            13.4151293,
+            52.5209758
+          ],
+          [
+            13.4150294,
+            52.5208789
+          ],
+          [
+            13.4152577,
+            52.5206879
+          ],
+          [
+            13.4178129,
+            52.518005
+          ],
+          [
+            13.4181199,
+            52.5164967
+          ],
+          [
+            13.4180485,
+            52.5156339
+          ],
+          [
+            13.417996,
+            52.515468
+          ],
+          [
+            13.4176518,
+            52.5138232
+          ],
+          [
+            13.4152746,
+            52.5142121
+          ],
+          [
+            13.4176518,
+            52.5138232
+          ],
+          [
+            13.4177692,
+            52.5138131
+          ],
+          [
+            13.4181737,
+            52.5154283
+          ],
+          [
+            13.4182222,
+            52.5155777
+          ],
+          [
+            13.4180485,
+            52.5156339
+          ],
+          [
+            13.4172201,
+            52.5157933
+          ],
+          [
+            13.4170031,
+            52.5162717
+          ],
+          [
+            13.4181199,
+            52.5164967
+          ],
+          [
+            13.4182874,
+            52.5164935
+          ],
+          [
+            13.4182077,
+            52.5174101
+          ],
+          [
+            13.4179714,
+            52.5180641
+          ],
+          [
+            13.4162736,
+            52.5200223
+          ],
+          [
+            13.4166985,
+            52.5203209
+          ],
+          [
+            13.418829,
+            52.5204341
+          ],
+          [
+            13.4166985,
+            52.5203209
+          ],
+          [
+            13.4162736,
+            52.5200223
+          ],
+          [
+            13.41536,
+            52.5207921
+          ],
+          [
+            13.4162844,
+            52.5216563
+          ],
+          [
+            13.4165351,
+            52.5218939
+          ],
+          [
+            13.4167149,
+            52.5220587
+          ],
+          [
+            13.4164399,
+            52.5221923
+          ],
+          [
+            13.412359,
+            52.524069
+          ],
+          [
+            13.4119004,
+            52.5240274
+          ],
+          [
+            13.4096737,
+            52.5240533
+          ],
+          [
+            13.4110541,
+            52.5258798
+          ],
+          [
+            13.4111922,
+            52.5261006
+          ],
+          [
+            13.4109579,
+            52.5266402
+          ],
+          [
+            13.4109745,
+            52.5267874
+          ],
+          [
+            13.410571,
+            52.5274755
+          ],
+          [
+            13.4104085,
+            52.5278205
+          ],
+          [
+            13.4102869,
+            52.5280928
+          ],
+          [
+            13.4101382,
+            52.5285535
+          ],
+          [
+            13.4100022,
+            52.5287526
+          ],
+          [
+            13.4095107,
+            52.5288445
+          ],
+          [
+            13.4094033,
+            52.5287067
+          ],
+          [
+            13.4099673,
+            52.5285905
+          ],
+          [
+            13.4102869,
+            52.5280928
+          ],
+          [
+            13.4089105,
+            52.5268412
+          ],
+          [
+            13.407914,
+            52.5245224
+          ],
+          [
+            13.4071966,
+            52.5234222
+          ],
+          [
+            13.4036467,
+            52.5231113
+          ],
+          [
+            13.402575,
+            52.5235557
+          ],
+          [
+            13.402291,
+            52.5236815
+          ],
+          [
+            13.3996284,
+            52.523675
+          ],
+          [
+            13.3977322,
+            52.5237532
+          ],
+          [
+            13.3954165,
+            52.5243556
+          ],
+          [
+            13.3951941,
+            52.5244146
+          ],
+          [
+            13.3928669,
+            52.5249879
+          ],
+          [
+            13.3925378,
+            52.524343
+          ],
+          [
+            13.3895549,
+            52.5244069
+          ],
+          [
+            13.3897551,
+            52.5234719
+          ],
+          [
+            13.3877992,
+            52.5234013
+          ],
+          [
+            13.387748,
+            52.5238769
+          ],
+          [
+            13.3875681,
+            52.5238633
+          ],
+          [
+            13.3854522,
+            52.5235232
+          ],
+          [
+            13.3837817,
+            52.5232546
+          ],
+          [
+            13.3796531,
+            52.5225909
+          ],
+          [
+            13.3796081,
+            52.5228527
+          ],
+          [
+            13.3794973,
+            52.5234977
+          ],
+          [
+            13.3783968,
+            52.5233245
+          ],
+          [
+            13.3794973,
+            52.5234977
+          ],
+          [
+            13.3787878,
+            52.5275687
+          ],
+          [
+            13.3786799,
+            52.5282583
+          ]
+        ]
+      },
+      "properties": {
+        "route_id": 0,
+        "vehicle_id": 0,
+        "solver": "alns_mosade",
+        "feasible": true,
+        "sequence": [
+          22,
+          24,
+          30,
+          14,
+          26,
+          3,
+          2,
+          15,
+          25,
+          18,
+          12,
+          6
+        ],
+        "customer_ids": [
+          22,
+          24,
+          30,
+          14,
+          26,
+          3,
+          2,
+          15,
+          25,
+          18,
+          12,
+          6
+        ],
+        "distance_m": 11039.303388593915,
+        "distance": 11039.303388593915,
+        "duration": 78.22408827058176,
+        "load": 35,
+        "popup": "Vehicle 0<br>customers: 22, 24, 30, 14, 26, 3, 2, 15, 25, 18, 12, 6<br>distance_m: 11039.3<br>duration_min: 78.2241"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.3786799,
+            52.5282583
+          ],
+          [
+            13.3787878,
+            52.5275687
+          ],
+          [
+            13.3794973,
+            52.5234977
+          ],
+          [
+            13.3796081,
+            52.5228527
+          ],
+          [
+            13.3796531,
+            52.5225909
+          ],
+          [
+            13.3837817,
+            52.5232546
+          ],
+          [
+            13.3854522,
+            52.5235232
+          ],
+          [
+            13.3857346,
+            52.5231706
+          ],
+          [
+            13.3869044,
+            52.5226152
+          ],
+          [
+            13.3869533,
+            52.5225621
+          ],
+          [
+            13.3873171,
+            52.5221931
+          ],
+          [
+            13.3878982,
+            52.52245
+          ],
+          [
+            13.3880212,
+            52.5217647
+          ],
+          [
+            13.3863794,
+            52.5207918
+          ],
+          [
+            13.3855113,
+            52.5202823
+          ],
+          [
+            13.3852058,
+            52.5201049
+          ],
+          [
+            13.3852849,
+            52.5196468
+          ],
+          [
+            13.3854799,
+            52.5185298
+          ],
+          [
+            13.3856101,
+            52.5178432
+          ],
+          [
+            13.3857597,
+            52.5169511
+          ],
+          [
+            13.3858218,
+            52.5166697
+          ],
+          [
+            13.3860575,
+            52.5154509
+          ],
+          [
+            13.3862184,
+            52.5145715
+          ],
+          [
+            13.3863608,
+            52.5136829
+          ],
+          [
+            13.3862184,
+            52.5145715
+          ],
+          [
+            13.3891788,
+            52.5147589
+          ],
+          [
+            13.3910803,
+            52.5148797
+          ],
+          [
+            13.3930276,
+            52.514999
+          ],
+          [
+            13.3955204,
+            52.5151565
+          ],
+          [
+            13.396757,
+            52.5152357
+          ],
+          [
+            13.3965704,
+            52.5160626
+          ],
+          [
+            13.3963789,
+            52.517017
+          ],
+          [
+            13.3963633,
+            52.5170912
+          ],
+          [
+            13.3963053,
+            52.517378
+          ],
+          [
+            13.3962966,
+            52.5174224
+          ],
+          [
+            13.3974236,
+            52.5174944
+          ],
+          [
+            13.3975233,
+            52.5170161
+          ],
+          [
+            13.3976537,
+            52.5162803
+          ],
+          [
+            13.3965704,
+            52.5160626
+          ],
+          [
+            13.396757,
+            52.5152357
+          ],
+          [
+            13.3969532,
+            52.5143571
+          ],
+          [
+            13.3972389,
+            52.513273
+          ],
+          [
+            13.3970619,
+            52.5132431
+          ],
+          [
+            13.3962428,
+            52.513209
+          ],
+          [
+            13.3964393,
+            52.5125182
+          ],
+          [
+            13.3934634,
+            52.5123429
+          ],
+          [
+            13.3936137,
+            52.5114523
+          ],
+          [
+            13.3937321,
+            52.5107757
+          ],
+          [
+            13.3937547,
+            52.5106571
+          ],
+          [
+            13.397971,
+            52.5109143
+          ],
+          [
+            13.4011518,
+            52.5111698
+          ],
+          [
+            13.401301,
+            52.5112032
+          ],
+          [
+            13.401122,
+            52.5113357
+          ],
+          [
+            13.3967392,
+            52.5109681
+          ],
+          [
+            13.3937321,
+            52.5107757
+          ],
+          [
+            13.3918249,
+            52.5104777
+          ],
+          [
+            13.3898959,
+            52.5103556
+          ],
+          [
+            13.3873866,
+            52.5102009
+          ],
+          [
+            13.3841822,
+            52.5100052
+          ],
+          [
+            13.3834102,
+            52.5114635
+          ],
+          [
+            13.3829867,
+            52.5122673
+          ],
+          [
+            13.3821056,
+            52.5139647
+          ],
+          [
+            13.381489,
+            52.5151329
+          ],
+          [
+            13.3774666,
+            52.5145846
+          ],
+          [
+            13.3769161,
+            52.516169
+          ],
+          [
+            13.3768924,
+            52.5162757
+          ],
+          [
+            13.3769703,
+            52.5177819
+          ],
+          [
+            13.3768338,
+            52.5177583
+          ],
+          [
+            13.3708133,
+            52.5177791
+          ],
+          [
+            13.3708635,
+            52.5194013
+          ],
+          [
+            13.3720857,
+            52.5194033
+          ],
+          [
+            13.3735121,
+            52.5194003
+          ],
+          [
+            13.3735121,
+            52.51957
+          ],
+          [
+            13.3720846,
+            52.5195725
+          ],
+          [
+            13.3720773,
+            52.520749
+          ],
+          [
+            13.3735197,
+            52.5207483
+          ],
+          [
+            13.3738186,
+            52.5209174
+          ],
+          [
+            13.3764762,
+            52.5220688
+          ],
+          [
+            13.3773417,
+            52.5222104
+          ],
+          [
+            13.3792549,
+            52.5225269
+          ],
+          [
+            13.3796531,
+            52.5225909
+          ],
+          [
+            13.3796081,
+            52.5228527
+          ],
+          [
+            13.3794973,
+            52.5234977
+          ],
+          [
+            13.3787878,
+            52.5275687
+          ],
+          [
+            13.3786799,
+            52.5282583
+          ]
+        ]
+      },
+      "properties": {
+        "route_id": 1,
+        "vehicle_id": 1,
+        "solver": "alns_mosade",
+        "feasible": true,
+        "sequence": [
+          7,
+          21,
+          11,
+          10,
+          17,
+          27,
+          4,
+          13,
+          28,
+          20,
+          16,
+          1,
+          8,
+          29,
+          23
+        ],
+        "customer_ids": [
+          7,
+          21,
+          11,
+          10,
+          17,
+          27,
+          4,
+          13,
+          28,
+          20,
+          16,
+          1,
+          8,
+          29,
+          23
+        ],
+        "distance_m": 9770.407827883984,
+        "distance": 9770.407827883984,
+        "duration": 90.53621352821753,
+        "load": 35,
+        "popup": "Vehicle 1<br>customers: 7, 21, 11, 10, 17, 27, 4, 13, 28, 20, 16, 1, 8, 29, 23<br>distance_m: 9770.41<br>duration_min: 90.5362"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.3786799,
+            52.5282583
+          ],
+          [
+            13.3786194,
+            52.5286098
+          ],
+          [
+            13.3784455,
+            52.5291991
+          ],
+          [
+            13.3793664,
+            52.529493
+          ],
+          [
+            13.3814573,
+            52.5301352
+          ],
+          [
+            13.3830713,
+            52.5305672
+          ],
+          [
+            13.3846441,
+            52.5292918
+          ],
+          [
+            13.3853809,
+            52.5287139
+          ],
+          [
+            13.3879833,
+            52.5293547
+          ],
+          [
+            13.3895535,
+            52.5297502
+          ],
+          [
+            13.391366,
+            52.5280203
+          ],
+          [
+            13.3924198,
+            52.5282318
+          ],
+          [
+            13.3938143,
+            52.528526
+          ],
+          [
+            13.3918924,
+            52.5300468
+          ],
+          [
+            13.3938143,
+            52.528526
+          ],
+          [
+            13.3949109,
+            52.5280273
+          ],
+          [
+            13.3938143,
+            52.528526
+          ],
+          [
+            13.3924198,
+            52.5282318
+          ],
+          [
+            13.391366,
+            52.5280203
+          ],
+          [
+            13.3891474,
+            52.5275489
+          ],
+          [
+            13.3872279,
+            52.5271678
+          ],
+          [
+            13.3869818,
+            52.5271368
+          ],
+          [
+            13.3864196,
+            52.5270745
+          ],
+          [
+            13.382422,
+            52.5274228
+          ],
+          [
+            13.3806492,
+            52.5284286
+          ],
+          [
+            13.3792504,
+            52.528295
+          ],
+          [
+            13.3786799,
+            52.5282583
+          ]
+        ]
+      },
+      "properties": {
+        "route_id": 2,
+        "vehicle_id": 2,
+        "solver": "alns_mosade",
+        "feasible": true,
+        "sequence": [
+          9,
+          19,
+          5
+        ],
+        "customer_ids": [
+          9,
+          19,
+          5
+        ],
+        "distance_m": 3146.9729581971346,
+        "distance": 3146.9729581971346,
+        "duration": 20.688402766792944,
+        "load": 6,
+        "popup": "Vehicle 2<br>customers: 9, 19, 5<br>distance_m: 3146.97<br>duration_min: 20.6884"
+      }
+    }
+  ]
+}

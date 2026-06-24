@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560">
+<rect width="100%" height="100%" fill="white" />
+<text x="450.00" y="30.00" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" fill="#0f172a">Cost vs Runtime</text>
+<line x1="90.00" y1="480.00" x2="870.00" y2="480.00" stroke="#475569" />
+<line x1="90.00" y1="60.00" x2="90.00" y2="480.00" stroke="#475569" />
+<text x="480.00" y="545.00" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#0f172a">Runtime (sec)</text>
+<text x="25.00" y="270.00" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#0f172a" transform="rotate(-90 25.00 270.00)">Cost</text>
+<circle cx="125.46" cy="nan" r="5" fill="#9333ea" />
+<circle cx="125.45" cy="nan" r="5" fill="#9333ea" />
+<circle cx="125.46" cy="nan" r="5" fill="#9333ea" />
+<circle cx="345.44" cy="nan" r="5" fill="#ea580c" />
+<circle cx="345.23" cy="nan" r="5" fill="#ea580c" />
+<circle cx="345.25" cy="nan" r="5" fill="#ea580c" />
+<circle cx="384.68" cy="nan" r="5" fill="#16a34a" />
+<circle cx="398.33" cy="nan" r="5" fill="#16a34a" />
+<circle cx="381.56" cy="nan" r="5" fill="#16a34a" />
+<circle cx="127.30" cy="nan" r="5" fill="#dc2626" />
+<circle cx="127.65" cy="nan" r="5" fill="#dc2626" />
+<circle cx="127.38" cy="nan" r="5" fill="#dc2626" />
+<circle cx="128.14" cy="nan" r="5" fill="#2563eb" />
+<circle cx="127.52" cy="nan" r="5" fill="#2563eb" />
+<circle cx="127.76" cy="nan" r="5" fill="#2563eb" />
+<circle cx="126.60" cy="nan" r="5" fill="#9333ea" />
+<circle cx="126.76" cy="nan" r="5" fill="#9333ea" />
+<circle cx="126.55" cy="nan" r="5" fill="#9333ea" />
+<circle cx="345.26" cy="nan" r="5" fill="#ea580c" />
+<circle cx="345.24" cy="nan" r="5" fill="#ea580c" />
+<circle cx="345.24" cy="nan" r="5" fill="#ea580c" />
+<circle cx="808.74" cy="nan" r="5" fill="#16a34a" />
+<circle cx="807.42" cy="nan" r="5" fill="#16a34a" />
+<circle cx="807.16" cy="nan" r="5" fill="#16a34a" />
+<circle cx="135.59" cy="nan" r="5" fill="#dc2626" />
+<circle cx="135.84" cy="nan" r="5" fill="#dc2626" />
+<circle cx="138.62" cy="nan" r="5" fill="#dc2626" />
+<circle cx="144.17" cy="nan" r="5" fill="#2563eb" />
+<circle cx="141.56" cy="nan" r="5" fill="#2563eb" />
+<circle cx="143.59" cy="nan" r="5" fill="#2563eb" />
+<circle cx="137.67" cy="nan" r="5" fill="#9333ea" />
+<circle cx="136.28" cy="nan" r="5" fill="#9333ea" />
+<circle cx="135.94" cy="nan" r="5" fill="#9333ea" />
+<circle cx="345.26" cy="nan" r="5" fill="#ea580c" />
+<circle cx="345.24" cy="nan" r="5" fill="#ea580c" />
+<circle cx="345.27" cy="nan" r="5" fill="#ea580c" />
+<circle cx="834.55" cy="nan" r="5" fill="#16a34a" />
+<circle cx="831.74" cy="nan" r="5" fill="#16a34a" />
+<circle cx="826.99" cy="nan" r="5" fill="#16a34a" />
+<circle cx="167.96" cy="nan" r="5" fill="#dc2626" />
+<circle cx="164.52" cy="nan" r="5" fill="#dc2626" />
+<circle cx="161.88" cy="nan" r="5" fill="#dc2626" />
+<circle cx="167.64" cy="nan" r="5" fill="#2563eb" />
+<circle cx="166.89" cy="nan" r="5" fill="#2563eb" />
+<circle cx="167.52" cy="nan" r="5" fill="#2563eb" />
+<rect x="720.00" y="50.00" width="10" height="10" fill="#2563eb" />
+<text x="735.00" y="60.00" font-family="Arial, sans-serif" font-size="11" text-anchor="start" fill="#0f172a">alns_mosade</text>
+<rect x="720.00" y="68.00" width="10" height="10" fill="#dc2626" />
+<text x="735.00" y="78.00" font-family="Arial, sans-serif" font-size="11" text-anchor="start" fill="#0f172a">alns_uniform</text>
+<rect x="720.00" y="86.00" width="10" height="10" fill="#16a34a" />
+<text x="735.00" y="96.00" font-family="Arial, sans-serif" font-size="11" text-anchor="start" fill="#0f172a">cp_sat</text>
+<rect x="720.00" y="104.00" width="10" height="10" fill="#9333ea" />
+<text x="735.00" y="114.00" font-family="Arial, sans-serif" font-size="11" text-anchor="start" fill="#0f172a">greedy</text>
+<rect x="720.00" y="122.00" width="10" height="10" fill="#ea580c" />
+<text x="735.00" y="132.00" font-family="Arial, sans-serif" font-size="11" text-anchor="start" fill="#0f172a">ortools_routing</text>
+</svg>

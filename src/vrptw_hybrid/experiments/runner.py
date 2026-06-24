@@ -8,7 +8,10 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
+from vrptw_hybrid.core.checker import FeasibilityReport, check_solution
+from vrptw_hybrid.core.models import Solution
 from vrptw_hybrid.core.solution_io import (
+    save_convergence_csv,
     save_metrics_csv,
     save_solution_json,
     solution_to_metrics_row,
@@ -38,13 +41,42 @@ class SolverSpec:
 class BatchRunResult:
     csv_path: Path
     solution_dir: Path
+    convergence_dir: Path
     rows: tuple[dict[str, Any], ...]
+
+
+def plan_batch(config_path: str | Path) -> tuple[dict[str, Any], ...]:
+    """Return the configured batch run matrix without executing solvers."""
+
+    config_file = Path(config_path)
+    config = load_config(config_file)
+    experiment_config = _mapping(config.get("experiment", {}))
+    instances = _instance_specs(experiment_config, config_file.parent)
+    solvers = _solver_specs(experiment_config)
+    seeds = _int_list(experiment_config.get("seeds", config.get("seed", 42)), "experiment.seeds")
+
+    rows: list[dict[str, Any]] = []
+    for instance_spec in instances:
+        for solver_spec in solvers:
+            for seed in seeds:
+                rows.append(
+                    {
+                        "instance": instance_spec.name,
+                        "instance_path": str(instance_spec.path),
+                        "solver": solver_spec.name,
+                        "solver_alias": solver_spec.solver,
+                        "seed": seed,
+                        "ablation": solver_spec.ablation,
+                    }
+                )
+    return tuple(rows)
 
 
 def run_batch(
     config_path: str | Path,
     *,
     output_dir: str | Path | None = None,
+    output_csv: str | Path | None = None,
     timestamp: str | None = None,
 ) -> BatchRunResult:
     """Run a configured solver batch and write metrics CSV plus solution JSON."""
@@ -53,18 +85,34 @@ def run_batch(
     config = load_config(config_file)
     experiment_config = _mapping(config.get("experiment", {}))
     run_timestamp = timestamp or datetime.now().strftime("%Y%m%d_%H%M%S")
+    created_at = datetime.now().isoformat(timespec="seconds")
     resolved_output_dir = Path(output_dir or experiment_config.get("output_dir", "data/results"))
-    csv_path = resolved_output_dir / f"runs_{run_timestamp}.csv"
-    solution_dir = resolved_output_dir / "solutions" / run_timestamp
+    csv_path = _configured_path(
+        output_csv or experiment_config.get("runs_csv"),
+        default=resolved_output_dir / f"runs_{run_timestamp}.csv",
+    )
+    solution_dir = _configured_path(
+        experiment_config.get("solution_dir"),
+        default=resolved_output_dir / "solutions" / run_timestamp,
+    )
+    convergence_dir = _configured_path(
+        experiment_config.get("convergence_dir"),
+        default=resolved_output_dir / "convergence" / run_timestamp,
+    )
     instances = _instance_specs(experiment_config, config_file.parent)
     solvers = _solver_specs(experiment_config)
     seeds = _int_list(experiment_config.get("seeds", config.get("seed", 42)), "experiment.seeds")
-    time_limit = _optional_float(experiment_config.get("time_limit_sec"))
+    default_time_limit = _optional_float(experiment_config.get("time_limit_sec"))
     max_iterations = _optional_int(experiment_config.get("max_iterations"))
 
     rows: list[dict[str, Any]] = []
     for instance_spec in instances:
         for solver_spec in solvers:
+            time_limit = _time_limit_for_solver(
+                experiment_config,
+                solver_spec,
+                default=default_time_limit,
+            )
             for seed in seeds:
                 rows.append(
                     _run_one(
@@ -75,6 +123,9 @@ def run_batch(
                         time_limit=time_limit,
                         max_iterations=max_iterations,
                         solution_dir=solution_dir,
+                        convergence_dir=convergence_dir,
+                        config_file=config_file,
+                        created_at=created_at,
                     )
                 )
 
@@ -82,6 +133,7 @@ def run_batch(
     return BatchRunResult(
         csv_path=csv_path,
         solution_dir=solution_dir,
+        convergence_dir=convergence_dir,
         rows=tuple(rows),
     )
 
@@ -95,13 +147,21 @@ def _run_one(
     time_limit: float | None,
     max_iterations: int | None,
     solution_dir: Path,
+    convergence_dir: Path,
+    config_file: Path,
+    created_at: str,
 ) -> dict[str, Any]:
     row_base = {
         "instance": instance_spec.name,
         "instance_path": str(instance_spec.path),
+        "source_file": str(instance_spec.path),
         "solver": solver_spec.name,
         "seed": seed,
         "ablation": solver_spec.ablation,
+        "time_limit_sec": time_limit,
+        "max_iterations": max_iterations,
+        "config_file": str(config_file),
+        "created_at": created_at,
     }
     try:
         instance = parse_solomon(instance_spec.path, limit_customers=instance_spec.limit_customers)
@@ -114,8 +174,17 @@ def _run_one(
             time_limit=time_limit,
             max_iterations=max_iterations,
         )
+        report = check_solution(solution, instance)
+        solution = _with_feasibility_report(solution, report)
         solution_json = _solution_json_path(solution_dir, instance_spec, solver_spec, seed)
         save_solution_json(solution, solution_json)
+        convergence_csv = _save_convergence_if_available(
+            solution=solution,
+            convergence_dir=convergence_dir,
+            instance_spec=instance_spec,
+            solver_spec=solver_spec,
+            seed=seed,
+        )
         row = {
             **solution_to_metrics_row(solution),
             **row_base,
@@ -128,23 +197,49 @@ def _run_one(
             "vehicles": solution.vehicles_used,
             "distance": solution.total_distance,
             "cost": solution.objective,
-            "status": "ok",
+            "solver_status": _solver_status(solution),
+            "gap": "",
+            "lower_bound": "",
+            "best_bound": _best_bound(solution.metadata),
+            "gap_or_bound_if_available": _gap_or_bound_if_available(solution.metadata),
+            "has_solution": bool(solution.routes),
+            "route_count": len(solution.routes),
+            "customer_count": len(instance.customer_ids),
+            "status": _solver_status(solution),
+            "pipeline_status": "ok",
             "error": "",
             "solution_json": str(solution_json),
+            "convergence_csv": str(convergence_csv) if convergence_csv is not None else "",
         }
     except Exception as exc:
         row = {
             **row_base,
             "selector": "",
+            "vehicles_used": "",
+            "total_distance": "",
+            "total_duration": "",
+            "objective": "",
+            "iterations": "",
+            "best_iteration": "",
             "vehicles": "",
             "distance": "",
             "cost": "",
             "runtime_sec": "",
             "feasible": False,
             **bks_gap_fields("", vehicles_used=0, total_distance=0.0),
+            "solver_status": "error",
+            "gap": "",
+            "lower_bound": "",
+            "best_bound": "",
+            "gap_or_bound_if_available": "",
+            "has_solution": False,
+            "route_count": "",
+            "customer_count": "",
             "status": "error",
+            "pipeline_status": "error",
             "error": str(exc),
             "solution_json": "",
+            "convergence_csv": "",
         }
     return row
 
@@ -232,11 +327,106 @@ def _solution_json_path(
     return solution_dir / filename.replace(" ", "_")
 
 
+def _convergence_csv_path(
+    convergence_dir: Path,
+    instance_spec: InstanceSpec,
+    solver_spec: SolverSpec,
+    seed: int,
+) -> Path:
+    filename = f"{instance_spec.name}__{solver_spec.name}__seed{seed}.csv"
+    return convergence_dir / filename.replace(" ", "_")
+
+
+def _save_convergence_if_available(
+    *,
+    solution: Solution,
+    convergence_dir: Path,
+    instance_spec: InstanceSpec,
+    solver_spec: SolverSpec,
+    seed: int,
+) -> Path | None:
+    history = solution.metadata.get("history", [])
+    if not isinstance(history, list) or not history:
+        return None
+    path = _convergence_csv_path(convergence_dir, instance_spec, solver_spec, seed)
+    return save_convergence_csv(solution, path)
+
+
+def _with_feasibility_report(
+    solution: Solution,
+    report: FeasibilityReport,
+) -> Solution:
+    return Solution(
+        instance_name=solution.instance_name,
+        solver_name=solution.solver_name,
+        routes=solution.routes,
+        objective=solution.objective,
+        vehicles_used=solution.vehicles_used,
+        total_distance=solution.total_distance,
+        total_duration=solution.total_duration,
+        feasible=report.feasible,
+        runtime_sec=solution.runtime_sec,
+        metadata={
+            **solution.metadata,
+            "feasibility_violations": list(report.violations),
+        },
+    )
+
+
 def _selector_name(metadata: dict[str, Any]) -> str:
     selector = metadata.get("selector")
     if isinstance(selector, dict):
         return str(selector.get("name", ""))
     return ""
+
+
+def _solver_status(solution: Solution) -> str:
+    status = solution.metadata.get("status")
+    if status is not None:
+        return str(status)
+    return "FEASIBLE" if solution.feasible else "INFEASIBLE"
+
+
+def _gap_or_bound_if_available(metadata: dict[str, Any]) -> Any:
+    best_bound = _best_bound(metadata)
+    if best_bound != "":
+        return best_bound
+    return ""
+
+
+def _best_bound(metadata: dict[str, Any]) -> Any:
+    best_bound = metadata.get("best_bound")
+    if best_bound is not None:
+        return best_bound
+    return ""
+
+
+def _configured_path(value: object, *, default: Path) -> Path:
+    if value is None or value == "":
+        return default
+    return Path(str(value))
+
+
+def _time_limit_for_solver(
+    experiment_config: dict[str, Any],
+    solver_spec: SolverSpec,
+    *,
+    default: float | None,
+) -> float | None:
+    time_limits = _mapping(experiment_config.get("time_limits", {}))
+    aliases = [solver_spec.name, solver_spec.solver]
+    solver_key = solver_spec.solver.lower()
+    if solver_key.startswith("alns"):
+        aliases.append("alns")
+    if solver_key in {"cp_sat", "exact_cp_sat"}:
+        aliases.append("cp_sat")
+    if solver_key in {"ortools", "ortools_routing"}:
+        aliases.extend(["ortools", "ortools_routing"])
+
+    for alias in aliases:
+        if alias in time_limits:
+            return _optional_float(time_limits[alias])
+    return default
 
 
 def _resolve_path(raw_path: str, config_dir: Path) -> Path:

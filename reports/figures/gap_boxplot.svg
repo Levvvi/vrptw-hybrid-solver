@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560">
+<rect width="100%" height="100%" fill="white" />
+<text x="450.00" y="30.00" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" fill="#0f172a">Distance Gap to BKS</text>
+<line x1="90.00" y1="480.00" x2="870.00" y2="480.00" stroke="#475569" />
+<line x1="90.00" y1="60.00" x2="90.00" y2="480.00" stroke="#475569" />
+<text x="480.00" y="545.00" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#0f172a"></text>
+<text x="25.00" y="270.00" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#0f172a" transform="rotate(-90 25.00 270.00)"></text>
+<text x="450.00" y="280.00" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#0f172a">No data available yet</text>
+</svg>

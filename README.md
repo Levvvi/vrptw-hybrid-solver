@@ -1,265 +1,261 @@
-# Hybrid VRPTW Solver for Urban Delivery
+﻿# VRPTW Hybrid Solver
 
-<!-- Replace OWNER in the CI badge after configuring the GitHub remote. -->
-[![CI](https://github.com/OWNER/VRPTW/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/VRPTW/actions/workflows/ci.yml)
+[![CI](https://github.com/Levvvi/vrptw-hybrid-solver/actions/workflows/ci.yml/badge.svg)](https://github.com/Levvvi/vrptw-hybrid-solver/actions/workflows/ci.yml)
 
-A portfolio-grade Vehicle Routing Problem with Time Windows (VRPTW) project that
-connects exact validation, adaptive ALNS, OR-Tools baselines, statistical
-analysis, and Streamlit/Folium map visualization into one interview-ready
-engineering story.
+Exact validation, ALNS variants, benchmark experiments, and map demos for the
+Vehicle Routing Problem with Time Windows.
 
-The core idea is not to write another standalone routing solver. The project is
-designed to demonstrate the full trade-off chain:
+This portfolio project demonstrates a full engineering chain for VRPTW:
+business constraints, mathematical modeling, exact small-instance validation,
+heuristic search, adaptive operator selection, benchmark comparison,
+statistical review, and interactive route visualization. The emphasis is on
+evidence-backed trade-offs rather than claiming a universal best solver.
 
-```text
-business problem -> mathematical model -> exact validation -> heuristic search
--> adaptive operator selection -> baseline comparison -> statistical evaluation
--> map visualization -> resume evidence
-```
+## What This Project Demonstrates
 
-The personal differentiator is the MOSADE-inspired adaptive mechanism: strategy
-selection ideas from evolutionary optimization are migrated into ALNS
-destroy/repair operator selection for an industrial routing problem.
+- VRPTW modeling with capacity, service time, depot return, and hard time
+  windows.
+- A solution checker that validates customer coverage, capacity, time windows,
+  and route timing.
+- CP-SAT as a small-scale correctness anchor, not a medium-scale baseline.
+- OR-Tools Routing as a strong external baseline.
+- Greedy construction and ALNS variants with uniform, roulette, and
+  MOSADE-inspired selector logic.
+- Reproducible experiment outputs: run CSVs, summaries, statistical tests,
+  convergence traces, and figures.
+- VIS-01A benchmark route viewer for Solomon/GH x-y coordinates.
+- VIS-01B Berlin Mitte city road demo using OSM road geometry and a
+  shortest-path travel-time proxy.
 
-## Why VRPTW
-
-Urban delivery teams must decide which vehicle visits which customers, in what
-order, while respecting vehicle capacity, customer time windows, service times,
-and depot operating hours. A cheap route that arrives late is infeasible; a
-feasible route that uses too many vehicles is expensive. VRPTW is a compact way
-to model this operational tension.
-
-This repository treats VRPTW as an engineering problem:
-
-- small instances are solved or checked with an exact CP-SAT formulation;
-- larger instances use greedy construction plus ALNS local search;
-- OR-Tools Routing is used as an external baseline;
-- Solomon best-known-solution fields are used where verified;
-- experiments produce CSV summaries, statistical tests, and report figures;
-- map layers turn routes into depot/customer markers and vehicle polylines.
-
-## Model Summary
-
-Given depot `0`, customers `1..n`, vehicles `k`, demand `q_i`, service time
-`s_i`, capacity `Q`, travel time `t_ij`, and distance `d_ij`, the solver seeks
-routes that:
-
-- start and end at the depot;
-- visit each customer exactly once;
-- keep each route load within vehicle capacity;
-- arrive within each customer's time window `[a_i, b_i]`, allowing waiting;
-- minimize a weighted objective dominated by vehicle count, then travel cost.
-
-In implementation, the objective uses a large vehicle weight so that reducing
-vehicles is prioritized before shaving route distance, matching common Solomon
-benchmark reporting.
-
-## Solver Strategy
-
-| Layer | Role | Implementation |
-| --- | --- | --- |
-| Greedy insertion | Fast feasible initial solution and demo fallback | `src/vrptw_hybrid/solvers/greedy.py` |
-| CP-SAT exact | Small-instance validation and correctness anchor | `src/vrptw_hybrid/solvers/exact_cp_sat.py` |
-| OR-Tools Routing | Industry baseline for comparison | `src/vrptw_hybrid/solvers/ortools_routing.py` |
-| ALNS | Scalable heuristic search for larger cases | `src/vrptw_hybrid/solvers/alns/` |
-| Adaptive selector | MOSADE-inspired operator selection | `src/vrptw_hybrid/solvers/alns/selectors.py` |
-
-The ALNS loop starts from a greedy solution, repeatedly removes customers with a
-destroy operator, reinserts them with a repair operator, accepts improving
-candidates, and records convergence metadata. Candidate caching and
-nearest-neighbor filtering keep repair evaluation practical as instances grow.
-
-## Adaptive Selector
-
-Uniform ALNS samples destroy and repair operators evenly. Roulette ALNS updates
-independent operator weights by segment-level rewards. The MOSADE-inspired
-selector goes one step further: it treats a `(destroy, repair)` pair as the
-strategy, assigns rewards for accepted moves and new best solutions, and keeps a
-memory of recent pair performance.
+## Architecture
 
 ```mermaid
 flowchart LR
-    A["Current solution"] --> B["Choose destroy|repair pair"]
-    B --> C["Destroy customers"]
-    C --> D["Repair route plan"]
-    D --> E["Evaluate feasibility and cost"]
-    E --> F["Accept if improved"]
-    F --> G["Reward pair"]
-    G --> B
+    A["Benchmark and city data"] --> B["VRPTW model"]
+    B --> C["Feasibility checker"]
+    B --> D["Solvers"]
+    D --> E["Experiment runner"]
+    E --> F["CSV summaries and stats"]
+    E --> G["Convergence and figures"]
+    F --> H["Streamlit demo"]
+    G --> H
+    B --> I["GeoJSON/Folium maps"]
+    I --> H
 ```
 
-That pair-level view is useful because a destroy operator can be weak with one
-repair operator and strong with another. The selector stores this interaction
-instead of assuming the two choices are independent.
+## Solver Stack
 
-## Experiment Protocol
+| Solver | Role | Scope |
+| --- | --- | --- |
+| `greedy` | Fast construction baseline | Smoke tests, initialization, demos |
+| `cp_sat` | Exact validation anchor | Mini and small customer slices only |
+| `ortools_routing` | External routing baseline | Strong when it returns a solution |
+| `alns_uniform` | ALNS with uniform operator selection | Heuristic baseline |
+| `alns_roulette` | ALNS with reward-weighted operator selection | Heuristic baseline |
+| `alns_mosade` | ALNS with MOSADE-inspired pair selection | Experimental adaptive selector |
 
-Recommended experiment dimensions:
-
-- instances: Solomon subsets first, then synthetic city instances with optional
-  OSM road-network matrices;
-- solvers: `greedy`, `ortools_routing`, `alns_uniform`, `alns_mosade`;
-- seeds: at least 3 for heuristic comparisons once runtime allows;
-- budgets: fixed `time_limit_sec` and `max_iterations` per instance class;
-- metrics: feasible flag, objective, vehicles used, total distance, total
-  duration, runtime, BKS vehicle/distance gaps when available;
-- reporting: convergence curves, cost/runtime scatter, gap boxplots, operator
-  probability plots, pair heatmaps, Wilcoxon/Holm statistical summaries.
-
-The batch runner writes results under `data/results/`. README or resume claims
-about percentage improvement, 500/1000-customer scaling, or BKS gaps must only
-be filled after a real CSV exists.
+The internal `objective` is vehicle-weighted and should not be read as travel
+distance. Public comparisons should report vehicles, distance, runtime, and
+feasible rate together.
 
 ## Results
 
-No benchmark improvement numbers are claimed yet.
+All public claims below are mapped to evidence in
+[docs/claim_registry.md](docs/claim_registry.md).
 
-| Claim | Evidence file | Status |
-| --- | --- | --- |
-| Vehicle reduction vs OR-Tools | TODO: `data/results/.../runs_*.csv` | TODO |
-| Distance reduction vs OR-Tools | TODO: `data/results/.../runs_*.csv` | TODO |
-| Runtime on 500/1000-customer scaling | TODO: `data/results/scaling_*.csv` | TODO |
-| Solomon BKS gap summary | TODO: verified result CSV with BKS fields | TODO |
+### RUN-01 / RUN-02: Small-Scale Pipeline
 
-## Quick Start
+The small experiment pipeline writes run CSVs, summary CSVs, statistical tests,
+solution JSON, convergence CSVs, and figures. CP-SAT is treated as a time-limited
+small-instance validation tool; UNKNOWN rows are not counted as feasible or as
+optimal.
 
-Create an editable development install and run the test suite:
+Evidence:
+[docs/P2_RUN_01_REPORT.md](docs/P2_RUN_01_REPORT.md),
+[docs/P2_RUN_02_AUDIT.md](docs/P2_RUN_02_AUDIT.md),
+[reports/results/summary_small.csv](reports/results/summary_small.csv).
 
-```bash
-python -m pip install -e ".[dev]"
-pre-commit run --all-files
-pytest -q
-```
+### ABL-01: Selector Ablation
 
-Check the CLI and solve the mini Solomon fixture:
+The MOSADE-inspired selector did not outperform uniform or roulette selection in
+the exploratory selector ablation.
 
-```bash
-vrptw info --config configs/solomon_small.yaml
-vrptw solve --instance tests/fixtures/mini_solomon.txt --solver greedy --config configs/solomon_small.yaml --seed 42 --time-limit 3 --max-iterations 10
-vrptw solve --instance tests/fixtures/mini_solomon.txt --solver alns_uniform --config configs/solomon_small.yaml --seed 42 --time-limit 3 --max-iterations 10
-```
+Evidence:
+[docs/P2_ABL_01_REPORT.md](docs/P2_ABL_01_REPORT.md),
+[reports/results/ablation_selectors_summary.csv](reports/results/ablation_selectors_summary.csv).
 
-Run a small batch experiment:
+### EXP-02: Medium Benchmark
 
-```bash
-vrptw batch --config configs/solomon_small.yaml --output data/results/solomon_small
-```
+EXP-02 ran 90 rows: 6 instances x 5 solvers x 3 seeds across Solomon 100 and
+Gehring-Homberger 200 selected instances.
 
-Generate report figures from the latest CSV in that output directory:
+| Solver | Feasible rate | Mean vehicles | Mean distance | Mean runtime sec |
+| --- | ---: | ---: | ---: | ---: |
+| `alns_uniform` | 1.000 | 18.556 | 3076.988 | 40.643 |
+| `alns_roulette` | 1.000 | 18.667 | 3056.841 | 40.349 |
+| `alns_mosade` | 1.000 | 18.667 | 3067.615 | 40.592 |
+| `greedy` | 1.000 | 19.167 | 3530.322 | 28.744 |
+| `ortools_routing` | 0.500 | 17.000 | 2403.523 | 60.009 |
 
-```powershell
-$runsCsv = Get-ChildItem data/results/solomon_small/runs_*.csv | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-python scripts/make_report_figures.py --runs-csv $runsCsv.FullName --output-dir data/results/figures
-```
+OR-Tools Routing found lower-distance solutions where it returned a solution,
+but it only reached a 0.5 feasible rate under the fixed 60-second budget. ALNS
+variants reached 1.0 feasible rate on this selected medium suite. These are
+medium-scale exploratory results, not large-scale production evidence.
+
+Evidence:
+[docs/P2_EXP_02_REPORT.md](docs/P2_EXP_02_REPORT.md),
+[reports/results/summary_medium.csv](reports/results/summary_medium.csv),
+[reports/results/runs_medium.csv](reports/results/runs_medium.csv).
+
+### VIS-01B: Berlin Mitte City Demo
+
+The city demo uses a Berlin Mitte OSM driving network cache, 30 synthetic orders
+sampled from graph nodes, network shortest-path distances, and proxy travel
+times derived from road lengths and speed assumptions.
+
+| Solver | Feasible | Vehicles | Distance m | Runtime sec |
+| --- | --- | ---: | ---: | ---: |
+| `greedy` | true | 3 | 32309.954 | 0.200 |
+| `ortools_routing` | true | 3 | 22701.994 | 60.010 |
+| `alns_roulette` | true | 3 | 23956.684 | 6.214 |
+| `alns_mosade` | true | 3 | 23956.684 | 6.256 |
+
+The city demo is a visualization and integration demo. It does not use measured
+traffic data.
+
+Evidence:
+[docs/P2_VIS_01B_REPORT.md](docs/P2_VIS_01B_REPORT.md),
+[reports/demo/city/city_summary.csv](reports/demo/city/city_summary.csv).
 
 ## Demo
 
-Install visualization dependencies and launch the Streamlit app:
+Install with visualization extras:
 
-```bash
+```powershell
 python -m pip install -e ".[dev,vis]"
+```
+
+Launch Streamlit from the repository root:
+
+```powershell
 streamlit run apps/streamlit_app.py
 ```
 
-The demo supports:
+Streamlit modes:
 
-- selecting a mini Solomon instance;
-- running `greedy`, `ortools_routing`, `alns_uniform`, or `alns_mosade`;
-- setting seed, time limit, and ALNS iterations;
-- loading a precomputed solution JSON for a fast interview path;
-- viewing metrics, a Folium route map, route table, convergence curve, operator
-  probabilities, and download buttons for solution JSON and metrics CSV.
+- `Benchmark curated demo`: reads
+  [reports/demo/artifacts](reports/demo/artifacts) and plots Solomon/GH x-y
+  benchmark routes. These are not map coordinates.
+- `Benchmark full local experiment`: reads
+  [reports/results/runs_medium.csv](reports/results/runs_medium.csv) and local
+  experiment artifacts when available.
+- `City road demo`: reads [reports/demo/city](reports/demo/city) and displays
+  Berlin Mitte route maps with Folium.
 
-Demo screenshot/GIF: TODO after capturing the Streamlit page with a generated
-solution.
+CLI benchmark plot example:
 
-## Docker
-
-Build and run the slim Streamlit demo image:
-
-```bash
-docker build -t vrptw-hybrid .
-docker run -p 8501:8501 vrptw-hybrid
+```powershell
+vrptw plot --benchmark `
+  --run-csv reports/results/runs_medium.csv `
+  --instance c101_100 `
+  --solver alns_roulette `
+  --seed 0 `
+  --output-png reports/demo/png/c101_100_alns_roulette_seed0.png `
+  --output-artifact reports/demo/artifacts/c101_100_alns_roulette_seed0.json
 ```
 
-Or use Compose:
+More details:
+[docs/demo_guide.md](docs/demo_guide.md).
 
-```bash
-docker compose up --build
+## Reproducibility
+
+Expected environment:
+
+- Python 3.11
+- Editable install: `python -m pip install -e ".[dev,vis]"`
+- Quality gates:
+
+```powershell
+python -m pytest -q
+python -m ruff check .
+python -m mypy src
+vrptw info
 ```
 
-The Docker image intentionally uses a slim demo dependency set:
+Raw benchmark data, large experiment outputs, and OSM caches are intentionally
+ignored:
 
-- included: project package, Streamlit, Folium, `streamlit-folium`, mini Solomon
-  fixture, and configs;
-- excluded: `data/raw`, `data/processed`, `data/results`, OSMnx/geopandas, and
-  local caches.
+- `data/raw/`
+- `data/results/`
+- `cache/`
 
-This keeps the interview demo reproducible without copying large road-network
-files into the image.
+Commit-friendly curated outputs live under:
 
-## Project Structure
+- [reports/results](reports/results)
+- [reports/figures](reports/figures)
+- [reports/demo](reports/demo)
+
+## Data Sources
+
+- Solomon 100 selected instances: `c101_100`, `r101_100`, `rc101_100`.
+- Gehring-Homberger 200 selected instances:
+  `gh_c1_2_1_200`, `gh_r1_2_1_200`, `gh_rc1_2_1_200`.
+- Berlin Mitte city demo: cached OSM driving graph under `cache/osm/`, not
+  committed.
+
+Benchmark reporting follows the usual hierarchy: minimize vehicles first, then
+distance. The project also reports the internal vehicle-weighted objective, but
+that objective is not distance.
+
+## Repository Structure
 
 ```text
 apps/
-  streamlit_app.py              Streamlit + Folium demo
+  streamlit_app.py
 configs/
-  solomon_small.yaml            Small reproducible experiment config
+  experiment_small.yaml
+  experiment_medium.yaml
+  ablation_selectors.yaml
+  city_demo_berlin_mitte.yaml
 docs/
-  modeling.md                   VRPTW formulation and business meaning
-  algorithm_alns.md             ALNS search loop and operators
-  adaptive_selector.md          Adaptive selector notes
-  experiment_protocol.md        Reproducible benchmark protocol
-  interview_notes.md            Interview talk track
-  resume_bullets.md             Resume wording templates
-  statistical_tests.md          Statistical testing notes
-scripts/
-  make_report_figures.py        SVG figure generation from result CSV/JSON
-  profile_alns.py               ALNS profiling helper
-  run_scaling.py                Scaling experiment launcher
+  claim_registry.md
+  demo_guide.md
+  interview_notes.md
+  resume_bullets.md
+reports/
+  results/
+  figures/
+  demo/
 src/vrptw_hybrid/
-  core/                         Data models, feasibility, metrics, solution I/O
-  data/                         Solomon parser, BKS table, OSM/synthetic data
-  experiments/                  Batch runner, statistics, plots, scaling
-  solvers/                      Greedy, CP-SAT, OR-Tools, ALNS
-  visualization/                GeoJSON export and Folium rendering
+  core/
+  data/
+  experiments/
+  solvers/
+  visualization/
 tests/
-  fixtures/mini_solomon.txt     Fast smoke/demo instance
 ```
 
 ## Limitations
 
-- The project solves static VRPTW instances; it is not a real-time dispatch or
-  live re-optimization system.
-- Road-network travel times use cached OSM graph data and simplified speed
-  assumptions; live traffic is out of scope.
-- CP-SAT exact validation is intended for small instances and can be sensitive
-  to the installed OR-Tools native runtime.
-- COPT/MILP integration is optional and not required for the main demo path.
-- Visualization dependencies are kept in the `vis` extra to keep solver tests
-  lightweight.
+- No large-scale scaling claim is made.
+- MOSADE-inspired selection is implemented and instrumented, but current
+  evidence does not support a better-than-baseline claim.
+- CP-SAT is scoped to small validation.
+- OR-Tools Routing is strong when feasible, but had limited-budget feasibility
+  gaps in EXP-02.
+- The city demo is small and uses a shortest-path proxy, not measured traffic
+  data.
+- This is not a production dispatch system.
 
-## Interview Talk Track
+## Interview Positioning
 
-Detailed notes are in [docs/interview_notes.md](docs/interview_notes.md), and
-resume wording templates are in [docs/resume_bullets.md](docs/resume_bullets.md).
+The project is designed to support this interview story:
 
-1. Start from the business constraint: delivery routes must balance vehicle
-   count, distance, capacity, and time-window feasibility.
-2. Explain the mathematical model: binary arc decisions, service start times,
-   capacity accumulation, time-window bounds, and depot return.
-3. Justify exact vs heuristic: exact models are valuable for small-instance
-   validation, but heuristic ALNS is the practical path for larger routing.
-4. Explain adaptive ALNS: destroy/repair pairs are treated like strategies;
-   rewards update pair probabilities from recent search performance.
-5. Explain validation: exact checks on small cases, OR-Tools baseline, Solomon
-   BKS gaps where verified, repeated seeds, statistical summaries, and map
-   inspection.
+> I built a VRPTW project that connects business constraints, mathematical
+> modeling, exact small-instance validation, heuristic ALNS search, baseline
+> comparison, statistical review, and map visualization. I also tested a
+> MOSADE-inspired adaptive selector; the honest result is that it is
+> instrumented and explainable, but not yet better than simpler selectors.
 
-Resume bullet template, to fill only after real CSV evidence exists:
-
-```text
-Implemented a hybrid VRPTW solver with CP-SAT validation, OR-Tools baseline,
-and MOSADE-inspired adaptive ALNS; on <instance set>, reduced vehicles by TODO,
-distance by TODO%, and produced a Streamlit/Folium route visualization demo.
-```
+See [docs/interview_notes.md](docs/interview_notes.md) and
+[docs/resume_bullets.md](docs/resume_bullets.md) for prepared wording.

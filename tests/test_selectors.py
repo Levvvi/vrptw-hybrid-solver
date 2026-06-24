@@ -8,6 +8,7 @@ from vrptw_hybrid.solvers.alns.repair import REPAIR_OPERATORS
 from vrptw_hybrid.solvers.alns.selectors import (
     MOSADEInspiredSelector,
     OperatorEvent,
+    OperatorSelector,
     RouletteWheelSelector,
     UniformSelector,
 )
@@ -265,7 +266,7 @@ def test_mosade_can_disable_pair_memory_and_diversity_bonus() -> None:
 
 
 def test_selector_snapshots_are_json_serializable() -> None:
-    selectors = [
+    selectors: list[OperatorSelector] = [
         UniformSelector(),
         RouletteWheelSelector(segment_length=1),
         MOSADEInspiredSelector(),

@@ -1,6 +1,6 @@
 ﻿# VRPTW Hybrid Solver
 
-[![CI](https://github.com/Levvvi/vrptw-hybrid-solver/actions/workflows/ci.yml/badge.svg)](https://github.com/Levvvi/vrptw-hybrid-solver/actions/workflows/ci.yml)
+[![CI](https://github.com/Levvvi/vrptw-hybrid-solver/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Levvvi/vrptw-hybrid-solver/actions/workflows/ci.yml)
 
 Exact validation, ALNS variants, benchmark experiments, and map demos for the
 Vehicle Routing Problem with Time Windows.

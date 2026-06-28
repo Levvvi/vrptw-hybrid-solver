@@ -1,12 +1,17 @@
 import json
+import re
 from pathlib import Path
-from typing import Any, get_args, get_type_hints
 
 from typer.testing import CliRunner
 
-from vrptw_hybrid.cli import app, solve
+from vrptw_hybrid.cli import app
 
 runner = CliRunner()
+ANSI_RE = re.compile(r"\x1b\[[0-?]*[ -/]*[@-~]")
+
+
+def strip_ansi(text: str) -> str:
+    return ANSI_RE.sub("", text)
 
 
 def test_info_command_prints_version_and_config() -> None:
@@ -19,35 +24,15 @@ def test_info_command_prints_version_and_config() -> None:
 
 
 def test_solve_help_exposes_reserved_parameters() -> None:
-    result = runner.invoke(app, ["solve", "--help"])
+    result = runner.invoke(app, ["solve", "--help"], color=False)
 
     assert result.exit_code == 0
-    option_names = _typer_option_names(solve)
-    assert {
-        "--instance",
-        "--solver",
-        "--time-limit",
-        "--max-iterations",
-        "--output-json",
-    }.issubset(option_names)
-
-
-def _typer_option_names(function: Any) -> set[str]:
-    option_names: set[str] = set()
-    for hint in get_type_hints(function, include_extras=True).values():
-        args = get_args(hint)
-        if len(args) < 2:
-            continue
-        option_info = args[1]
-        default = getattr(option_info, "default", None)
-        if isinstance(default, str) and default.startswith("--"):
-            option_names.add(default)
-        option_names.update(
-            declaration
-            for declaration in getattr(option_info, "param_decls", ())
-            if isinstance(declaration, str) and declaration.startswith("--")
-        )
-    return option_names
+    output = strip_ansi(result.output)
+    assert "--instance" in output
+    assert "--solver" in output
+    assert "--time-limit" in output
+    assert "--max-iterations" in output
+    assert "--output-json" in output
 
 
 def test_solve_command_runs_greedy_solver() -> None:

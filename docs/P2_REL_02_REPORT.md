@@ -1,18 +1,33 @@
 # P2-REL-02 Final Release Cleanup
 
-## Status
+## A. CI Run Interpretation
 
-The project is ready for the `v0.1.0` release checkpoint after the final CI run
-on `main` passes.
+- CI run #1 and #2 are historical failed runs and should remain in the GitHub
+  Actions history.
+- The first failure was caused by a brittle CLI help test that asserted directly
+  on Rich/Typer terminal output.
+- The second failure was caused by test typing where mypy inferred a mixed
+  selector list as `object`.
+- The latest checked run before this cleanup was green. Any new cleanup commit
+  must pass CI before release actions proceed.
 
-## CI Scope
+## B. Confirmed Fixes
 
-The GitHub Actions workflow uses:
+- GitHub Actions uses `actions/checkout@v6` and `actions/setup-python@v6`.
+- The workflow explicitly uses Python `3.11` and installs `.[dev,vis]`.
+- CI runs `pip check`, `ruff`, `mypy src tests`, `pytest`, `vrptw info`, and
+  `apps.streamlit_app` import smoke.
+- `tests/test_cli.py` now invokes help with `color=False`, strips ANSI escape
+  codes, and checks option tokens rather than matching full rendered lines.
+- `tests/test_selectors.py` keeps the mixed selector serialization test typed
+  through the shared `OperatorSelector` protocol, while MOSADE-specific
+  `update`/`snapshot` behavior is covered on a concrete `MOSADEInspiredSelector`
+  instance.
 
-- `actions/checkout@v6`
-- `actions/setup-python@v6`
-- Python `3.11`
-- `python -m pip install -e ".[dev,vis]"`
+## C. Local Quality Gates
+
+Run before push:
+
 - `python -m pip check`
 - `python -m ruff check .`
 - `python -m mypy src tests`
@@ -20,25 +35,62 @@ The GitHub Actions workflow uses:
 - `vrptw info`
 - `python -c "import apps.streamlit_app; print('streamlit import ok')"`
 
-## Historical CI Failures
+All must pass before pushing.
 
-Old failed GitHub Actions runs are intentionally left in the run history.
+## D. Public Content Scan
 
-- The selector test typing failure was fixed by typing the mixed selector list
-  as `OperatorSelector`.
-- The CLI help test failure was fixed by checking Typer option metadata instead
-  of asserting on ANSI-rich terminal help text.
+The release scan checks for:
 
-## Release Caveats
+- local absolute paths, local file URLs, and sandbox-only paths;
+- overclaims such as very-large-scale results, MOSADE superiority, top-tier
+  performance language, measured traffic-time claims, or CP-SAT as a large-scale
+  baseline.
 
-- The MOSADE-inspired selector is not claimed to outperform uniform or roulette
-  selection.
-- The release does not claim very-large-scale benchmark results.
-- The city demo uses an OSM road-network shortest-path proxy, not measured
-  traffic time.
-- Raw benchmark data, generated experiment outputs, OSM cache files, virtual
-  environments, and local caches remain ignored.
+README/docs/reports should have no matches before release.
 
-## Release Tag
+## E. Release Metadata
 
-Create `v0.1.0` only after the latest `main` CI run is green.
+Added or confirmed:
+
+- `CHANGELOG.md`
+- `CITATION.cff`
+- `docs/release_notes_v0.1.0.md`
+- README CI badge pointing at `.github/workflows/ci.yml` on `main`.
+
+## F. Commit Scope
+
+Expected release cleanup files:
+
+- `.github/workflows/ci.yml`
+- `README.md`
+- `CHANGELOG.md`
+- `CITATION.cff`
+- `docs/P2_REL_02_REPORT.md`
+- `docs/release_notes_v0.1.0.md`
+- `tests/test_cli.py`
+- `tests/test_selectors.py` if further selector typing edits are needed.
+
+Ignored files must remain untracked:
+
+- `.venv311/`
+- `.ai-bridge/`
+- `cache/`
+- `data/raw/`
+- `data/results/`
+- Python and test caches.
+
+## G. GitHub Actions Confirmation
+
+After push, confirm the newest `main` run at:
+
+`https://github.com/Levvvi/vrptw-hybrid-solver/actions/workflows/ci.yml`
+
+Only the newest run matters for release readiness. Old failed runs are normal
+history and should not be deleted.
+
+## H. Tag and Release Strategy
+
+- Create `v0.1.0` only after the latest `main` CI run is green.
+- If `v0.1.0` already exists, do not overwrite or force-push it.
+- If GitHub CLI is unavailable, create the GitHub Release manually from
+  `docs/release_notes_v0.1.0.md`.

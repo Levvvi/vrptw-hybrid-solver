@@ -247,15 +247,3 @@ tests/
   data.
 - This is not a production dispatch system.
 
-## Interview Positioning
-
-The project is designed to support this interview story:
-
-> I built a VRPTW project that connects business constraints, mathematical
-> modeling, exact small-instance validation, heuristic ALNS search, baseline
-> comparison, statistical review, and map visualization. I also tested a
-> MOSADE-inspired adaptive selector; the honest result is that it is
-> instrumented and explainable, but not yet better than simpler selectors.
-
-See [docs/interview_notes.md](docs/interview_notes.md) and
-[docs/resume_bullets.md](docs/resume_bullets.md) for prepared wording.
